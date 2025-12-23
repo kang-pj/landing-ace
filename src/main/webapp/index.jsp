@@ -285,45 +285,45 @@
         /* 플로팅 버튼들 */
         .floating-buttons {
             position: fixed;
-            right: 30px;
+            right: 20px;
             top: 50%;
             transform: translateY(-50%);
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
             z-index: 1000;
+            transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
         
         .floating-btn-container {
             background: white;
-            border-radius: 35px;
-            padding: 15px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
-        }
-        
-        .floating-btn {
-            width: 65px;
-            height: 65px;
-            border-radius: 50%;
+            border-radius: 20px;
+            padding: 15px 12px;
+            box-shadow: 0 6px 25px rgba(0,0,0,0.12);
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
+            gap: 20px;
+        }
+        
+        .floating-btn-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             text-decoration: none;
-            color: white;
-            font-size: 10px;
-            font-weight: bold;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.15);
             transition: transform 0.3s;
-            margin-bottom: 10px;
         }
         
-        .floating-btn:last-child {
-            margin-bottom: 0;
-        }
-        
-        .floating-btn:hover {
+        .floating-btn-item:hover {
             transform: scale(1.05);
+        }
+        
+        .floating-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 6px;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.08);
         }
         
         .floating-btn.phone {
@@ -332,31 +332,474 @@
         
         .floating-btn.kakao {
             background: #fee500;
-            color: #333;
         }
         
         .floating-btn.sms {
-            background: #00c851;
-        }
-        
-        .floating-btn.top {
-            background: #666;
+            background: #87ceeb;
         }
         
         .floating-btn-icon {
-            font-size: 22px;
-            margin-bottom: 3px;
+            font-size: 20px;
+            color: white;
+        }
+        
+        .floating-btn.kakao .floating-btn-icon {
+            color: #333;
         }
         
         .floating-btn-text {
-            font-size: 9px;
-            line-height: 1.1;
+            font-size: 12px;
+            font-weight: 500;
+            color: #333;
+            text-align: center;
+            line-height: 1.2;
+        }
+        
+        .top-btn {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: #666;
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px solid #e0e0e0;
+            transition: color 0.3s;
+        }
+        
+        .top-btn:hover {
+            color: #333;
+        }
+        
+        .top-icon {
+            font-size: 16px;
+            margin-bottom: 4px;
+        }
+        
+        .top-text {
+            font-size: 10px;
+            font-weight: 500;
         }
         
         /* 하단 여백 */
         .bottom-spacer {
             height: 120px;
             background: white;
+        }
+        
+        /* AI 자가진단 섹션 */
+        .ai-diagnosis-section {
+            background: white;
+            padding: 80px 20px;
+        }
+        
+        .ai-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .ai-title {
+            margin-bottom: 60px;
+        }
+        
+        .ai-title h3 {
+            font-size: 24px;
+            color: #666;
+            margin-bottom: 15px;
+            font-weight: normal;
+        }
+        
+        .ai-title h2 {
+            font-size: 40px;
+            color: #333;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        
+        .ai-subtitle {
+            font-size: 16px;
+            color: #666;
+        }
+        
+        /* 진단 카드들 */
+        .diagnosis-cards {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .diagnosis-card {
+            flex: 1;
+            background: #f8f9fa;
+            border: 2px solid #e9ecef;
+            border-radius: 20px;
+            padding: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            min-height: 180px;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .diagnosis-card:hover {
+            background: #e8f2ff;
+            border-color: #4472c4;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(68, 114, 196, 0.2);
+        }
+        
+        .card-content {
+            flex: 1;
+            text-align: left;
+        }
+        
+        .card-subtitle {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 12px;
+            line-height: 1.4;
+        }
+        
+        .card-title {
+            font-size: 28px;
+            font-weight: bold;
+            color: #333;
+            margin: 0;
+        }
+        
+        .card-icon {
+            font-size: 70px;
+            color: #4472c4;
+            text-align: right;
+            margin-top: auto;
+        }
+        
+        /* 고객 사례 섹션 */
+        .customer-cases-section {
+            background: white;
+            padding: 80px 20px 100px;
+        }
+        
+        .cases-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .cases-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .cases-subtitle {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 15px;
+        }
+        
+        .cases-title {
+            font-size: 36px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 40px;
+        }
+        
+        .case-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+        }
+        
+        .tab-btn {
+            padding: 10px 25px;
+            border: none;
+            border-radius: 25px;
+            background: #f0f0f0;
+            color: #666;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            min-width: 100px;
+        }
+        
+        .tab-btn.active {
+            background: #333;
+            color: white;
+        }
+        
+        .tab-btn:hover:not(.active) {
+            background: #e0e0e0;
+        }
+        
+        .cases-wrapper {
+            overflow: hidden;
+            padding: 15px 20px;
+            height: 380px;
+        }
+        
+        .cases-slider-container {
+            position: relative;
+        }
+        
+        .slider-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: transparent;
+            border: none;
+            color: #666;
+            cursor: pointer;
+            z-index: 10;
+            transition: all 0.3s;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .slider-btn:hover {
+            color: #333;
+            cursor: pointer;
+        }
+        
+        .slider-btn::before {
+            content: '';
+            width: 15px;
+            height: 15px;
+            border-top: 3px solid currentColor;
+            border-right: 3px solid currentColor;
+            transform: rotate(45deg);
+        }
+        
+        .slider-btn.prev {
+            left: -80px;
+        }
+        
+        .slider-btn.prev::before {
+            transform: rotate(-135deg);
+        }
+        
+        .slider-btn.next {
+            right: -80px;
+        }
+        
+        .slider-btn.next::before {
+            transform: rotate(45deg);
+        }
+        
+        .cases-track {
+            display: flex;
+            width: 300%;
+            transition: transform 0.5s ease-in-out;
+        }
+        
+        .case-group {
+            display: flex;
+            gap: 30px;
+            width: 33.333%;
+            flex-wrap: nowrap;
+            align-items: stretch;
+            flex-shrink: 0;
+        }
+        
+        .case-card {
+            flex: 1;
+            background: white;
+            border: 1px solid #e9ecef;
+            border-radius: 15px;
+            padding: 25px;
+            transition: all 0.3s;
+            position: relative;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        .case-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .case-profile {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .profile-img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: #f8f9fa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            border: 2px solid #e9ecef;
+        }
+        
+        .case-info {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        
+        .case-name-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .case-badges {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 5px;
+        }
+        
+        .case-type {
+            background: #e9ecef;
+            color: #666;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 500;
+        }
+        
+        .case-success {
+            background: #e8f2ff;
+            color: #4472c4;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 500;
+        }
+        
+        .case-name {
+            font-size: 20px;
+            font-weight: bold;
+            color: #333;
+            margin: 0;
+        }
+        
+        .case-age {
+            font-size: 13px;
+            color: #999;
+            margin-top: 2px;
+        }
+        
+        .case-result {
+            margin-bottom: 25px;
+        }
+        
+        .result-badge {
+            background: #4472c4;
+            color: white;
+            padding: 12px 16px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            text-align: center;
+            position: relative;
+        }
+        
+        .result-badge::before {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+            border-top: 8px solid #4472c4;
+        }
+        
+        .case-details {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 15px;
+            background: #fafafa;
+            min-height: 120px;
+        }
+        
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0;
+            font-size: 14px;
+            min-height: 24px;
+        }
+        
+        .detail-row.empty {
+            visibility: hidden;
+        }
+        
+        .detail-row .label {
+            color: #666;
+            font-weight: 400;
+        }
+        
+        .detail-row .value {
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .detail-row .value.red {
+            color: #ff4757;
+            font-weight: bold;
+        }
+        
+        .detail-row .value.blue {
+            color: #4472c4;
+            font-weight: bold;
+        }
+        
+        /* 상담 신청 알림 */
+        .consultation-alerts {
+            background: #4472c4;
+            color: white;
+            overflow: hidden;
+            position: relative;
+            height: 80px;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .alert-row {
+            display: flex;
+            animation: scrollLeft 30s linear infinite;
+            white-space: nowrap;
+            height: 40px;
+            align-items: center;
+        }
+        
+        .alert-row:nth-child(2) {
+            animation-delay: -15s;
+        }
+        
+        .alert-item {
+            padding: 0 50px;
+            font-size: 14px;
+            font-weight: 500;
+            flex-shrink: 0;
+        }
+        
+        @keyframes scrollLeft {
+            0% {
+                transform: translateX(100%);
+            }
+            100% {
+                transform: translateX(-100%);
+            }
         }
         
         /* 반응형 디자인 */
@@ -382,11 +825,11 @@
             }
             
             .title-large {
-                font-size: 36px;
+                font-size: 32px;
             }
             
             .title-subtitle {
-                font-size: 28px;
+                font-size: 24px;
             }
             
             .stats-container {
@@ -399,7 +842,7 @@
                 min-width: auto;
                 width: 100%;
                 max-width: 350px;
-                padding: 25px 30px;
+                padding: 20px 25px;
             }
             
             .consultation-section {
@@ -426,13 +869,100 @@
                 min-width: auto;
             }
             
+            .ai-diagnosis-section {
+                padding: 60px 15px;
+            }
+            
+            .ai-title h2 {
+                font-size: 32px;
+            }
+            
+            .diagnosis-cards {
+                flex-direction: column;
+                gap: 25px;
+                max-width: 100%;
+            }
+            
+            .diagnosis-card {
+                padding: 25px;
+                min-height: 160px;
+            }
+            
+            .card-title {
+                font-size: 24px;
+            }
+            
+            .card-subtitle {
+                font-size: 15px;
+            }
+            
+            .card-icon {
+                font-size: 60px;
+            }
+            
+            .cases-container {
+                padding: 0 15px;
+            }
+            
+            .cases-title {
+                font-size: 28px;
+            }
+            
+            .case-group {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .cases-wrapper {
+                padding: 15px;
+                height: 280px;
+            }
+            
+            .slider-btn {
+                display: none;
+            }
+            
+            .consultation-alerts {
+                height: 60px;
+            }
+            
+            .alert-row {
+                height: 30px;
+            }
+            
+            .alert-item {
+                padding: 0 30px;
+                font-size: 13px;
+            }
+            
             .floating-buttons {
                 right: 15px;
             }
             
+            .floating-btn-container {
+                padding: 12px 10px;
+                gap: 15px;
+            }
+            
             .floating-btn {
-                width: 55px;
-                height: 55px;
+                width: 45px;
+                height: 45px;
+            }
+            
+            .floating-btn-icon {
+                font-size: 18px;
+            }
+            
+            .floating-btn-text {
+                font-size: 11px;
+            }
+            
+            .top-icon {
+                font-size: 14px;
+            }
+            
+            .top-text {
+                font-size: 9px;
             }
         }
     </style>
@@ -550,50 +1080,511 @@
     <!-- 하단 여백 -->
     <div class="bottom-spacer"></div>
     
+    <!-- AI 자가진단 섹션 -->
+    <section class="ai-diagnosis-section">
+        <div class="ai-container">
+            <div class="ai-title">
+                <h3>내 빚은 탕감받을 수 있을까?</h3>
+                <h2>AI 자가진단으로 알아보기</h2>
+                <p class="ai-subtitle">원하시는 빚 탕감 방식을 선택해 주세요!</p>
+            </div>
+            
+            <div class="diagnosis-cards">
+                <div class="diagnosis-card" onclick="selectDiagnosis('personal')">
+                    <div class="card-content">
+                        <p class="card-subtitle">일정한 소득이 있으나 여유가 없는분</p>
+                        <h3 class="card-title">개인회생</h3>
+                    </div>
+                    <div class="card-icon">👤</div>
+                </div>
+                
+                <div class="diagnosis-card" onclick="selectDiagnosis('bankruptcy')">
+                    <div class="card-content">
+                        <p class="card-subtitle">과도한 빚으로 빚 변제가 어려우신분</p>
+                        <h3 class="card-title">파산면책</h3>
+                    </div>
+                    <div class="card-icon">🏛️</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 고객 사례 섹션 -->
+    <section class="customer-cases-section">
+        <div class="cases-container">
+            <div class="cases-header">
+                <p class="cases-subtitle">10,386건의 노하우가 보여주는 결과</p>
+                <h2 class="cases-title">개인회생·파산 탕감 성공사례</h2>
+                
+                <div class="case-tabs">
+                    <button class="tab-btn active" onclick="filterCases('groupA', this)">전체</button>
+                    <button class="tab-btn" onclick="filterCases('groupB', this)">#개인회생</button>
+                    <button class="tab-btn" onclick="filterCases('groupC', this)">#개인파산</button>
+                </div>
+            </div>
+            
+            <div class="cases-slider-container">
+                <button class="slider-btn prev" onclick="prevCases()"></button>
+                <div class="cases-wrapper">
+                    <div class="cases-track" id="casesTrack">
+                    <div class="case-group">
+                        <!-- ========== 전체 탭용 카드 3개 ========== -->
+                        <!-- 전체 카드 1: 개인회생 - 김○○님 (96% 탕감) -->
+                        <div class="case-card" data-type="personal">
+                            <div class="case-profile">
+                                <div class="profile-img">👩</div>
+                                <div class="case-info">
+                                    <div class="case-badges">
+                                        <span class="case-type">개인회생</span>
+                                        <span class="case-success">96% 탕감</span>
+                                    </div>
+                                    <div class="case-name-row">
+                                        <div class="case-name">김○○님</div>
+                                        <div class="case-age">50대 여성, 주부</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="case-result">
+                                <div class="result-badge">💰 총 채무액 162,678,791원 탕감!</div>
+                            </div>
+                            <div class="case-details">
+                                <div class="detail-row">
+                                    <span class="label">총 채무액</span>
+                                    <span class="value">168,770,819원</span>
+                                </div>
+                                <div class="detail-row">
+                                    <span class="label">탕감 후 채무</span>
+                                    <span class="value red">6,092,028원</span>
+                                </div>
+                                <div class="detail-row">
+                                    <span class="label">월 변제액</span>
+                                    <span class="value blue">약 160,000원</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 전체 카드 2: 개인파산 - 박○○님 (100% 탕감) -->
+                        <div class="case-card" data-type="bankruptcy">
+                            <div class="case-profile">
+                                <div class="profile-img">👨</div>
+                                <div class="case-info">
+                                    <div class="case-badges">
+                                        <span class="case-type">개인파산</span>
+                                        <span class="case-success">100% 탕감</span>
+                                    </div>
+                                    <div class="case-name-row">
+                                        <div class="case-name">박○○님</div>
+                                        <div class="case-age">50대 남성, 사업자</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="case-result">
+                                <div class="result-badge">💰 총 채무액 530,000,000원 탕감!</div>
+                            </div>
+                            <div class="case-details">
+                                <div class="detail-row">
+                                    <span class="label">총 채무액</span>
+                                    <span class="value">530,000,000원</span>
+                                </div>
+                                <div class="detail-row">
+                                    <span class="label">탕감 후 채무</span>
+                                    <span class="value red">0원</span>
+                                </div>
+                                <div class="detail-row empty">
+                                    <span class="label">월 변제액</span>
+                                    <span class="value"></span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 전체 카드 3: 개인회생 - 이○○님 (93% 탕감) -->
+                        <div class="case-card" data-type="personal">
+                            <div class="case-profile">
+                                <div class="profile-img">👨</div>
+                                <div class="case-info">
+                                    <div class="case-badges">
+                                        <span class="case-type">개인회생</span>
+                                        <span class="case-success">93% 탕감</span>
+                                    </div>
+                                    <div class="case-name-row">
+                                        <div class="case-name">이○○님</div>
+                                        <div class="case-age">50대 남성, 회사원</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="case-result">
+                                <div class="result-badge">💰 총 채무액 167,437,271원 탕감!</div>
+                            </div>
+                            <div class="case-details">
+                                <div class="detail-row">
+                                    <span class="label">총 채무액</span>
+                                    <span class="value">180,626,375원</span>
+                                </div>
+                                <div class="detail-row">
+                                    <span class="label">탕감 후 채무</span>
+                                    <span class="value red">13,189,104원</span>
+                                </div>
+                                <div class="detail-row">
+                                    <span class="label">월 변제액</span>
+                                    <span class="value blue">약 360,000원</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- ========== 개인회생 탭용 추가 카드 3개 ========== -->
+                        <!-- 개인회생 카드 1: 최○○님 (89% 탕감) -->
+                        <div class="case-card" data-type="personal" style="display: none;">
+                            <div class="case-profile">
+                                <div class="profile-img">👩</div>
+                                <div class="case-info">
+                                    <div class="case-badges">
+                                        <span class="case-type">개인회생</span>
+                                        <span class="case-success">89% 탕감</span>
+                                    </div>
+                                    <div class="case-name-row">
+                                        <div class="case-name">최○○님</div>
+                                        <div class="case-age">40대 여성, 주부</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="case-result">
+                                <div class="result-badge">💰 총 채무액 89,500,000원 탕감!</div>
+                            </div>
+                            <div class="case-details">
+                                <div class="detail-row">
+                                    <span class="label">총 채무액</span>
+                                    <span class="value">100,500,000원</span>
+                                </div>
+                                <div class="detail-row">
+                                    <span class="label">탕감 후 채무</span>
+                                    <span class="value red">11,000,000원</span>
+                                </div>
+                                <div class="detail-row">
+                                    <span class="label">월 변제액</span>
+                                    <span class="value blue">약 300,000원</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 개인회생 카드 2: 정○○님 (91% 탕감) -->
+                        <div class="case-card" data-type="personal" style="display: none;">
+                            <div class="case-profile">
+                                <div class="profile-img">👨</div>
+                                <div class="case-info">
+                                    <div class="case-badges">
+                                        <span class="case-type">개인회생</span>
+                                        <span class="case-success">91% 탕감</span>
+                                    </div>
+                                    <div class="case-name-row">
+                                        <div class="case-name">정○○님</div>
+                                        <div class="case-age">30대 남성, 직장인</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="case-result">
+                                <div class="result-badge">💰 총 채무액 73,200,000원 탕감!</div>
+                            </div>
+                            <div class="case-details">
+                                <div class="detail-row">
+                                    <span class="label">총 채무액</span>
+                                    <span class="value">80,500,000원</span>
+                                </div>
+                                <div class="detail-row">
+                                    <span class="label">탕감 후 채무</span>
+                                    <span class="value red">7,300,000원</span>
+                                </div>
+                                <div class="detail-row">
+                                    <span class="label">월 변제액</span>
+                                    <span class="value blue">약 200,000원</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 개인회생 카드 3: 한○○님 (88% 탕감) -->
+                        <div class="case-card" data-type="personal" style="display: none;">
+                            <div class="case-profile">
+                                <div class="profile-img">👩</div>
+                                <div class="case-info">
+                                    <div class="case-badges">
+                                        <span class="case-type">개인회생</span>
+                                        <span class="case-success">88% 탕감</span>
+                                    </div>
+                                    <div class="case-name-row">
+                                        <div class="case-name">한○○님</div>
+                                        <div class="case-age">40대 여성, 자영업</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="case-result">
+                                <div class="result-badge">💰 총 채무액 105,600,000원 탕감!</div>
+                            </div>
+                            <div class="case-details">
+                                <div class="detail-row">
+                                    <span class="label">총 채무액</span>
+                                    <span class="value">120,000,000원</span>
+                                </div>
+                                <div class="detail-row">
+                                    <span class="label">탕감 후 채무</span>
+                                    <span class="value red">14,400,000원</span>
+                                </div>
+                                <div class="detail-row">
+                                    <span class="label">월 변제액</span>
+                                    <span class="value blue">약 400,000원</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- ========== 개인파산 탭용 추가 카드 3개 ========== -->
+                        <!-- 개인파산 카드 1: 강○○님 (100% 탕감) -->
+                        <div class="case-card" data-type="bankruptcy" style="display: none;">
+                            <div class="case-profile">
+                                <div class="profile-img">👩</div>
+                                <div class="case-info">
+                                    <div class="case-badges">
+                                        <span class="case-type">개인파산</span>
+                                        <span class="case-success">100% 탕감</span>
+                                    </div>
+                                    <div class="case-name-row">
+                                        <div class="case-name">강○○님</div>
+                                        <div class="case-age">60대 여성, 무직</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="case-result">
+                                <div class="result-badge">💰 총 채무액 95,000,000원 탕감!</div>
+                            </div>
+                            <div class="case-details">
+                                <div class="detail-row">
+                                    <span class="label">총 채무액</span>
+                                    <span class="value">95,000,000원</span>
+                                </div>
+                                <div class="detail-row">
+                                    <span class="label">탕감 후 채무</span>
+                                    <span class="value red">0원</span>
+                                </div>
+                                <div class="detail-row empty">
+                                    <span class="label">월 변제액</span>
+                                    <span class="value"></span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 개인파산 카드 2: 윤○○님 (100% 탕감) -->
+                        <div class="case-card" data-type="bankruptcy" style="display: none;">
+                            <div class="case-profile">
+                                <div class="profile-img">👨</div>
+                                <div class="case-info">
+                                    <div class="case-badges">
+                                        <span class="case-type">개인파산</span>
+                                        <span class="case-success">100% 탕감</span>
+                                    </div>
+                                    <div class="case-name-row">
+                                        <div class="case-name">윤○○님</div>
+                                        <div class="case-age">50대 남성, 자영업</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="case-result">
+                                <div class="result-badge">💰 총 채무액 320,000,000원 탕감!</div>
+                            </div>
+                            <div class="case-details">
+                                <div class="detail-row">
+                                    <span class="label">총 채무액</span>
+                                    <span class="value">320,000,000원</span>
+                                </div>
+                                <div class="detail-row">
+                                    <span class="label">탕감 후 채무</span>
+                                    <span class="value red">0원</span>
+                                </div>
+                                <div class="detail-row empty">
+                                    <span class="label">월 변제액</span>
+                                    <span class="value"></span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 개인파산 카드 3: 조○○님 (100% 탕감) -->
+                        <div class="case-card" data-type="bankruptcy" style="display: none;">
+                            <div class="case-profile">
+                                <div class="profile-img">👨</div>
+                                <div class="case-info">
+                                    <div class="case-badges">
+                                        <span class="case-type">개인파산</span>
+                                        <span class="case-success">100% 탕감</span>
+                                    </div>
+                                    <div class="case-name-row">
+                                        <div class="case-name">조○○님</div>
+                                        <div class="case-age">40대 남성, 사업자</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="case-result">
+                                <div class="result-badge">💰 총 채무액 180,000,000원 탕감!</div>
+                            </div>
+                            <div class="case-details">
+                                <div class="detail-row">
+                                    <span class="label">총 채무액</span>
+                                    <span class="value">180,000,000원</span>
+                                </div>
+                                <div class="detail-row">
+                                    <span class="label">탕감 후 채무</span>
+                                    <span class="value red">0원</span>
+                                </div>
+                                <div class="detail-row empty">
+                                    <span class="label">월 변제액</span>
+                                    <span class="value"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="slider-btn next" onclick="nextCases()"></button>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 상담 신청 알림 -->
+    <div class="consultation-alerts">
+        <div class="alert-row">
+            <div class="alert-item">40세 김***님이 상담 신청했습니다.</div>
+            <div class="alert-item">5분 전 50세 김***님이 상담 신청했습니다.</div>
+            <div class="alert-item">10분 전 45세 박***님이 상담 신청했습니다.</div>
+            <div class="alert-item">20분 전 30세 이***님이 상담 신청했습니다.</div>
+            <div class="alert-item">1시간 전 30세 이***님이 상담 신청했습니다.</div>
+        </div>
+        <div class="alert-row">
+            <div class="alert-item">2시간 전 30세 최***님이 상담 신청했습니다.</div>
+            <div class="alert-item">3시간 전 35세 송***님이 상담 신청했습니다.</div>
+            <div class="alert-item">4시간 전 52세 김***님이 상담 신청했습니다.</div>
+            <div class="alert-item">11시간 전 30세 김***님이 상담 신청했습니다.</div>
+            <div class="alert-item">12시간 전 30세 이***님이 상담 신청했습니다.</div>
+        </div>
+    </div>
+    
     <!-- 플로팅 버튼들 -->
     <div class="floating-buttons">
         <div class="floating-btn-container">
-            <a href="tel:1555-1684" class="floating-btn phone">
-                <div class="floating-btn-icon">📞</div>
+            <a href="tel:1555-1684" class="floating-btn-item">
+                <div class="floating-btn phone">
+                    <div class="floating-btn-icon">📞</div>
+                </div>
                 <div class="floating-btn-text">1555-1684</div>
             </a>
             
-            <a href="#" class="floating-btn kakao">
-                <div class="floating-btn-icon">💬</div>
-                <div class="floating-btn-text">카카오톡</div>
+            <a href="#" class="floating-btn-item">
+                <div class="floating-btn kakao">
+                    <div class="floating-btn-icon">💬</div>
+                </div>
+                <div class="floating-btn-text">카톡상담</div>
             </a>
             
-            <a href="sms:1555-1684" class="floating-btn sms">
-                <div class="floating-btn-icon">💬</div>
-                <div class="floating-btn-text">문자 상담</div>
+            <a href="sms:1555-1684" class="floating-btn-item">
+                <div class="floating-btn sms">
+                    <div class="floating-btn-icon">💬</div>
+                </div>
+                <div class="floating-btn-text">상담 예약</div>
             </a>
             
-            <a href="#top" class="floating-btn top">
-                <div class="floating-btn-icon">↑</div>
-                <div class="floating-btn-text">TOP</div>
+            <a href="#top" class="top-btn">
+                <div class="top-icon">↑</div>
+                <div class="top-text">TOP</div>
             </a>
         </div>
     </div>
     
     <script>
-        // 폼 제출 처리
-        document.querySelector('form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // 개인정보 동의 체크 확인
-            const privacyCheckbox = document.getElementById('privacy-agree');
-            if (!privacyCheckbox.checked) {
-                alert('개인정보 수집 및 이용에 동의해주세요.');
-                return;
+        let currentCaseGroup = 0;
+        
+        function nextCases() {
+            try {
+                currentCaseGroup = (currentCaseGroup + 1) % 3;
+                updateTabs();
+            } catch (error) {
+                console.error('Error in nextCases:', error);
+            }
+        }
+        
+        function prevCases() {
+            try {
+                currentCaseGroup = (currentCaseGroup - 1 + 3) % 3;
+                updateTabs();
+            } catch (error) {
+                console.error('Error in prevCases:', error);
+            }
+        }
+        
+        function updateTabs() {
+            try {
+                const tabs = document.querySelectorAll('.tab-btn');
+                
+                tabs.forEach(tab => tab.classList.remove('active'));
+                
+                if (currentCaseGroup === 0) {
+                    tabs[0].classList.add('active');
+                } else if (currentCaseGroup === 1) {
+                    tabs[1].classList.add('active');
+                } else if (currentCaseGroup === 2) {
+                    tabs[2].classList.add('active');
+                }
+                
+                filterCards();
+            } catch (error) {
+                console.error('Error in updateTabs:', error);
+            }
+        }
+        
+        function filterCases(type, element) {
+            try {
+                if (element) {
+                    document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+                    element.classList.add('active');
+                }
+                
+                if (type === 'groupA') currentCaseGroup = 0;
+                else if (type === 'groupB') currentCaseGroup = 1;
+                else if (type === 'groupC') currentCaseGroup = 2;
+                
+                filterCards();
+            } catch (error) {
+                console.error('Error in filterCases:', error);
+            }
+        }
+        
+        function filterCards() {
+            const track = document.getElementById('casesTrack');
+            const translateX = -currentCaseGroup * 33.333;
+            track.style.transform = `translateX(${translateX}%)`;
+        }
+        
+        function selectDiagnosis(type) {
+            if (type === 'personal') {
+                alert('개인회생 진단을 선택하셨습니다.');
+            } else if (type === 'bankruptcy') {
+                alert('파산면책 진단을 선택하셨습니다.');
+            }
+        }
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.querySelector('form');
+            if (form) {
+                form.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const privacyCheckbox = document.getElementById('privacy-agree');
+                    if (!privacyCheckbox.checked) {
+                        alert('개인정보 수집 및 이용에 동의해주세요.');
+                        return;
+                    }
+                    alert('상담 신청이 접수되었습니다. 빠른 시일 내에 연락드리겠습니다.');
+                });
             }
             
-            alert('상담 신청이 접수되었습니다. 빠른 시일 내에 연락드리겠습니다.');
-        });
-        
-        // TOP 버튼 클릭 시 상단으로 스크롤
-        document.querySelector('.floating-btn.top').addEventListener('click', function(e) {
-            e.preventDefault();
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            const topBtn = document.querySelector('.top-btn');
+            if (topBtn) {
+                topBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                });
+            }
         });
     </script>
 </body>
