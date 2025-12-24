@@ -812,6 +812,168 @@
             }
         }
         
+        /* 대표 변호사 소개 섹션 */
+        .lawyer-intro-section {
+            background: white;
+            padding: 80px 20px;
+        }
+        
+        .lawyer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .lawyer-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .lawyer-subtitle {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 15px;
+        }
+        
+        .lawyer-title {
+            font-size: 36px;
+            font-weight: bold;
+            color: #333;
+            margin: 0;
+        }
+        
+        .lawyer-content {
+            display: flex;
+            gap: 80px;
+            align-items: flex-start;
+            max-width: 1200px;
+            overflow: hidden;
+            margin: 0 auto;
+        }
+        
+        .lawyer-image-area {
+            flex: 0 0 50%;
+            max-width: 50%;
+            display: flex;
+            justify-content: flex-end;
+            padding: 0 20px 50px 20px;
+        }
+        
+        .certificateSwiper {
+            width: 450px;
+            height: 590px;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+        
+        .certificateSwiper .swiper-slide {
+            width: 100%;
+            height: 550px;
+        }
+        
+        .certificate-image {
+            width: 100%;
+            height: 100%;
+            background: #f8f9fa;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            padding: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .certificate-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+        
+        /* 증서 스와이프 pagination 커스텀 */
+        .certificateSwiper .swiper-pagination {
+            bottom: -40px;
+            text-align: center;
+        }
+        
+        .certificateSwiper .swiper-pagination-bullet {
+            width: 8px;
+            height: 8px;
+            background: #ccc;
+            border-radius: 50%;
+            margin: 0 4px;
+            transition: all 0.3s;
+            opacity: 1;
+        }
+        
+        .certificateSwiper .swiper-pagination-bullet-active {
+            width: 24px;
+            height: 8px;
+            border-radius: 4px;
+            background: #4472c4;
+        }
+        
+        .lawyer-info-area {
+            flex: 0 0 50%;
+            max-width: 50%;
+            min-width: 0;
+            overflow: hidden;
+        }
+        
+        .lawyer-description {
+            margin-bottom: 40px;
+            font-size: 18px;
+            line-height: 1.6;
+            color: #333;
+        }
+        
+        .lawyer-description p {
+            margin-bottom: 8px;
+        }
+        
+        .lawyer-description strong {
+            color: #4472c4;
+            font-weight: bold;
+        }
+        
+        .lawyer-details {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        
+        .detail-section h4 {
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #4472c4;
+            display: inline-block;
+        }
+        
+        .detail-section ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .detail-section li {
+            font-size: 15px;
+            color: #666;
+            margin-bottom: 8px;
+            padding-left: 15px;
+            position: relative;
+        }
+        
+        .detail-section li::before {
+            content: '•';
+            color: #4472c4;
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+        
         /* 반응형 디자인 */
         @media (max-width: 768px) {
             .header-container {
@@ -1497,6 +1659,75 @@
         </div>
     </div>
     
+    <!-- 대표 변호사 소개 섹션 -->
+    <section class="lawyer-intro-section">
+        <div class="lawyer-container">
+            <div class="lawyer-header">
+                <p class="lawyer-subtitle">대표 변호사 소개</p>
+                <h2 class="lawyer-title">개인회생·파산 전문 황선택 변호사</h2>
+            </div>
+            
+            <div class="lawyer-content">
+                <div class="lawyer-image-area">
+                    <div class="swiper certificateSwiper">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <div class="certificate-image">
+                                    <img src="/images/certificate1.jpg" alt="변호사 등록증서" />
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="certificate-image">
+                                    <img src="/images/certificate2.jpg" alt="전문분야 등록증서" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-pagination"></div>
+                    </div>
+                </div>
+                
+                <div class="lawyer-info-area">
+                    <div class="lawyer-description">
+                        <p>채무에 관련해 힘 다양한 문제에 대하여</p>
+                        <p><strong>최선의 해결책을 제시하고</strong></p>
+                        <p>채무 탕감 소송의 경험이 풍부합니다.</p>
+                    </div>
+                    
+                    <div class="lawyer-details">
+                        <div class="detail-section">
+                            <h4>학력</h4>
+                            <ul>
+                                <li>성균관대학교 경영학과 졸업</li>
+                                <li>성균관대학교 법학전문대학원 졸업</li>
+                                <li>제57차사법시험 합격</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="detail-section">
+                            <h4>경력</h4>
+                            <ul>
+                                <li>법무법인스마트소스 대표변호사</li>
+                                <li>前 법무법인 회율</li>
+                                <li>前 법무법인 성세</li>
+                                <li>前 율촌법무법인 서울사무소</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="detail-section">
+                            <h4>활동</h4>
+                            <ul>
+                                <li>육군사관학교 법률고문변호사</li>
+                                <li>육군사관학교 토지수사위원회위원</li>
+                                <li>한국부인회연합회총재단 법조인소사위원장 자문위원</li>
+                                <li>법무부구치 전문사법위원회위원 심의위원</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
     <!-- 플로팅 버튼들 -->
     <div class="floating-buttons">
         <div class="floating-btn-container">
@@ -1533,6 +1764,7 @@
     
     <script>
         let casesSwiper;
+        let certificateSwiper;
         
         function filterCases(type, element) {
             // 탭 활성화
@@ -1577,6 +1809,32 @@
                         // loop 모드에서는 realIndex를 사용
                         const realIndex = this.realIndex;
                         tabs[realIndex].classList.add('active');
+                    }
+                }
+            });
+            
+            // 증서 Swiper 초기화
+            certificateSwiper = new Swiper('.certificateSwiper', {
+                slidesPerView: 1,
+                loop: false,
+                autoplay: {
+                    delay: 2000,
+                    disableOnInteraction: false,
+                },
+                pagination: {
+                    el: '.certificateSwiper .swiper-pagination',
+                    clickable: true,
+                },
+                on: {
+                    init: function() {
+                        // 마우스 호버 이벤트 추가
+                        const swiperEl = this.el;
+                        swiperEl.addEventListener('mouseenter', () => {
+                            this.autoplay.stop();
+                        });
+                        swiperEl.addEventListener('mouseleave', () => {
+                            this.autoplay.start();
+                        });
                     }
                 }
             });
