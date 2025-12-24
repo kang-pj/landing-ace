@@ -510,63 +510,45 @@
         }
         
         .cases-wrapper {
-            padding: 15px 20px;
+            padding: 15px 100px;
             position: relative;
         }
         
         .casesSwiper {
             width: 100%;
-            max-width: 1100px;
+            max-width: 1000px;
             margin: 0 auto;
-            overflow: hidden;
-            position: relative;
         }
         
-        .arrow-container {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            pointer-events: none;
-            z-index: 10;
-        }
-        
-        .arrow-btn {
-            position: absolute;
+        .swiper-button-next,
+        .swiper-button-prev {
+            color: #4472c4;
+            background: transparent;
+            width: 50px;
+            height: 50px;
+            margin-top: 0;
             top: 50%;
             transform: translateY(-50%);
-            background: transparent;
-            border: none;
-            cursor: pointer;
-            pointer-events: auto;
-            width: 20px;
-            height: 100px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            z-index: 100;
         }
         
-        .arrow-btn svg {
-            width: 12px;
-            height: 20px;
-            fill: none;
-            stroke: #4472c4;
-            stroke-width: 1.5;
-            stroke-linecap: round;
-            stroke-linejoin: round;
+        .swiper-button-next {
+            right: 5px;
         }
         
-        .prev-btn {
-            left: -40px;
+        .swiper-button-prev {
+            left: 5px;
         }
         
-        .next-btn {
-            right: -40px;
+        .swiper-button-next:after,
+        .swiper-button-prev:after {
+            font-size: 20px;
+            font-weight: bold;
         }
         
-        .arrow-btn:hover svg {
-            stroke: #000;
+        .swiper-button-next:hover,
+        .swiper-button-prev:hover {
+            color: #000;
         }
         
         .case-tabs {
@@ -597,21 +579,9 @@
             background: #e0e0e0;
         }
         
-        .case-card {
-            background: white;
-            border: 1px solid #e9ecef;
-            border-radius: 15px;
-            padding: 25px;
-            transition: all 0.3s;
-            position: relative;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            min-width: 320px;
-        }
-        
         .case-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            border-color: #4472c4;
         }
         
         .case-profile {
@@ -1110,341 +1080,34 @@
             </div>
             
             <div class="cases-wrapper">
-                <!-- 화살표를 완전히 분리된 영역에 배치 -->
-                <div class="arrow-container">
-                    <button class="arrow-btn prev-btn" onclick="casesSwiper.slidePrev()">
-                        <svg viewBox="0 0 12 20">
-                            <polyline points="10,2 2,10 10,18"></polyline>
-                        </svg>
-                    </button>
-                    <button class="arrow-btn next-btn" onclick="casesSwiper.slideNext()">
-                        <svg viewBox="0 0 12 20">
-                            <polyline points="2,2 10,10 2,18"></polyline>
-                        </svg>
-                    </button>
-                </div>
-                
                 <!-- Swiper -->
                 <div class="swiper casesSwiper">
                     <div class="swiper-wrapper">
-                        <!-- 전체 그룹 -->
+                        <!-- 전체 그룹 (빨강) -->
                         <div class="swiper-slide">
-                            <div class="case-group" data-group="all" style="padding: 20px;">
-                                <div class="cases-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px;">
-                                    <div class="case-card">
-                                        <div class="case-profile">
-                                            <div class="profile-img">👩</div>
-                                            <div class="case-info">
-                                                <div class="case-badges">
-                                                    <span class="case-type">개인회생</span>
-                                                    <span class="case-success">96% 탕감</span>
-                                                </div>
-                                                <div class="case-name-row">
-                                                    <div class="case-name">김○○님</div>
-                                                    <div class="case-age">50대 여성, 주부</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="case-result">
-                                            <div class="result-badge">💰 총 채무액 162,678,791원 탕감!</div>
-                                        </div>
-                                        <div class="case-details">
-                                            <div class="detail-row">
-                                                <span class="label">총 채무액</span>
-                                                <span class="value">168,770,819원</span>
-                                            </div>
-                                            <div class="detail-row">
-                                                <span class="label">탕감 후 채무</span>
-                                                <span class="value red">6,092,028원</span>
-                                            </div>
-                                            <div class="detail-row">
-                                                <span class="label">월 변제액</span>
-                                                <span class="value blue">약 160,000원</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="case-card">
-                                        <div class="case-profile">
-                                            <div class="profile-img">👨</div>
-                                            <div class="case-info">
-                                                <div class="case-badges">
-                                                    <span class="case-type">개인파산</span>
-                                                    <span class="case-success">100% 탕감</span>
-                                                </div>
-                                                <div class="case-name-row">
-                                                    <div class="case-name">박○○님</div>
-                                                    <div class="case-age">50대 남성, 사업자</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="case-result">
-                                            <div class="result-badge">💰 총 채무액 530,000,000원 탕감!</div>
-                                        </div>
-                                        <div class="case-details">
-                                            <div class="detail-row">
-                                                <span class="label">총 채무액</span>
-                                                <span class="value">530,000,000원</span>
-                                            </div>
-                                            <div class="detail-row">
-                                                <span class="label">탕감 후 채무</span>
-                                                <span class="value red">0원</span>
-                                            </div>
-                                            <div class="detail-row empty">
-                                                <span class="label">월 변제액</span>
-                                                <span class="value"></span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="case-card">
-                                        <div class="case-profile">
-                                            <div class="profile-img">👨</div>
-                                            <div class="case-info">
-                                                <div class="case-badges">
-                                                    <span class="case-type">개인회생</span>
-                                                    <span class="case-success">93% 탕감</span>
-                                                </div>
-                                                <div class="case-name-row">
-                                                    <div class="case-name">이○○님</div>
-                                                    <div class="case-age">50대 남성, 회사원</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="case-result">
-                                            <div class="result-badge">💰 총 채무액 167,437,271원 탕감!</div>
-                                        </div>
-                                        <div class="case-details">
-                                            <div class="detail-row">
-                                                <span class="label">총 채무액</span>
-                                                <span class="value">180,626,375원</span>
-                                            </div>
-                                            <div class="detail-row">
-                                                <span class="label">탕감 후 채무</span>
-                                                <span class="value red">13,189,104원</span>
-                                            </div>
-                                            <div class="detail-row">
-                                                <span class="label">월 변제액</span>
-                                                <span class="value blue">약 360,000원</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                            <div class="case-group" data-group="all" style="background: #ffebee; min-height: 400px; display: flex; align-items: center; justify-content: center; border-radius: 15px; margin: 10px 50px;">
+                                <h3 style="color: #d32f2f; font-size: 32px; font-weight: bold;">전체 그룹 영역 (1/3)</h3>
                             </div>
                         </div>
                         
-                        <!-- 개인회생 그룹 -->
+                        <!-- 개인회생 그룹 (주황) -->
                         <div class="swiper-slide">
-                            <div class="case-group" data-group="personal" style="padding: 20px;">
-                                <div class="cases-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px;">
-                                    <div class="case-card">
-                                        <div class="case-profile">
-                                            <div class="profile-img">👩</div>
-                                            <div class="case-info">
-                                                <div class="case-badges">
-                                                    <span class="case-type">개인회생</span>
-                                                    <span class="case-success">89% 탕감</span>
-                                                </div>
-                                                <div class="case-name-row">
-                                                    <div class="case-name">최○○님</div>
-                                                    <div class="case-age">40대 여성, 주부</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="case-result">
-                                            <div class="result-badge">💰 총 채무액 89,500,000원 탕감!</div>
-                                        </div>
-                                        <div class="case-details">
-                                            <div class="detail-row">
-                                                <span class="label">총 채무액</span>
-                                                <span class="value">100,500,000원</span>
-                                            </div>
-                                            <div class="detail-row">
-                                                <span class="label">탕감 후 채무</span>
-                                                <span class="value red">11,000,000원</span>
-                                            </div>
-                                            <div class="detail-row">
-                                                <span class="label">월 변제액</span>
-                                                <span class="value blue">약 300,000원</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="case-card">
-                                        <div class="case-profile">
-                                            <div class="profile-img">👨</div>
-                                            <div class="case-info">
-                                                <div class="case-badges">
-                                                    <span class="case-type">개인회생</span>
-                                                    <span class="case-success">91% 탕감</span>
-                                                </div>
-                                                <div class="case-name-row">
-                                                    <div class="case-name">정○○님</div>
-                                                    <div class="case-age">30대 남성, 직장인</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="case-result">
-                                            <div class="result-badge">💰 총 채무액 73,200,000원 탕감!</div>
-                                        </div>
-                                        <div class="case-details">
-                                            <div class="detail-row">
-                                                <span class="label">총 채무액</span>
-                                                <span class="value">80,500,000원</span>
-                                            </div>
-                                            <div class="detail-row">
-                                                <span class="label">탕감 후 채무</span>
-                                                <span class="value red">7,300,000원</span>
-                                            </div>
-                                            <div class="detail-row">
-                                                <span class="label">월 변제액</span>
-                                                <span class="value blue">약 200,000원</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="case-card">
-                                        <div class="case-profile">
-                                            <div class="profile-img">👩</div>
-                                            <div class="case-info">
-                                                <div class="case-badges">
-                                                    <span class="case-type">개인회생</span>
-                                                    <span class="case-success">88% 탕감</span>
-                                                </div>
-                                                <div class="case-name-row">
-                                                    <div class="case-name">한○○님</div>
-                                                    <div class="case-age">40대 여성, 자영업</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="case-result">
-                                            <div class="result-badge">💰 총 채무액 105,600,000원 탕감!</div>
-                                        </div>
-                                        <div class="case-details">
-                                            <div class="detail-row">
-                                                <span class="label">총 채무액</span>
-                                                <span class="value">120,000,000원</span>
-                                            </div>
-                                            <div class="detail-row">
-                                                <span class="label">탕감 후 채무</span>
-                                                <span class="value red">14,400,000원</span>
-                                            </div>
-                                            <div class="detail-row">
-                                                <span class="label">월 변제액</span>
-                                                <span class="value blue">약 400,000원</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                            <div class="case-group" data-group="personal" style="background: #fff3e0; min-height: 400px; display: flex; align-items: center; justify-content: center; border-radius: 15px; margin: 10px 50px;">
+                                <h3 style="color: #f57c00; font-size: 32px; font-weight: bold;">개인회생 그룹 영역 (2/3)</h3>
                             </div>
                         </div>
                         
-                        <!-- 개인파산 그룹 -->
+                        <!-- 개인파산 그룹 (노랑) -->
                         <div class="swiper-slide">
-                            <div class="case-group" data-group="bankruptcy" style="padding: 20px;">
-                                <div class="cases-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px;">
-                                    <div class="case-card">
-                                        <div class="case-profile">
-                                            <div class="profile-img">👩</div>
-                                            <div class="case-info">
-                                                <div class="case-badges">
-                                                    <span class="case-type">개인파산</span>
-                                                    <span class="case-success">100% 탕감</span>
-                                                </div>
-                                                <div class="case-name-row">
-                                                    <div class="case-name">강○○님</div>
-                                                    <div class="case-age">60대 여성, 무직</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="case-result">
-                                            <div class="result-badge">💰 총 채무액 95,000,000원 탕감!</div>
-                                        </div>
-                                        <div class="case-details">
-                                            <div class="detail-row">
-                                                <span class="label">총 채무액</span>
-                                                <span class="value">95,000,000원</span>
-                                            </div>
-                                            <div class="detail-row">
-                                                <span class="label">탕감 후 채무</span>
-                                                <span class="value red">0원</span>
-                                            </div>
-                                            <div class="detail-row empty">
-                                                <span class="label">월 변제액</span>
-                                                <span class="value"></span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="case-card">
-                                        <div class="case-profile">
-                                            <div class="profile-img">👨</div>
-                                            <div class="case-info">
-                                                <div class="case-badges">
-                                                    <span class="case-type">개인파산</span>
-                                                    <span class="case-success">100% 탕감</span>
-                                                </div>
-                                                <div class="case-name-row">
-                                                    <div class="case-name">윤○○님</div>
-                                                    <div class="case-age">50대 남성, 자영업</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="case-result">
-                                            <div class="result-badge">💰 총 채무액 320,000,000원 탕감!</div>
-                                        </div>
-                                        <div class="case-details">
-                                            <div class="detail-row">
-                                                <span class="label">총 채무액</span>
-                                                <span class="value">320,000,000원</span>
-                                            </div>
-                                            <div class="detail-row">
-                                                <span class="label">탕감 후 채무</span>
-                                                <span class="value red">0원</span>
-                                            </div>
-                                            <div class="detail-row empty">
-                                                <span class="label">월 변제액</span>
-                                                <span class="value"></span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="case-card">
-                                        <div class="case-profile">
-                                            <div class="profile-img">👨</div>
-                                            <div class="case-info">
-                                                <div class="case-badges">
-                                                    <span class="case-type">개인파산</span>
-                                                    <span class="case-success">100% 탕감</span>
-                                                </div>
-                                                <div class="case-name-row">
-                                                    <div class="case-name">조○○님</div>
-                                                    <div class="case-age">40대 남성, 사업자</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="case-result">
-                                            <div class="result-badge">💰 총 채무액 180,000,000원 탕감!</div>
-                                        </div>
-                                        <div class="case-details">
-                                            <div class="detail-row">
-                                                <span class="label">총 채무액</span>
-                                                <span class="value">180,000,000원</span>
-                                            </div>
-                                            <div class="detail-row">
-                                                <span class="label">탕감 후 채무</span>
-                                                <span class="value red">0원</span>
-                                            </div>
-                                            <div class="detail-row empty">
-                                                <span class="label">월 변제액</span>
-                                                <span class="value"></span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                            <div class="case-group" data-group="bankruptcy" style="background: #fffde7; min-height: 400px; display: flex; align-items: center; justify-content: center; border-radius: 15px; margin: 10px 50px;">
+                                <h3 style="color: #f9a825; font-size: 32px; font-weight: bold;">개인파산 그룹 영역 (3/3)</h3>
                             </div>
                         </div>
                     </div>
+                    
+                    <!-- 네비게이션 버튼 -->
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
                 </div>
             </div>
         </div>
@@ -1535,6 +1198,10 @@
                 slidesPerView: 1,
                 spaceBetween: 30,
                 loop: true,
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
                 on: {
                     slideChange: function () {
                         // 슬라이드 변경 시 탭도 업데이트
