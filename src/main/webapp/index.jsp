@@ -773,8 +773,12 @@
             align-items: center;
         }
         
+        .alert-row:nth-child(1) {
+            animation-delay: 0s;
+        }
+        
         .alert-row:nth-child(2) {
-            animation-delay: -15s;
+            animation-delay: -2.5s;
         }
         
         .alert-item {
@@ -782,11 +786,26 @@
             font-size: 14px;
             font-weight: 500;
             flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .time-badge {
+            background: white;
+            color: #4472c4;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+            white-space: nowrap;
+            min-width: 60px;
+            text-align: center;
         }
         
         @keyframes scrollLeft {
             0% {
-                transform: translateX(100%);
+                transform: translateX(0%);
             }
             100% {
                 transform: translateX(-100%);
@@ -1451,20 +1470,30 @@
     </section>
     
     <!-- 상담 신청 알림 -->
-    <div class="consultation-alerts" style="display: none;">
+    <div class="consultation-alerts">
         <div class="alert-row">
-            <div class="alert-item">40세 김***님이 상담 신청했습니다.</div>
-            <div class="alert-item">5분 전 50세 김***님이 상담 신청했습니다.</div>
-            <div class="alert-item">10분 전 45세 박***님이 상담 신청했습니다.</div>
-            <div class="alert-item">20분 전 30세 이***님이 상담 신청했습니다.</div>
-            <div class="alert-item">1시간 전 30세 이***님이 상담 신청했습니다.</div>
+            <div class="alert-item"><span class="time-badge">5분 전</span>40세 김***님이 상담 신청했습니다.</div>
+            <div class="alert-item"><span class="time-badge">10분 전</span>50세 김***님이 상담 신청했습니다.</div>
+            <div class="alert-item"><span class="time-badge">20분 전</span>45세 박***님이 상담 신청했습니다.</div>
+            <div class="alert-item"><span class="time-badge">30분 전</span>30세 이***님이 상담 신청했습니다.</div>
+            <div class="alert-item"><span class="time-badge">1시간 전</span>35세 최***님이 상담 신청했습니다.</div>
+            <div class="alert-item"><span class="time-badge">2분 전</span>42세 정***님이 상담 신청했습니다.</div>
+            <div class="alert-item"><span class="time-badge">15분 전</span>38세 한***님이 상담 신청했습니다.</div>
+            <div class="alert-item"><span class="time-badge">25분 전</span>55세 조***님이 상담 신청했습니다.</div>
+            <div class="alert-item"><span class="time-badge">40분 전</span>33세 윤***님이 상담 신청했습니다.</div>
+            <div class="alert-item"><span class="time-badge">1시간 전</span>47세 강***님이 상담 신청했습니다.</div>
         </div>
         <div class="alert-row">
-            <div class="alert-item">2시간 전 30세 최***님이 상담 신청했습니다.</div>
-            <div class="alert-item">3시간 전 35세 송***님이 상담 신청했습니다.</div>
-            <div class="alert-item">4시간 전 52세 김***님이 상담 신청했습니다.</div>
-            <div class="alert-item">11시간 전 30세 김***님이 상담 신청했습니다.</div>
-            <div class="alert-item">12시간 전 30세 이***님이 상담 신청했습니다.</div>
+            <div class="alert-item"><span class="time-badge">3시간 전</span>30세 최***님이 상담 신청했습니다.</div>
+            <div class="alert-item"><span class="time-badge">4시간 전</span>35세 송***님이 상담 신청했습니다.</div>
+            <div class="alert-item"><span class="time-badge">5시간 전</span>52세 김***님이 상담 신청했습니다.</div>
+            <div class="alert-item"><span class="time-badge">6시간 전</span>29세 김***님이 상담 신청했습니다.</div>
+            <div class="alert-item"><span class="time-badge">8시간 전</span>41세 이***님이 상담 신청했습니다.</div>
+            <div class="alert-item"><span class="time-badge">2시간 전</span>36세 박***님이 상담 신청했습니다.</div>
+            <div class="alert-item"><span class="time-badge">7시간 전</span>44세 장***님이 상담 신청했습니다.</div>
+            <div class="alert-item"><span class="time-badge">9시간 전</span>31세 오***님이 상담 신청했습니다.</div>
+            <div class="alert-item"><span class="time-badge">10시간 전</span>48세 임***님이 상담 신청했습니다.</div>
+            <div class="alert-item"><span class="time-badge">12시간 전</span>39세 신***님이 상담 신청했습니다.</div>
         </div>
     </div>
     
