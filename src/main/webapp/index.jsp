@@ -1535,6 +1535,10 @@
                 slidesPerView: 1,
                 spaceBetween: 30,
                 loop: true,
+                autoplay: {
+                    delay: 5000,
+                    disableOnInteraction: false,
+                },
                 on: {
                     slideChange: function () {
                         // 슬라이드 변경 시 탭도 업데이트
