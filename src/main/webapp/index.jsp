@@ -890,27 +890,47 @@
             border-radius: 8px;
         }
         
-        /* 증서 스와이프 pagination 커스텀 */
+        /* 증서 스와이프 pagination 커스텀 - 내비게이션 닷 스타일 */
         .certificateSwiper .swiper-pagination {
-            bottom: -40px;
+            bottom: 10px !important;
             text-align: center;
+            position: absolute !important;
+            left: 0;
+            right: 0;
+            z-index: 10;
         }
         
         .certificateSwiper .swiper-pagination-bullet {
             width: 8px;
             height: 8px;
-            background: #ccc;
+            background: rgba(255, 255, 255, 0.9);
             border-radius: 50%;
             margin: 0 4px;
-            transition: all 0.3s;
+            transition: all 0.3s ease;
             opacity: 1;
+            cursor: pointer;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            position: relative;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+        }
+        
+        .certificateSwiper .swiper-pagination-bullet:hover {
+            background: rgba(255, 255, 255, 0.8);
+            transform: scale(1.2);
         }
         
         .certificateSwiper .swiper-pagination-bullet-active {
             width: 24px;
             height: 8px;
             border-radius: 4px;
-            background: #4472c4;
+            background: #ffffff;
+            border: none;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+            transform: none;
+        }
+        
+        .certificateSwiper .swiper-pagination-bullet-active:hover {
+            transform: scale(1.3);
         }
         
         .lawyer-info-area {
@@ -932,7 +952,7 @@
         }
         
         .lawyer-description strong {
-            color: #4472c4;
+            color: #333;
             font-weight: bold;
         }
         
@@ -948,7 +968,7 @@
             color: #333;
             margin-bottom: 15px;
             padding-bottom: 8px;
-            border-bottom: 2px solid #4472c4;
+            border-bottom: 2px solid #333;
             display: inline-block;
         }
         
@@ -968,7 +988,7 @@
         
         .detail-section li::before {
             content: '•';
-            color: #4472c4;
+            color: #333;
             position: absolute;
             left: 0;
             font-weight: bold;
