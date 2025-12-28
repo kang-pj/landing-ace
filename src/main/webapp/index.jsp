@@ -6,6 +6,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ACE 법무법인</title>
+    <!-- Pretendard Font -->
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" rel="stylesheet">
     <!-- Swiper CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <style>
@@ -16,7 +19,7 @@
         }
         
         body {
-            font-family: 'Malgun Gothic', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            font-family: "Pretendard", -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
             background: #ffffff;
             min-height: 100vh;
         }
@@ -812,6 +815,309 @@
             }
         }
         
+        /* 특별한 서비스 섹션 */
+        .special-services-section {
+            background: white;
+            padding: 80px 20px;
+        }
+        
+        .services-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .services-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .services-subtitle {
+            font-size: 20px;
+            color: #333;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+        
+        .services-title {
+            font-size: 36px;
+            font-weight: bold;
+            color: #333;
+            margin: 0;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        
+        .service-item {
+            background: white;
+            border-radius: 15px;
+            padding: 20px 25px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            border: 1px solid #e9ecef;
+        }
+        
+        .service-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .service-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        
+        .service-text {
+            font-size: 14px;
+            font-weight: 500;
+            color: #333;
+            line-height: 1.4;
+        }
+        
+        /* 반응형 디자인 */
+        @media (max-width: 768px) {
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 25px;
+            }
+            
+            .service-item {
+                padding: 25px 15px;
+            }
+            
+            .service-icon {
+                width: 50px;
+                height: 50px;
+                margin-bottom: 15px;
+            }
+            
+            .service-text {
+                font-size: 13px;
+            }
+        }
+        
+        /* FAQ 섹션 */
+        .faq-section {
+            background: white;
+            padding: 80px 20px;
+        }
+        
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .faq-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .faq-title {
+            font-size: 36px;
+            font-weight: bold;
+            color: #333;
+            margin: 0;
+        }
+        
+        .faq-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .faq-item {
+            border: none;
+            border-radius: 10px;
+            overflow: hidden;
+            background: transparent;
+            margin-bottom: 5px;
+        }
+        
+        .faq-question {
+            background: #f5f5f5;
+            padding: 20px 25px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 16px;
+            font-weight: 500;
+            color: #333;
+            transition: background 0.3s ease;
+            border: none;
+            width: 100%;
+            text-align: left;
+            border-radius: 10px;
+        }
+        
+        .faq-question:hover {
+            background: #e9e9e9;
+        }
+        
+        .faq-question.active {
+            background: #e8f2ff;
+            color: #333;
+            border-radius: 10px 10px 0 0;
+        }
+        
+        .faq-icon {
+            width: 20px;
+            height: 20px;
+            transition: transform 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .faq-icon svg {
+            width: 12px;
+            height: 12px;
+            fill: none;
+            stroke: #666;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+        
+        .faq-question.active .faq-icon {
+            transform: rotate(180deg);
+        }
+        
+        .faq-answer {
+            padding: 0 25px;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            background: #f5f5f5;
+            border-radius: 0 0 10px 10px;
+        }
+        
+        .faq-answer.active {
+            padding: 0 25px 20px 25px;
+            max-height: 200px;
+            background: #e8f2ff;
+            border-radius: 0 0 10px 10px;
+        }
+        
+        .faq-answer-content {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #333;
+            font-weight: 500;
+        }
+        
+        /* 오시는 길 섹션 */
+        .location-section {
+            background: white;
+            padding: 80px 20px;
+        }
+        
+        .location-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .location-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .location-title {
+            font-size: 36px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 30px;
+        }
+        
+        .location-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 15px;
+        }
+        
+        .location-text {
+            flex: 1;
+            text-align: left;
+        }
+        
+        .location-address {
+            font-size: 16px;
+            color: #333;
+            margin-bottom: 8px;
+        }
+        
+        .location-address .label {
+            font-weight: bold;
+        }
+        
+        .location-phone {
+            font-size: 16px;
+            color: #333;
+        }
+        
+        .location-phone .label {
+            font-weight: bold;
+        }
+        
+        .location-buttons {
+            display: flex;
+            gap: 10px;
+            margin-left: 20px;
+        }
+        
+        .location-btn {
+            padding: 8px 16px;
+            border: 1px solid #ddd;
+            background: white;
+            border-radius: 6px;
+            font-size: 14px;
+            color: #333;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .location-btn img {
+            width: 16px;
+            height: 16px;
+        }
+        
+        .location-btn:hover {
+            background: #f5f5f5;
+        }
+        
+        .location-map {
+            width: 100%;
+            height: 400px;
+            background: #f0f0f0;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            font-size: 16px;
+            border: 2px dashed #ddd;
+        }
+        
         /* 대표 변호사 소개 섹션 */
         .lawyer-intro-section {
             background: white;
@@ -979,11 +1285,12 @@
         }
         
         .detail-section li {
-            font-size: 15px;
+            font-size: 13px;
             color: #666;
-            margin-bottom: 8px;
+            margin-bottom: 5px;
             padding-left: 15px;
             position: relative;
+            line-height: 1.3;
         }
         
         .detail-section li::before {
@@ -1748,6 +2055,205 @@
         </div>
     </section>
     
+    <!-- 특별한 서비스 섹션 -->
+    <section class="special-services-section">
+        <div class="services-container">
+            <div class="services-header">
+                <p class="services-subtitle">쉽다 빠르다 안전하다!</p>
+                <h2 class="services-title">에이스 법률사무소의 특별한 서비스 8가지</h2>
+            </div>
+            
+            <div class="services-grid">
+                <div class="service-item">
+                    <div class="service-icon">
+                        <img src="/images/icon_service_01.png" alt="비밀 보장" />
+                    </div>
+                    <div class="service-text">비밀 보장</div>
+                </div>
+                
+                <div class="service-item">
+                    <div class="service-icon">
+                        <img src="/images/icon_service_02.png" alt="체계적인 관리" />
+                    </div>
+                    <div class="service-text">체계적인 관리</div>
+                </div>
+                
+                <div class="service-item">
+                    <div class="service-icon">
+                        <img src="/images/icon_service_03.png" alt="서류 철저 대행" />
+                    </div>
+                    <div class="service-text">서류 철저 대행</div>
+                </div>
+                
+                <div class="service-item">
+                    <div class="service-icon">
+                        <img src="/images/icon_service_04.png" alt="빠른 사건 접수" />
+                    </div>
+                    <div class="service-text">빠른 사건 접수</div>
+                </div>
+                
+                <div class="service-item">
+                    <div class="service-icon">
+                        <img src="/images/icon_service_05.png" alt="무료상담" />
+                    </div>
+                    <div class="service-text">무료상담</div>
+                </div>
+                
+                <div class="service-item">
+                    <div class="service-icon">
+                        <img src="/images/icon_service_06.png" alt="가격 시 100% 환불" />
+                    </div>
+                    <div class="service-text">가격 시 100% 환불</div>
+                </div>
+                
+                <div class="service-item">
+                    <div class="service-icon">
+                        <img src="/images/icon_service_07.png" alt="수임료 분납" />
+                    </div>
+                    <div class="service-text">수임료 분납</div>
+                </div>
+                
+                <div class="service-item">
+                    <div class="service-icon">
+                        <img src="/images/icon_service_08.png" alt="본인별 전담 관리사" />
+                    </div>
+                    <div class="service-text">본인별 전담 관리사</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- FAQ 섹션 -->
+    <section class="faq-section">
+        <div class="faq-container">
+            <div class="faq-header">
+                <h2 class="faq-title">자주하는 질문</h2>
+            </div>
+            
+            <div class="faq-list">
+                <div class="faq-item">
+                    <button class="faq-question active" onclick="toggleFaq(this)">
+                        <span>아무도 모르게 비밀로 진행가능한가요?</span>
+                        <span class="faq-icon">
+                            <svg viewBox="0 0 12 8">
+                                <polyline points="1,1 6,6 11,1"></polyline>
+                            </svg>
+                        </span>
+                    </button>
+                    <div class="faq-answer active">
+                        <div class="faq-answer-content">
+                            네, 가능합니다.<br>
+                            개인회생 및 파산 등의 도산절차는 채무자 본인과 채권자 등 이해관계인 있을 때만 통지되며 가족이나 지인, 회사 등 제3자에게는 비밀을 보장합니다.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span>빚 독촉이 심한데 즉시 중단할 수 있나요?</span>
+                        <span class="faq-icon">
+                            <svg viewBox="0 0 12 8">
+                                <polyline points="1,1 6,6 11,1"></polyline>
+                            </svg>
+                        </span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            개인회생 신청 시, 가능합니다.<br>
+                            개인회생이 신청되면 법원을 통해 중지명령을 발부 받는데, 금지명령이 내려지면 채권자 측에서 변제 요구를 할 수 없고 독촉전화, 방문, 문자 발송 등의 모든 채권추심 및 변제 독촉 행위가 법적으로 금지되기 때문입니다.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span>누구나 개인회생이나 파산을 신청할 수 있나요?</span>
+                        <span class="faq-icon">
+                            <svg viewBox="0 0 12 8">
+                                <polyline points="1,1 6,6 11,1"></polyline>
+                            </svg>
+                        </span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            네, 가능합니다. 다만, 아래의 경우에 해당한다면 어려울 수 있습니다.<br><br>
+                            <strong>· 신청할 수 없는 경우</strong><br>
+                            지속적인 수입원이 없는 경우<br>
+                            최근 개인회생 및 파산 면책을 받은 경우<br>
+                            빚이 너무 많은 경우 (개인회생 신청 조건은 담보 채무 15억원 이하, 무담보 채무 10억원 이하)
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span>과거에 개인회생이나 파산을 진행했는데 또 진행할 수 있나요?</span>
+                        <span class="faq-icon">
+                            <svg viewBox="0 0 12 8">
+                                <polyline points="1,1 6,6 11,1"></polyline>
+                            </svg>
+                        </span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            네, 가능합니다.<br>
+                            개인회생 재신청은 면책 확정일로부터 5년이 경과하면 가능합니다.<br>
+                            개인파산 재신청은 면책 확정일로부터 5~7년이 경과하면 가능합니다.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span>가족에게 피해는 없나요?</span>
+                        <span class="faq-icon">
+                            <svg viewBox="0 0 12 8">
+                                <polyline points="1,1 6,6 11,1"></polyline>
+                            </svg>
+                        </span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            네, 전혀 없습니다.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 오시는 길 섹션 -->
+    <section class="location-section">
+        <div class="location-container">
+            <div class="location-header">
+                <h2 class="location-title">오시는 길</h2>
+                
+                <div class="location-info">
+                    <div class="location-text">
+                        <div class="location-address"><span class="label">주소:</span> 서울특별시 서초구 사임당로17길 9, 2층 (반포동)</div>
+                        <div class="location-phone"><span class="label">대표번호:</span> 1555-1684</div>
+                    </div>
+                    
+                    <div class="location-buttons">
+                        <a href="#" class="location-btn">
+                            <img src="/images/icon_share.png" alt="위치공유" />
+                            위치공유
+                        </a>
+                        <a href="#" class="location-btn">
+                            <img src="/images/icon_search.png" alt="길찾기" />
+                            길찾기
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="location-map">
+                <!-- 지도 API 영역 (추후 구글맵 또는 카카오맵 연동) -->
+                <div>지도 API 연동 예정</div>
+            </div>
+        </div>
+    </section>
+    
     <!-- 플로팅 버튼들 -->
     <div class="floating-buttons">
         <div class="floating-btn-container">
@@ -1799,6 +2305,19 @@
             
             if (casesSwiper) {
                 casesSwiper.slideTo(slideIndex);
+            }
+        }
+        
+        function toggleFaq(element) {
+            const faqAnswer = element.nextElementSibling;
+            const isActive = element.classList.contains('active');
+            
+            if (isActive) {
+                element.classList.remove('active');
+                faqAnswer.classList.remove('active');
+            } else {
+                element.classList.add('active');
+                faqAnswer.classList.add('active');
             }
         }
         
