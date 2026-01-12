@@ -1,5 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -248,6 +247,15 @@
             color: #aaa;
         }
         
+        .form-group select {
+            color: #aaa;
+        }
+        
+        .form-group select:focus,
+        .form-group select:valid {
+            color: #333;
+        }
+        
         .submit-btn {
             background: #4472c4;
             color: white;
@@ -387,7 +395,7 @@
         }
         
         .footer-container {
-            max-width: 1200px;
+            max-width: 1000px;
             margin: 0 auto;
         }
         
@@ -450,6 +458,122 @@
             font-size: 16px;
             display: inline-block;
             margin-top: 10px;
+        }
+        
+        /* 하단 상담 신청 바 */
+        .bottom-consultation-bar {
+            background: transparent;
+            padding: 0;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+        }
+        
+        .consultation-bar-container {
+            max-width: 1000px;
+            width: 100%;
+            background: #4a4a4a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 30px;
+            border-radius: 15px;
+            padding: 20px;
+        }
+        
+        .consultation-message {
+            color: white;
+            font-size: 20px;
+            font-weight: 500;
+            line-height: 1.3;
+            white-space: nowrap;
+            text-align: center;
+        }
+        
+        .consultation-message .highlight {
+            color: white;
+            font-weight: bold;
+        }
+        
+        .consultation-form-inline {
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            gap: 15px;
+            flex: 1;
+        }
+        
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        
+        .inline-input {
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 14px;
+            background: white;
+            min-width: 120px;
+        }
+        
+        .inline-input:focus {
+            outline: none;
+            border-color: #4472c4;
+        }
+        
+        .privacy-check {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: white;
+            font-size: 12px;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+        
+        .privacy-checkbox {
+            margin: 0;
+        }
+        
+        .consultation-btn {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            white-space: nowrap;
+        }
+        
+        .consultation-btn.primary {
+            background: #4472c4;
+            color: white;
+        }
+        
+        .consultation-btn.primary:hover {
+            background: #365a9b;
+        }
+        
+        .consultation-btn.secondary {
+            background: #ffd700;
+            color: #333;
+        }
+        
+        .consultation-btn.secondary:hover {
+            background: #ffed4e;
+        }
+        
+        /* 하단 바 때문에 body에 패딩 추가 */
+        body {
+            padding-bottom: 100px;
+            background: #f5f5f5;
         }
         
         /* 플로팅 버튼들 */
@@ -597,7 +721,7 @@
             display: flex;
             justify-content: center;
             gap: 40px;
-            max-width: 900px;
+            max-width: 1000px;
             margin: 0 auto;
         }
         
@@ -684,7 +808,7 @@
         
         .casesSwiper {
             width: 100%;
-            max-width: 1100px;
+            max-width: 1000px;
             margin: 0 auto;
             overflow: hidden;
             position: relative;
@@ -769,11 +893,11 @@
             background: white;
             border: 1px solid #e9ecef;
             border-radius: 15px;
-            padding: 25px;
+            padding: 20px;
             transition: all 0.3s;
             position: relative;
             box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            min-width: 320px;
+            min-width: 280px;
         }
         
         .case-card:hover {
@@ -987,7 +1111,7 @@
         }
         
         .services-container {
-            max-width: 1200px;
+            max-width: 1000px;
             margin: 0 auto;
         }
         
@@ -1013,8 +1137,8 @@
         .services-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 30px;
-            max-width: 1100px;
+            gap: 25px;
+            max-width: 900px;
             margin: 0 auto;
         }
         
@@ -1084,7 +1208,7 @@
         }
         
         .faq-container {
-            max-width: 800px;
+            max-width: 1000px;
             margin: 0 auto;
         }
         
@@ -1194,7 +1318,7 @@
         }
         
         .location-container {
-            max-width: 1200px;
+            max-width: 1000px;
             margin: 0 auto;
         }
         
@@ -1290,7 +1414,7 @@
         }
         
         .lawyer-container {
-            max-width: 1200px;
+            max-width: 1000px;
             margin: 0 auto;
         }
         
@@ -1691,18 +1815,18 @@
                     <div class="form-row">
                         <div class="form-group">
                             <label for="name">이름 <span class="required">*</span></label>
-                            <input type="text" id="name" name="name" placeholder="이름을 입력하세요" required>
+                            <input type="text" id="name" name="name" placeholder="예)홍길동" required>
                         </div>
                         
                         <div class="form-group">
                             <label for="phone">연락처 <span class="required">*</span></label>
-                            <input type="tel" id="phone" name="phone" placeholder="연락처를 입력하세요" required>
+                            <input type="tel" id="phone" name="phone" placeholder="-는 제외하고 입력" required>
                         </div>
                         
                         <div class="form-group">
                             <label for="debt">채무금액</label>
                             <select id="debt" name="debt" required>
-                                <option value="">채무금액을 선택하세요</option>
+                                <option value="">채무금액 선택</option>
                                 <option value="1000">1천만원 미만</option>
                                 <option value="3000">1천만원 ~ 3천만원</option>
                                 <option value="5000">3천만원 ~ 5천만원</option>
@@ -1714,7 +1838,7 @@
                         <div class="form-group">
                             <label for="income">월소득</label>
                             <select id="income" name="income" required>
-                                <option value="">월소득을 선택하세요</option>
+                                <option value="">월소득 선택</option>
                                 <option value="0">소득 없음</option>
                                 <option value="150">150만원 미만</option>
                                 <option value="250">150만원 ~ 250만원</option>
@@ -1803,7 +1927,7 @@
                         <!-- 전체 그룹 -->
                         <div class="swiper-slide">
                             <div class="case-group" data-group="all" style="padding: 20px;">
-                                <div class="cases-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px;">
+                                <div class="cases-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px;">
                                     <div class="case-card">
                                         <div class="case-profile">
                                             <div class="profile-img">👩</div>
@@ -1909,7 +2033,7 @@
                         <!-- 개인회생 그룹 -->
                         <div class="swiper-slide">
                             <div class="case-group" data-group="personal" style="padding: 20px;">
-                                <div class="cases-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px;">
+                                <div class="cases-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px;">
                                     <div class="case-card">
                                         <div class="case-profile">
                                             <div class="profile-img">👩</div>
@@ -2015,7 +2139,7 @@
                         <!-- 개인파산 그룹 -->
                         <div class="swiper-slide">
                             <div class="case-group" data-group="bankruptcy" style="padding: 20px;">
-                                <div class="cases-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px;">
+                                <div class="cases-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px;">
                                     <div class="case-card">
                                         <div class="case-profile">
                                             <div class="profile-img">👩</div>
@@ -2537,6 +2661,29 @@
         </div>
     </footer>
     
+    <!-- 하단 상담 신청 바 -->
+    <div class="bottom-consultation-bar">
+        <div class="consultation-bar-container">
+            <div class="consultation-message">
+                <span class="highlight">전국, 365일</span><br>
+                <span>화상상담 가능!</span>
+            </div>
+            
+            <div class="consultation-form-inline">
+                <div class="input-group">
+                    <input type="text" placeholder="이름" class="inline-input name-input">
+                    <label class="privacy-check">
+                        <input type="checkbox" class="privacy-checkbox">
+                        개인정보 수집 및 이용에 대한 동의
+                    </label>
+                </div>
+                <input type="tel" placeholder="연락처 (- 없이 입력)" class="inline-input phone-input">
+                <button class="consultation-btn primary">무료 상담신청</button>
+                <button class="consultation-btn secondary">📞 기록상담</button>
+            </div>
+        </div>
+    </div>
+    
     <!-- 플로팅 버튼들 -->
     <div class="floating-buttons">
         <div class="floating-btn-container">
@@ -2772,4 +2919,5 @@
         });
     </script>
 </body>
+</html>
 </html>
