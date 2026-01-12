@@ -287,6 +287,171 @@
             text-decoration: underline;
         }
         
+        /* 누적 탕감액 섹션 */
+        .total-reduction-section {
+            background: linear-gradient(135deg, #4472c4 0%, #365a9b 100%);
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+        }
+        
+        .reduction-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .reduction-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .reduction-subtitle {
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.9);
+            margin: 0;
+            font-weight: 500;
+        }
+        
+        .reduction-title {
+            font-size: 36px;
+            font-weight: bold;
+            color: white;
+            margin: 0;
+        }
+        
+        .amount-display {
+            background: white;
+            color: #4472c4;
+            padding: 20px 40px;
+            border-radius: 50px;
+            font-size: 32px;
+            font-weight: bold;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            min-width: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 20px;
+            overflow: hidden;
+        }
+        
+        .wheel-picker {
+            display: flex;
+            align-items: center;
+            gap: 0px;
+            font-family: 'Arial Black', 'Helvetica', sans-serif;
+            letter-spacing: -2px;
+        }
+        
+        .digit-container {
+            width: 24px;
+            height: 45px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .digit-wheel {
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+            transform: translateY(0);
+        }
+        
+        .digit-wheel span {
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+            font-weight: 900;
+            color: #333;
+        }
+        
+        .comma, .currency {
+            font-size: 36px;
+            font-weight: 900;
+            color: #333;
+        }
+        
+        .currency {
+            margin-left: 8px;
+        }
+        
+        /* 푸터 섹션 */
+        .footer-section {
+            background: #f5f5f5;
+            padding: 40px 20px;
+            border-top: 1px solid #e0e0e0;
+        }
+        
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+        
+        .footer-left {
+            flex: 1;
+        }
+        
+        .company-info h3 {
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 15px;
+        }
+        
+        .company-info p {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 5px;
+            line-height: 1.4;
+        }
+        
+        .copyright {
+            margin-top: 20px;
+        }
+        
+        .copyright p {
+            font-size: 12px;
+            color: #999;
+        }
+        
+        .footer-right {
+            text-align: right;
+        }
+        
+        .contact-info p {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 5px;
+        }
+        
+        .phone-number {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+            margin: 10px 0;
+        }
+        
+        .ace-logo {
+            background: #4472c4;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 16px;
+            display: inline-block;
+            margin-top: 10px;
+        }
+        
         /* 플로팅 버튼들 */
         .floating-buttons {
             position: fixed;
@@ -2254,6 +2419,124 @@
         </div>
     </section>
     
+    <!-- 누적 탕감액 섹션 -->
+    <section class="total-reduction-section">
+        <div class="reduction-container">
+            <div class="reduction-content">
+                <p class="reduction-subtitle">최대 탕감률 96%의 신화!</p>
+                <h2 class="reduction-title">개인회생·파산 누적 탕감액</h2>
+                <div class="amount-display">
+                    <div class="wheel-picker">
+                        <div class="digit-container" data-digit="0">
+                            <div class="digit-wheel">
+                                <span>0</span><span>1</span><span>2</span><span>3</span><span>4</span>
+                                <span>5</span><span>6</span><span>7</span><span>8</span><span>9</span>
+                            </div>
+                        </div>
+                        <div class="digit-container" data-digit="1">
+                            <div class="digit-wheel">
+                                <span>0</span><span>1</span><span>2</span><span>3</span><span>4</span>
+                                <span>5</span><span>6</span><span>7</span><span>8</span><span>9</span>
+                            </div>
+                        </div>
+                        <div class="digit-container" data-digit="2">
+                            <div class="digit-wheel">
+                                <span>0</span><span>1</span><span>2</span><span>3</span><span>4</span>
+                                <span>5</span><span>6</span><span>7</span><span>8</span><span>9</span>
+                            </div>
+                        </div>
+                        <div class="comma">,</div>
+                        <div class="digit-container" data-digit="3">
+                            <div class="digit-wheel">
+                                <span>0</span><span>1</span><span>2</span><span>3</span><span>4</span>
+                                <span>5</span><span>6</span><span>7</span><span>8</span><span>9</span>
+                            </div>
+                        </div>
+                        <div class="digit-container" data-digit="4">
+                            <div class="digit-wheel">
+                                <span>0</span><span>1</span><span>2</span><span>3</span><span>4</span>
+                                <span>5</span><span>6</span><span>7</span><span>8</span><span>9</span>
+                            </div>
+                        </div>
+                        <div class="digit-container" data-digit="5">
+                            <div class="digit-wheel">
+                                <span>0</span><span>1</span><span>2</span><span>3</span><span>4</span>
+                                <span>5</span><span>6</span><span>7</span><span>8</span><span>9</span>
+                            </div>
+                        </div>
+                        <div class="comma">,</div>
+                        <div class="digit-container" data-digit="6">
+                            <div class="digit-wheel">
+                                <span>0</span><span>1</span><span>2</span><span>3</span><span>4</span>
+                                <span>5</span><span>6</span><span>7</span><span>8</span><span>9</span>
+                            </div>
+                        </div>
+                        <div class="digit-container" data-digit="7">
+                            <div class="digit-wheel">
+                                <span>0</span><span>1</span><span>2</span><span>3</span><span>4</span>
+                                <span>5</span><span>6</span><span>7</span><span>8</span><span>9</span>
+                            </div>
+                        </div>
+                        <div class="digit-container" data-digit="8">
+                            <div class="digit-wheel">
+                                <span>0</span><span>1</span><span>2</span><span>3</span><span>4</span>
+                                <span>5</span><span>6</span><span>7</span><span>8</span><span>9</span>
+                            </div>
+                        </div>
+                        <div class="comma">,</div>
+                        <div class="digit-container" data-digit="9">
+                            <div class="digit-wheel">
+                                <span>0</span><span>1</span><span>2</span><span>3</span><span>4</span>
+                                <span>5</span><span>6</span><span>7</span><span>8</span><span>9</span>
+                            </div>
+                        </div>
+                        <div class="digit-container" data-digit="10">
+                            <div class="digit-wheel">
+                                <span>0</span><span>1</span><span>2</span><span>3</span><span>4</span>
+                                <span>5</span><span>6</span><span>7</span><span>8</span><span>9</span>
+                            </div>
+                        </div>
+                        <div class="digit-container" data-digit="11">
+                            <div class="digit-wheel">
+                                <span>0</span><span>1</span><span>2</span><span>3</span><span>4</span>
+                                <span>5</span><span>6</span><span>7</span><span>8</span><span>9</span>
+                            </div>
+                        </div>
+                        <span class="currency">원</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 푸터 섹션 -->
+    <footer class="footer-section">
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-left">
+                    <div class="company-info">
+                        <h3>에이스법무법인</h3>
+                        <p>주소: 서울특별시 서초구 사평대로28길 2층 (방배동)</p>
+                        <p>대표변호사: 황선택</p>
+                        <p>대표전화: 1555-1684</p>
+                    </div>
+                    <div class="copyright">
+                        <p>Copyright (c) 에이스법무법인 All rights reserved</p>
+                    </div>
+                </div>
+                
+                <div class="footer-right">
+                    <div class="contact-info">
+                        <p>개인정보 보호 책임 담당</p>
+                        <p>(전화 24시간 가능)</p>
+                        <div class="phone-number">1555-1684</div>
+                        <div class="ace-logo">ACE</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
     <!-- 플로팅 버튼들 -->
     <div class="floating-buttons">
         <div class="floating-btn-container">
@@ -2330,6 +2613,94 @@
         }
         
         document.addEventListener('DOMContentLoaded', function() {
+            // 페이지 로드 시 즉시 랜덤 숫자로 설정
+            function initializeRandomNumbers() {
+                const targetNumber = "750000000000";
+                const digitContainers = document.querySelectorAll('.digit-container');
+                
+                digitContainers.forEach((container, index) => {
+                    if (index >= targetNumber.length) return;
+                    
+                    const wheel = container.querySelector('.digit-wheel');
+                    if (!wheel) return;
+                    
+                    const targetDigit = parseInt(targetNumber[index]);
+                    
+                    // 목표 숫자와 다른 랜덤 숫자로 즉시 설정
+                    let randomDigit;
+                    do {
+                        randomDigit = Math.floor(Math.random() * 10);
+                    } while (randomDigit === targetDigit);
+                    
+                    wheel.style.transition = 'none';
+                    wheel.style.transform = 'translateY(' + (-randomDigit * 45) + 'px)';
+                });
+            }
+            
+            // 페이지 로드 시 즉시 실행
+            initializeRandomNumbers();
+            
+            // 누적 탕감액 휠 피커 애니메이션
+            function startAmountAnimation() {
+                const targetNumber = "750000000000"; // 750,000,000,000 (12자리)
+                const digitContainers = document.querySelectorAll('.digit-container');
+                
+                console.log('Starting animation...');
+                console.log('Total containers:', digitContainers.length);
+                console.log('Target number:', targetNumber);
+                
+                // 200ms 후 모든 휠이 동시에 목표 숫자로 움직임
+                setTimeout(() => {
+                    digitContainers.forEach((container, index) => {
+                        if (index >= targetNumber.length) return;
+                        
+                        const targetDigit = parseInt(targetNumber[index]);
+                        const wheel = container.querySelector('.digit-wheel');
+                        
+                        if (!wheel) return;
+                        
+                        // 최종 위치 계산
+                        const finalPosition = -targetDigit * 45;
+                        
+                        console.log('Container ' + index + ': Target digit = ' + targetDigit + ', Final position = ' + finalPosition);
+                        
+                        // 자연스럽게 목표 위치로 이동
+                        wheel.style.transition = 'transform 2s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+                        wheel.style.transform = 'translateY(' + finalPosition + 'px)';
+                    });
+                }, 200);
+            }
+            
+            let animationStarted = false;
+            
+            // Intersection Observer로 섹션이 보일 때 애니메이션 시작 (한 번만)
+            const reductionSection = document.querySelector('.total-reduction-section');
+            if (reductionSection) {
+                console.log('Intersection Observer 설정됨');
+                
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        console.log('Intersection 감지:', entry.isIntersecting, 'animationStarted:', animationStarted);
+                        
+                        if (entry.isIntersecting && !animationStarted) {
+                            console.log('애니메이션 시작!');
+                            animationStarted = true;
+                            setTimeout(() => {
+                                startAmountAnimation();
+                            }, 100);
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, { 
+                    threshold: 0.05,
+                    rootMargin: '300px 0px 0px 0px'
+                });
+                
+                observer.observe(reductionSection);
+            } else {
+                console.log('total-reduction-section을 찾을 수 없음');
+            }
+            
             // Swiper 초기화
             casesSwiper = new Swiper('.casesSwiper', {
                 slidesPerView: 1,
