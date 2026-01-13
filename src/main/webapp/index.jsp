@@ -1923,7 +1923,7 @@
             bottom: -5px;
             left: 20px;
             right: 20px;
-            height: 2px;
+            height: 6px;
             background: #e0e0e0;
             z-index: 1;
         }
@@ -1939,18 +1939,18 @@
         
         .step.active {
             color: #4472c4;
-            font-weight: bold;
+            font-weight: normal;
         }
         
         .step.active::after {
             content: '';
             position: absolute;
-            bottom: -7px;
+            bottom: -5px;
             left: 0;
             right: 0;
             height: 6px;
             background: #4472c4;
-            border-radius: 3px;
+            border-radius: 0px;
             z-index: 2;
         }
         
