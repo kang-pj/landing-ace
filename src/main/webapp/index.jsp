@@ -349,8 +349,9 @@
             display: flex;
             align-items: center;
             gap: 0px;
-            font-family: 'Arial Black', 'Helvetica', sans-serif;
-            letter-spacing: -2px;
+            font-family: "Pretendard", -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+            font-weight: bold;
+            letter-spacing: -4px;
         }
         
         .digit-container {
@@ -367,19 +368,20 @@
             transform: translateY(0);
         }
         
-        .digit-wheel span {
+        .wheel-picker .digit-wheel span {
             height: 45px;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 36px;
-            font-weight: 900;
+            font-weight: bold !important;
             color: #333;
         }
         
-        .comma, .currency {
+        .wheel-picker .comma, 
+        .wheel-picker .currency {
             font-size: 36px;
-            font-weight: 900;
+            font-weight: bold !important;
             color: #333;
         }
         
