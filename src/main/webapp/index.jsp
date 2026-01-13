@@ -1748,6 +1748,298 @@
                 font-size: 9px;
             }
         }
+        
+        /* 모달 스타일 */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 99999;
+            transition: all 0.4s ease;
+        }
+        
+        .modal-overlay.show {
+            background: rgba(0, 0, 0, 0.7);
+            display: flex !important;
+        }
+        
+        .modal-content {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 500px;
+            width: 85%;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+            transform: translateY(50px) scale(0.9);
+            opacity: 0;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+        
+        .modal-overlay.show .modal-content {
+            transform: translateY(0) scale(1);
+            opacity: 1;
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: transparent;
+            border: none;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 30px;
+            color: #666;
+            transition: all 0.2s ease;
+        }
+        
+        .modal-close:hover {
+            color: #333;
+        }
+        
+        .modal-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .modal-title {
+            font-size: 26px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .modal-subtitle {
+            font-size: 16px;
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 0;
+            text-align: center;
+        }
+        
+        .modal-body {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .modal-divider {
+            width: 100%;
+            height: 1px;
+            background: #eeeeee;
+            margin: 0 auto 30px;
+        }
+        
+        .modal-icon {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 30px;
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        
+        .modal-icon::before {
+            content: '👤';
+            font-size: 40px;
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        
+        .modal-icon::after {
+            content: '🔍';
+            font-size: 50px;
+            position: absolute;
+            right: 15px;
+            bottom: 15px;
+        }
+        
+        .modal-description {
+            font-size: 22px !important;
+            color: #333;
+            line-height: 1.5;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+        
+        .modal-description .highlight {
+            color: #4472c4;
+            font-weight: bold;
+        }
+        
+        .diagnosis-start-btn {
+            background: linear-gradient(135deg, #4472c4 0%, #5a7fd8 100%);
+            color: white;
+            border: none;
+            border-radius: 15px;
+            padding: 18px 40px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            box-shadow: 0 4px 15px rgba(68, 114, 196, 0.3);
+        }
+        
+        .diagnosis-start-btn:hover {
+            background: linear-gradient(135deg, #3a5fa0 0%, #4a6bc4 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(68, 114, 196, 0.4);
+        }
+        
+        /* 진단 단계 스타일 */
+        .diagnosis-steps {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 40px;
+            position: relative;
+            padding: 0 20px;
+        }
+        
+        .diagnosis-steps::before {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 20px;
+            right: 20px;
+            height: 2px;
+            background: #e0e0e0;
+            z-index: 1;
+        }
+        
+        .step {
+            flex: 1;
+            text-align: center;
+            font-size: 16px;
+            color: #999;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .step.active {
+            color: #4472c4;
+            font-weight: bold;
+        }
+        
+        .step.active::after {
+            content: '';
+            position: absolute;
+            bottom: -7px;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: #4472c4;
+            border-radius: 3px;
+            z-index: 2;
+        }
+        
+        .step.non-active {
+            color: #ccc;
+        }
+        
+        /* 질문 영역 스타일 */
+        .question-area {
+            text-align: center;
+        }
+        
+        .question-title {
+            font-size: 20px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 30px;
+            text-align: left;
+        }
+        
+        .input-area {
+            position: relative;
+            margin-bottom: 30px;
+        }
+        
+        .debt-input {
+            width: 100%;
+            padding: 15px 70px 14px 20px;
+            font-size: 24px;
+            border: 2px solid #e0e0e0;
+            border-radius: 15px;
+            outline: none;
+            text-align: left;
+            background: #f8f9fa;
+        }
+        
+        .debt-input:focus {
+            border-color: #4472c4;
+            background: white;
+        }
+        
+        .unit {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 20px;
+            color: #666;
+        }
+        
+        .next-btn {
+            background: linear-gradient(135deg, #4472c4 0%, #5a7fd8 100%);
+            color: white;
+            border: none;
+            border-radius: 15px;
+            padding: 18px 40px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            box-shadow: 0 4px 15px rgba(68, 114, 196, 0.3);
+        }
+        
+        .next-btn:hover {
+            background: linear-gradient(135deg, #3a5fa0 0%, #4a6bc4 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(68, 114, 196, 0.4);
+        }
+        
+        .next-btn.disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+        
+        .next-btn.disabled:hover {
+            background: #ccc;
+            transform: none;
+            box-shadow: none;
+        }
+        
+        /* 화면 전환 스타일 */
+        .screen {
+            display: none;
+        }
+        
+        .screen.active {
+            display: block;
+        }
     </style>
 </head>
 <body>
@@ -1873,7 +2165,7 @@
             </div>
             
             <div class="diagnosis-cards">
-                <div class="diagnosis-card" onclick="selectDiagnosis('personal')">
+                <div class="diagnosis-card" onclick="selectDiagnosis('personal')" style="cursor: pointer; border: 2px solid #4472c4; padding: 20px; margin: 10px; border-radius: 10px; background: #f8f9fa;">
                     <div class="card-content">
                         <p class="card-subtitle">일정한 소득이 있으나 여유가 없는분</p>
                         <h3 class="card-title">개인회생</h3>
@@ -1881,7 +2173,7 @@
                     <div class="card-icon">👤</div>
                 </div>
                 
-                <div class="diagnosis-card" onclick="selectDiagnosis('bankruptcy')">
+                <div class="diagnosis-card" onclick="selectDiagnosis('bankruptcy')" style="cursor: pointer; border: 2px solid #4472c4; padding: 20px; margin: 10px; border-radius: 10px; background: #f8f9fa;">
                     <div class="card-content">
                         <p class="card-subtitle">과도한 빚으로 빚 변제가 어려우신분</p>
                         <h3 class="card-title">파산면책</h3>
@@ -2715,6 +3007,56 @@
         </div>
     </div>
     
+    <!-- AI 자가 진단 모달 -->
+    <div id="aiDiagnosisModal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="modal-close">×</button>
+            
+            <!-- 공통 헤더 -->
+            <div class="modal-header">
+                <h2 class="modal-title">AI 진단으로 알아보기</h2>
+                <p class="modal-subtitle">에이스법률사무소가 진행한 개인회생 법률에 근거하여<br>회생 가능성을 진단해 드려요.</p>
+            </div>
+            
+            <!-- 공통 디바이더 -->
+            <div class="modal-divider"></div>
+            
+            <!-- 첫 번째 화면: 진단 시작 -->
+            <div id="startScreen" class="screen active">
+                <div class="modal-body">
+                    <div class="modal-icon"></div>
+                    <div class="modal-description">
+                        <span class="highlight">개인회생</span>으로 AI진단을 시작합니다.
+                    </div>
+                    <button class="diagnosis-start-btn" onclick="startDiagnosis()">진단 시작하기</button>
+                </div>
+            </div>
+            
+            <!-- 두 번째 화면: 질문 -->
+            <div id="questionScreen" class="screen">
+                <!-- 진단 단계 표시 -->
+                <div class="diagnosis-steps">
+                    <div class="step active">채무액</div>
+                    <div class="step non-active">월 소득</div>
+                    <div class="step non-active">보유재산</div>
+                    <div class="step non-active">부양가족</div>
+                </div>
+                
+                <!-- 질문 영역 -->
+                <div class="question-area">
+                    <h3 class="question-title">Q. 채무 금액이 얼마인가요?</h3>
+                    
+                    <div class="input-area">
+                        <input type="text" id="debtAmount" class="debt-input" placeholder="예) 2000" oninput="validateInput()" />
+                        <span class="unit">만 원</span>
+                    </div>
+                    
+                    <button class="next-btn disabled" id="nextBtn" onclick="nextQuestion()" disabled>다음</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
     <!-- Swiper JS -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     
@@ -2751,11 +3093,98 @@
             }
         }
         
+        let selectedDiagnosisType = '';
+        
         function selectDiagnosis(type) {
-            if (type === 'personal') {
-                alert('개인회생 진단을 선택하셨습니다.');
-            } else if (type === 'bankruptcy') {
-                alert('파산면책 진단을 선택하셨습니다.');
+            // 선택한 타입 저장
+            selectedDiagnosisType = type;
+            // 모달 열기
+            openAiDiagnosisModal();
+        }
+        
+        function openAiDiagnosisModal() {
+            // 선택한 타입에 따라 텍스트 업데이트
+            let typeText = '개인회생';
+            if (selectedDiagnosisType === 'personal') {
+                typeText = '개인회생';
+            } else if (selectedDiagnosisType === 'bankruptcy') {
+                typeText = '파산면책';
+            }
+            
+            const descriptionElement = document.querySelector('.modal-description');
+            
+            if (descriptionElement) {
+                // DOM 조작 방식 사용
+                descriptionElement.innerHTML = '';
+                
+                const highlightSpan = document.createElement('span');
+                highlightSpan.className = 'highlight';
+                highlightSpan.textContent = typeText;
+                descriptionElement.appendChild(highlightSpan);
+                
+                descriptionElement.appendChild(document.createTextNode('으로 AI진단을 시작합니다.'));
+            }
+            
+            // 첫 번째 화면 표시
+            showScreen('startScreen');
+            
+            const modal = document.getElementById('aiDiagnosisModal');
+            if (modal) {
+                modal.style.display = 'flex';
+                setTimeout(() => {
+                    modal.classList.add('show');
+                }, 10);
+            }
+        }
+        
+        function showScreen(screenId) {
+            // 모든 화면 숨기기
+            document.querySelectorAll('.screen').forEach(screen => {
+                screen.classList.remove('active');
+            });
+            
+            // 선택한 화면 보이기
+            const targetScreen = document.getElementById(screenId);
+            if (targetScreen) {
+                targetScreen.classList.add('active');
+            }
+        }
+        
+        function startDiagnosis() {
+            // 질문 화면으로 전환
+            showScreen('questionScreen');
+        }
+        
+        function nextQuestion() {
+            const debtAmount = document.getElementById('debtAmount').value;
+            if (!debtAmount) {
+                alert('채무 금액을 입력해주세요.');
+                return;
+            }
+            alert('다음 질문으로 이동합니다. (추후 구현 예정)');
+        }
+        
+        function validateInput() {
+            const input = document.getElementById('debtAmount');
+            const nextBtn = document.getElementById('nextBtn');
+            
+            // 숫자만 입력 허용 (콤마 제거 후 검증)
+            let value = input.value.replace(/[^0-9]/g, '');
+            
+            // 콤마 추가 (천 단위 구분)
+            if (value) {
+                value = parseInt(value).toLocaleString();
+            }
+            
+            input.value = value;
+            
+            // 버튼 활성화/비활성화
+            if (value && value !== '0') {
+                nextBtn.classList.remove('disabled');
+                nextBtn.disabled = false;
+            } else {
+                nextBtn.classList.add('disabled');
+                nextBtn.disabled = true;
             }
         }
         
@@ -2916,8 +3345,38 @@
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                 });
             }
+            
+            // 모달 관련 기능
+            const modal = document.getElementById('aiDiagnosisModal');
+            const modalOverlay = document.querySelector('.modal-overlay');
+            const closeBtn = document.querySelector('.modal-close');
+            
+            // 모달 닫기 함수
+            function closeModal() {
+                const modal = document.getElementById('aiDiagnosisModal');
+                if (modal) {
+                    modal.classList.remove('show');
+                    // 애니메이션 완료 후 display none
+                    setTimeout(() => {
+                        modal.style.display = 'none';
+                    }, 400);
+                }
+            }
+            
+            // 배경 클릭 시 모달 닫기
+            if (modalOverlay) {
+                modalOverlay.addEventListener('click', function(e) {
+                    if (e.target === modalOverlay) {
+                        closeModal();
+                    }
+                });
+            }
+            
+            // 닫기 버튼 클릭 시 모달 닫기
+            if (closeBtn) {
+                closeBtn.addEventListener('click', closeModal);
+            }
         });
     </script>
 </body>
-</html>
 </html>
