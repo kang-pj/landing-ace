@@ -1749,6 +1749,15 @@
             }
         }
         
+        /* 모바일에서 모달 크기 조정 */
+        @media (max-width: 768px) {
+            .modal-content {
+                width: 90%;
+                height: 550px;
+                padding: 30px;
+            }
+        }
+        
         /* 모달 스타일 */
         .modal-overlay {
             position: fixed;
@@ -1773,16 +1782,15 @@
             background: white;
             border-radius: 20px;
             padding: 40px;
-            max-width: 500px;
-            width: 85%;
-            max-height: 80vh;
-            overflow-y: auto;
+            width: 500px;
+            height: 530px;
             position: relative;
             transform: translateY(50px) scale(0.9);
             opacity: 0;
             transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
             text-align: center;
+            overflow: hidden;
         }
         
         .modal-overlay.show .modal-content {
@@ -1849,7 +1857,7 @@
         .modal-icon {
             width: 120px;
             height: 120px;
-            margin: 0 auto 30px;
+            margin: 10px auto 40px;
             background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
             border-radius: 20px;
             display: flex;
@@ -1914,7 +1922,6 @@
             justify-content: space-between;
             margin-bottom: 40px;
             position: relative;
-            padding: 0 20px;
         }
         
         .diagnosis-steps::before {
@@ -1950,12 +1957,26 @@
             right: 0;
             height: 6px;
             background: #4472c4;
-            border-radius: 0px;
             z-index: 2;
         }
         
         .step.non-active {
             color: #ccc;
+        }
+        
+        .step.completed {
+            color: #4472c4;
+        }
+        
+        .step.completed::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: #4472c4;
+            z-index: 2;
         }
         
         /* 질문 영역 스타일 */
@@ -2032,6 +2053,53 @@
             box-shadow: none;
         }
         
+        /* O/X 선택 스타일 */
+        .choice-area {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 28px;
+            justify-content: center;
+        }
+        
+        .choice-option {
+            flex: 1;
+            max-width: 200px;
+            padding: 10px 20px;
+            border: 1px solid #e0e0e0;
+            border-radius: 15px;
+            background: #f8f9fa;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-align: center;
+        }
+        
+        .choice-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .choice-option:hover {
+            border-color: #4472c4;
+            background: white;
+        }
+        
+        .choice-option.selected {
+            border-color: #4472c4;
+            background: #e8f2ff;
+        }
+        
+        .choice-icon {
+            font-size: 30px;
+        }
+        
+        .choice-text {
+            font-size: 18px;
+            font-weight: 500;
+            color: #333;
+        }
+        
         /* 화면 전환 스타일 */
         .screen {
             display: none;
@@ -2039,6 +2107,196 @@
         
         .screen.active {
             display: block;
+        }
+        
+        /* 로딩 화면 스타일 */
+        .loading-area {
+            text-align: center;
+            padding: 30px 20px;
+        }
+        
+        .loading-spinner {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 40px;
+            height: 90px;
+        }
+        
+        .spinner-dots {
+            position: relative;
+            width: 70px;
+            height: 70px;
+        }
+        
+        .spinner-dot {
+            position: absolute;
+            width: 11px;
+            height: 11px;
+            background: #4472c4;
+            border-radius: 50%;
+            animation: spin-dots 1.2s linear infinite;
+        }
+        
+        /* 8개 점으로 완전한 원형 배치 - 45도씩, 절반 정도 크게 */
+        .spinner-dot:nth-child(1) { top: 3px; left: 29.5px; animation-delay: 0s; }
+        .spinner-dot:nth-child(2) { top: 10px; left: 49px; animation-delay: 0.15s; }
+        .spinner-dot:nth-child(3) { top: 29.5px; left: 56px; animation-delay: 0.3s; }
+        .spinner-dot:nth-child(4) { top: 49px; left: 49px; animation-delay: 0.45s; }
+        .spinner-dot:nth-child(5) { top: 56px; left: 29.5px; animation-delay: 0.6s; }
+        .spinner-dot:nth-child(6) { top: 49px; left: 10px; animation-delay: 0.75s; }
+        .spinner-dot:nth-child(7) { top: 29.5px; left: 3px; animation-delay: 0.9s; }
+        .spinner-dot:nth-child(8) { top: 10px; left: 10px; animation-delay: 1.05s; }
+        
+        @keyframes spin-dots {
+            0%, 20% {
+                opacity: 1;
+                transform: scale(1.2);
+            }
+            100% {
+                opacity: 0.2;
+                transform: scale(0.6);
+            }
+        }
+        
+        .loading-text h3 {
+            font-size: 24px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        
+        .loading-text p {
+            font-size: 16px;
+            color: #666;
+        }
+        
+        /* 상담 신청 화면 스타일 */
+        .consultation-area {
+            text-align: center;
+            padding: 10px 20px;
+        }
+        
+        .consultation-result {
+            margin-bottom: 30px;
+        }
+        
+        .consultation-result h3 {
+            font-size: 22px;
+            font-weight: bold;
+            color: #333;
+            margin: 0;
+        }
+        
+        .consultation-result .highlight {
+            color: #4472c4;
+        }
+        
+        .consultation-form-area {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .consultation-form-area .form-group {
+            text-align: left;
+        }
+        
+        .input-with-label {
+            position: relative;
+            display: flex;
+            align-items: center;
+            border: 1.5px solid #e0e0e0;
+            border-radius: 8px;
+            background: white;
+            transition: border-color 0.3s;
+        }
+        
+        .input-with-label:focus-within {
+            border-color: #4472c4;
+        }
+        
+        .input-label {
+            font-size: 15px;
+            font-weight: 500;
+            color: #333;
+            padding: 12px 15px;
+            width: 100px;
+            flex-shrink: 0;
+            background: transparent;
+        }
+        
+        .consultation-form-area .form-group input {
+            flex: 1;
+            padding: 12px 15px;
+            font-size: 15px;
+            border: none;
+            outline: none;
+            background: transparent;
+            box-sizing: border-box;
+        }
+        
+        .consultation-form-area .form-group input::placeholder {
+            color: #999;
+        }
+        
+        .privacy-agreement {
+            margin: 8px 0;
+        }
+        
+        .checkbox-label {
+            display: flex;
+            align-items: center;
+            font-size: 13px;
+            color: #666;
+            cursor: pointer;
+        }
+        
+        .checkbox-label input[type="checkbox"] {
+            margin-right: 6px;
+            width: 16px;
+            height: 16px;
+        }
+        
+        .privacy-link {
+            color: #4472c4;
+            text-decoration: underline;
+            cursor: pointer;
+            left: 7px;
+            position: relative;
+        }
+        
+        .consultation-submit-btn {
+            background: linear-gradient(135deg, #4472c4 0%, #5a7fd8 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            padding: 15px 30px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            box-shadow: 0 4px 15px rgba(68, 114, 196, 0.3);
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+        
+        .consultation-submit-btn:hover:not(.disabled) {
+            background: linear-gradient(135deg, #3a5fa0 0%, #4a6bc4 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(68, 114, 196, 0.4);
+        }
+        
+        .consultation-submit-btn.disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+        
+        .consultation-submit-btn.disabled:hover {
+            background: #ccc;
+            transform: none;
+            box-shadow: none;
         }
     </style>
 </head>
@@ -2971,7 +3229,7 @@
                 </div>
                 <input type="tel" placeholder="연락처 (- 없이 입력)" class="inline-input phone-input">
                 <button class="consultation-btn primary">무료 상담신청</button>
-                <button class="consultation-btn secondary">📞 기록상담</button>
+                <button class="consultation-btn secondary">카톡상담</button>
             </div>
         </div>
     </div>
@@ -3054,6 +3312,152 @@
                     <button class="next-btn disabled" id="nextBtn" onclick="nextQuestion()" disabled>다음</button>
                 </div>
             </div>
+            
+            <!-- 세 번째 화면: 월 소득 질문 -->
+            <div id="incomeScreen" class="screen">
+                <!-- 진단 단계 표시 -->
+                <div class="diagnosis-steps">
+                    <div class="step completed">채무액</div>
+                    <div class="step active">월 소득</div>
+                    <div class="step non-active">보유재산</div>
+                    <div class="step non-active">부양가족</div>
+                </div>
+                
+                <!-- 질문 영역 -->
+                <div class="question-area">
+                    <h3 class="question-title">Q. 월 소득은 얼마인가요?</h3>
+                    
+                    <div class="input-area">
+                        <input type="text" id="incomeAmount" class="debt-input" placeholder="예) 200" oninput="validateIncomeInput()" />
+                        <span class="unit">만 원</span>
+                    </div>
+                    
+                    <button class="next-btn disabled" id="incomeNextBtn" onclick="nextIncomeQuestion()" disabled>다음</button>
+                </div>
+            </div>
+            
+            <!-- 네 번째 화면: 보유재산 질문 -->
+            <div id="assetsScreen" class="screen">
+                <!-- 진단 단계 표시 -->
+                <div class="diagnosis-steps">
+                    <div class="step completed">채무액</div>
+                    <div class="step completed">월 소득</div>
+                    <div class="step active">보유재산</div>
+                    <div class="step non-active">부양가족</div>
+                </div>
+                
+                <!-- 질문 영역 -->
+                <div class="question-area">
+                    <h3 class="question-title">Q. 본인 명의 부동산이 있으신가요?</h3>
+                    
+                    <div class="choice-area">
+                        <div class="choice-option" onclick="selectAssets(true)">
+                            <div class="choice-content">
+                                <div class="choice-icon">⭕</div>
+                                <div class="choice-text">네</div>
+                            </div>
+                        </div>
+                        <div class="choice-option" onclick="selectAssets(false)">
+                            <div class="choice-content">
+                                <div class="choice-icon">❌</div>
+                                <div class="choice-text">아니오</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button class="next-btn disabled" id="assetsNextBtn" onclick="nextAssetsQuestion()" disabled>다음</button>
+                </div>
+            </div>
+            
+            <!-- 다섯 번째 화면: 부양가족 질문 -->
+            <div id="dependentsScreen" class="screen">
+                <!-- 진단 단계 표시 -->
+                <div class="diagnosis-steps">
+                    <div class="step completed">채무액</div>
+                    <div class="step completed">월 소득</div>
+                    <div class="step completed">보유재산</div>
+                    <div class="step active">부양가족</div>
+                </div>
+                
+                <!-- 질문 영역 -->
+                <div class="question-area">
+                    <h3 class="question-title">Q. 부양가족이 있으신가요?</h3>
+                    
+                    <div class="choice-area">
+                        <div class="choice-option" onclick="selectDependents(true)">
+                            <div class="choice-content">
+                                <div class="choice-icon">⭕</div>
+                                <div class="choice-text">네</div>
+                            </div>
+                        </div>
+                        <div class="choice-option" onclick="selectDependents(false)">
+                            <div class="choice-content">
+                                <div class="choice-icon">❌</div>
+                                <div class="choice-text">아니오</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button class="next-btn disabled" id="dependentsNextBtn" onclick="nextDependentsQuestion()" disabled>다음</button>
+                </div>
+            </div>
+            
+            <!-- 여섯 번째 화면: 로딩 -->
+            <div id="loadingScreen" class="screen">
+                <div class="loading-area">
+                    <div class="loading-spinner">
+                        <div class="spinner-dots">
+                            <div class="spinner-dot"></div>
+                            <div class="spinner-dot"></div>
+                            <div class="spinner-dot"></div>
+                            <div class="spinner-dot"></div>
+                            <div class="spinner-dot"></div>
+                            <div class="spinner-dot"></div>
+                            <div class="spinner-dot"></div>
+                            <div class="spinner-dot"></div>
+                        </div>
+                    </div>
+                    <div class="loading-text">
+                        <h3>AI 진단 중이에요.</h3>
+                        <p>잠시만 기다려 주세요.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 일곱 번째 화면: 상담 신청 -->
+            <div id="consultationScreen" class="screen">
+                <div class="consultation-area">
+                    <div class="consultation-result">
+                        <h3>개인회생 <span class="highlight">신청이 가능</span>합니다.</h3>
+                    </div>
+                    
+                    <div class="consultation-form-area">
+                        <div class="form-group">
+                            <div class="input-with-label">
+                                <span class="input-label">이름</span>
+                                <input type="text" id="consultName" placeholder="예) 홍길동" oninput="validateConsultationForm()" />
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <div class="input-with-label">
+                                <span class="input-label">휴대폰번호</span>
+                                <input type="tel" id="consultPhone" placeholder="- 는 제외하고 입력" oninput="validateConsultationForm()" />
+                            </div>
+                        </div>
+                        
+                        <div class="privacy-agreement">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="privacyAgree" onchange="validateConsultationForm()" />
+                                <span class="checkmark"></span>
+                                개인정보 수집 및 이용에 대한 동의 <span class="privacy-link"> 자세히</span>
+                            </label>
+                        </div>
+                        
+                        <button class="consultation-submit-btn disabled" id="consultationSubmitBtn" onclick="submitConsultation()" disabled>무료 상담 신청</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     
@@ -3095,9 +3499,19 @@
         
         let selectedDiagnosisType = '';
         
+        // 진단 데이터 저장 객체
+        let diagnosisData = {
+            type: '', // 개인회생 또는 파산면책
+            debtAmount: 0, // 채무액 (만원)
+            monthlyIncome: 0, // 월 소득 (만원)
+            assets: 0, // 보유재산 (만원)
+            dependents: 0 // 부양가족 수
+        };
+        
         function selectDiagnosis(type) {
             // 선택한 타입 저장
             selectedDiagnosisType = type;
+            diagnosisData.type = type;
             // 모달 열기
             openAiDiagnosisModal();
         }
@@ -3161,12 +3575,161 @@
                 alert('채무 금액을 입력해주세요.');
                 return;
             }
-            alert('다음 질문으로 이동합니다. (추후 구현 예정)');
+            
+            // 채무액 저장 (콤마 제거 후 숫자로 변환)
+            diagnosisData.debtAmount = parseInt(debtAmount.replace(/,/g, ''));
+            console.log('저장된 채무액:', diagnosisData.debtAmount, '만원');
+            
+            // 월 소득 화면으로 전환
+            showScreen('incomeScreen');
+        }
+        
+        function nextIncomeQuestion() {
+            const incomeAmount = document.getElementById('incomeAmount').value;
+            if (!incomeAmount) {
+                alert('월 소득을 입력해주세요.');
+                return;
+            }
+            
+            // 월 소득 저장 (콤마 제거 후 숫자로 변환)
+            diagnosisData.monthlyIncome = parseInt(incomeAmount.replace(/,/g, ''));
+            console.log('저장된 월 소득:', diagnosisData.monthlyIncome, '만원');
+            
+            // 보유재산 화면으로 전환
+            showScreen('assetsScreen');
+        }
+        
+        function selectAssets(hasAssets) {
+            // 선택 상태 업데이트
+            document.querySelectorAll('#assetsScreen .choice-option').forEach(option => {
+                option.classList.remove('selected');
+            });
+            
+            // 선택된 옵션 표시
+            const selectedOption = hasAssets ? 
+                document.querySelector('#assetsScreen .choice-option:first-child') : 
+                document.querySelector('#assetsScreen .choice-option:last-child');
+            selectedOption.classList.add('selected');
+            
+            // 데이터 저장
+            diagnosisData.assets = hasAssets ? 1 : 0; // 1: 있음, 0: 없음
+            console.log('저장된 보유재산:', hasAssets ? '있음' : '없음');
+            
+            // 다음 버튼 활성화
+            const nextBtn = document.getElementById('assetsNextBtn');
+            nextBtn.classList.remove('disabled');
+            nextBtn.disabled = false;
+        }
+        
+        function nextAssetsQuestion() {
+            console.log('현재 진단 데이터:', diagnosisData);
+            // 부양가족 화면으로 전환
+            showScreen('dependentsScreen');
+        }
+        
+        function selectDependents(hasDependents) {
+            // 선택 상태 업데이트
+            document.querySelectorAll('#dependentsScreen .choice-option').forEach(option => {
+                option.classList.remove('selected');
+            });
+            
+            // 선택된 옵션 표시
+            const selectedOption = hasDependents ? 
+                document.querySelector('#dependentsScreen .choice-option:first-child') : 
+                document.querySelector('#dependentsScreen .choice-option:last-child');
+            selectedOption.classList.add('selected');
+            
+            // 데이터 저장
+            diagnosisData.dependents = hasDependents ? 1 : 0; // 1: 있음, 0: 없음
+            console.log('저장된 부양가족:', hasDependents ? '있음' : '없음');
+            
+            // 다음 버튼 활성화
+            const nextBtn = document.getElementById('dependentsNextBtn');
+            nextBtn.classList.remove('disabled');
+            nextBtn.disabled = false;
+        }
+        
+        function nextDependentsQuestion() {
+            console.log('최종 진단 데이터:', diagnosisData);
+            // 로딩 화면으로 전환
+            showScreen('loadingScreen');
+            
+            // 2초 후 상담 신청 화면으로 이동
+            setTimeout(() => {
+                showScreen('consultationScreen');
+            }, 2000);
+        }
+        
+        function validateConsultationForm() {
+            const name = document.getElementById('consultName').value.trim();
+            const phone = document.getElementById('consultPhone').value.trim();
+            const privacyAgree = document.getElementById('privacyAgree').checked;
+            const submitBtn = document.getElementById('consultationSubmitBtn');
+            
+            // 휴대폰 번호 숫자만 허용
+            const phoneInput = document.getElementById('consultPhone');
+            let phoneValue = phoneInput.value.replace(/[^0-9]/g, '');
+            phoneInput.value = phoneValue;
+            
+            // 모든 조건이 만족되면 버튼 활성화
+            if (name && phoneValue.length >= 10 && privacyAgree) {
+                submitBtn.classList.remove('disabled');
+                submitBtn.disabled = false;
+            } else {
+                submitBtn.classList.add('disabled');
+                submitBtn.disabled = true;
+            }
+        }
+        
+        function submitConsultation() {
+            const name = document.getElementById('consultName').value.trim();
+            const phone = document.getElementById('consultPhone').value.trim();
+            
+            console.log('상담 신청 데이터:', {
+                name: name,
+                phone: phone,
+                diagnosisData: diagnosisData
+            });
+            
+            alert('상담 신청이 완료되었습니다. 빠른 시일 내에 연락드리겠습니다.');
+            
+            // 모달 닫기
+            const modal = document.getElementById('aiDiagnosisModal');
+            if (modal) {
+                modal.classList.remove('show');
+                setTimeout(() => {
+                    modal.style.display = 'none';
+                }, 400);
+            }
         }
         
         function validateInput() {
             const input = document.getElementById('debtAmount');
             const nextBtn = document.getElementById('nextBtn');
+            
+            // 숫자만 입력 허용 (콤마 제거 후 검증)
+            let value = input.value.replace(/[^0-9]/g, '');
+            
+            // 콤마 추가 (천 단위 구분)
+            if (value) {
+                value = parseInt(value).toLocaleString();
+            }
+            
+            input.value = value;
+            
+            // 버튼 활성화/비활성화
+            if (value && value !== '0') {
+                nextBtn.classList.remove('disabled');
+                nextBtn.disabled = false;
+            } else {
+                nextBtn.classList.add('disabled');
+                nextBtn.disabled = true;
+            }
+        }
+        
+        function validateIncomeInput() {
+            const input = document.getElementById('incomeAmount');
+            const nextBtn = document.getElementById('incomeNextBtn');
             
             // 숫자만 입력 허용 (콤마 제거 후 검증)
             let value = input.value.replace(/[^0-9]/g, '');
@@ -3361,15 +3924,6 @@
                         modal.style.display = 'none';
                     }, 400);
                 }
-            }
-            
-            // 배경 클릭 시 모달 닫기
-            if (modalOverlay) {
-                modalOverlay.addEventListener('click', function(e) {
-                    if (e.target === modalOverlay) {
-                        closeModal();
-                    }
-                });
             }
             
             // 닫기 버튼 클릭 시 모달 닫기
