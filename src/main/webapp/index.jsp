@@ -500,7 +500,7 @@
                 align-items: center;
                 justify-content: center;
                 margin-top: 10px;
-                overflow: hidden;
+                overflow: visible;
             }
 
             .wheel-picker {
@@ -612,14 +612,13 @@
             }
 
             .ace-logo {
-                background: #4865FF;
-                color: white;
-                padding: 8px 16px;
-                border-radius: 4px;
-                font-weight: bold;
-                font-size: 16px;
                 display: inline-block;
                 margin-top: 10px;
+            }
+
+            .ace-logo img {
+                height: 50px;
+                object-fit: contain;
             }
 
             /* 하단 상담 신청 바 */
@@ -649,15 +648,17 @@
 
             .consultation-message {
                 color: white;
+                font-family: Pretendard;
                 font-size: 20px;
                 font-weight: 500;
                 line-height: 1.3;
                 white-space: nowrap;
-                text-align: center;
+                text-align: left;
             }
 
             .consultation-message .highlight {
                 color: white;
+                font-family: Pretendard;
                 font-weight: bold;
             }
 
@@ -3423,7 +3424,9 @@
                             <p>개인정보 보호 책임 담당</p>
                             <p>(전화 24시간 가능)</p>
                             <div class="phone-number">1555-1684</div>
-                            <div class="ace-logo">ACE</div>
+                            <div class="ace-logo">
+                                <img src="/images/logo_gray.png" alt="ACE 법무법인">
+                            </div>
                         </div>
                     </div>
                 </div>
