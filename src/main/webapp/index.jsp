@@ -33,12 +33,12 @@
             }
 
             .header-container {
-                max-width: 1200px;
+                max-width: 1400px;
                 margin: 0 auto;
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
-                padding: 0 20px;
+                padding: 0 40px;
             }
 
             .logo {
@@ -94,7 +94,7 @@
                 display: flex;
                 align-items: center;
                 gap: 8px;
-                color: #4472c4;
+                color: #4865FF;
                 font-weight: bold;
                 font-size: 16px;
             }
@@ -164,7 +164,7 @@
             }
 
             .highlight-blue {
-                color: #4472c4;
+                color: #4865FF;
             }
 
             .title-subtitle {
@@ -285,7 +285,7 @@
             .stat-icon {
                 width: 35px;
                 height: 35px;
-                background: #4472c4;
+                background: #4865FF;
                 border-radius: 50%;
                 display: flex;
                 align-items: center;
@@ -397,7 +397,7 @@
             .form-group input:focus,
             .form-group select:focus {
                 outline: none;
-                border-color: #4472c4;
+                border-color: #4865FF;
             }
 
             .form-group input::placeholder {
@@ -449,13 +449,13 @@
             }
 
             .privacy-link {
-                color: #4472c4;
+                color: #4865FF;
                 text-decoration: underline;
             }
 
             /* 누적 탕감액 섹션 */
             .total-reduction-section {
-                background: linear-gradient(135deg, #4472c4 0%, #365a9b 100%);
+                background: linear-gradient(135deg, #4865FF 0%, #365a9b 100%);
                 color: white;
                 padding: 80px 20px;
                 text-align: center;
@@ -470,7 +470,7 @@
                 display: flex;
                 flex-direction: column;
                 align-items: center;
-                gap: 20px;
+                gap: 5px;
             }
 
             .reduction-subtitle {
@@ -489,17 +489,17 @@
 
             .amount-display {
                 background: white;
-                color: #4472c4;
-                padding: 20px 40px;
+                color: #4865FF;
+                padding: 10px;
                 border-radius: 50px;
                 font-size: 32px;
                 font-weight: bold;
                 box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-                min-width: 500px;
+                min-width: 400px;
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                margin-top: 20px;
+                margin-top: 10px;
                 overflow: hidden;
             }
 
@@ -534,6 +534,8 @@
                 font-size: 36px;
                 font-weight: bold !important;
                 color: #333;
+                position: relative;
+                right: 1px;
             }
 
             .wheel-picker .comma,
@@ -610,7 +612,7 @@
             }
 
             .ace-logo {
-                background: #4472c4;
+                background: #4865FF;
                 color: white;
                 padding: 8px 16px;
                 border-radius: 4px;
@@ -684,7 +686,7 @@
 
             .inline-input:focus {
                 outline: none;
-                border-color: #4472c4;
+                border-color: #4865FF;
             }
 
             .privacy-check {
@@ -710,10 +712,19 @@
                 cursor: pointer;
                 transition: all 0.3s;
                 white-space: nowrap;
+                display: flex;
+                align-items: center;
+                gap: 8px;
+            }
+
+            .consultation-btn img {
+                width: 20px;
+                height: 20px;
+                object-fit: contain;
             }
 
             .consultation-btn.primary {
-                background: #4472c4;
+                background: #4865FF;
                 color: white;
             }
 
@@ -781,7 +792,7 @@
             }
 
             .floating-btn.phone {
-                background: #4472c4;
+                background: #4865FF;
             }
 
             .floating-btn.kakao {
@@ -914,7 +925,7 @@
 
             .diagnosis-card:hover {
                 background: #e8f2ff;
-                border-color: #4472c4;
+                border-color: #4865FF;
                 transform: translateY(-5px);
                 box-shadow: 0 10px 30px rgba(68, 114, 196, 0.2);
             }
@@ -940,7 +951,7 @@
 
             .card-icon {
                 font-size: 70px;
-                color: #4472c4;
+                color: #4865FF;
                 text-align: right;
                 margin-top: auto;
             }
@@ -1026,7 +1037,7 @@
                 width: 12px;
                 height: 20px;
                 fill: none;
-                stroke: #4472c4;
+                stroke: #4865FF;
                 stroke-width: 1.5;
                 stroke-linecap: round;
                 stroke-linejoin: round;
@@ -1086,7 +1097,7 @@
             .case-card:hover {
                 transform: translateY(-5px);
                 box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-                border-color: #4472c4;
+                border-color: #4865FF;
             }
 
             .case-profile {
@@ -1137,7 +1148,7 @@
 
             .case-success {
                 background: #e8f2ff;
-                color: #4472c4;
+                color: #4865FF;
                 padding: 4px 8px;
                 border-radius: 4px;
                 font-size: 11px;
@@ -1162,7 +1173,7 @@
             }
 
             .result-badge {
-                background: #4472c4;
+                background: #4865FF;
                 color: white;
                 padding: 12px 16px;
                 border-radius: 8px;
@@ -1182,7 +1193,7 @@
                 height: 0;
                 border-left: 8px solid transparent;
                 border-right: 8px solid transparent;
-                border-top: 8px solid #4472c4;
+                border-top: 8px solid #4865FF;
             }
 
             .case-details {
@@ -1225,13 +1236,13 @@
             }
 
             .detail-row .value.blue {
-                color: #4472c4;
+                color: #4865FF;
                 font-weight: bold;
             }
 
             /* 상담 신청 알림 */
             .consultation-alerts {
-                background: #4472c4;
+                background: #4865FF;
                 color: white;
                 overflow: hidden;
                 position: relative;
@@ -1268,7 +1279,7 @@
 
             .time-badge {
                 background: white;
-                color: #4472c4;
+                color: #4865FF;
                 padding: 4px 8px;
                 border-radius: 12px;
                 font-size: 12px;
@@ -1429,8 +1440,12 @@
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
-                font-size: 16px;
-                font-weight: 500;
+                font-family: Pretendard;
+                font-weight: 700;
+                font-style: normal;
+                font-size: 20px;
+                line-height: 140%;
+                letter-spacing: -0.01em;
                 color: #333;
                 transition: background 0.3s ease;
                 border: none;
@@ -1659,7 +1674,7 @@
                 justify-content: center;
                 overflow: hidden;
                 padding: 15px;
-                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
             }
 
             .certificate-image img {
@@ -2076,12 +2091,12 @@
             }
 
             .modal-description .highlight {
-                color: #4472c4;
+                color: #4865FF;
                 font-weight: bold;
             }
 
             .diagnosis-start-btn {
-                background: linear-gradient(135deg, #4472c4 0%, #5a7fd8 100%);
+                background: linear-gradient(135deg, #4865FF 0%, #5a7fd8 100%);
                 color: white;
                 border: none;
                 border-radius: 15px;
@@ -2129,7 +2144,7 @@
             }
 
             .step.active {
-                color: #4472c4;
+                color: #4865FF;
                 font-weight: normal;
             }
 
@@ -2140,7 +2155,7 @@
                 left: 0;
                 right: 0;
                 height: 6px;
-                background: #4472c4;
+                background: #4865FF;
                 z-index: 2;
             }
 
@@ -2149,7 +2164,7 @@
             }
 
             .step.completed {
-                color: #4472c4;
+                color: #4865FF;
             }
 
             .step.completed::after {
@@ -2159,7 +2174,7 @@
                 left: 0;
                 right: 0;
                 height: 6px;
-                background: #4472c4;
+                background: #4865FF;
                 z-index: 2;
             }
 
@@ -2193,7 +2208,7 @@
             }
 
             .debt-input:focus {
-                border-color: #4472c4;
+                border-color: #4865FF;
                 background: white;
             }
 
@@ -2234,12 +2249,12 @@
             }
 
             .choice-option:hover {
-                border-color: #4472c4;
+                border-color: #4865FF;
                 background: white;
             }
 
             .choice-option.selected {
-                border-color: #4472c4;
+                border-color: #4865FF;
                 background: #e8f2ff;
             }
 
@@ -2286,7 +2301,7 @@
                 position: absolute;
                 width: 11px;
                 height: 11px;
-                background: #4472c4;
+                background: #4865FF;
                 border-radius: 50%;
                 animation: spin-dots 1.2s linear infinite;
             }
@@ -2384,7 +2399,7 @@
             }
 
             .consultation-result .highlight {
-                color: #4472c4;
+                color: #4865FF;
             }
 
             .consultation-form-area {
@@ -2408,7 +2423,7 @@
             }
 
             .input-with-label:focus-within {
-                border-color: #4472c4;
+                border-color: #4865FF;
             }
 
             .input-label {
@@ -2454,7 +2469,7 @@
             }
 
             .privacy-link {
-                color: #4472c4;
+                color: #4865FF;
                 text-decoration: underline;
                 cursor: pointer;
                 left: 7px;
@@ -2462,7 +2477,7 @@
             }
 
             .consultation-submit-btn {
-                background: linear-gradient(135deg, #4472c4 0%, #5a7fd8 100%);
+                background: linear-gradient(135deg, #4865FF 0%, #5a7fd8 100%);
                 color: white;
                 border: none;
                 border-radius: 12px;
@@ -3433,7 +3448,10 @@
                     </div>
                     <input type="tel" placeholder="연락처 (- 없이 입력)" class="inline-input phone-input">
                     <button class="consultation-btn primary">무료 상담신청</button>
-                    <button class="consultation-btn secondary">카톡상담</button>
+                    <button class="consultation-btn secondary">
+                        <img src="/images/icon_talk.png" alt="카카오톡">
+                        카톡상담
+                    </button>
                 </div>
             </div>
         </div>
