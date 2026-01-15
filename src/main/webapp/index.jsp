@@ -2518,6 +2518,387 @@
                 transform: none;
                 box-shadow: none;
             }
+
+            /* ========================================
+               모바일 반응형 CSS (768px 이하)
+               ======================================== */
+            @media (max-width: 768px) {
+                /* 헤더 */
+                .header-container {
+                    padding: 0 20px;
+                }
+
+                .nav-menu {
+                    display: none;
+                }
+
+                .contact-phone {
+                    font-size: 14px;
+                }
+
+                .logo-box {
+                    height: 32px;
+                }
+
+                /* 메인 배경 */
+                .main-background {
+                    min-height: auto;
+                    padding: 30px 0 60px;
+                }
+
+                .main-container {
+                    padding: 0 15px;
+                }
+
+                .title-small {
+                    font-size: 18px;
+                }
+
+                .title-large {
+                    font-size: 28px;
+                    line-height: 1.3;
+                }
+
+                .title-subtitle {
+                    font-size: 28px;
+                }
+
+                /* 통계 박스 */
+                .stats-section {
+                    width: 100%;
+                    height: auto;
+                    margin: 0 auto 40px;
+                }
+
+                .stats-container {
+                    gap: 15px;
+                }
+
+                .stat-box {
+                    width: 100% !important;
+                    height: auto !important;
+                    left: 0 !important;
+                    padding: 15px;
+                }
+
+                .stat-box:nth-child(1) .stat-content-wrapper,
+                .stat-box:nth-child(2) .stat-content-wrapper,
+                .stat-box:nth-child(3) .stat-content-wrapper {
+                    width: 100%;
+                    height: auto;
+                }
+
+                .stat-number {
+                    width: 100%;
+                    height: auto;
+                    font-size: 16px;
+                }
+
+                /* 상담 신청 폼 */
+                .consultation-section {
+                    position: static;
+                    transform: none;
+                    width: 100%;
+                    margin: 20px 0;
+                }
+
+                .consultation-form {
+                    width: 100%;
+                    height: auto;
+                    padding: 20px;
+                    bottom: 0;
+                }
+
+                .form-row {
+                    flex-direction: column;
+                    gap: 15px;
+                }
+
+                .submit-btn {
+                    height: auto;
+                    padding: 14px;
+                    min-width: 100%;
+                }
+
+                .privacy-notice {
+                    bottom: 0;
+                    font-size: 12px;
+                    flex-direction: column;
+                    gap: 5px;
+                }
+
+                /* 누적 탕감액 */
+                .total-reduction-section {
+                    padding: 40px 15px;
+                }
+
+                .reduction-title {
+                    font-size: 24px;
+                }
+
+                .amount-display {
+                    min-width: 280px;
+                    font-size: 24px;
+                    padding: 8px;
+                }
+
+                .wheel-picker .digit-wheel span {
+                    font-size: 24px;
+                    height: 35px;
+                }
+
+                .wheel-picker .comma,
+                .wheel-picker .currency {
+                    font-size: 24px;
+                }
+
+                .digit-container {
+                    width: 18px;
+                    height: 35px;
+                }
+
+                /* AI 자가진단 */
+                .ai-diagnosis-section {
+                    padding: 40px 15px;
+                }
+
+                .ai-title h2 {
+                    font-size: 28px;
+                }
+
+                .ai-title h3 {
+                    font-size: 18px;
+                }
+
+                .diagnosis-cards {
+                    flex-direction: column;
+                    gap: 15px;
+                }
+
+                .diagnosis-card {
+                    min-height: 140px;
+                    padding: 20px;
+                }
+
+                .card-title {
+                    font-size: 22px;
+                }
+
+                img.card-icon {
+                    width: 50px;
+                    height: 50px;
+                }
+
+                /* 고객 사례 */
+                .customer-cases-section {
+                    padding: 40px 15px 60px;
+                }
+
+                .cases-title {
+                    font-size: 28px;
+                }
+
+                .cases-wrapper {
+                    padding: 15px 10px;
+                }
+
+                .casesSwiper {
+                    max-width: 100%;
+                }
+
+                .case-tabs {
+                    gap: 8px;
+                    overflow-x: auto;
+                    -webkit-overflow-scrolling: touch;
+                    padding-bottom: 10px;
+                }
+
+                .tab-btn {
+                    padding: 8px 18px;
+                    font-size: 13px;
+                    min-width: 80px;
+                    white-space: nowrap;
+                }
+
+                .cases-grid {
+                    grid-template-columns: 1fr !important;
+                    gap: 15px !important;
+                }
+
+                .case-card {
+                    padding: 15px;
+                }
+
+                .case-profile {
+                    flex-direction: row;
+                    gap: 12px;
+                }
+
+                .profile-img {
+                    width: 50px;
+                    height: 50px;
+                }
+
+                .case-name {
+                    font-size: 16px;
+                }
+
+                .case-age {
+                    font-size: 12px;
+                }
+
+                .case-type,
+                .case-success {
+                    font-size: 11px;
+                    padding: 4px 10px;
+                }
+
+                .result-badge {
+                    font-size: 13px;
+                    padding: 10px;
+                }
+
+                .case-details {
+                    gap: 10px;
+                    padding: 12px;
+                }
+
+                .detail-row {
+                    font-size: 13px;
+                }
+
+                .arrow-btn {
+                    display: none;
+                }
+
+                /* 하단 상담 바 */
+                .bottom-consultation-bar {
+                    padding: 0;
+                }
+
+                .consultation-bar-container {
+                    max-width: 100%;
+                    border-radius: 0;
+                    padding: 12px 15px;
+                    flex-direction: column;
+                    gap: 12px;
+                }
+
+                .consultation-message {
+                    font-size: 16px;
+                    text-align: center;
+                }
+
+                .consultation-form-inline {
+                    flex-direction: column;
+                    gap: 10px;
+                    width: 100%;
+                }
+
+                .input-group {
+                    width: 100%;
+                }
+
+                .inline-input {
+                    width: 100%;
+                    min-width: 100%;
+                }
+
+                .consultation-btn {
+                    width: 100%;
+                    justify-content: center;
+                    padding: 12px;
+                }
+
+                /* 플로팅 버튼 */
+                .floating-buttons {
+                    right: 15px;
+                    bottom: 120px;
+                }
+
+                .floating-btn-container {
+                    padding: 10px 8px;
+                    gap: 15px;
+                }
+
+                .floating-btn {
+                    width: 45px;
+                    height: 45px;
+                }
+
+                .floating-btn-text {
+                    font-size: 11px;
+                }
+
+                /* 푸터 */
+                .footer-section {
+                    padding: 30px 15px;
+                }
+
+                .footer-content {
+                    flex-direction: column;
+                    gap: 30px;
+                }
+
+                .footer-right {
+                    text-align: left;
+                }
+
+                .company-info h3 {
+                    font-size: 16px;
+                }
+
+                .company-info p {
+                    font-size: 13px;
+                }
+
+                .phone-number {
+                    font-size: 20px;
+                }
+
+                /* body 패딩 조정 */
+                body {
+                    padding-bottom: 180px;
+                }
+            }
+
+            /* 작은 모바일 (480px 이하) */
+            @media (max-width: 480px) {
+                .title-large {
+                    font-size: 24px;
+                }
+
+                .title-subtitle {
+                    font-size: 24px;
+                }
+
+                .consultation-form {
+                    padding: 15px;
+                }
+
+                .form-group input,
+                .form-group select {
+                    padding: 12px;
+                    font-size: 14px;
+                }
+
+                .cases-title {
+                    font-size: 24px;
+                }
+
+                .ai-title h2 {
+                    font-size: 24px;
+                }
+
+                .card-title {
+                    font-size: 20px;
+                }
+
+                .amount-display {
+                    min-width: 240px;
+                    font-size: 20px;
+                }
+            }
         </style>
     </head>
 
