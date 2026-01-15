@@ -670,6 +670,18 @@
                 flex: 1;
             }
 
+            .mobile-toggle-header {
+                display: none;
+            }
+
+            .toggle-btn {
+                display: none;
+            }
+
+            .desktop-message {
+                display: block;
+            }
+
             .input-group {
                 display: flex;
                 flex-direction: column;
@@ -1339,6 +1351,14 @@
                 margin: 0;
             }
 
+            .services-title-mobile {
+                display: none;
+            }
+
+            .mobile-br {
+                display: none;
+            }
+
             .services-grid {
                 display: grid;
                 grid-template-columns: repeat(4, 1fr);
@@ -1386,6 +1406,25 @@
 
             /* 반응형 디자인 */
             @media (max-width: 768px) {
+                .mobile-br {
+                    display: inline;
+                }
+
+                .services-header {
+                    margin-bottom: 40px;
+                }
+
+                .services-subtitle {
+                    font-size: 18px;
+                    margin-bottom: 10px;
+                }
+
+                .services-title {
+                    font-size: 22px;
+                    line-height: 1.4;
+                    word-break: keep-all;
+                }
+
                 .services-grid {
                     grid-template-columns: repeat(2, 1fr);
                     gap: 25px;
@@ -2596,35 +2635,11 @@
 
                 /* 상담 신청 폼 */
                 .consultation-section {
-                    position: static;
-                    transform: none;
-                    width: 100%;
-                    margin: 20px 0;
+                    display: none;
                 }
 
-                .consultation-form {
-                    width: 100%;
-                    height: auto;
-                    padding: 20px;
-                    bottom: 0;
-                }
-
-                .form-row {
-                    flex-direction: column;
-                    gap: 15px;
-                }
-
-                .submit-btn {
-                    height: auto;
-                    padding: 14px;
-                    min-width: 100%;
-                }
-
-                .privacy-notice {
-                    bottom: 0;
-                    font-size: 12px;
-                    flex-direction: column;
-                    gap: 5px;
+                .bottom-spacer {
+                    display: none;
                 }
 
                 /* 누적 탕감액 */
@@ -2696,6 +2711,183 @@
 
                 .cases-title {
                     font-size: 28px;
+                }
+
+                /* 대표 변호사 소개 */
+                .lawyer-intro-section {
+                    padding: 40px 15px;
+                }
+
+                .lawyer-header {
+                    margin-bottom: 30px;
+                }
+
+                .lawyer-subtitle {
+                    font-size: 14px;
+                    margin-bottom: 10px;
+                }
+
+                .lawyer-title {
+                    font-size: 22px;
+                    line-height: 1.4;
+                }
+
+                .lawyer-content {
+                    flex-direction: column;
+                    gap: 30px;
+                }
+
+                .lawyer-image-area {
+                    flex: 1;
+                    max-width: 100%;
+                    padding: 0;
+                    justify-content: center;
+                }
+
+                .certificateSwiper {
+                    width: 100%;
+                    max-width: 350px;
+                    height: 460px;
+                }
+
+                .certificateSwiper .swiper-slide {
+                    height: 420px;
+                }
+
+                .lawyer-info-area {
+                    flex: 1;
+                    max-width: 100%;
+                }
+
+                .lawyer-description {
+                    font-size: 16px;
+                    margin-bottom: 30px;
+                }
+
+                .detail-section h4 {
+                    font-size: 16px;
+                    margin-bottom: 12px;
+                }
+
+                .detail-section li {
+                    font-size: 13px;
+                    line-height: 1.5;
+                }
+
+                .lawyer-details {
+                    gap: 25px;
+                }
+
+                /* FAQ 섹션 */
+                .faq-section {
+                    padding: 40px 15px;
+                }
+
+                .faq-header {
+                    margin-bottom: 30px;
+                }
+
+                .faq-title {
+                    font-size: 24px;
+                }
+
+                .faq-list {
+                    gap: 12px;
+                }
+
+                .faq-question {
+                    padding: 15px 18px;
+                    font-size: 16px;
+                    line-height: 1.4;
+                }
+
+                .faq-icon {
+                    width: 18px;
+                    height: 18px;
+                    flex-shrink: 0;
+                }
+
+                .faq-icon svg {
+                    width: 10px;
+                    height: 10px;
+                }
+
+                .faq-answer {
+                    padding: 0 18px;
+                }
+
+                .faq-answer.active {
+                    padding: 0 18px 15px 18px;
+                    max-height: 300px;
+                }
+
+                .faq-answer-content {
+                    font-size: 14px;
+                    line-height: 1.6;
+                }
+
+                /* 오시는 길 섹션 */
+                .location-section {
+                    padding: 40px 15px;
+                }
+
+                .location-header {
+                    margin-bottom: 20px;
+                }
+
+                .location-title {
+                    font-size: 24px;
+                    margin-bottom: 20px;
+                }
+
+                .location-info {
+                    flex-direction: column;
+                    align-items: flex-start;
+                    gap: 15px;
+                    margin-bottom: 20px;
+                }
+
+                .location-text {
+                    width: 100%;
+                }
+
+                .location-address {
+                    font-size: 14px;
+                    line-height: 1.6;
+                    margin-bottom: 10px;
+                }
+
+                .location-phone {
+                    font-size: 16px;
+                }
+
+                .location-phone .label {
+                    display: block;
+                    margin-bottom: 5px;
+                    font-size: 14px;
+                }
+
+                .location-buttons {
+                    width: 100%;
+                    margin-left: 0;
+                    gap: 8px;
+                }
+
+                .location-btn {
+                    flex: 1;
+                    justify-content: center;
+                    padding: 10px 12px;
+                    font-size: 13px;
+                }
+
+                .location-btn img {
+                    width: 14px;
+                    height: 14px;
+                }
+
+                .location-map {
+                    height: 300px;
+                    font-size: 14px;
                 }
 
                 .cases-wrapper {
@@ -2789,10 +2981,51 @@
                     text-align: center;
                 }
 
+                .desktop-message {
+                    display: none;
+                }
+
+                .mobile-toggle-header {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    width: 100%;
+                    cursor: pointer;
+                    padding: 8px 0;
+                }
+
+                .toggle-btn {
+                    background: transparent;
+                    border: none;
+                    color: white;
+                    font-size: 24px;
+                    cursor: pointer;
+                    padding: 0;
+                    width: 30px;
+                    height: 30px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    transition: transform 0.3s ease;
+                }
+
+                .toggle-btn.collapsed {
+                    transform: rotate(180deg);
+                }
+
                 .consultation-form-inline {
                     flex-direction: column;
                     gap: 10px;
                     width: 100%;
+                    max-height: 500px;
+                    overflow: hidden;
+                    transition: max-height 0.3s ease, opacity 0.3s ease;
+                    opacity: 1;
+                }
+
+                .consultation-form-inline.collapsed {
+                    max-height: 0;
+                    opacity: 0;
                 }
 
                 .input-group {
@@ -2812,22 +3045,7 @@
 
                 /* 플로팅 버튼 */
                 .floating-buttons {
-                    right: 15px;
-                    bottom: 120px;
-                }
-
-                .floating-btn-container {
-                    padding: 10px 8px;
-                    gap: 15px;
-                }
-
-                .floating-btn {
-                    width: 45px;
-                    height: 45px;
-                }
-
-                .floating-btn-text {
-                    font-size: 11px;
+                    display: none;
                 }
 
                 /* 푸터 */
@@ -2870,16 +3088,6 @@
 
                 .title-subtitle {
                     font-size: 24px;
-                }
-
-                .consultation-form {
-                    padding: 15px;
-                }
-
-                .form-group input,
-                .form-group select {
-                    padding: 12px;
-                    font-size: 14px;
                 }
 
                 .cases-title {
@@ -3012,9 +3220,6 @@
                 </div>
             </div>
         </div>
-
-        <!-- 하단 여백 -->
-
 
         <!-- AI 자가진단 섹션 -->
         <section class="ai-diagnosis-section">
@@ -3507,7 +3712,7 @@
             <div class="services-container">
                 <div class="services-header">
                     <p class="services-subtitle">쉽다! 빠르다! 안전하다!</p>
-                    <h2 class="services-title">에이스 법률사무소의 특별한 서비스 8가지</h2>
+                    <h2 class="services-title">에이스 법률사무소의<br class="mobile-br">특별한 서비스 8가지</h2>
                 </div>
 
                 <div class="services-grid">
@@ -3826,12 +4031,24 @@
         <!-- 하단 상담 신청 바 -->
         <div class="bottom-consultation-bar">
             <div class="consultation-bar-container">
-                <div class="consultation-message">
+                <div class="mobile-toggle-header" onclick="toggleConsultationForm()">
+                    <div class="consultation-message">
+                        <span class="highlight">전국, 365일</span><br>
+                        <span>화상상담 가능!</span>
+                    </div>
+                    <button class="toggle-btn" id="toggleBtn">
+                        <svg width="20" height="12" viewBox="0 0 20 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M2 2L10 10L18 2" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                </div>
+
+                <div class="consultation-message desktop-message">
                     <span class="highlight">전국, 365일</span><br>
                     <span>화상상담 가능!</span>
                 </div>
 
-                <div class="consultation-form-inline">
+                <div class="consultation-form-inline" id="consultationForm">
                     <div class="input-group">
                         <input type="text" placeholder="이름" class="inline-input name-input">
                         <label class="privacy-check">
@@ -4090,6 +4307,17 @@
         <script>
             let casesSwiper;
             let certificateSwiper;
+
+            // 모바일 상담 폼 토글 함수
+            function toggleConsultationForm() {
+                const form = document.getElementById('consultationForm');
+                const toggleBtn = document.getElementById('toggleBtn');
+                
+                if (form && toggleBtn) {
+                    form.classList.toggle('collapsed');
+                    toggleBtn.classList.toggle('collapsed');
+                }
+            }
 
             function filterCases(type, element) {
                 // 탭 활성화
@@ -4375,10 +4603,22 @@
             }
 
             document.addEventListener('DOMContentLoaded', function () {
+                // 모바일에서 상담 폼 초기 상태 설정 (접힌 상태)
+                if (window.innerWidth <= 768) {
+                    const form = document.getElementById('consultationForm');
+                    const toggleBtn = document.getElementById('toggleBtn');
+                    if (form && toggleBtn) {
+                        form.classList.add('collapsed');
+                        toggleBtn.classList.add('collapsed');
+                    }
+                }
+
                 // 페이지 로드 시 즉시 랜덤 숫자로 설정
                 function initializeRandomNumbers() {
                     const targetNumber = "750000000000";
                     const digitContainers = document.querySelectorAll('.digit-container');
+                    const isMobile = window.innerWidth <= 768;
+                    const digitHeight = isMobile ? 35 : 45;
 
                     digitContainers.forEach((container, index) => {
                         if (index >= targetNumber.length) return;
@@ -4395,7 +4635,7 @@
                         } while (randomDigit === targetDigit);
 
                         wheel.style.transition = 'none';
-                        wheel.style.transform = 'translateY(' + (-randomDigit * 45) + 'px)';
+                        wheel.style.transform = 'translateY(' + (-randomDigit * digitHeight) + 'px)';
                     });
                 }
 
@@ -4406,10 +4646,13 @@
                 function startAmountAnimation() {
                     const targetNumber = "750000000000"; // 750,000,000,000 (12자리)
                     const digitContainers = document.querySelectorAll('.digit-container');
+                    const isMobile = window.innerWidth <= 768;
+                    const digitHeight = isMobile ? 35 : 45;
 
                     console.log('Starting animation...');
                     console.log('Total containers:', digitContainers.length);
                     console.log('Target number:', targetNumber);
+                    console.log('Is mobile:', isMobile, 'Digit height:', digitHeight);
 
                     // 200ms 후 모든 휠이 동시에 목표 숫자로 움직임
                     setTimeout(() => {
@@ -4422,7 +4665,7 @@
                             if (!wheel) return;
 
                             // 최종 위치 계산
-                            const finalPosition = -targetDigit * 45;
+                            const finalPosition = -targetDigit * digitHeight;
 
                             console.log('Container ' + index + ': Target digit = ' + targetDigit + ', Final position = ' + finalPosition);
 
