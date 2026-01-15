@@ -984,15 +984,15 @@
             }
 
             .cases-subtitle {
-                font-size: 16px;
-                color: #666;
+                font-size: 20px;
+                color: #424242;
                 margin-bottom: 15px;
             }
 
             .cases-title {
-                font-size: 36px;
+                font-size: 30px;
                 font-weight: bold;
-                color: #333;
+                color: #232323;
                 margin-bottom: 40px;
             }
 
@@ -1326,8 +1326,8 @@
             }
 
             .services-subtitle {
-                font-size: 20px;
-                color: #333;
+                font-size: 25px;
+                color: #232323;
                 margin-bottom: 5px;
                 font-weight: 600;
             }
@@ -1335,7 +1335,7 @@
             .services-title {
                 font-size: 36px;
                 font-weight: bold;
-                color: #333;
+                color: #232323;
                 margin: 0;
             }
 
@@ -3082,37 +3082,37 @@
                     <div class="lawyer-info-area">
                         <div class="lawyer-description">
                             <p>채무에 관련해 힘 다양한 문제에 대하여</p>
-                            <p><strong>최선의 해결책을 제시하고</strong></p>
-                            <p>채무 탕감 소송의 경험이 풍부합니다.</p>
+                            <p><strong>최선의 해결책을 제시</strong>하고</p>
+                            <p>채무 탕감 <strong>소송의 경험이 풍부</strong>합니다.</p>
                         </div>
 
                         <div class="lawyer-details">
                             <div class="detail-section">
                                 <h4>학력</h4>
                                 <ul>
-                                    <li>성균관대학교 경영학과 졸업</li>
-                                    <li>성균관대학교 법학전문대학원 졸업</li>
-                                    <li>제57차사법시험 합격</li>
+                                    <li>성균관대학교 경상대학 졸업</li>
+                                    <li>원광대학교 법학전문대학원 졸업</li>
+                                    <li>세무사자격증 보유</li>
                                 </ul>
                             </div>
 
                             <div class="detail-section">
                                 <h4>경력</h4>
                                 <ul>
-                                    <li>법무법인스마트소스 대표변호사</li>
-                                    <li>前 법무법인 회율</li>
-                                    <li>前 법무법인 성세</li>
-                                    <li>前 율촌법무법인 서울사무소</li>
+                                    <li>현) 에이스법률사무소 대표변호사</li>
+                                    <li>전) 법무법인 밝음</li>
+                                    <li>전) 법무법인 창비</li>
+                                    <li>전) 황선택변호사 사무소</li>
                                 </ul>
                             </div>
 
                             <div class="detail-section">
                                 <h4>활동</h4>
                                 <ul>
-                                    <li>육군사관학교 법률고문변호사</li>
-                                    <li>육군사관학교 토지수사위원회위원</li>
-                                    <li>한국부인회연합회총재단 법조인소사위원장 자문위원</li>
-                                    <li>법무부구치 전문사법위원회위원 심의위원</li>
+                                    <li>화성시의회 볍률고문변호사</li>
+                                    <li>화성시의회 윤리심사자문위원회</li>
+                                    <li>한국무선인터넷솔루션협회 비즈니스자문단 전문위원</li>
+                                    <li>영동로구청 지방세심의위원회 심의의원</li>
                                 </ul>
                             </div>
                         </div>
@@ -3125,7 +3125,7 @@
         <section class="special-services-section">
             <div class="services-container">
                 <div class="services-header">
-                    <p class="services-subtitle">쉽다 빠르다 안전하다!</p>
+                    <p class="services-subtitle">쉽다! 빠르다! 안전하다!</p>
                     <h2 class="services-title">에이스 법률사무소의 특별한 서비스 8가지</h2>
                 </div>
 
@@ -3141,14 +3141,14 @@
                         <div class="service-icon">
                             <img src="/images/icon_service_02.png" alt="체계적인 관리" />
                         </div>
-                        <div class="service-text">체계적인 관리</div>
+                        <div class="service-text">체계추심 관리</div>
                     </div>
 
                     <div class="service-item">
                         <div class="service-icon">
                             <img src="/images/icon_service_03.png" alt="서류 철저 대행" />
                         </div>
-                        <div class="service-text">서류 철저 대행</div>
+                        <div class="service-text">서류 발급 대행</div>
                     </div>
 
                     <div class="service-item">
@@ -3169,7 +3169,7 @@
                         <div class="service-icon">
                             <img src="/images/icon_service_06.png" alt="가격 시 100% 환불" />
                         </div>
-                        <div class="service-text">가격 시 100% 환불</div>
+                        <div class="service-text">기각 시 100% 환불</div>
                     </div>
 
                     <div class="service-item">
@@ -3183,7 +3183,7 @@
                         <div class="service-icon">
                             <img src="/images/icon_service_08.png" alt="본인별 전담 관리사" />
                         </div>
-                        <div class="service-text">본인별 전담 관리사</div>
+                        <div class="service-text">분야별 전문 관리단</div>
                     </div>
                 </div>
             </div>
@@ -3216,7 +3216,7 @@
 
                     <div class="faq-item">
                         <button class="faq-question" onclick="toggleFaq(this)">
-                            <span>빚 독촉이 심한데 즉시 중단할 수 있나요?</span>
+                            <span>빚 독촉이 심한데 추심을 멈출 수 있나요?</span>
                             <span class="faq-icon">
                                 <svg viewBox="0 0 12 8">
                                     <polyline points="1,1 6,6 11,1"></polyline>
