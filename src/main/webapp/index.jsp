@@ -698,7 +698,6 @@
                 border-radius: 6px;
                 font-size: 14px;
                 background: white;
-                min-width: 120px;
             }
 
             .pc-input:focus {
@@ -758,7 +757,12 @@
                 object-fit: contain;
             }
 
-
+            /* 1000px 이하에서는 PC용 상담바 숨기고 모바일 버전 사용 */
+            @media (max-width: 1000px) {
+                .pc-consultation-bar {
+                    display: none;
+                }
+            }
 
             /* 하단 상담 신청 바 - PC에서는 숨김 */
             .bottom-consultation-bar {
@@ -769,7 +773,8 @@
                 left: 0;
                 right: 0;
                 z-index: 1000;
-                display: none; /* PC에서는 기본적으로 숨김 */
+                display: none;
+                /* PC에서는 기본적으로 숨김 */
                 justify-content: center;
             }
 
@@ -967,7 +972,8 @@
                 transform: translateY(-100%);
                 transition: transform 0.3s ease;
                 box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-                display: none; /* PC에서는 기본적으로 숨김 */
+                display: none;
+                /* PC에서는 기본적으로 숨김 */
             }
 
             .floating-btn-container.show {
@@ -1080,7 +1086,8 @@
             /* 모바일 상단 고정 버튼 */
             @media (max-width: 768px) {
                 .floating-btn-container {
-                    display: block; /* 모바일에서만 표시 */
+                    display: block;
+                    /* 모바일에서만 표시 */
                 }
 
                 .floating-btn-content {
@@ -1185,7 +1192,8 @@
             /* 모바일 TOP 버튼 */
             @media (max-width: 768px) {
                 .top-button {
-                    bottom: 200px; /* 하단 상담바 위로 */
+                    bottom: 200px;
+                    /* 하단 상담바 위로 */
                     right: 15px;
                     width: 45px;
                     height: 45px;
@@ -1603,7 +1611,7 @@
                 color: #4865FF !important;
                 font-weight: 600;
             }
-            
+
             /* 상담 신청 알림 */
             .consultation-alerts {
                 background: #4865FF;
@@ -2309,14 +2317,14 @@
                 }
 
                 /* 플로팅 헤더가 보일 때 기존 헤더 숨기기 */
-                .floating-header.show ~ .header {
+                .floating-header.show~.header {
                     opacity: 0;
                     visibility: hidden;
                 }
             }
 
             /* 데스크톱에서도 플로팅 헤더가 보일 때 기존 헤더 숨기기 */
-            .floating-header.show ~ .header {
+            .floating-header.show~.header {
                 opacity: 0;
                 visibility: hidden;
                 transition: all 0.3s ease;
@@ -2336,6 +2344,7 @@
                     padding-top: 55px;
                 }
             }
+
             /* 상담 신청 팝업 스타일 */
             .consultation-popup-overlay {
                 position: fixed;
@@ -3428,7 +3437,8 @@
             }
 
             .input-with-label {
-                display: none; /* 모바일에서는 PC 스타일 사용 */
+                display: none;
+                /* 모바일에서는 PC 스타일 사용 */
             }
 
             .input-with-label:focus-within {
@@ -3541,7 +3551,8 @@
             /* ========================================
                모바일 반응형 CSS (768px 이하)
                ======================================== */
-            @media (max-width: 768px) {
+            @media (max-width: 1000px) {
+
                 /* PC용 상담바 숨김 */
                 .pc-consultation-bar {
                     display: none;
@@ -3950,7 +3961,8 @@
 
                 /* 하단 상담 바 - 모바일에서 복원 */
                 .bottom-consultation-bar {
-                    display: flex; /* 모바일에서만 표시 */
+                    display: flex;
+                    /* 모바일에서만 표시 */
                     padding: 0;
                 }
 
@@ -4229,7 +4241,7 @@
         <!-- 모바일 네비게이션 -->
         <div class="mobile-nav" id="mobileNav" onclick="closeMobileNav(event)">
             <div class="mobile-nav-content" onclick="event.stopPropagation()">
-                
+
                 <nav class="mobile-nav-menu">
                     <a href="#intro" onclick="scrollToSection('intro')">AI 자가진단</a>
                     <a href="#service" onclick="scrollToSection('service')">성공사례</a>
@@ -4245,7 +4257,7 @@
                         <img src="/images/top_call_icon.png" alt="전화" />
                         1555-1684
                     </a>
-                    
+
                     <div class="mobile-contact-buttons">
                         <a href="tel:1555-1684" class="mobile-contact-btn primary">
                             <img src="/images/call_icon.png" alt="전화" />
@@ -4349,382 +4361,403 @@
 
         <!-- AI 자가진단 섹션 -->
         <section id="intro" class="ai-diagnosis-section"></section>
-            <div class="ai-container">
-                <div class="ai-title">
-                    <h3>내 빚은 탕감받을 수 있을까?</h3>
-                    <h2>AI 자가진단으로 알아보기</h2>
-                    <p class="ai-subtitle">원하시는 빚 탕감 방식을 선택해 주세요!</p>
+        <div class="ai-container">
+            <div class="ai-title">
+                <h3>내 빚은 탕감받을 수 있을까?</h3>
+                <h2>AI 자가진단으로 알아보기</h2>
+                <p class="ai-subtitle">원하시는 빚 탕감 방식을 선택해 주세요!</p>
+            </div>
+
+            <div class="diagnosis-cards">
+                <div class="diagnosis-card" onclick="selectDiagnosis('personal')"
+                    style="cursor: pointer; padding: 20px 40px; margin: 10px; border-radius: 10px; background: #fff;">
+                    <div class="card-content">
+                        <p class="card-subtitle">일정한 소득이 있으나 여유가 없는분</p>
+                        <h3 class="card-title">개인회생</h3>
+                    </div>
+                    <img src="/images/icon_ai_01.png" alt="개인회생" class="card-icon" />
                 </div>
 
-                <div class="diagnosis-cards">
-                    <div class="diagnosis-card" onclick="selectDiagnosis('personal')"
-                        style="cursor: pointer; padding: 20px 40px; margin: 10px; border-radius: 10px; background: #fff;">
-                        <div class="card-content">
-                            <p class="card-subtitle">일정한 소득이 있으나 여유가 없는분</p>
-                            <h3 class="card-title">개인회생</h3>
-                        </div>
-                        <img src="/images/icon_ai_01.png" alt="개인회생" class="card-icon" />
+                <div class="diagnosis-card" onclick="selectDiagnosis('bankruptcy')"
+                    style="cursor: pointer; padding: 20px 40px; margin: 10px; border-radius: 10px; background: #fff;">
+                    <div class="card-content">
+                        <p class="card-subtitle">과도한 빚으로 빚 변제가 어려우신분</p>
+                        <h3 class="card-title">파산면책</h3>
                     </div>
-
-                    <div class="diagnosis-card" onclick="selectDiagnosis('bankruptcy')"
-                        style="cursor: pointer; padding: 30px 40px; margin: 10px; border-radius: 10px; background: #fff;">
-                        <div class="card-content">
-                            <p class="card-subtitle">과도한 빚으로 빚 변제가 어려우신분</p>
-                            <h3 class="card-title">파산면책</h3>
-                        </div>
-                        <img src="/images/icon_service_02.png" alt="파산면책" class="card-icon" />
-                    </div>
+                    <img src="/images/icon_service_02.png" alt="파산면책" class="card-icon" />
                 </div>
             </div>
+        </div>
         </section>
 
         <!-- 고객 사례 섹션 -->
         <section id="service" class="customer-cases-section"></section>
-            <div class="cases-container">
-                <div class="cases-header">
-                    <p class="cases-subtitle">10,386건의 노하우가 보여주는 결과</p>
-                    <h2 class="cases-title">개인회생·파산 탕감 성공사례</h2>
+        <div class="cases-container">
+            <div class="cases-header">
+                <p class="cases-subtitle">10,386건의 노하우가 보여주는 결과</p>
+                <h2 class="cases-title">개인회생·파산 탕감 성공사례</h2>
 
-                    <div class="case-tabs">
-                        <button class="tab-btn active" onclick="filterCases('all', this)">전체</button>
-                        <button class="tab-btn" onclick="filterCases('personal', this)">#개인회생</button>
-                        <button class="tab-btn" onclick="filterCases('bankruptcy', this)">#개인파산</button>
-                    </div>
+                <div class="case-tabs">
+                    <button class="tab-btn active" onclick="filterCases('all', this)">전체</button>
+                    <button class="tab-btn" onclick="filterCases('personal', this)">#개인회생</button>
+                    <button class="tab-btn" onclick="filterCases('bankruptcy', this)">#개인파산</button>
+                </div>
+            </div>
+
+            <div class="cases-wrapper">
+                <!-- 화살표를 완전히 분리된 영역에 배치 -->
+                <div class="arrow-container">
+                    <button class="arrow-btn prev-btn" onclick="casesSwiper.slidePrev()">
+                        <svg viewBox="0 0 12 20">
+                            <polyline points="10,2 2,10 10,18"></polyline>
+                        </svg>
+                    </button>
+                    <button class="arrow-btn next-btn" onclick="casesSwiper.slideNext()">
+                        <svg viewBox="0 0 12 20">
+                            <polyline points="2,2 10,10 2,18"></polyline>
+                        </svg>
+                    </button>
                 </div>
 
-                <div class="cases-wrapper">
-                    <!-- 화살표를 완전히 분리된 영역에 배치 -->
-                    <div class="arrow-container">
-                        <button class="arrow-btn prev-btn" onclick="casesSwiper.slidePrev()">
-                            <svg viewBox="0 0 12 20">
-                                <polyline points="10,2 2,10 10,18"></polyline>
-                            </svg>
-                        </button>
-                        <button class="arrow-btn next-btn" onclick="casesSwiper.slideNext()">
-                            <svg viewBox="0 0 12 20">
-                                <polyline points="2,2 10,10 2,18"></polyline>
-                            </svg>
-                        </button>
-                    </div>
-
-                    <!-- Swiper -->
-                    <div class="swiper casesSwiper">
-                        <div class="swiper-wrapper">
-                            <!-- 전체 그룹 -->
-                            <div class="swiper-slide">
-                                <div class="case-group" data-group="all" style="padding: 20px;">
-                                    <div class="cases-grid"
-                                        style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px;">
-                                        <div class="case-card">
-                                            <div class="case-profile">
-                                                <div class="profile-img"><img src="/images/mo_icon_review_01.png" alt="프로필"></div>
-                                                <div class="case-info">
-                                                    <div class="case-badges">
-                                                        <span class="case-type">개인회생</span>
-                                                        <span class="case-success">96% 탕감</span>
-                                                    </div>
-                                                    <div class="case-name-row">
-                                                        <div class="case-name">김○○님</div>
-                                                        <div class="case-age">50대 여성, 주부</div>
-                                                    </div>
-                                                </div>
+                <!-- Swiper -->
+                <div class="swiper casesSwiper">
+                    <div class="swiper-wrapper">
+                        <!-- 전체 그룹 -->
+                        <div class="swiper-slide">
+                            <div class="case-group" data-group="all" style="padding: 20px;">
+                                <div class="cases-grid"
+                                    style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px;">
+                                    <div class="case-card">
+                                        <div class="case-profile">
+                                            <div class="profile-img"><img src="/images/mo_icon_review_01.png" alt="프로필">
                                             </div>
-                                            <div class="case-result">
-                                                <div class="result-badge"><img src="/images/icon_money.png" alt="💰" style="width: 20px; height: 20px; vertical-align: middle;"> 총 채무액 162,678,791원 탕감!</div>
-                                            </div>
-                                            <div class="case-details">
-                                                <div class="detail-row total-debt">
-                                                    <span class="label">총 채무액</span>
-                                                    <span class="value">168,770,819원</span>
+                                            <div class="case-info">
+                                                <div class="case-badges">
+                                                    <span class="case-type">개인회생</span>
+                                                    <span class="case-success">96% 탕감</span>
                                                 </div>
-                                                <div class="detail-row reduced-principal">
-                                                    <span class="label">탕감 후 원금</span>
-                                                    <span class="value">6,092,028원</span>
-                                                </div>
-                                                <div class="detail-row monthly-payment">
-                                                    <span class="label">월 변제액</span>
-                                                    <span class="value">약 160,000원</span>
+                                                <div class="case-name-row">
+                                                    <div class="case-name">김○○님</div>
+                                                    <div class="case-age">50대 여성, 주부</div>
                                                 </div>
                                             </div>
                                         </div>
+                                        <div class="case-result">
+                                            <div class="result-badge"><img src="/images/icon_money.png" alt="💰"
+                                                    style="width: 20px; height: 20px; vertical-align: middle;"> 총 채무액
+                                                162,678,791원 탕감!</div>
+                                        </div>
+                                        <div class="case-details">
+                                            <div class="detail-row total-debt">
+                                                <span class="label">총 채무액</span>
+                                                <span class="value">168,770,819원</span>
+                                            </div>
+                                            <div class="detail-row reduced-principal">
+                                                <span class="label">탕감 후 원금</span>
+                                                <span class="value">6,092,028원</span>
+                                            </div>
+                                            <div class="detail-row monthly-payment">
+                                                <span class="label">월 변제액</span>
+                                                <span class="value">약 160,000원</span>
+                                            </div>
+                                        </div>
+                                    </div>
 
-                                        <div class="case-card">
-                                            <div class="case-profile">
-                                                <div class="profile-img"><img src="/images/man1.png" alt="프로필"></div>
-                                                <div class="case-info">
-                                                    <div class="case-badges">
-                                                        <span class="case-type">개인파산</span>
-                                                        <span class="case-success">100% 탕감</span>
-                                                    </div>
-                                                    <div class="case-name-row">
-                                                        <div class="case-name">박○○님</div>
-                                                        <div class="case-age">50대 남성, 사업자</div>
-                                                    </div>
+                                    <div class="case-card">
+                                        <div class="case-profile">
+                                            <div class="profile-img"><img src="/images/man1.png" alt="프로필"></div>
+                                            <div class="case-info">
+                                                <div class="case-badges">
+                                                    <span class="case-type">개인파산</span>
+                                                    <span class="case-success">100% 탕감</span>
                                                 </div>
-                                            </div>
-                                            <div class="case-result">
-                                                <div class="result-badge"><img src="/images/icon_money.png" alt="💰" style="width: 20px; height: 20px; vertical-align: middle;"> 총 채무액 530,000,000원 면책!</div>
-                                            </div>
-                                            <div class="case-details">
-                                                <div class="detail-row total-debt">
-                                                    <span class="label">총 채무액</span>
-                                                    <span class="value">530,000,000원</span>
-                                                </div>
-                                                <div class="detail-row reduced-principal">
-                                                    <span class="label">탕감 후 원금</span>
-                                                    <span class="value">0원</span>
-                                                </div>
-                                                <div class="detail-row monthly-payment empty">
-                                                    <span class="label">월 변제액</span>
-                                                    <span class="value"></span>
+                                                <div class="case-name-row">
+                                                    <div class="case-name">박○○님</div>
+                                                    <div class="case-age">50대 남성, 사업자</div>
                                                 </div>
                                             </div>
                                         </div>
+                                        <div class="case-result">
+                                            <div class="result-badge"><img src="/images/icon_money.png" alt="💰"
+                                                    style="width: 20px; height: 20px; vertical-align: middle;"> 총 채무액
+                                                530,000,000원 면책!</div>
+                                        </div>
+                                        <div class="case-details">
+                                            <div class="detail-row total-debt">
+                                                <span class="label">총 채무액</span>
+                                                <span class="value">530,000,000원</span>
+                                            </div>
+                                            <div class="detail-row reduced-principal">
+                                                <span class="label">탕감 후 원금</span>
+                                                <span class="value">0원</span>
+                                            </div>
+                                            <div class="detail-row monthly-payment empty">
+                                                <span class="label">월 변제액</span>
+                                                <span class="value"></span>
+                                            </div>
+                                        </div>
+                                    </div>
 
-                                        <div class="case-card">
-                                            <div class="case-profile">
-                                                <div class="profile-img"><img src="/images/man2.png" alt="프로필"></div>
-                                                <div class="case-info">
-                                                    <div class="case-badges">
-                                                        <span class="case-type">개인회생</span>
-                                                        <span class="case-success">93% 탕감</span>
-                                                    </div>
-                                                    <div class="case-name-row">
-                                                        <div class="case-name">이○○님</div>
-                                                        <div class="case-age">50대 남성, 회사원</div>
-                                                    </div>
+                                    <div class="case-card">
+                                        <div class="case-profile">
+                                            <div class="profile-img"><img src="/images/man2.png" alt="프로필"></div>
+                                            <div class="case-info">
+                                                <div class="case-badges">
+                                                    <span class="case-type">개인회생</span>
+                                                    <span class="case-success">93% 탕감</span>
+                                                </div>
+                                                <div class="case-name-row">
+                                                    <div class="case-name">이○○님</div>
+                                                    <div class="case-age">50대 남성, 회사원</div>
                                                 </div>
                                             </div>
-                                            <div class="case-result">
-                                                <div class="result-badge"><img src="/images/icon_money.png" alt="💰" style="width: 20px; height: 20px; vertical-align: middle;"> 총 채무액 167,437,271원 탕감!</div>
+                                        </div>
+                                        <div class="case-result">
+                                            <div class="result-badge"><img src="/images/icon_money.png" alt="💰"
+                                                    style="width: 20px; height: 20px; vertical-align: middle;"> 총 채무액
+                                                167,437,271원 탕감!</div>
+                                        </div>
+                                        <div class="case-details">
+                                            <div class="detail-row total-debt">
+                                                <span class="label">총 채무액</span>
+                                                <span class="value">180,626,375원</span>
                                             </div>
-                                            <div class="case-details">
-                                                <div class="detail-row total-debt">
-                                                    <span class="label">총 채무액</span>
-                                                    <span class="value">180,626,375원</span>
-                                                </div>
-                                                <div class="detail-row reduced-principal">
-                                                    <span class="label">탕감 후 원금</span>
-                                                    <span class="value">13,189,104원</span>
-                                                </div>
-                                                <div class="detail-row monthly-payment">
-                                                    <span class="label">월 변제액</span>
-                                                    <span class="value">약 360,000원</span>
-                                                </div>
+                                            <div class="detail-row reduced-principal">
+                                                <span class="label">탕감 후 원금</span>
+                                                <span class="value">13,189,104원</span>
+                                            </div>
+                                            <div class="detail-row monthly-payment">
+                                                <span class="label">월 변제액</span>
+                                                <span class="value">약 360,000원</span>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                        </div>
 
-                            <!-- 개인회생 그룹 -->
-                            <div class="swiper-slide">
-                                <div class="case-group" data-group="personal" style="padding: 20px;">
-                                    <div class="cases-grid"
-                                        style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px;">
-                                        <div class="case-card">
-                                            <div class="case-profile">
-                                                <div class="profile-img"><img src="/images/mo_icon_review_01.png" alt="프로필"></div>
-                                                <div class="case-info">
-                                                    <div class="case-badges">
-                                                        <span class="case-type">개인회생</span>
-                                                        <span class="case-success">89% 탕감</span>
-                                                    </div>
-                                                    <div class="case-name-row">
-                                                        <div class="case-name">최○○님</div>
-                                                        <div class="case-age">40대 여성, 주부</div>
-                                                    </div>
-                                                </div>
+                        <!-- 개인회생 그룹 -->
+                        <div class="swiper-slide">
+                            <div class="case-group" data-group="personal" style="padding: 20px;">
+                                <div class="cases-grid"
+                                    style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px;">
+                                    <div class="case-card">
+                                        <div class="case-profile">
+                                            <div class="profile-img"><img src="/images/mo_icon_review_01.png" alt="프로필">
                                             </div>
-                                            <div class="case-result">
-                                                <div class="result-badge"><img src="/images/icon_money.png" alt="💰" style="width: 20px; height: 20px; vertical-align: middle;"> 총 채무액 89,500,000원 면책!</div>
-                                            </div>
-                                            <div class="case-details">
-                                                <div class="detail-row total-debt">
-                                                    <span class="label">총 채무액</span>
-                                                    <span class="value">100,500,000원</span>
+                                            <div class="case-info">
+                                                <div class="case-badges">
+                                                    <span class="case-type">개인회생</span>
+                                                    <span class="case-success">89% 탕감</span>
                                                 </div>
-                                                <div class="detail-row reduced-principal">
-                                                    <span class="label">탕감 후 원금</span>
-                                                    <span class="value">11,000,000원</span>
-                                                </div>
-                                                <div class="detail-row monthly-payment">
-                                                    <span class="label">월 변제액</span>
-                                                    <span class="value">약 300,000원</span>
+                                                <div class="case-name-row">
+                                                    <div class="case-name">최○○님</div>
+                                                    <div class="case-age">40대 여성, 주부</div>
                                                 </div>
                                             </div>
                                         </div>
+                                        <div class="case-result">
+                                            <div class="result-badge"><img src="/images/icon_money.png" alt="💰"
+                                                    style="width: 20px; height: 20px; vertical-align: middle;"> 총 채무액
+                                                89,500,000원 면책!</div>
+                                        </div>
+                                        <div class="case-details">
+                                            <div class="detail-row total-debt">
+                                                <span class="label">총 채무액</span>
+                                                <span class="value">100,500,000원</span>
+                                            </div>
+                                            <div class="detail-row reduced-principal">
+                                                <span class="label">탕감 후 원금</span>
+                                                <span class="value">11,000,000원</span>
+                                            </div>
+                                            <div class="detail-row monthly-payment">
+                                                <span class="label">월 변제액</span>
+                                                <span class="value">약 300,000원</span>
+                                            </div>
+                                        </div>
+                                    </div>
 
-                                        <div class="case-card">
-                                            <div class="case-profile">
-                                                <div class="profile-img"><img src="/images/man1.png" alt="프로필"></div>
-                                                <div class="case-info">
-                                                    <div class="case-badges">
-                                                        <span class="case-type">개인회생</span>
-                                                        <span class="case-success">91% 탕감</span>
-                                                    </div>
-                                                    <div class="case-name-row">
-                                                        <div class="case-name">정○○님</div>
-                                                        <div class="case-age">30대 남성, 직장인</div>
-                                                    </div>
+                                    <div class="case-card">
+                                        <div class="case-profile">
+                                            <div class="profile-img"><img src="/images/man1.png" alt="프로필"></div>
+                                            <div class="case-info">
+                                                <div class="case-badges">
+                                                    <span class="case-type">개인회생</span>
+                                                    <span class="case-success">91% 탕감</span>
                                                 </div>
-                                            </div>
-                                            <div class="case-result">
-                                                <div class="result-badge"><img src="/images/icon_money.png" alt="💰" style="width: 20px; height: 20px; vertical-align: middle;"> 총 채무액 73,200,000원 탕감!</div>
-                                            </div>
-                                            <div class="case-details">
-                                                <div class="detail-row total-debt">
-                                                    <span class="label">총 채무액</span>
-                                                    <span class="value">80,500,000원</span>
-                                                </div>
-                                                <div class="detail-row reduced-principal">
-                                                    <span class="label">탕감 후 원금</span>
-                                                    <span class="value">7,300,000원</span>
-                                                </div>
-                                                <div class="detail-row monthly-payment">
-                                                    <span class="label">월 변제액</span>
-                                                    <span class="value">약 200,000원</span>
+                                                <div class="case-name-row">
+                                                    <div class="case-name">정○○님</div>
+                                                    <div class="case-age">30대 남성, 직장인</div>
                                                 </div>
                                             </div>
                                         </div>
+                                        <div class="case-result">
+                                            <div class="result-badge"><img src="/images/icon_money.png" alt="💰"
+                                                    style="width: 20px; height: 20px; vertical-align: middle;"> 총 채무액
+                                                73,200,000원 탕감!</div>
+                                        </div>
+                                        <div class="case-details">
+                                            <div class="detail-row total-debt">
+                                                <span class="label">총 채무액</span>
+                                                <span class="value">80,500,000원</span>
+                                            </div>
+                                            <div class="detail-row reduced-principal">
+                                                <span class="label">탕감 후 원금</span>
+                                                <span class="value">7,300,000원</span>
+                                            </div>
+                                            <div class="detail-row monthly-payment">
+                                                <span class="label">월 변제액</span>
+                                                <span class="value">약 200,000원</span>
+                                            </div>
+                                        </div>
+                                    </div>
 
-                                        <div class="case-card">
-                                            <div class="case-profile">
-                                                <div class="profile-img"><img src="/images/mo_icon_review_01.png" alt="프로필"></div>
-                                                <div class="case-info">
-                                                    <div class="case-badges">
-                                                        <span class="case-type">개인회생</span>
-                                                        <span class="case-success">88% 탕감</span>
-                                                    </div>
-                                                    <div class="case-name-row">
-                                                        <div class="case-name">한○○님</div>
-                                                        <div class="case-age">40대 여성, 자영업</div>
-                                                    </div>
+                                    <div class="case-card">
+                                        <div class="case-profile">
+                                            <div class="profile-img"><img src="/images/mo_icon_review_01.png" alt="프로필">
+                                            </div>
+                                            <div class="case-info">
+                                                <div class="case-badges">
+                                                    <span class="case-type">개인회생</span>
+                                                    <span class="case-success">88% 탕감</span>
+                                                </div>
+                                                <div class="case-name-row">
+                                                    <div class="case-name">한○○님</div>
+                                                    <div class="case-age">40대 여성, 자영업</div>
                                                 </div>
                                             </div>
-                                            <div class="case-result">
-                                                <div class="result-badge"><img src="/images/icon_money.png" alt="💰" style="width: 20px; height: 20px; vertical-align: middle;"> 총 채무액 105,600,000원 면책!</div>
+                                        </div>
+                                        <div class="case-result">
+                                            <div class="result-badge"><img src="/images/icon_money.png" alt="💰"
+                                                    style="width: 20px; height: 20px; vertical-align: middle;"> 총 채무액
+                                                105,600,000원 면책!</div>
+                                        </div>
+                                        <div class="case-details">
+                                            <div class="detail-row total-debt">
+                                                <span class="label">총 채무액</span>
+                                                <span class="value">120,000,000원</span>
                                             </div>
-                                            <div class="case-details">
-                                                <div class="detail-row total-debt">
-                                                    <span class="label">총 채무액</span>
-                                                    <span class="value">120,000,000원</span>
-                                                </div>
-                                                <div class="detail-row reduced-principal">
-                                                    <span class="label">탕감 후 원금</span>
-                                                    <span class="value">14,400,000원</span>
-                                                </div>
-                                                <div class="detail-row monthly-payment">
-                                                    <span class="label">월 변제액</span>
-                                                    <span class="value">약 400,000원</span>
-                                                </div>
+                                            <div class="detail-row reduced-principal">
+                                                <span class="label">탕감 후 원금</span>
+                                                <span class="value">14,400,000원</span>
+                                            </div>
+                                            <div class="detail-row monthly-payment">
+                                                <span class="label">월 변제액</span>
+                                                <span class="value">약 400,000원</span>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                        </div>
 
-                            <!-- 개인파산 그룹 -->
-                            <div class="swiper-slide">
-                                <div class="case-group" data-group="bankruptcy" style="padding: 20px;">
-                                    <div class="cases-grid"
-                                        style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px;">
-                                        <div class="case-card">
-                                            <div class="case-profile">
-                                                <div class="profile-img"><img src="/images/mo_icon_review_01.png" alt="프로필"></div>
-                                                <div class="case-info">
-                                                    <div class="case-badges">
-                                                        <span class="case-type">개인파산</span>
-                                                        <span class="case-success">100% 탕감</span>
-                                                    </div>
-                                                    <div class="case-name-row">
-                                                        <div class="case-name">강○○님</div>
-                                                        <div class="case-age">60대 여성, 무직</div>
-                                                    </div>
-                                                </div>
+                        <!-- 개인파산 그룹 -->
+                        <div class="swiper-slide">
+                            <div class="case-group" data-group="bankruptcy" style="padding: 20px;">
+                                <div class="cases-grid"
+                                    style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px;">
+                                    <div class="case-card">
+                                        <div class="case-profile">
+                                            <div class="profile-img"><img src="/images/mo_icon_review_01.png" alt="프로필">
                                             </div>
-                                            <div class="case-result">
-                                                <div class="result-badge"><img src="/images/icon_money.png" alt="💰" style="width: 20px; height: 20px; vertical-align: middle;"> 총 채무액 95,000,000원 탕감!</div>
-                                            </div>
-                                            <div class="case-details">
-                                                <div class="detail-row total-debt">
-                                                    <span class="label">총 채무액</span>
-                                                    <span class="value">95,000,000원</span>
+                                            <div class="case-info">
+                                                <div class="case-badges">
+                                                    <span class="case-type">개인파산</span>
+                                                    <span class="case-success">100% 탕감</span>
                                                 </div>
-                                                <div class="detail-row reduced-principal">
-                                                    <span class="label">탕감 후 원금</span>
-                                                    <span class="value">0원</span>
-                                                </div>
-                                                <div class="detail-row monthly-payment empty">
-                                                    <span class="label">월 변제액</span>
-                                                    <span class="value"></span>
+                                                <div class="case-name-row">
+                                                    <div class="case-name">강○○님</div>
+                                                    <div class="case-age">60대 여성, 무직</div>
                                                 </div>
                                             </div>
                                         </div>
+                                        <div class="case-result">
+                                            <div class="result-badge"><img src="/images/icon_money.png" alt="💰"
+                                                    style="width: 20px; height: 20px; vertical-align: middle;"> 총 채무액
+                                                95,000,000원 탕감!</div>
+                                        </div>
+                                        <div class="case-details">
+                                            <div class="detail-row total-debt">
+                                                <span class="label">총 채무액</span>
+                                                <span class="value">95,000,000원</span>
+                                            </div>
+                                            <div class="detail-row reduced-principal">
+                                                <span class="label">탕감 후 원금</span>
+                                                <span class="value">0원</span>
+                                            </div>
+                                            <div class="detail-row monthly-payment empty">
+                                                <span class="label">월 변제액</span>
+                                                <span class="value"></span>
+                                            </div>
+                                        </div>
+                                    </div>
 
-                                        <div class="case-card">
-                                            <div class="case-profile">
-                                                <div class="profile-img"><img src="/images/man1.png" alt="프로필"></div>
-                                                <div class="case-info">
-                                                    <div class="case-badges">
-                                                        <span class="case-type">개인파산</span>
-                                                        <span class="case-success">100% 탕감</span>
-                                                    </div>
-                                                    <div class="case-name-row">
-                                                        <div class="case-name">윤○○님</div>
-                                                        <div class="case-age">50대 남성, 자영업</div>
-                                                    </div>
+                                    <div class="case-card">
+                                        <div class="case-profile">
+                                            <div class="profile-img"><img src="/images/man1.png" alt="프로필"></div>
+                                            <div class="case-info">
+                                                <div class="case-badges">
+                                                    <span class="case-type">개인파산</span>
+                                                    <span class="case-success">100% 탕감</span>
                                                 </div>
-                                            </div>
-                                            <div class="case-result">
-                                                <div class="result-badge"><img src="/images/icon_money.png" alt="💰" style="width: 20px; height: 20px; vertical-align: middle;"> 총 채무액 320,000,000원 탕감!</div>
-                                            </div>
-                                            <div class="case-details">
-                                                <div class="detail-row total-debt">
-                                                    <span class="label">총 채무액</span>
-                                                    <span class="value">320,000,000원</span>
-                                                </div>
-                                                <div class="detail-row reduced-principal">
-                                                    <span class="label">탕감 후 원금</span>
-                                                    <span class="value">0원</span>
-                                                </div>
-                                                <div class="detail-row monthly-payment empty">
-                                                    <span class="label">월 변제액</span>
-                                                    <span class="value"></span>
+                                                <div class="case-name-row">
+                                                    <div class="case-name">윤○○님</div>
+                                                    <div class="case-age">50대 남성, 자영업</div>
                                                 </div>
                                             </div>
                                         </div>
+                                        <div class="case-result">
+                                            <div class="result-badge"><img src="/images/icon_money.png" alt="💰"
+                                                    style="width: 20px; height: 20px; vertical-align: middle;"> 총 채무액
+                                                320,000,000원 탕감!</div>
+                                        </div>
+                                        <div class="case-details">
+                                            <div class="detail-row total-debt">
+                                                <span class="label">총 채무액</span>
+                                                <span class="value">320,000,000원</span>
+                                            </div>
+                                            <div class="detail-row reduced-principal">
+                                                <span class="label">탕감 후 원금</span>
+                                                <span class="value">0원</span>
+                                            </div>
+                                            <div class="detail-row monthly-payment empty">
+                                                <span class="label">월 변제액</span>
+                                                <span class="value"></span>
+                                            </div>
+                                        </div>
+                                    </div>
 
-                                        <div class="case-card">
-                                            <div class="case-profile">
-                                                <div class="profile-img"><img src="/images/man2.png" alt="프로필"></div>
-                                                <div class="case-info">
-                                                    <div class="case-badges">
-                                                        <span class="case-type">개인파산</span>
-                                                        <span class="case-success">100% 탕감</span>
-                                                    </div>
-                                                    <div class="case-name-row">
-                                                        <div class="case-name">조○○님</div>
-                                                        <div class="case-age">40대 남성, 사업자</div>
-                                                    </div>
+                                    <div class="case-card">
+                                        <div class="case-profile">
+                                            <div class="profile-img"><img src="/images/man2.png" alt="프로필"></div>
+                                            <div class="case-info">
+                                                <div class="case-badges">
+                                                    <span class="case-type">개인파산</span>
+                                                    <span class="case-success">100% 탕감</span>
+                                                </div>
+                                                <div class="case-name-row">
+                                                    <div class="case-name">조○○님</div>
+                                                    <div class="case-age">40대 남성, 사업자</div>
                                                 </div>
                                             </div>
-                                            <div class="case-result">
-                                                <div class="result-badge"><img src="/images/icon_money.png" alt="💰" style="width: 20px; height: 20px; vertical-align: middle;"> 총 채무액 180,000,000원 면책!</div>
+                                        </div>
+                                        <div class="case-result">
+                                            <div class="result-badge"><img src="/images/icon_money.png" alt="💰"
+                                                    style="width: 20px; height: 20px; vertical-align: middle;"> 총 채무액
+                                                180,000,000원 면책!</div>
+                                        </div>
+                                        <div class="case-details">
+                                            <div class="detail-row total-debt">
+                                                <span class="label">총 채무액</span>
+                                                <span class="value">180,000,000원</span>
                                             </div>
-                                            <div class="case-details">
-                                                <div class="detail-row total-debt">
-                                                    <span class="label">총 채무액</span>
-                                                    <span class="value">180,000,000원</span>
-                                                </div>
-                                                <div class="detail-row reduced-principal">
-                                                    <span class="label">탕감 후 원금</span>
-                                                    <span class="value">0원</span>
-                                                </div>
-                                                <div class="detail-row monthly-payment empty">
-                                                    <span class="label">월 변제액</span>
-                                                    <span class="value"></span>
-                                                </div>
+                                            <div class="detail-row reduced-principal">
+                                                <span class="label">탕감 후 원금</span>
+                                                <span class="value">0원</span>
+                                            </div>
+                                            <div class="detail-row monthly-payment empty">
+                                                <span class="label">월 변제액</span>
+                                                <span class="value"></span>
                                             </div>
                                         </div>
                                     </div>
@@ -4734,6 +4767,7 @@
                     </div>
                 </div>
             </div>
+        </div>
         </section>
 
         <!-- 상담 신청 알림 -->
@@ -4766,272 +4800,272 @@
 
         <!-- 대표 변호사 소개 섹션 -->
         <section id="about" class="lawyer-intro-section"></section>
-            <div class="lawyer-container">
-                <div class="lawyer-header">
-                    <p class="lawyer-subtitle">대표 변호사 소개</p>
-                    <h2 class="lawyer-title">개인회생·파산 전문 황선택 변호사</h2>
+        <div class="lawyer-container">
+            <div class="lawyer-header">
+                <p class="lawyer-subtitle">대표 변호사 소개</p>
+                <h2 class="lawyer-title">개인회생·파산 전문 황선택 변호사</h2>
+            </div>
+
+            <div class="lawyer-content">
+                <div class="lawyer-image-area">
+                    <div class="swiper certificateSwiper">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <div class="certificate-image">
+                                    <img src="/images/certificate1.jpg" alt="변호사 등록증서" />
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="certificate-image">
+                                    <img src="/images/certificate2.jpg" alt="전문분야 등록증서" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-pagination"></div>
+                    </div>
                 </div>
 
-                <div class="lawyer-content">
-                    <div class="lawyer-image-area">
-                        <div class="swiper certificateSwiper">
-                            <div class="swiper-wrapper">
-                                <div class="swiper-slide">
-                                    <div class="certificate-image">
-                                        <img src="/images/certificate1.jpg" alt="변호사 등록증서" />
-                                    </div>
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="certificate-image">
-                                        <img src="/images/certificate2.jpg" alt="전문분야 등록증서" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-pagination"></div>
-                        </div>
+                <div class="lawyer-info-area">
+                    <div class="lawyer-description">
+                        <p>채무에 관련해 힘 다양한 문제에 대하여</p>
+                        <p><strong>최선의 해결책을 제시</strong>하고</p>
+                        <p>채무 탕감 <strong>소송의 경험이 풍부</strong>합니다.</p>
                     </div>
 
-                    <div class="lawyer-info-area">
-                        <div class="lawyer-description">
-                            <p>채무에 관련해 힘 다양한 문제에 대하여</p>
-                            <p><strong>최선의 해결책을 제시</strong>하고</p>
-                            <p>채무 탕감 <strong>소송의 경험이 풍부</strong>합니다.</p>
+                    <div class="lawyer-details">
+                        <div class="detail-section">
+                            <h4>학력</h4>
+                            <ul>
+                                <li>성균관대학교 경상대학 졸업</li>
+                                <li>원광대학교 법학전문대학원 졸업</li>
+                                <li>세무사자격증 보유</li>
+                            </ul>
                         </div>
 
-                        <div class="lawyer-details">
-                            <div class="detail-section">
-                                <h4>학력</h4>
-                                <ul>
-                                    <li>성균관대학교 경상대학 졸업</li>
-                                    <li>원광대학교 법학전문대학원 졸업</li>
-                                    <li>세무사자격증 보유</li>
-                                </ul>
-                            </div>
+                        <div class="detail-section">
+                            <h4>경력</h4>
+                            <ul>
+                                <li>현) 에이스법률사무소 대표변호사</li>
+                                <li>전) 법무법인 밝음</li>
+                                <li>전) 법무법인 창비</li>
+                                <li>전) 황선택변호사 사무소</li>
+                            </ul>
+                        </div>
 
-                            <div class="detail-section">
-                                <h4>경력</h4>
-                                <ul>
-                                    <li>현) 에이스법률사무소 대표변호사</li>
-                                    <li>전) 법무법인 밝음</li>
-                                    <li>전) 법무법인 창비</li>
-                                    <li>전) 황선택변호사 사무소</li>
-                                </ul>
-                            </div>
-
-                            <div class="detail-section">
-                                <h4>활동</h4>
-                                <ul>
-                                    <li>화성시의회 볍률고문변호사</li>
-                                    <li>화성시의회 윤리심사자문위원회</li>
-                                    <li>한국무선인터넷솔루션협회 비즈니스자문단 전문위원</li>
-                                    <li>영동로구청 지방세심의위원회 심의의원</li>
-                                </ul>
-                            </div>
+                        <div class="detail-section">
+                            <h4>활동</h4>
+                            <ul>
+                                <li>화성시의회 볍률고문변호사</li>
+                                <li>화성시의회 윤리심사자문위원회</li>
+                                <li>한국무선인터넷솔루션협회 비즈니스자문단 전문위원</li>
+                                <li>영동로구청 지방세심의위원회 심의의원</li>
+                            </ul>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
         </section>
 
         <!-- 특별한 서비스 섹션 -->
         <section id="special" class="special-services-section"></section>
-            <div class="services-container">
-                <div class="services-header">
-                    <p class="services-subtitle">쉽다! 빠르다! 안전하다!</p>
-                    <h2 class="services-title">에이스 법률사무소의<br class="mobile-br">특별한 서비스 8가지</h2>
+        <div class="services-container">
+            <div class="services-header">
+                <p class="services-subtitle">쉽다! 빠르다! 안전하다!</p>
+                <h2 class="services-title">에이스 법률사무소의<br class="mobile-br">특별한 서비스 8가지</h2>
+            </div>
+
+            <div class="services-grid">
+                <div class="service-item">
+                    <div class="service-icon">
+                        <img src="/images/icon_service_01.png" alt="비밀 보장" />
+                    </div>
+                    <div class="service-text">비밀 보장</div>
                 </div>
 
-                <div class="services-grid">
-                    <div class="service-item">
-                        <div class="service-icon">
-                            <img src="/images/icon_service_01.png" alt="비밀 보장" />
-                        </div>
-                        <div class="service-text">비밀 보장</div>
+                <div class="service-item">
+                    <div class="service-icon">
+                        <img src="/images/icon_service_02.png" alt="체계적인 관리" />
                     </div>
+                    <div class="service-text">체계추심 관리</div>
+                </div>
 
-                    <div class="service-item">
-                        <div class="service-icon">
-                            <img src="/images/icon_service_02.png" alt="체계적인 관리" />
-                        </div>
-                        <div class="service-text">체계추심 관리</div>
+                <div class="service-item">
+                    <div class="service-icon">
+                        <img src="/images/icon_service_03.png" alt="서류 철저 대행" />
                     </div>
+                    <div class="service-text">서류 발급 대행</div>
+                </div>
 
-                    <div class="service-item">
-                        <div class="service-icon">
-                            <img src="/images/icon_service_03.png" alt="서류 철저 대행" />
-                        </div>
-                        <div class="service-text">서류 발급 대행</div>
+                <div class="service-item">
+                    <div class="service-icon">
+                        <img src="/images/icon_service_04.png" alt="빠른 사건 접수" />
                     </div>
+                    <div class="service-text">빠른 사건 접수</div>
+                </div>
 
-                    <div class="service-item">
-                        <div class="service-icon">
-                            <img src="/images/icon_service_04.png" alt="빠른 사건 접수" />
-                        </div>
-                        <div class="service-text">빠른 사건 접수</div>
+                <div class="service-item">
+                    <div class="service-icon">
+                        <img src="/images/icon_service_05.png" alt="무료상담" />
                     </div>
+                    <div class="service-text">무료상담</div>
+                </div>
 
-                    <div class="service-item">
-                        <div class="service-icon">
-                            <img src="/images/icon_service_05.png" alt="무료상담" />
-                        </div>
-                        <div class="service-text">무료상담</div>
+                <div class="service-item">
+                    <div class="service-icon">
+                        <img src="/images/icon_service_06.png" alt="가격 시 100% 환불" />
                     </div>
+                    <div class="service-text">기각 시 100% 환불</div>
+                </div>
 
-                    <div class="service-item">
-                        <div class="service-icon">
-                            <img src="/images/icon_service_06.png" alt="가격 시 100% 환불" />
-                        </div>
-                        <div class="service-text">기각 시 100% 환불</div>
+                <div class="service-item">
+                    <div class="service-icon">
+                        <img src="/images/icon_service_07.png" alt="수임료 분납" />
                     </div>
+                    <div class="service-text">수임료 분납</div>
+                </div>
 
-                    <div class="service-item">
-                        <div class="service-icon">
-                            <img src="/images/icon_service_07.png" alt="수임료 분납" />
-                        </div>
-                        <div class="service-text">수임료 분납</div>
+                <div class="service-item">
+                    <div class="service-icon">
+                        <img src="/images/icon_service_08.png" alt="본인별 전담 관리사" />
                     </div>
-
-                    <div class="service-item">
-                        <div class="service-icon">
-                            <img src="/images/icon_service_08.png" alt="본인별 전담 관리사" />
-                        </div>
-                        <div class="service-text">분야별 전문 관리단</div>
-                    </div>
+                    <div class="service-text">분야별 전문 관리단</div>
                 </div>
             </div>
+        </div>
         </section>
 
         <!-- FAQ 섹션 -->
         <section id="calculator" class="faq-section"></section>
-            <div class="faq-container">
-                <div class="faq-header">
-                    <h2 class="faq-title">자주하는 질문</h2>
+        <div class="faq-container">
+            <div class="faq-header">
+                <h2 class="faq-title">자주하는 질문</h2>
+            </div>
+
+            <div class="faq-list">
+                <div class="faq-item">
+                    <button class="faq-question active" onclick="toggleFaq(this)">
+                        <span>아무도 모르게 비밀로 진행가능한가요?</span>
+                        <span class="faq-icon">
+                            <svg viewBox="0 0 12 8">
+                                <polyline points="1,1 6,6 11,1"></polyline>
+                            </svg>
+                        </span>
+                    </button>
+                    <div class="faq-answer active">
+                        <div class="faq-answer-content">
+                            네, 가능합니다.<br>
+                            개인회생 및 파산 등의 도산절차는 채무자 본인과 채권자 등 이해관계인 있을 때만 통지되며 가족이나 지인, 회사 등 제3자에게는 비밀을 보장합니다.
+                        </div>
+                    </div>
                 </div>
 
-                <div class="faq-list">
-                    <div class="faq-item">
-                        <button class="faq-question active" onclick="toggleFaq(this)">
-                            <span>아무도 모르게 비밀로 진행가능한가요?</span>
-                            <span class="faq-icon">
-                                <svg viewBox="0 0 12 8">
-                                    <polyline points="1,1 6,6 11,1"></polyline>
-                                </svg>
-                            </span>
-                        </button>
-                        <div class="faq-answer active">
-                            <div class="faq-answer-content">
-                                네, 가능합니다.<br>
-                                개인회생 및 파산 등의 도산절차는 채무자 본인과 채권자 등 이해관계인 있을 때만 통지되며 가족이나 지인, 회사 등 제3자에게는 비밀을 보장합니다.
-                            </div>
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span>빚 독촉이 심한데 추심을 멈출 수 있나요?</span>
+                        <span class="faq-icon">
+                            <svg viewBox="0 0 12 8">
+                                <polyline points="1,1 6,6 11,1"></polyline>
+                            </svg>
+                        </span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            개인회생 신청 시, 가능합니다.<br>
+                            개인회생이 신청되면 법원을 통해 중지명령을 발부 받는데, 금지명령이 내려지면 채권자 측에서 변제 요구를 할 수 없고 독촉전화, 방문, 문자 발송 등의 모든
+                            채권추심 및 변제 독촉 행위가 법적으로 금지되기 때문입니다.
                         </div>
                     </div>
+                </div>
 
-                    <div class="faq-item">
-                        <button class="faq-question" onclick="toggleFaq(this)">
-                            <span>빚 독촉이 심한데 추심을 멈출 수 있나요?</span>
-                            <span class="faq-icon">
-                                <svg viewBox="0 0 12 8">
-                                    <polyline points="1,1 6,6 11,1"></polyline>
-                                </svg>
-                            </span>
-                        </button>
-                        <div class="faq-answer">
-                            <div class="faq-answer-content">
-                                개인회생 신청 시, 가능합니다.<br>
-                                개인회생이 신청되면 법원을 통해 중지명령을 발부 받는데, 금지명령이 내려지면 채권자 측에서 변제 요구를 할 수 없고 독촉전화, 방문, 문자 발송 등의 모든
-                                채권추심 및 변제 독촉 행위가 법적으로 금지되기 때문입니다.
-                            </div>
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span>누구나 개인회생이나 파산을 신청할 수 있나요?</span>
+                        <span class="faq-icon">
+                            <svg viewBox="0 0 12 8">
+                                <polyline points="1,1 6,6 11,1"></polyline>
+                            </svg>
+                        </span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            네, 가능합니다. 다만, 아래의 경우에 해당한다면 어려울 수 있습니다.<br><br>
+                            <strong>· 신청할 수 없는 경우</strong><br>
+                            지속적인 수입원이 없는 경우<br>
+                            최근 개인회생 및 파산 면책을 받은 경우<br>
+                            빚이 너무 많은 경우 (개인회생 신청 조건은 담보 채무 15억원 이하, 무담보 채무 10억원 이하)
                         </div>
                     </div>
+                </div>
 
-                    <div class="faq-item">
-                        <button class="faq-question" onclick="toggleFaq(this)">
-                            <span>누구나 개인회생이나 파산을 신청할 수 있나요?</span>
-                            <span class="faq-icon">
-                                <svg viewBox="0 0 12 8">
-                                    <polyline points="1,1 6,6 11,1"></polyline>
-                                </svg>
-                            </span>
-                        </button>
-                        <div class="faq-answer">
-                            <div class="faq-answer-content">
-                                네, 가능합니다. 다만, 아래의 경우에 해당한다면 어려울 수 있습니다.<br><br>
-                                <strong>· 신청할 수 없는 경우</strong><br>
-                                지속적인 수입원이 없는 경우<br>
-                                최근 개인회생 및 파산 면책을 받은 경우<br>
-                                빚이 너무 많은 경우 (개인회생 신청 조건은 담보 채무 15억원 이하, 무담보 채무 10억원 이하)
-                            </div>
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span>과거에 개인회생이나 파산을 진행했는데 또 진행할 수 있나요?</span>
+                        <span class="faq-icon">
+                            <svg viewBox="0 0 12 8">
+                                <polyline points="1,1 6,6 11,1"></polyline>
+                            </svg>
+                        </span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            네, 가능합니다.<br>
+                            개인회생 재신청은 면책 확정일로부터 5년이 경과하면 가능합니다.<br>
+                            개인파산 재신청은 면책 확정일로부터 5~7년이 경과하면 가능합니다.
                         </div>
                     </div>
+                </div>
 
-                    <div class="faq-item">
-                        <button class="faq-question" onclick="toggleFaq(this)">
-                            <span>과거에 개인회생이나 파산을 진행했는데 또 진행할 수 있나요?</span>
-                            <span class="faq-icon">
-                                <svg viewBox="0 0 12 8">
-                                    <polyline points="1,1 6,6 11,1"></polyline>
-                                </svg>
-                            </span>
-                        </button>
-                        <div class="faq-answer">
-                            <div class="faq-answer-content">
-                                네, 가능합니다.<br>
-                                개인회생 재신청은 면책 확정일로부터 5년이 경과하면 가능합니다.<br>
-                                개인파산 재신청은 면책 확정일로부터 5~7년이 경과하면 가능합니다.
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="faq-item">
-                        <button class="faq-question" onclick="toggleFaq(this)">
-                            <span>가족에게 피해는 없나요?</span>
-                            <span class="faq-icon">
-                                <svg viewBox="0 0 12 8">
-                                    <polyline points="1,1 6,6 11,1"></polyline>
-                                </svg>
-                            </span>
-                        </button>
-                        <div class="faq-answer">
-                            <div class="faq-answer-content">
-                                네, 전혀 없습니다.
-                            </div>
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span>가족에게 피해는 없나요?</span>
+                        <span class="faq-icon">
+                            <svg viewBox="0 0 12 8">
+                                <polyline points="1,1 6,6 11,1"></polyline>
+                            </svg>
+                        </span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            네, 전혀 없습니다.
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
         </section>
 
         <!-- 오시는 길 섹션 -->
         <section id="contact" class="location-section"></section>
-            <div class="location-container">
-                <div class="location-header">
-                    <h2 class="location-title">오시는 길</h2>
+        <div class="location-container">
+            <div class="location-header">
+                <h2 class="location-title">오시는 길</h2>
 
-                    <div class="location-info">
-                        <div class="location-text">
-                            <div class="location-address"><span class="label">주소:</span> 서울특별시 서초구 사임당로17길 9, 2층 (반포동)
-                            </div>
-                            <div class="location-phone"><span class="label">대표번호:</span> 1555-1684</div>
+                <div class="location-info">
+                    <div class="location-text">
+                        <div class="location-address"><span class="label">주소:</span> 서울특별시 서초구 사임당로17길 9, 2층 (반포동)
                         </div>
+                        <div class="location-phone"><span class="label">대표번호:</span> 1555-1684</div>
+                    </div>
 
-                        <div class="location-buttons">
-                            <a href="#" class="location-btn">
-                                <img src="/images/icon_share.png" alt="위치공유" />
-                                위치공유
-                            </a>
-                            <a href="#" class="location-btn">
-                                <img src="/images/icon_search.png" alt="길찾기" />
-                                길찾기
-                            </a>
-                        </div>
+                    <div class="location-buttons">
+                        <a href="#" class="location-btn">
+                            <img src="/images/icon_share.png" alt="위치공유" />
+                            위치공유
+                        </a>
+                        <a href="#" class="location-btn">
+                            <img src="/images/icon_search.png" alt="길찾기" />
+                            길찾기
+                        </a>
                     </div>
                 </div>
-
-                <div class="location-map">
-                    <!-- 지도 API 영역 (추후 구글맵 또는 카카오맵 연동) -->
-                    <div>지도 API 연동 예정</div>
-                </div>
             </div>
+
+            <div class="location-map">
+                <!-- 지도 API 영역 (추후 구글맵 또는 카카오맵 연동) -->
+                <div>지도 API 연동 예정</div>
+            </div>
+        </div>
         </section>
 
         <!-- 누적 탕감액 섹션 -->
@@ -5161,7 +5195,7 @@
                     <span class="pc-highlight">전국, 365일</span><br>
                     <span>화상상담 가능!</span>
                 </div>
-                
+
                 <div class="pc-consultation-form">
                     <div class="pc-input-group">
                         <input type="text" placeholder="이름" class="pc-input name-input" required>
@@ -5170,7 +5204,9 @@
                             <label for="pcPrivacyCheck">개인정보 수집 및 이용에 대한 동의</label>
                         </div>
                     </div>
-                    <input type="tel" placeholder="연락처 (- 없이 입력)" class="pc-input phone-input" required>
+                    <div class="pc-input-group">
+                        <input type="tel" placeholder="연락처 (- 없이 입력)" class="pc-input phone-input" required>
+                    </div>
                     <button class="pc-consultation-btn primary">무료 상담신청</button>
                     <button class="pc-consultation-btn secondary">
                         <img src="/images/icon_talk.png" alt="카카오톡">
@@ -5189,7 +5225,8 @@
                     </div>
                     <button class="toggle-btn" id="toggleBtn">
                         <svg width="20" height="12" viewBox="0 0 20 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M2 2L10 10L18 2" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M2 10L10 2L18 10" stroke="white" stroke-width="3" stroke-linecap="round"
+                                stroke-linejoin="round" />
                         </svg>
                     </button>
                 </div>
@@ -5203,14 +5240,16 @@
                     <div class="form-row-mobile">
                         <div class="input-group">
                             <label class="input-label">이름 <span class="required">*</span></label>
-                            <input type="text" placeholder="예) 홍길동" class="inline-input name-input" id="mobileNameInput" required>
+                            <input type="text" placeholder="예) 홍길동" class="inline-input name-input" id="mobileNameInput"
+                                required>
                         </div>
                         <div class="input-group">
                             <label class="input-label">연락처 <span class="required">*</span></label>
-                            <input type="tel" placeholder="- 없이 입력" class="inline-input phone-input" id="mobilePhoneInput" required oninput="formatPhoneNumber(this)">
+                            <input type="tel" placeholder="- 없이 입력" class="inline-input phone-input"
+                                id="mobilePhoneInput" required oninput="formatPhoneNumber(this)">
                         </div>
                     </div>
-                    
+
                     <!-- 확장 폼 (토글 시 보임) -->
                     <div class="expanded-form" id="expandedForm">
                         <div class="form-row-mobile">
@@ -5237,15 +5276,16 @@
                                 </select>
                             </div>
                         </div>
-                        
+
                         <div class="privacy-check-mobile">
                             <label class="privacy-check">
                                 <input type="checkbox" class="privacy-checkbox" id="mobilePrivacyAgree" required>
                                 개인정보 수집 및 이용에 대한 동의 <span class="required">*</span>
                             </label>
                         </div>
-                        
-                        <button type="button" class="mobile-submit-btn" onclick="submitMobileConsultation()">무료 상담신청</button>
+
+                        <button type="button" class="mobile-submit-btn" onclick="submitMobileConsultation()">무료
+                            상담신청</button>
                     </div>
                 </div>
             </div>
@@ -5281,19 +5321,20 @@
                     <h2>무료 상담신청</h2>
                     <button class="consultation-popup-close" onclick="closeConsultationPopup()">×</button>
                 </div>
-                
+
                 <div class="consultation-popup-body">
                     <form id="consultationPopupForm" onsubmit="submitConsultationForm(event)">
                         <div class="popup-form-group">
                             <label for="popupName">이름 <span class="required">*</span></label>
                             <input type="text" id="popupName" name="name" placeholder="이름을 입력해 주세요" required>
                         </div>
-                        
+
                         <div class="popup-form-group">
                             <label for="popupPhone">연락처 <span class="required">*</span></label>
-                            <input type="tel" id="popupPhone" name="phone" placeholder="연락처를 입력해 주세요 (- 없이)" required oninput="formatPhoneNumber(this)">
+                            <input type="tel" id="popupPhone" name="phone" placeholder="연락처를 입력해 주세요 (- 없이)" required
+                                oninput="formatPhoneNumber(this)">
                         </div>
-                        
+
                         <div class="popup-form-group">
                             <label for="popupDebtAmount">채무금액 (선택)</label>
                             <select id="popupDebtAmount" name="debtAmount">
@@ -5305,7 +5346,7 @@
                                 <option value="1억원 이상">1억원 이상</option>
                             </select>
                         </div>
-                        
+
                         <div class="popup-form-group">
                             <label for="popupIncome">월소득 (선택)</label>
                             <select id="popupIncome" name="income">
@@ -5317,17 +5358,17 @@
                                 <option value="500만원 이상">500만원 이상</option>
                             </select>
                         </div>
-                        
+
                         <!-- 숨겨진 디바이스 정보 필드 -->
                         <input type="hidden" id="popupDevice" name="device" value="">
-                        
+
                         <div class="popup-form-group">
                             <label class="privacy-check-popup">
                                 <input type="checkbox" id="popupPrivacyAgree" name="privacyAgree" required>
                                 개인정보 수집 및 이용에 대한 동의 <span class="required">*</span>
                             </label>
                         </div>
-                        
+
                         <button type="submit" class="consultation-submit-popup-btn">무료 상담신청</button>
                     </form>
                 </div>
@@ -5341,7 +5382,7 @@
                     <h2>상담 신청 완료</h2>
                     <button class="consultation-popup-close" onclick="closeSuccessPopup()">×</button>
                 </div>
-                
+
                 <div class="consultation-popup-body">
                     <div class="success-message">
                         <div class="success-icon">✓</div>
@@ -5398,7 +5439,8 @@
                             <span class="unit">만 원</span>
                         </div>
 
-                        <button class="modal-next-btn disabled" id="nextBtn" onclick="nextQuestion()" disabled>다음</button>
+                        <button class="modal-next-btn disabled" id="nextBtn" onclick="nextQuestion()"
+                            disabled>다음</button>
                     </div>
                 </div>
 
@@ -5490,8 +5532,8 @@
                             </div>
                         </div>
 
-                        <button class="modal-next-btn disabled" id="dependentsNextBtn" onclick="nextDependentsQuestion()"
-                            disabled>다음</button>
+                        <button class="modal-next-btn disabled" id="dependentsNextBtn"
+                            onclick="nextDependentsQuestion()" disabled>다음</button>
                     </div>
                 </div>
 
@@ -5848,13 +5890,19 @@
             }
 
             document.addEventListener('DOMContentLoaded', function () {
+                // 토글 버튼 초기 상태 설정 (접힌 상태 - 위쪽 화살표)
+                const toggleBtn = document.getElementById('toggleBtn');
+                if (toggleBtn) {
+                    // 초기에는 collapsed 클래스 제거하여 위쪽 화살표 표시
+                    toggleBtn.classList.remove('collapsed');
+                }
+
                 // 모바일에서 상담 폼 초기 상태 설정 (접힌 상태)
                 if (window.innerWidth <= 768) {
                     const form = document.getElementById('consultationForm');
-                    const toggleBtn = document.getElementById('toggleBtn');
                     if (form && toggleBtn) {
                         form.classList.add('collapsed');
-                        toggleBtn.classList.add('collapsed');
+                        // 폼은 접혀있지만 버튼은 위쪽 화살표 유지
                     }
                 }
 
@@ -6047,7 +6095,7 @@
             function toggleMobileNav() {
                 const mobileNav = document.getElementById('mobileNav');
                 const hamburgerMenu = document.querySelector('.hamburger-menu');
-                
+
                 if (mobileNav.classList.contains('active')) {
                     closeMobileNav();
                 } else {
@@ -6062,10 +6110,10 @@
                 if (event && event.target !== document.getElementById('mobileNav')) {
                     return;
                 }
-                
+
                 const mobileNav = document.getElementById('mobileNav');
                 const hamburgerMenu = document.querySelector('.hamburger-menu');
-                
+
                 mobileNav.classList.remove('active');
                 hamburgerMenu.classList.remove('active');
                 document.body.style.overflow = ''; // 스크롤 복원
@@ -6074,14 +6122,14 @@
             function scrollToSection(sectionId) {
                 // 먼저 모바일 네비게이션 닫기
                 closeMobileNav();
-                
+
                 // 약간의 지연 후 스크롤 (네비게이션 닫기 애니메이션 완료 후)
                 setTimeout(() => {
                     const targetSection = document.getElementById(sectionId);
                     if (targetSection) {
                         const headerHeight = document.querySelector('.header').offsetHeight;
                         const targetPosition = targetSection.offsetTop - headerHeight - 20;
-                        
+
                         window.scrollTo({
                             top: targetPosition,
                             behavior: 'smooth'
@@ -6096,23 +6144,23 @@
             }
 
             // ESC 키로 모바일 메뉴 닫기
-            document.addEventListener('keydown', function(event) {
+            document.addEventListener('keydown', function (event) {
                 if (event.key === 'Escape') {
                     closeMobileNav();
                 }
             });
 
             // TOP 버튼 부드러운 스크롤
-            document.addEventListener('DOMContentLoaded', function() {
+            document.addEventListener('DOMContentLoaded', function () {
                 // 플로팅 헤더와 버튼 컨테이너 제어
                 const floatingHeader = document.getElementById('floatingHeader');
                 const floatingBtnContainer = document.getElementById('floatingBtnContainer');
                 const topButton = document.getElementById('topButton');
                 const consultationSection = document.querySelector('.consultation-section');
                 const mainBackground = document.querySelector('.main-background');
-                
+
                 let consultationSectionBottom = 0;
-                
+
                 // 상담 섹션의 하단 위치 계산
                 function calculateConsultationBottom() {
                     if (mainBackground) {
@@ -6120,17 +6168,17 @@
                         consultationSectionBottom = rect.bottom + window.scrollY;
                     }
                 }
-                
+
                 // 초기 계산
                 calculateConsultationBottom();
-                
+
                 // 리사이즈 시 재계산
                 window.addEventListener('resize', calculateConsultationBottom);
 
                 // 스크롤에 따른 상단 고정 요소들 제어
-                window.addEventListener('scroll', function() {
+                window.addEventListener('scroll', function () {
                     const scrollY = window.scrollY;
-                    
+
                     // 상담 섹션을 벗어나면 상단 고정 요소들 표시
                     if (scrollY > consultationSectionBottom - 100) {
                         // 플로팅 헤더는 숨기고 버튼 컨테이너만 표시
@@ -6164,12 +6212,12 @@
             function formatPhoneNumber(input) {
                 // 숫자만 남기기
                 let value = input.value.replace(/[^0-9]/g, '');
-                
+
                 // 11자리 제한
                 if (value.length > 11) {
                     value = value.slice(0, 11);
                 }
-                
+
                 input.value = value;
             }
 
@@ -6177,11 +6225,11 @@
             function openConsultationPopup() {
                 const popup = document.getElementById('consultationPopup');
                 const deviceField = document.getElementById('popupDevice');
-                
+
                 // 디바이스 정보 설정 (PC/Mobile)
                 const isMobile = window.innerWidth <= 768;
                 deviceField.value = isMobile ? 'Mobile' : 'PC';
-                
+
                 if (popup) {
                     popup.style.display = 'flex';
                     setTimeout(() => {
@@ -6217,37 +6265,37 @@
 
             function submitConsultationForm(event) {
                 event.preventDefault();
-                
+
                 const form = document.getElementById('consultationPopupForm');
                 const formData = new FormData(form);
-                
+
                 // 필수 항목 검증
                 const name = formData.get('name').trim();
                 const phone = formData.get('phone').trim();
                 const privacyAgree = formData.get('privacyAgree');
-                
+
                 if (!name) {
                     alert('이름을 입력해 주세요');
                     return;
                 }
-                
+
                 if (!phone) {
                     alert('연락처를 입력해 주세요');
                     return;
                 }
-                
+
                 if (!privacyAgree) {
                     alert('개인정보 수집 및 이용에 동의해 주세요');
                     return;
                 }
-                
+
                 // 연락처 형식 검증 (숫자만, 10-11자리)
                 const phoneRegex = /^[0-9]{10,11}$/;
                 if (!phoneRegex.test(phone)) {
                     alert('올바른 연락처를 입력해 주세요 (10-11자리 숫자)');
                     return;
                 }
-                
+
                 // 폼 데이터 수집
                 const consultationData = {
                     name: name,
@@ -6258,15 +6306,15 @@
                     type: '무료상담신청(상)',
                     timestamp: new Date().toISOString()
                 };
-                
+
                 console.log('상담 신청 데이터:', consultationData);
-                
+
                 // TODO: 실제 DB 저장 로직 구현
                 // 현재는 콘솔 로그와 성공 팝업만 표시
-                
+
                 // 상담 신청 팝업 닫기
                 closeConsultationPopup();
-                
+
                 // 성공 팝업 표시
                 setTimeout(() => {
                     const successPopup = document.getElementById('consultationSuccessPopup');
@@ -6281,21 +6329,21 @@
             }
 
             // 팝업 외부 클릭 시 닫기
-            document.addEventListener('click', function(event) {
+            document.addEventListener('click', function (event) {
                 const consultationPopup = document.getElementById('consultationPopup');
                 const successPopup = document.getElementById('consultationSuccessPopup');
-                
+
                 if (event.target === consultationPopup) {
                     closeConsultationPopup();
                 }
-                
+
                 if (event.target === successPopup) {
                     closeSuccessPopup();
                 }
             });
 
             // ESC 키로 팝업 닫기
-            document.addEventListener('keydown', function(event) {
+            document.addEventListener('keydown', function (event) {
                 if (event.key === 'Escape') {
                     closeConsultationPopup();
                     closeSuccessPopup();
@@ -6318,7 +6366,7 @@
             function toggleConsultationForm() {
                 const expandedForm = document.getElementById('expandedForm');
                 const toggleBtn = document.getElementById('toggleBtn');
-                
+
                 if (expandedForm && toggleBtn) {
                     if (expandedForm.classList.contains('show')) {
                         // 폼 닫기
@@ -6339,33 +6387,33 @@
                 const debtAmount = document.getElementById('mobileDebtAmount').value;
                 const income = document.getElementById('mobileIncome').value;
                 const privacyAgree = document.getElementById('mobilePrivacyAgree').checked;
-                
+
                 // 필수 항목 검증
                 if (!name) {
                     alert('이름을 입력해 주세요');
                     return;
                 }
-                
+
                 if (!phone) {
                     alert('연락처를 입력해 주세요');
                     return;
                 }
-                
+
                 if (!privacyAgree) {
                     alert('개인정보 수집 및 이용에 동의해 주세요');
                     return;
                 }
-                
+
                 // 연락처 형식 검증 (숫자만, 10-11자리)
                 const phoneRegex = /^[0-9]{10,11}$/;
                 if (!phoneRegex.test(phone)) {
                     alert('올바른 연락처를 입력해 주세요 (10-11자리 숫자)');
                     return;
                 }
-                
+
                 // 디바이스 정보 설정
                 const isMobile = window.innerWidth <= 768;
-                
+
                 // 폼 데이터 수집
                 const consultationData = {
                     name: name,
@@ -6376,11 +6424,11 @@
                     type: '무료상담신청(상)',
                     timestamp: new Date().toISOString()
                 };
-                
+
                 console.log('상담 신청 데이터:', consultationData);
-                
+
                 // TODO: 실제 DB 저장 로직 구현
-                
+
                 // 성공 팝업 표시
                 const successPopup = document.getElementById('consultationSuccessPopup');
                 if (successPopup) {
@@ -6390,14 +6438,14 @@
                     }, 10);
                     document.body.style.overflow = 'hidden';
                 }
-                
+
                 // 폼 초기화
                 document.getElementById('mobileNameInput').value = '';
                 document.getElementById('mobilePhoneInput').value = '';
                 document.getElementById('mobileDebtAmount').value = '';
                 document.getElementById('mobileIncome').value = '';
                 document.getElementById('mobilePrivacyAgree').checked = false;
-                
+
                 // 폼 닫기
                 const expandedForm = document.getElementById('expandedForm');
                 const toggleBtn = document.getElementById('toggleBtn');
