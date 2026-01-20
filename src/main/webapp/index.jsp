@@ -638,6 +638,120 @@
                 padding: 0;
             }
 
+            /* PC용 하단 상담 신청 바 */
+            .pc-consultation-bar {
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                z-index: 1000;
+                display: flex;
+                justify-content: center;
+                background: transparent;
+                padding: 20px;
+            }
+
+            .pc-consultation-container {
+                max-width: 1000px;
+                width: 100%;
+                background: #4a4a4a;
+                border-radius: 15px;
+                padding: 20px 30px;
+                display: flex;
+                align-items: center;
+                gap: 30px;
+            }
+
+            .pc-consultation-message {
+                color: white;
+                font-family: Pretendard;
+                font-size: 20px;
+                font-weight: 500;
+                line-height: 1.3;
+                white-space: nowrap;
+                flex-shrink: 0;
+            }
+
+            .pc-highlight {
+                color: white;
+                font-family: Pretendard;
+                font-weight: bold;
+            }
+
+            .pc-consultation-form {
+                display: flex;
+                align-items: center;
+                gap: 15px;
+                flex: 1;
+            }
+
+            .pc-input {
+                padding: 12px 15px;
+                border: 1px solid #ddd;
+                border-radius: 6px;
+                font-size: 14px;
+                background: white;
+                min-width: 120px;
+                flex: 1;
+            }
+
+            .pc-input:focus {
+                outline: none;
+                border-color: #4865FF;
+            }
+
+            .pc-consultation-btn {
+                padding: 12px 20px;
+                border: none;
+                border-radius: 6px;
+                font-size: 14px;
+                font-weight: bold;
+                cursor: pointer;
+                transition: all 0.3s;
+                white-space: nowrap;
+                display: flex;
+                align-items: center;
+                gap: 8px;
+            }
+
+            .pc-consultation-btn.primary {
+                background: #4865FF;
+                color: white;
+            }
+
+            .pc-consultation-btn.primary:hover {
+                background: #365a9b;
+            }
+
+            .pc-consultation-btn.secondary {
+                background: #ffd700;
+                color: #333;
+            }
+
+            .pc-consultation-btn.secondary:hover {
+                background: #ffed4e;
+            }
+
+            .pc-consultation-btn img {
+                width: 20px;
+                height: 20px;
+                object-fit: contain;
+            }
+
+            .pc-privacy-check {
+                display: flex;
+                align-items: center;
+                gap: 5px;
+                color: white;
+                font-size: 12px;
+                white-space: nowrap;
+                flex-shrink: 0;
+            }
+
+            .pc-privacy-check input[type="checkbox"] {
+                margin: 0;
+            }
+
             /* 하단 상담 신청 바 - PC에서는 숨김 */
             .bottom-consultation-bar {
                 background: transparent;
@@ -3420,6 +3534,11 @@
                모바일 반응형 CSS (768px 이하)
                ======================================== */
             @media (max-width: 768px) {
+                /* PC용 상담바 숨김 */
+                .pc-consultation-bar {
+                    display: none;
+                }
+
                 /* 헤더 */
                 .header-container {
                     padding: 0 20px;
@@ -5026,6 +5145,31 @@
                 </div>
             </div>
         </footer>
+
+        <!-- PC용 하단 상담 신청 바 -->
+        <div class="pc-consultation-bar">
+            <div class="pc-consultation-container">
+                <div class="pc-consultation-message">
+                    <span class="pc-highlight">전국, 365일</span><br>
+                    <span>화상상담 가능!</span>
+                </div>
+                
+                <div class="pc-consultation-form">
+                    <input type="text" placeholder="이름" class="pc-input name-input" required>
+                    <input type="tel" placeholder="연락처 (- 없이 입력)" class="pc-input phone-input" required>
+                    <button class="pc-consultation-btn primary">무료 상담신청</button>
+                    <button class="pc-consultation-btn secondary">
+                        <img src="/images/icon_talk.png" alt="카카오톡">
+                        카톡상담
+                    </button>
+                </div>
+                
+                <div class="pc-privacy-check">
+                    <input type="checkbox" id="pcPrivacyCheck" class="privacy-checkbox">
+                    <label for="pcPrivacyCheck">개인정보 수집 및 이용에 대한 동의</label>
+                </div>
+            </div>
+        </div>
 
         <!-- 하단 상담 신청 바 -->
         <div class="bottom-consultation-bar">
