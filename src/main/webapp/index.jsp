@@ -560,7 +560,7 @@
             /* 푸터 섹션 */
             .footer-section {
                 background: #f5f5f5;
-                padding: 40px 20px;
+                padding: 40px 20px 120px;
                 border-top: 1px solid #e0e0e0;
             }
 
@@ -680,8 +680,15 @@
 
             .pc-consultation-form {
                 display: flex;
-                align-items: center;
+                align-items: flex-start;
                 gap: 15px;
+                flex: 1;
+            }
+
+            .pc-input-group {
+                display: flex;
+                flex-direction: column;
+                gap: 8px;
                 flex: 1;
             }
 
@@ -692,12 +699,25 @@
                 font-size: 14px;
                 background: white;
                 min-width: 120px;
-                flex: 1;
             }
 
             .pc-input:focus {
                 outline: none;
                 border-color: #4865FF;
+            }
+
+            .pc-privacy-check {
+                display: flex;
+                align-items: center;
+                gap: 5px;
+                color: white;
+                font-size: 11px;
+                white-space: nowrap;
+            }
+
+            .pc-privacy-check input[type="checkbox"] {
+                margin: 0;
+                transform: scale(0.8);
             }
 
             .pc-consultation-btn {
@@ -738,19 +758,7 @@
                 object-fit: contain;
             }
 
-            .pc-privacy-check {
-                display: flex;
-                align-items: center;
-                gap: 5px;
-                color: white;
-                font-size: 12px;
-                white-space: nowrap;
-                flex-shrink: 0;
-            }
 
-            .pc-privacy-check input[type="checkbox"] {
-                margin: 0;
-            }
 
             /* 하단 상담 신청 바 - PC에서는 숨김 */
             .bottom-consultation-bar {
@@ -5155,18 +5163,19 @@
                 </div>
                 
                 <div class="pc-consultation-form">
-                    <input type="text" placeholder="이름" class="pc-input name-input" required>
+                    <div class="pc-input-group">
+                        <input type="text" placeholder="이름" class="pc-input name-input" required>
+                        <div class="pc-privacy-check">
+                            <input type="checkbox" id="pcPrivacyCheck" class="privacy-checkbox">
+                            <label for="pcPrivacyCheck">개인정보 수집 및 이용에 대한 동의</label>
+                        </div>
+                    </div>
                     <input type="tel" placeholder="연락처 (- 없이 입력)" class="pc-input phone-input" required>
                     <button class="pc-consultation-btn primary">무료 상담신청</button>
                     <button class="pc-consultation-btn secondary">
                         <img src="/images/icon_talk.png" alt="카카오톡">
                         카톡상담
                     </button>
-                </div>
-                
-                <div class="pc-privacy-check">
-                    <input type="checkbox" id="pcPrivacyCheck" class="privacy-checkbox">
-                    <label for="pcPrivacyCheck">개인정보 수집 및 이용에 대한 동의</label>
                 </div>
             </div>
         </div>
