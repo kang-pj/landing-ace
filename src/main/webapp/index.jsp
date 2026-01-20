@@ -2964,6 +2964,39 @@
                 box-shadow: 0 6px 20px rgba(68, 114, 196, 0.4);
             }
 
+            /* 모달 다음 버튼 - diagnosis-start-btn과 동일한 스타일 */
+            .modal-next-btn {
+                background: linear-gradient(135deg, #4865FF 0%, #5a7fd8 100%);
+                color: white;
+                border: none;
+                border-radius: 15px;
+                padding: 18px 40px;
+                font-size: 18px;
+                font-weight: bold;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                width: 100%;
+                box-shadow: 0 4px 15px rgba(68, 114, 196, 0.3);
+            }
+
+            .modal-next-btn:hover:not(.disabled) {
+                background: linear-gradient(135deg, #3a5fa0 0%, #4a6bc4 100%);
+                transform: translateY(-2px);
+                box-shadow: 0 6px 20px rgba(68, 114, 196, 0.4);
+            }
+
+            .modal-next-btn.disabled {
+                background: #ccc;
+                cursor: not-allowed;
+                box-shadow: none;
+            }
+
+            .modal-next-btn.disabled:hover {
+                background: #ccc;
+                transform: none;
+                box-shadow: none;
+            }
+
             /* 진단 단계 스타일 */
             .diagnosis-steps {
                 display: flex;
@@ -5211,7 +5244,7 @@
                             <span class="unit">만 원</span>
                         </div>
 
-                        <button class="next-btn disabled" id="nextBtn" onclick="nextQuestion()" disabled>다음</button>
+                        <button class="modal-next-btn disabled" id="nextBtn" onclick="nextQuestion()" disabled>다음</button>
                     </div>
                 </div>
 
@@ -5235,7 +5268,7 @@
                             <span class="unit">만 원</span>
                         </div>
 
-                        <button class="next-btn disabled" id="incomeNextBtn" onclick="nextIncomeQuestion()"
+                        <button class="modal-next-btn disabled" id="incomeNextBtn" onclick="nextIncomeQuestion()"
                             disabled>다음</button>
                     </div>
                 </div>
@@ -5269,7 +5302,7 @@
                             </div>
                         </div>
 
-                        <button class="next-btn disabled" id="assetsNextBtn" onclick="nextAssetsQuestion()"
+                        <button class="modal-next-btn disabled" id="assetsNextBtn" onclick="nextAssetsQuestion()"
                             disabled>다음</button>
                     </div>
                 </div>
@@ -5303,7 +5336,7 @@
                             </div>
                         </div>
 
-                        <button class="next-btn disabled" id="dependentsNextBtn" onclick="nextDependentsQuestion()"
+                        <button class="modal-next-btn disabled" id="dependentsNextBtn" onclick="nextDependentsQuestion()"
                             disabled>다음</button>
                     </div>
                 </div>
