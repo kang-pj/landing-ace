@@ -1,0 +1,14 @@
+# Maven
+target/
+*.class
+
+# IDE
+.vscode/
+.idea/
+
+# 중첩된 landing-ace 폴더 무시
+landing-ace/
+
+# OS
+.DS_Store
+Thumbs.db
