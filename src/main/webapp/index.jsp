@@ -4104,12 +4104,12 @@
             <div class="mobile-nav-content" onclick="event.stopPropagation()">
                 
                 <nav class="mobile-nav-menu">
-                    <a href="#intro" onclick="closeMobileNav()">AI 자가진단</a>
-                    <a href="#service" onclick="closeMobileNav()">성공사례</a>
-                    <a href="#about" onclick="closeMobileNav()">대표변호사</a>
-                    <a href="#calculator" onclick="closeMobileNav()">자주묻는질문</a>
-                    <a href="#special" onclick="closeMobileNav()">특별한 서비스</a>
-                    <a href="#contact" onclick="closeMobileNav()">오시는길</a>
+                    <a href="#intro" onclick="scrollToSection('intro')">AI 자가진단</a>
+                    <a href="#service" onclick="scrollToSection('service')">성공사례</a>
+                    <a href="#about" onclick="scrollToSection('about')">대표변호사</a>
+                    <a href="#calculator" onclick="scrollToSection('calculator')">자주묻는질문</a>
+                    <a href="#special" onclick="scrollToSection('special')">특별한 서비스</a>
+                    <a href="#contact" onclick="scrollToSection('contact')">오시는길</a>
                 </nav>
 
                 <div class="mobile-contact">
@@ -4221,7 +4221,7 @@
         </div>
 
         <!-- AI 자가진단 섹션 -->
-        <section class="ai-diagnosis-section">
+        <section id="intro" class="ai-diagnosis-section"></section>
             <div class="ai-container">
                 <div class="ai-title">
                     <h3>내 빚은 탕감받을 수 있을까?</h3>
@@ -4252,7 +4252,7 @@
         </section>
 
         <!-- 고객 사례 섹션 -->
-        <section class="customer-cases-section">
+        <section id="service" class="customer-cases-section"></section>
             <div class="cases-container">
                 <div class="cases-header">
                     <p class="cases-subtitle">10,386건의 노하우가 보여주는 결과</p>
@@ -4638,7 +4638,7 @@
         </div>
 
         <!-- 대표 변호사 소개 섹션 -->
-        <section class="lawyer-intro-section">
+        <section id="about" class="lawyer-intro-section"></section>
             <div class="lawyer-container">
                 <div class="lawyer-header">
                     <p class="lawyer-subtitle">대표 변호사 소개</p>
@@ -4707,7 +4707,7 @@
         </section>
 
         <!-- 특별한 서비스 섹션 -->
-        <section class="special-services-section">
+        <section id="special" class="special-services-section"></section>
             <div class="services-container">
                 <div class="services-header">
                     <p class="services-subtitle">쉽다! 빠르다! 안전하다!</p>
@@ -4775,7 +4775,7 @@
         </section>
 
         <!-- FAQ 섹션 -->
-        <section class="faq-section">
+        <section id="calculator" class="faq-section"></section>
             <div class="faq-container">
                 <div class="faq-header">
                     <h2 class="faq-title">자주하는 질문</h2>
@@ -4875,7 +4875,7 @@
         </section>
 
         <!-- 오시는 길 섹션 -->
-        <section class="location-section">
+        <section id="contact" class="location-section"></section>
             <div class="location-container">
                 <div class="location-header">
                     <h2 class="location-title">오시는 길</h2>
@@ -5916,6 +5916,25 @@
                 mobileNav.classList.remove('active');
                 hamburgerMenu.classList.remove('active');
                 document.body.style.overflow = ''; // 스크롤 복원
+            }
+
+            function scrollToSection(sectionId) {
+                // 먼저 모바일 네비게이션 닫기
+                closeMobileNav();
+                
+                // 약간의 지연 후 스크롤 (네비게이션 닫기 애니메이션 완료 후)
+                setTimeout(() => {
+                    const targetSection = document.getElementById(sectionId);
+                    if (targetSection) {
+                        const headerHeight = document.querySelector('.header').offsetHeight;
+                        const targetPosition = targetSection.offsetTop - headerHeight - 20;
+                        
+                        window.scrollTo({
+                            top: targetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                }, 300);
             }
 
             function openKakaoTalk() {
