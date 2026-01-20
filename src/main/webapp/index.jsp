@@ -829,7 +829,7 @@
 
             /* 하단 바 때문에 body에 패딩 추가 - PC에서는 제거 */
             body {
-                background: #f5f5f5;
+                background: #ffffff;
             }
 
             /* 상단 고정 버튼 컨테이너 (기존 플로팅 버튼을 상단으로) */
@@ -1101,7 +1101,6 @@
 
             /* AI 자가진단 섹션 */
             .ai-diagnosis-section {
-                background: white;
                 padding: 80px 20px;
             }
 
@@ -1874,6 +1873,7 @@
                 color: #999;
                 font-size: 16px;
                 border: 2px dashed #ddd;
+                margin-bottom: 40px;
             }
 
             /* 대표 변호사 소개 섹션 */
