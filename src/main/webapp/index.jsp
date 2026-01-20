@@ -2477,7 +2477,7 @@
             }
 
             .hamburger-menu.active .hamburger-line:nth-child(1) {
-                transform: rotate(-45deg) translate(-5px, 6px);
+                transform: rotate(-45deg) translate(-3px, 7px);
             }
 
             .hamburger-menu.active .hamburger-line:nth-child(2) {
@@ -2485,7 +2485,7 @@
             }
 
             .hamburger-menu.active .hamburger-line:nth-child(3) {
-                transform: rotate(45deg) translate(-5px, -6px);
+                transform: rotate(45deg) translate(-5px, -10px);
             }
 
             /* 모바일 네비게이션 메뉴 */
@@ -2531,11 +2531,13 @@
                 right: 20px;
                 background: none;
                 border: none;
-                font-size: 30px;
-                color: #666;
+                font-size: 32px;
+                color: #333;
                 cursor: pointer;
-                padding: 5px;
+                padding: 8px;
                 line-height: 1;
+                font-weight: normal;
+                font-family: Arial, sans-serif;
             }
 
             .mobile-nav-menu {
@@ -4100,7 +4102,6 @@
         <!-- 모바일 네비게이션 -->
         <div class="mobile-nav" id="mobileNav" onclick="closeMobileNav(event)">
             <div class="mobile-nav-content" onclick="event.stopPropagation()">
-                <button class="mobile-nav-close" onclick="closeMobileNav()">&times;</button>
                 
                 <nav class="mobile-nav-menu">
                     <a href="#intro" onclick="closeMobileNav()">AI 자가진단</a>
