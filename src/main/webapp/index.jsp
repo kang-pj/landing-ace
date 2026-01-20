@@ -3729,21 +3729,69 @@
                 }
 
                 .lawyer-content {
-                    flex-direction: column;
-                    gap: 30px;
+                    flex-direction: row;
+                    gap: 20px;
+                    align-items: flex-start;
                 }
 
                 .lawyer-image-area {
-                    flex: 1;
-                    max-width: 100%;
-                    padding: 0;
+                    flex: 0 0 50%;
+                    max-width: 50%;
+                    padding: 0 10px;
                     justify-content: center;
                 }
 
                 .certificateSwiper {
                     width: 100%;
-                    max-width: 350px;
-                    height: 460px;
+                    max-width: none;
+                    height: 450px;
+                }
+
+                .certificateSwiper .swiper-slide {
+                    height: 430px;
+                }
+
+                .certificate-image {
+                    width: 100%;
+                    height: 100%;
+                    margin: 0 auto;
+                }
+
+                .certificate-image img {
+                    width: 100%;
+                    height: auto;
+                    max-height: 100%;
+                    object-fit: contain;
+                }
+
+                .lawyer-info-area {
+                    flex: 0 0 50%;
+                    max-width: 50%;
+                    padding-left: 0;
+                }
+            }
+
+            /* 768px 이하에서만 위아래 배치 */
+            @media (max-width: 768px) {
+                .lawyer-content {
+                    flex-direction: column;
+                    gap: 30px;
+                    padding: 0 120px;
+                }
+
+                .lawyer-image-area {
+                    flex: 1;
+                    max-width: 100%;
+                    padding: 0 20px;
+                }
+
+                .certificateSwiper {
+                    height: 400px;
+                }
+
+                .lawyer-info-area {
+                    flex: 1;
+                    max-width: 100%;
                 }
 
                 .certificateSwiper .swiper-slide {
