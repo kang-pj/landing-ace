@@ -1368,7 +1368,7 @@
 
             .cases-header {
                 text-align: center;
-                margin-bottom: 60px;
+                margin-bottom: 40px;
             }
 
             .cases-subtitle {
@@ -1393,8 +1393,12 @@
                 width: 100%;
                 max-width: 1000px;
                 margin: 0 auto;
-                overflow: hidden;
+                overflow: visible;
                 position: relative;
+            }
+
+            .casesSwiper .swiper-slide {
+                overflow: visible;
             }
 
             .arrow-container {
@@ -1405,6 +1409,7 @@
                 bottom: 0;
                 pointer-events: none;
                 z-index: 10;
+                display: block;
             }
 
             .arrow-btn {
@@ -1415,29 +1420,38 @@
                 border: none;
                 cursor: pointer;
                 pointer-events: auto;
-                width: 20px;
-                height: 100px;
+                width: 40px;
+                height: 40px;
                 display: flex;
                 align-items: center;
                 justify-content: center;
+                transition: all 0.3s;
+            }
+
+            .arrow-btn:hover {
+                transform: translateY(-50%) scale(1.1);
             }
 
             .arrow-btn svg {
-                width: 12px;
+                width: 20px;
                 height: 20px;
                 fill: none;
-                stroke: #4865FF;
-                stroke-width: 1.5;
+                stroke: #333;
+                stroke-width: 2.5;
                 stroke-linecap: round;
                 stroke-linejoin: round;
             }
 
+            .arrow-btn:hover svg {
+                stroke: #4865FF;
+            }
+
             .prev-btn {
-                left: 65px;
+                left: 20px;
             }
 
             .next-btn {
-                right: 65px;
+                right: 20px;
             }
 
             .arrow-btn:hover svg {
@@ -1484,9 +1498,11 @@
             }
 
             .case-card:hover {
-                transform: translateY(-5px);
-                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+                transform: translateY(-2px);
+                box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
                 border-color: #4865FF;
+                z-index: 10;
+                position: relative;
             }
 
             .case-profile {
@@ -2897,6 +2913,7 @@
 
                 .cases-container {
                     padding: 0 15px;
+                    margin-bottom: 30px;
                 }
 
                 .cases-title {
@@ -3985,6 +4002,11 @@
                     padding-bottom: 10px;
                 }
 
+                /* 모바일에서 "전체" 탭 숨기기 */
+                .case-tabs .tab-btn:first-child {
+                    display: none;
+                }
+
                 .tab-btn {
                     padding: 8px 18px;
                     font-size: 13px;
@@ -3993,12 +4015,36 @@
                 }
 
                 .cases-grid {
-                    grid-template-columns: 1fr !important;
-                    gap: 15px !important;
+                    display: flex !important;
+                    flex-direction: row !important;
+                    gap: 0 !important;
+                    grid-template-columns: none !important;
+                }
+
+                /* 모바일에서 각 케이스 카드가 전체 너비를 차지하도록 */
+                .casesSwiper .swiper-slide {
+                    width: 100% !important;
+                    overflow: visible !important;
+                }
+
+                .case-group {
+                    width: 100% !important;
+                    padding: 10px !important;
                 }
 
                 .case-card {
+                    width: 100% !important;
+                    margin: 0 !important;
                     padding: 15px;
+                }
+
+                /* 모바일에서 화살표 숨김 */
+                .arrow-container {
+                    display: none !important;
+                }
+
+                .arrow-btn {
+                    display: none !important;
                 }
 
                 .case-profile {
@@ -4133,11 +4179,11 @@
                     .consultation-bar-container {
                         padding: 10px 5px;
                     }
-                    
+
                     .consultation-form-inline {
                         padding: 0 2px;
                     }
-                    
+
                     .form-row-mobile {
                         width: 98%;
                         gap: 8px;
@@ -4528,12 +4574,12 @@
             <div class="cases-wrapper">
                 <!-- 화살표를 완전히 분리된 영역에 배치 -->
                 <div class="arrow-container">
-                    <button class="arrow-btn prev-btn" onclick="casesSwiper.slidePrev()">
+                    <button class="arrow-btn prev-btn" onclick="navigateSlide('prev')">
                         <svg viewBox="0 0 12 20">
                             <polyline points="10,2 2,10 10,18"></polyline>
                         </svg>
                     </button>
-                    <button class="arrow-btn next-btn" onclick="casesSwiper.slideNext()">
+                    <button class="arrow-btn next-btn" onclick="navigateSlide('next')">
                         <svg viewBox="0 0 12 20">
                             <polyline points="2,2 10,10 2,18"></polyline>
                         </svg>
@@ -5346,12 +5392,14 @@
                     </div>
                     <button class="toggle-btn" id="toggleBtn">
                         <!-- 펼치기 아이콘 (기본 상태) -->
-                        <svg class="expand-icon" width="20" height="12" viewBox="0 0 20 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <svg class="expand-icon" width="20" height="12" viewBox="0 0 20 12" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
                             <path d="M2 2L10 10L18 2" stroke="#333" stroke-width="3" stroke-linecap="round"
                                 stroke-linejoin="round" />
                         </svg>
                         <!-- 닫기 아이콘 (펼쳐진 상태) -->
-                        <svg class="close-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" style="display: none;">
+                        <svg class="close-icon" width="20" height="20" viewBox="0 0 20 20" fill="none"
+                            xmlns="http://www.w3.org/2000/svg" style="display: none;">
                             <path d="M15 5L5 15M5 5L15 15" stroke="#333" stroke-width="3" stroke-linecap="round"
                                 stroke-linejoin="round" />
                         </svg>
@@ -5370,8 +5418,8 @@
                                 required onclick="openToastPopup()">
                         </div>
                         <div class="input-group">
-                            <input type="tel" placeholder="연락처 *" class="inline-input phone-input"
-                                id="mobilePhoneInput" required oninput="formatPhoneNumber(this)" onclick="openToastPopup()">
+                            <input type="tel" placeholder="연락처 *" class="inline-input phone-input" id="mobilePhoneInput"
+                                required oninput="formatPhoneNumber(this)" onclick="openToastPopup()">
                         </div>
                     </div>
 
@@ -5729,6 +5777,17 @@
             let casesSwiper;
             let certificateSwiper;
 
+            // 안전한 슬라이드 네비게이션 함수
+            function navigateSlide(direction) {
+                if (casesSwiper) {
+                    if (direction === 'prev') {
+                        casesSwiper.slidePrev();
+                    } else if (direction === 'next') {
+                        casesSwiper.slideNext();
+                    }
+                }
+            }
+
             function filterCases(type, element) {
                 // 탭 활성화
                 document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
@@ -5922,19 +5981,19 @@
                 // 2초 후 상담 신청 화면으로 이동
                 setTimeout(() => {
                     showScreen('consultationScreen');
-                    
+
                     // 디버깅: 폼 요소들이 존재하는지 확인
                     setTimeout(() => {
                         const consultationArea = document.querySelector('.consultation-area');
                         const formArea = document.querySelector('.consultation-form-area');
                         const nameInput = document.getElementById('consultName');
                         const phoneInput = document.getElementById('consultPhone');
-                        
+
                         console.log('Consultation area found:', !!consultationArea);
                         console.log('Form area found:', !!formArea);
                         console.log('Name input found:', !!nameInput);
                         console.log('Phone input found:', !!phoneInput);
-                        
+
                         if (formArea) {
                             console.log('Form area display:', window.getComputedStyle(formArea).display);
                             console.log('Form area visibility:', window.getComputedStyle(formArea).visibility);
@@ -6160,25 +6219,163 @@
                 }
 
                 // Swiper 초기화
-                casesSwiper = new Swiper('.casesSwiper', {
-                    slidesPerView: 1,
-                    spaceBetween: 30,
-                    loop: true,
-                    autoplay: {
-                        delay: 5000,
-                        disableOnInteraction: false,
-                    },
-                    on: {
-                        slideChange: function () {
-                            // 슬라이드 변경 시 탭도 업데이트
-                            const tabs = document.querySelectorAll('.tab-btn');
-                            tabs.forEach(tab => tab.classList.remove('active'));
+                function initializeSwiper() {
+                    // 기존 Swiper 제거
+                    if (casesSwiper) {
+                        casesSwiper.destroy(true, true);
+                    }
 
-                            // loop 모드에서는 realIndex를 사용
-                            const realIndex = this.realIndex;
-                            tabs[realIndex].classList.add('active');
+                    if (window.innerWidth <= 1000) {
+                        // 모바일에서 Swiper 활성화
+                        casesSwiper = new Swiper('.casesSwiper', {
+                            slidesPerView: 1,
+                            spaceBetween: 20,
+                            loop: true,
+                            autoplay: {
+                                delay: 3000,
+                                disableOnInteraction: false,
+                                pauseOnMouseEnter: false,
+                            },
+                            on: {
+                                slideChange: function () {
+                                    // 모바일에서는 케이스 타입에 따라 탭 활성화
+                                    const currentSlide = this.slides[this.activeIndex];
+                                    const caseTypeElement = currentSlide.querySelector('.case-type');
+
+                                    if (caseTypeElement) {
+                                        const caseType = caseTypeElement.textContent.trim();
+                                        const tabs = document.querySelectorAll('.tab-btn');
+
+                                        // 모든 탭 비활성화
+                                        tabs.forEach(tab => tab.classList.remove('active'));
+
+                                        // 케이스 타입에 따라 해당 탭 활성화
+                                        if (caseType === '개인회생') {
+                                            const personalTab = document.querySelector('.tab-btn[onclick*="personal"]');
+                                            if (personalTab) personalTab.classList.add('active');
+                                        } else if (caseType === '개인파산') {
+                                            const bankruptcyTab = document.querySelector('.tab-btn[onclick*="bankruptcy"]');
+                                            if (bankruptcyTab) bankruptcyTab.classList.add('active');
+                                        } else {
+                                            // 모바일에서는 기본적으로 개인회생 탭 활성화
+                                            const personalTab = document.querySelector('.tab-btn[onclick*="personal"]');
+                                            if (personalTab) personalTab.classList.add('active');
+                                        }
+                                    }
+                                }
+                            }
+                        });
+                    } else {
+                        // PC에서도 Swiper 활성화 (탭 전환용)
+                        casesSwiper = new Swiper('.casesSwiper', {
+                            slidesPerView: 1,
+                            spaceBetween: 30,
+                            loop: true,
+                            autoplay: {
+                                delay: 4000,
+                                disableOnInteraction: false,
+                                pauseOnMouseEnter: true,
+                            },
+                            on: {
+                                slideChange: function () {
+                                    // PC에서는 슬라이드 인덱스에 따라 탭 활성화
+                                    const tabs = document.querySelectorAll('.tab-btn');
+                                    tabs.forEach(tab => tab.classList.remove('active'));
+
+                                    const realIndex = this.realIndex;
+                                    if (tabs[realIndex]) {
+                                        tabs[realIndex].classList.add('active');
+                                    }
+                                }
+                            }
+                        });
+                    }
+                }
+
+                // 원본 HTML 데이터 저장
+                let originalCasesHTML = '';
+
+                // 모바일에서 케이스 카드를 개별 슬라이드로 재구성
+                function restructureCasesForMobile() {
+                    const swiperWrapper = document.querySelector('.casesSwiper .swiper-wrapper');
+                    console.log('restructureCasesForMobile called, window width:', window.innerWidth);
+                    console.log('swiperWrapper found:', !!swiperWrapper);
+
+                    // 처음 실행 시 원본 HTML 저장
+                    if (!originalCasesHTML && swiperWrapper) {
+                        originalCasesHTML = swiperWrapper.innerHTML;
+                        console.log('Original HTML saved, length:', originalCasesHTML.length);
+                    }
+
+                    if (window.innerWidth <= 1000) {
+                        // 모바일: 각 케이스 카드를 개별 슬라이드로 변경
+                        // 원본 HTML에서 케이스 카드 추출
+                        const tempDiv = document.createElement('div');
+                        tempDiv.innerHTML = originalCasesHTML;
+                        const allCaseCards = tempDiv.querySelectorAll('.case-card');
+                        console.log('Mobile mode - case cards found:', allCaseCards.length);
+
+                        // 기존 슬라이드 제거
+                        swiperWrapper.innerHTML = '';
+
+                        // 각 케이스 카드를 개별 슬라이드로 추가
+                        allCaseCards.forEach(card => {
+                            const slide = document.createElement('div');
+                            slide.className = 'swiper-slide';
+
+                            // 케이스 타입 정보를 데이터 속성으로 추가
+                            const caseTypeElement = card.querySelector('.case-type');
+                            if (caseTypeElement) {
+                                const caseType = caseTypeElement.textContent.trim();
+                                slide.setAttribute('data-case-type', caseType);
+                            }
+
+                            slide.appendChild(card.cloneNode(true));
+                            swiperWrapper.appendChild(slide);
+                        });
+                        console.log('Mobile slides created:', swiperWrapper.children.length);
+
+                        // Swiper 업데이트
+                        if (casesSwiper) {
+                            casesSwiper.update();
+                            casesSwiper.updateSlides();
+                        }
+                    } else {
+                        // PC: 원래 HTML 구조로 복원
+                        console.log('PC mode - restoring original HTML');
+                        swiperWrapper.innerHTML = originalCasesHTML;
+                        console.log('PC HTML restored, children:', swiperWrapper.children.length);
+
+                        // Swiper 업데이트
+                        if (casesSwiper) {
+                            casesSwiper.update();
+                            casesSwiper.updateSlides();
                         }
                     }
+                }
+
+                // 모바일에서 초기 탭 설정
+                function initializeMobileTabs() {
+                    if (window.innerWidth <= 1000) {
+                        const tabs = document.querySelectorAll('.tab-btn');
+                        tabs.forEach(tab => tab.classList.remove('active'));
+
+                        // 개인회생 탭을 기본으로 활성화
+                        const personalTab = document.querySelector('.tab-btn[onclick*="personal"]');
+                        if (personalTab) personalTab.classList.add('active');
+                    }
+                }
+
+                // 초기 실행
+                restructureCasesForMobile();
+                initializeSwiper();
+                initializeMobileTabs();
+
+                // 윈도우 리사이즈 시 재구성
+                window.addEventListener('resize', function () {
+                    restructureCasesForMobile();
+                    initializeSwiper();
+                    initializeMobileTabs();
                 });
 
                 // 증서 Swiper 초기화
