@@ -745,10 +745,19 @@
             .pc-consultation-btn.secondary {
                 background: #ffd700;
                 color: #333;
+                display: flex;
+                align-items: center;
+                gap: 8px;
             }
 
             .pc-consultation-btn.secondary:hover {
                 background: #ffed4e;
+            }
+
+            .pc-consultation-btn.secondary img {
+                width: 20px;
+                height: 20px;
+                object-fit: contain;
             }
 
             .pc-consultation-btn img {
@@ -849,9 +858,8 @@
             .inline-input {
                 flex: 1;
                 padding: 15px 18px;
-                border: none;
-                border-bottom: 2px solid #e5e5e5;
-                border-radius: 0;
+                border: 1px solid #e5e5e5;
+                border-radius: 12px;
                 font-size: 15px;
                 background: white;
                 color: #333;
@@ -860,17 +868,17 @@
 
             .inline-input:focus {
                 outline: none;
-                border-bottom-color: #4865FF;
+                border-color: #4865FF;
                 background: white;
             }
 
             .inline-input::placeholder {
-                color: #aaa;
+                color: #999;
+                font-size: 12px;
             }
 
-            .inline-input::placeholder {
-                color: #aaa;
-                font-size: 12px;
+            .inline-input:focus::placeholder {
+                color: #bbb;
             }
 
             /* 필수 항목 표시를 위한 스타일 */
@@ -948,10 +956,19 @@
             .consultation-btn.secondary {
                 background: #ffd700;
                 color: #333;
+                display: flex;
+                align-items: center;
+                gap: 8px;
             }
 
             .consultation-btn.secondary:hover {
                 background: #ffed4e;
+            }
+
+            .consultation-btn.secondary img {
+                width: 20px;
+                height: 20px;
+                object-fit: contain;
             }
 
             /* 하단 바 때문에 body에 패딩 추가 - PC에서는 제거 */
@@ -1063,10 +1080,19 @@
             .floating-btn-container .consultation-btn.secondary {
                 background: #ffd700;
                 color: #333;
+                display: flex;
+                align-items: center;
+                gap: 8px;
             }
 
             .floating-btn-container .consultation-btn.secondary:hover {
                 background: #ffed4e;
+            }
+
+            .floating-btn-container .consultation-btn.secondary img {
+                width: 20px;
+                height: 20px;
+                object-fit: contain;
             }
 
             /* 태블릿 크기 */
@@ -3399,7 +3425,7 @@
             /* 상담 신청 화면 스타일 */
             .consultation-area {
                 text-align: center;
-                padding: 10px 20px;
+                padding: 0px 20px;
             }
 
             .consultation-result {
@@ -3418,14 +3444,20 @@
             }
 
             .consultation-form-area {
-                display: flex;
+                display: flex !important;
                 flex-direction: column;
-                gap: 10px;
+                gap: 5px;
+                visibility: visible;
+                opacity: 1;
+                padding: 20px 0;
+                background: white;
+                border-radius: 10px;
+                margin-top: 20px;
             }
 
             .consultation-form-area .form-group {
                 text-align: left;
-                margin-bottom: 20px;
+                margin-bottom: 10px;
             }
 
             .consultation-form-area .form-group label {
@@ -3437,8 +3469,13 @@
             }
 
             .input-with-label {
-                display: none;
-                /* 모바일에서는 PC 스타일 사용 */
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                border: 1px solid #ddd;
+                border-radius: 8px;
+                background: white;
+                transition: border-color 0.3s;
             }
 
             .input-with-label:focus-within {
@@ -3448,7 +3485,7 @@
             .input-label {
                 font-size: 15px;
                 font-weight: 500;
-                color: #333;
+                color: #000;
                 padding: 12px 15px;
                 width: 100px;
                 flex-shrink: 0;
@@ -3460,7 +3497,6 @@
                 width: 100%;
                 padding: 15px 18px;
                 border: none;
-                border-bottom: 2px solid #e5e5e5;
                 border-radius: 0;
                 font-size: 15px;
                 background: white;
@@ -3477,7 +3513,7 @@
             }
 
             .consultation-form-area .form-group input::placeholder {
-                color: #aaa;
+                color: #666;
             }
 
             .consultation-form-area .form-group select {
@@ -3490,7 +3526,7 @@
             }
 
             .privacy-agreement {
-                margin: 8px 0;
+                margin: 0;
             }
 
             .checkbox-label {
@@ -3519,7 +3555,7 @@
                 background: linear-gradient(135deg, #4865FF 0%, #5a7fd8 100%);
                 color: white;
                 border: none;
-                border-radius: 20px;
+                border-radius: 10px;
                 padding: 15px 30px;
                 font-size: 16px;
                 font-weight: bold;
@@ -3527,7 +3563,7 @@
                 width: 100%;
                 box-shadow: 0 4px 15px rgba(68, 114, 196, 0.3);
                 transition: all 0.3s ease;
-                margin-top: 10px;
+                margin-top: 20px;
             }
 
             .consultation-submit-btn:hover:not(.disabled) {
@@ -4017,14 +4053,22 @@
                 .consultation-bar-container {
                     max-width: 100%;
                     border-radius: 0;
-                    padding: 12px 15px;
+                    padding: 12px 8px;
                     flex-direction: column;
                     gap: 12px;
+                    background: white;
                 }
 
                 .consultation-message {
                     font-size: 16px;
                     text-align: center;
+                    color: #333;
+                    font-weight: bold;
+                }
+
+                .consultation-message .highlight {
+                    color: #333;
+                    font-weight: bold;
                 }
 
                 .desktop-message {
@@ -4034,10 +4078,11 @@
                 .mobile-toggle-header {
                     display: flex;
                     align-items: center;
-                    justify-content: space-between;
+                    justify-content: center;
                     width: 100%;
                     cursor: pointer;
                     padding: 8px 0;
+                    position: relative;
                 }
 
                 .toggle-btn {
@@ -4053,6 +4098,8 @@
                     align-items: center;
                     justify-content: center;
                     transition: transform 0.3s ease;
+                    position: absolute;
+                    right: 0;
                 }
 
                 .toggle-btn.collapsed {
@@ -4064,18 +4111,38 @@
                     gap: 15px;
                     width: 100%;
                     align-items: center;
+                    padding: 0 5px;
                 }
 
                 .form-row-mobile {
                     display: flex;
                     gap: 10px;
-                    width: 100%;
+                    width: 95%;
+                    max-width: 450px;
+                    margin: 0 auto;
                     justify-content: center;
                 }
 
                 .form-row-mobile .input-group {
                     flex: 1;
-                    min-width: 0;
+                    min-width: 120px;
+                }
+
+                /* 작은 화면을 위한 추가 조정 */
+                @media (max-width: 400px) {
+                    .consultation-bar-container {
+                        padding: 10px 5px;
+                    }
+                    
+                    .consultation-form-inline {
+                        padding: 0 2px;
+                    }
+                    
+                    .form-row-mobile {
+                        width: 98%;
+                        gap: 8px;
+                        max-width: 400px;
+                    }
                 }
 
                 .expanded-form {
@@ -4107,7 +4174,7 @@
                     color: white;
                     border: none;
                     padding: 12px 20px;
-                    border-radius: 8px;
+                    border-radius: 12px;
                     font-size: 14px;
                     font-weight: bold;
                     cursor: pointer;
@@ -4125,6 +4192,7 @@
                     width: auto;
                     flex: 1;
                     min-width: 80px;
+                    display: block;
                 }
 
                 .inline-input {
@@ -4132,15 +4200,19 @@
                     min-width: 80px;
                     padding: 8px 10px;
                     font-size: 12px;
+                    border-radius: 12px;
                 }
 
                 .inline-input::placeholder {
-                    font-size: 11px;
+                    font-size: 12px;
+                    color: #666;
+                    font-weight: 500;
                 }
 
                 .privacy-check {
                     font-size: 10px;
                     gap: 3px;
+                    color: #333;
                 }
 
                 .privacy-checkbox {
@@ -4155,6 +4227,7 @@
                     font-size: 12px;
                     flex-shrink: 0;
                     min-width: 70px;
+                    border-radius: 12px;
                 }
 
                 .consultation-btn img {
@@ -5272,8 +5345,14 @@
                         <span class="highlight">무료 상담신청</span><br>
                     </div>
                     <button class="toggle-btn" id="toggleBtn">
-                        <svg width="20" height="12" viewBox="0 0 20 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M2 10L10 2L18 10" stroke="white" stroke-width="3" stroke-linecap="round"
+                        <!-- 펼치기 아이콘 (기본 상태) -->
+                        <svg class="expand-icon" width="20" height="12" viewBox="0 0 20 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M2 2L10 10L18 2" stroke="#333" stroke-width="3" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                        <!-- 닫기 아이콘 (펼쳐진 상태) -->
+                        <svg class="close-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" style="display: none;">
+                            <path d="M15 5L5 15M5 5L15 15" stroke="#333" stroke-width="3" stroke-linecap="round"
                                 stroke-linejoin="round" />
                         </svg>
                     </button>
@@ -5287,14 +5366,12 @@
                     <!-- 기본 입력 필드들 -->
                     <div class="form-row-mobile">
                         <div class="input-group">
-                            <label class="input-label">이름 <span class="required">*</span></label>
-                            <input type="text" placeholder="예) 홍길동" class="inline-input name-input" id="mobileNameInput"
-                                required>
+                            <input type="text" placeholder="이름 *" class="inline-input name-input" id="mobileNameInput"
+                                required onclick="openToastPopup()">
                         </div>
                         <div class="input-group">
-                            <label class="input-label">연락처 <span class="required">*</span></label>
-                            <input type="tel" placeholder="- 없이 입력" class="inline-input phone-input"
-                                id="mobilePhoneInput" required oninput="formatPhoneNumber(this)">
+                            <input type="tel" placeholder="연락처 *" class="inline-input phone-input"
+                                id="mobilePhoneInput" required oninput="formatPhoneNumber(this)" onclick="openToastPopup()">
                         </div>
                     </div>
 
@@ -5302,9 +5379,8 @@
                     <div class="expanded-form" id="expandedForm">
                         <div class="form-row-mobile">
                             <div class="input-group">
-                                <label class="input-label">채무금액</label>
                                 <select class="inline-input" id="mobileDebtAmount">
-                                    <option value="">선택해 주세요</option>
+                                    <option value="">채무금액 선택</option>
                                     <option value="1000만원 미만">1000만원 미만</option>
                                     <option value="1000만원~3000만원">1000만원~3000만원</option>
                                     <option value="3000만원~5000만원">3000만원~5000만원</option>
@@ -5313,9 +5389,8 @@
                                 </select>
                             </div>
                             <div class="input-group">
-                                <label class="input-label">월소득</label>
                                 <select class="inline-input" id="mobileIncome">
-                                    <option value="">선택해 주세요</option>
+                                    <option value="">월소득 선택</option>
                                     <option value="100만원 미만">100만원 미만</option>
                                     <option value="100만원~200만원">100만원~200만원</option>
                                     <option value="200만원~300만원">200만원~300만원</option>
@@ -5738,6 +5813,7 @@
             }
 
             function showScreen(screenId) {
+                console.log('Showing screen:', screenId);
                 // 모든 화면 숨기기
                 document.querySelectorAll('.screen').forEach(screen => {
                     screen.classList.remove('active');
@@ -5747,6 +5823,9 @@
                 const targetScreen = document.getElementById(screenId);
                 if (targetScreen) {
                     targetScreen.classList.add('active');
+                    console.log('Screen activated:', screenId);
+                } else {
+                    console.log('Screen not found:', screenId);
                 }
             }
 
@@ -5843,6 +5922,25 @@
                 // 2초 후 상담 신청 화면으로 이동
                 setTimeout(() => {
                     showScreen('consultationScreen');
+                    
+                    // 디버깅: 폼 요소들이 존재하는지 확인
+                    setTimeout(() => {
+                        const consultationArea = document.querySelector('.consultation-area');
+                        const formArea = document.querySelector('.consultation-form-area');
+                        const nameInput = document.getElementById('consultName');
+                        const phoneInput = document.getElementById('consultPhone');
+                        
+                        console.log('Consultation area found:', !!consultationArea);
+                        console.log('Form area found:', !!formArea);
+                        console.log('Name input found:', !!nameInput);
+                        console.log('Phone input found:', !!phoneInput);
+                        
+                        if (formArea) {
+                            console.log('Form area display:', window.getComputedStyle(formArea).display);
+                            console.log('Form area visibility:', window.getComputedStyle(formArea).visibility);
+                            console.log('Form area opacity:', window.getComputedStyle(formArea).opacity);
+                        }
+                    }, 100);
                 }, 2000);
             }
 
@@ -5852,16 +5950,22 @@
                 const privacyAgree = document.getElementById('privacyAgree').checked;
                 const submitBtn = document.getElementById('consultationSubmitBtn');
 
+                console.log('Form validation:', { name, phone, privacyAgree });
+
                 // 휴대폰 번호 숫자만 허용
                 const phoneInput = document.getElementById('consultPhone');
                 let phoneValue = phoneInput.value.replace(/[^0-9]/g, '');
                 phoneInput.value = phoneValue;
 
+                console.log('Phone value after cleaning:', phoneValue);
+
                 // 모든 조건이 만족되면 버튼 활성화
                 if (name && phoneValue.length >= 10 && privacyAgree) {
+                    console.log('All conditions met - enabling button');
                     submitBtn.classList.remove('disabled');
                     submitBtn.disabled = false;
                 } else {
+                    console.log('Conditions not met - disabling button');
                     submitBtn.classList.add('disabled');
                     submitBtn.disabled = true;
                 }
@@ -5952,6 +6056,14 @@
                         form.classList.add('collapsed');
                         // 폼은 접혀있지만 버튼은 위쪽 화살표 유지
                     }
+                }
+
+                // 상담 폼 초기 검증 실행
+                if (typeof validateConsultationForm === 'function') {
+                    console.log('Running initial form validation');
+                    validateConsultationForm();
+                } else {
+                    console.log('validateConsultationForm function not found');
                 }
 
                 // 페이지 로드 시 즉시 랜덤 숫자로 설정
@@ -6414,16 +6526,24 @@
             function toggleConsultationForm() {
                 const expandedForm = document.getElementById('expandedForm');
                 const toggleBtn = document.getElementById('toggleBtn');
+                const expandIcon = toggleBtn.querySelector('.expand-icon');
+                const closeIcon = toggleBtn.querySelector('.close-icon');
 
                 if (expandedForm && toggleBtn) {
                     if (expandedForm.classList.contains('show')) {
                         // 폼 닫기
                         expandedForm.classList.remove('show');
                         toggleBtn.classList.remove('collapsed');
+                        // 펼치기 아이콘 보이기, 닫기 아이콘 숨기기
+                        expandIcon.style.display = 'block';
+                        closeIcon.style.display = 'none';
                     } else {
                         // 폼 열기
                         expandedForm.classList.add('show');
                         toggleBtn.classList.add('collapsed');
+                        // 닫기 아이콘 보이기, 펼치기 아이콘 숨기기
+                        expandIcon.style.display = 'none';
+                        closeIcon.style.display = 'block';
                     }
                 }
             }

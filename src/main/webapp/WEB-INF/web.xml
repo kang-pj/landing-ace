@@ -7,6 +7,30 @@
     
     <display-name>Web Application</display-name>
     
+    <!-- Tomcat 최적화 설정 -->
+    <context-param>
+        <param-name>org.apache.tomcat.util.scan.StandardJarScanFilter.jarsToSkip</param-name>
+        <param-value>
+            annotations-api.jar,ant-*.jar,aspectj*.jar,bootstrap.jar,commons-*.jar,
+            derby-*.jar,dnsns.jar,ecj-*.jar,h2-*.jar,hamcrest-*.jar,hibernate*.jar,
+            jaspic-api.jar,jasper-*.jar,jaxb-*.jar,jetty-*.jar,jta*.jar,junit-*.jar,
+            log4j*.jar,mail-*.jar,slf4j*.jar,spring-*.jar,taglibs-*.jar,
+            tomcat-*.jar,websocket-api.jar,wsdl4j-*.jar,xercesImpl.jar,xml-apis.jar,
+            xmlParserAPIs-*.jar,xom-*.jar
+        </param-value>
+    </context-param>
+    
+    <context-param>
+        <param-name>org.apache.tomcat.util.scan.StandardJarScanFilter.jarsToScan</param-name>
+        <param-value></param-value>
+    </context-param>
+    
+    <!-- JSP 컴파일 최적화 -->
+    <context-param>
+        <param-name>org.apache.jasper.compiler.disablejsr199</param-name>
+        <param-value>true</param-value>
+    </context-param>
+    
     <!-- 기본 인덱스 페이지 설정 -->
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>
