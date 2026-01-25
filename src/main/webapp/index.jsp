@@ -2930,16 +2930,145 @@
                 }
 
                 .consultation-alerts {
-                    height: 60px;
+                    height: auto;
+                    min-height: 400px;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    overflow: visible;
+                    position: relative;
+                    background: linear-gradient(135deg, #FF8C00 0%, #FFA500 100%);
+                    border-radius: 20px;
+                    margin: 20px;
+                    padding: 30px 20px;
+                    display: flex;
+                    gap: 15px;
+                }
+
+                .consultation-alerts::before {
+                    content: "실시간으로\A고객님이 신청하고 있어요";
+                    white-space: pre-line;
+                    color: white;
+                    font-size: 18px;
+                    font-weight: 700;
+                    text-align: left;
+                    line-height: 1.3;
+                    display: block;
+                    position: absolute;
+                    top: 20px;
+                    left: 20px;
+                    width: auto;
+                    margin: 0;
+                    z-index: 10;
                 }
 
                 .alert-row {
-                    height: 30px;
+                    height: auto;
+                    animation: none;
+                    position: relative;
+                    width: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: flex-start;
+                    overflow: hidden;
+                    gap: 0;
+                    margin-top: 80px;
+                    height: 240px; /* 5개 아이템 + 여유 공간 */
+                }
+
+                .alert-row:nth-child(1) {
+                    animation: verticalScroll 10s linear infinite;
+                }
+
+                .alert-row:nth-child(2) {
+                    display: none;
+                }
+
+                @keyframes verticalScroll {
+                    0% {
+                        transform: translateY(0);
+                    }
+                    10% {
+                        transform: translateY(-48px);
+                    }
+                    20% {
+                        transform: translateY(-96px);
+                    }
+                    30% {
+                        transform: translateY(-144px);
+                    }
+                    40% {
+                        transform: translateY(-192px);
+                    }
+                    50% {
+                        transform: translateY(-240px);
+                    }
+                    60% {
+                        transform: translateY(-288px);
+                    }
+                    70% {
+                        transform: translateY(-336px);
+                    }
+                    80% {
+                        transform: translateY(-384px);
+                    }
+                    90% {
+                        transform: translateY(-432px);
+                    }
+                    100% {
+                        transform: translateY(-480px);
+                    }
                 }
 
                 .alert-item {
-                    padding: 0 30px;
+                    padding: 12px 16px;
                     font-size: 13px;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    max-width: 90%;
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+                    background: white;
+                    border-radius: 25px;
+                    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+                    color: #333;
+                    margin: 0 auto 8px auto;
+                    width: 100%;
+                    max-width: 350px;
+                    height: 40px;
+                    flex-shrink: 0;
+                }
+
+                /* 각 아이템별 애니메이션 제거 */
+                .alert-item:nth-child(1),
+                .alert-item:nth-child(2),
+                .alert-item:nth-child(3),
+                .alert-item:nth-child(4),
+                .alert-item:nth-child(5) {
+                    animation: none;
+                }
+
+                .alert-item .time-badge {
+                    background: #FF8C00;
+                    color: white;
+                    padding: 3px 10px;
+                    border-radius: 15px;
+                    font-size: 11px;
+                    font-weight: 600;
+                    white-space: nowrap;
+                    flex-shrink: 0;
+                }
+
+                /* 모바일에서는 처음 10개 아이템 표시 */
+                .alert-row:nth-child(1) .alert-item:nth-child(n+11) {
+                    display: none;
+                }
+
+                .alert-row:nth-child(2) {
+                    display: none;
                 }
 
                 .floating-buttons {
@@ -4945,23 +5074,12 @@
                 <div class="alert-item"><span class="time-badge">20분 전</span>45세 박***님이 상담 신청했습니다.</div>
                 <div class="alert-item"><span class="time-badge">30분 전</span>30세 이***님이 상담 신청했습니다.</div>
                 <div class="alert-item"><span class="time-badge">1시간 전</span>35세 최***님이 상담 신청했습니다.</div>
+                <!-- 연속 스크롤을 위한 복제 아이템들 -->
                 <div class="alert-item"><span class="time-badge">2분 전</span>42세 정***님이 상담 신청했습니다.</div>
                 <div class="alert-item"><span class="time-badge">15분 전</span>38세 한***님이 상담 신청했습니다.</div>
                 <div class="alert-item"><span class="time-badge">25분 전</span>55세 조***님이 상담 신청했습니다.</div>
                 <div class="alert-item"><span class="time-badge">40분 전</span>33세 윤***님이 상담 신청했습니다.</div>
-                <div class="alert-item"><span class="time-badge">1시간 전</span>47세 강***님이 상담 신청했습니다.</div>
-            </div>
-            <div class="alert-row">
-                <div class="alert-item"><span class="time-badge">3시간 전</span>30세 최***님이 상담 신청했습니다.</div>
-                <div class="alert-item"><span class="time-badge">4시간 전</span>35세 송***님이 상담 신청했습니다.</div>
-                <div class="alert-item"><span class="time-badge">5시간 전</span>52세 김***님이 상담 신청했습니다.</div>
-                <div class="alert-item"><span class="time-badge">6시간 전</span>29세 김***님이 상담 신청했습니다.</div>
-                <div class="alert-item"><span class="time-badge">8시간 전</span>41세 이***님이 상담 신청했습니다.</div>
-                <div class="alert-item"><span class="time-badge">2시간 전</span>36세 박***님이 상담 신청했습니다.</div>
-                <div class="alert-item"><span class="time-badge">7시간 전</span>44세 장***님이 상담 신청했습니다.</div>
-                <div class="alert-item"><span class="time-badge">9시간 전</span>31세 오***님이 상담 신청했습니다.</div>
-                <div class="alert-item"><span class="time-badge">10시간 전</span>48세 임***님이 상담 신청했습니다.</div>
-                <div class="alert-item"><span class="time-badge">12시간 전</span>39세 신***님이 상담 신청했습니다.</div>
+                <div class="alert-item"><span class="time-badge">3시간 전</span>47세 강***님이 상담 신청했습니다.</div>
             </div>
         </div>
 
