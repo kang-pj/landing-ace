@@ -797,6 +797,7 @@
                 gap: 30px;
                 border-radius: 25px;
                 padding: 20px;
+                box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
             }
 
             .consultation-message {
@@ -4344,6 +4345,10 @@
                     transition: transform 0.3s ease;
                     position: absolute;
                     right: 0;
+                }
+
+                .toggle-btn .expand-icon {
+                    transform: rotate(180deg);
                 }
 
                 .toggle-btn.collapsed {
