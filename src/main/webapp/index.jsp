@@ -3033,7 +3033,6 @@
                     gap: 10px;
                     background: white;
                     border-radius: 25px;
-                    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
                     color: #333;
                     margin: 0 auto 8px auto;
                     width: 100%;
@@ -4075,6 +4074,7 @@
 
                 .location-text {
                     width: 100%;
+                    padding-left: 20px;
                 }
 
                 .location-address {
@@ -4084,12 +4084,17 @@
                 }
 
                 .location-phone {
+                    font-size: 14px;
+                    white-space: nowrap;
+                }
+
+                .location-phone {
                     font-size: 16px;
                 }
 
                 .location-phone .label {
-                    display: block;
-                    margin-bottom: 5px;
+                    display: inline;
+                    margin-bottom: 0;
                     font-size: 14px;
                 }
 
@@ -4208,6 +4213,52 @@
                 .case-details {
                     gap: 10px;
                     padding: 12px;
+                }
+
+                /* 상담 신청 알림 - 모바일에서 세로 스와이프 + 1초 딜레이 */
+                .consultation-alerts {
+                    background: #4865FF !important;
+                    height: 3uto !important;
+                    min-height: 200px !important;
+                    padding: 20px !important;
+                }
+
+                .alert-row {
+                    animation: none !important;
+                    height: auto !important;
+                    flex-direction: column !important;
+                    align-items: center !important;
+                    justify-content: center !important;
+                }
+
+                .alert-item {
+                    background: #4865FF ;
+                    border-radius: 20px !important;
+                    padding: 8px 16px !important;
+                    margin: 0 !important;
+                    white-space: nowrap !important;
+                    color: white !important;
+                }
+
+                .time-badge {
+                    background: white !important;
+                    color: #4865FF !important;
+                    padding: 4px 8px !important;
+                    border-radius: 12px !important;
+                    font-size: 12px !important;
+                    font-weight: 600 !important;
+                    white-space: nowrap !important;
+                    min-width: 60px !important;
+                    text-align: center !important;
+                }
+
+                /* 5개 아이템만 표시하고 5번째는 희미하게 */
+                .alert-item:nth-child(n+6) {
+                    display: none !important;
+                }
+
+                .alert-item:nth-child(5) {
+                    opacity: 0.4 !important;
                 }
 
                 .detail-row {
@@ -5074,12 +5125,23 @@
                 <div class="alert-item"><span class="time-badge">20분 전</span>45세 박***님이 상담 신청했습니다.</div>
                 <div class="alert-item"><span class="time-badge">30분 전</span>30세 이***님이 상담 신청했습니다.</div>
                 <div class="alert-item"><span class="time-badge">1시간 전</span>35세 최***님이 상담 신청했습니다.</div>
-                <!-- 연속 스크롤을 위한 복제 아이템들 -->
                 <div class="alert-item"><span class="time-badge">2분 전</span>42세 정***님이 상담 신청했습니다.</div>
                 <div class="alert-item"><span class="time-badge">15분 전</span>38세 한***님이 상담 신청했습니다.</div>
                 <div class="alert-item"><span class="time-badge">25분 전</span>55세 조***님이 상담 신청했습니다.</div>
                 <div class="alert-item"><span class="time-badge">40분 전</span>33세 윤***님이 상담 신청했습니다.</div>
-                <div class="alert-item"><span class="time-badge">3시간 전</span>47세 강***님이 상담 신청했습니다.</div>
+                <div class="alert-item"><span class="time-badge">1시간 전</span>47세 강***님이 상담 신청했습니다.</div>
+            </div>
+            <div class="alert-row">
+                <div class="alert-item"><span class="time-badge">3시간 전</span>30세 최***님이 상담 신청했습니다.</div>
+                <div class="alert-item"><span class="time-badge">4시간 전</span>35세 송***님이 상담 신청했습니다.</div>
+                <div class="alert-item"><span class="time-badge">5시간 전</span>52세 김***님이 상담 신청했습니다.</div>
+                <div class="alert-item"><span class="time-badge">6시간 전</span>29세 김***님이 상담 신청했습니다.</div>
+                <div class="alert-item"><span class="time-badge">8시간 전</span>41세 이***님이 상담 신청했습니다.</div>
+                <div class="alert-item"><span class="time-badge">2시간 전</span>36세 박***님이 상담 신청했습니다.</div>
+                <div class="alert-item"><span class="time-badge">7시간 전</span>44세 장***님이 상담 신청했습니다.</div>
+                <div class="alert-item"><span class="time-badge">9시간 전</span>31세 오***님이 상담 신청했습니다.</div>
+                <div class="alert-item"><span class="time-badge">10시간 전</span>48세 임***님이 상담 신청했습니다.</div>
+                <div class="alert-item"><span class="time-badge">12시간 전</span>39세 신***님이 상담 신청했습니다.</div>
             </div>
         </div>
 
@@ -6939,5 +7001,7 @@
             }
         </script>
     </body>
+
+    </html>
 
     </html>
