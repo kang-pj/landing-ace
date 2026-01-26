@@ -560,7 +560,7 @@
             /* 푸터 섹션 */
             .footer-section {
                 background: #f5f5f5;
-                padding: 40px 20px 120px;
+                padding: 40px 20px 150px;
                 border-top: 1px solid #e0e0e0;
             }
 
@@ -1363,8 +1363,9 @@
             }
 
             .cases-container {
-                max-width: 1200px;
+                max-width: 1090px;
                 margin: 0 auto;
+                padding-bottom: 80px;
             }
 
             .cases-header {
@@ -1388,6 +1389,7 @@
             .cases-wrapper {
                 padding: 15px 20px;
                 position: relative;
+                overflow: hidden;
             }
 
             .casesSwiper {
@@ -2933,6 +2935,7 @@
 
                 .cases-wrapper {
                     padding: 15px;
+                    overflow: hidden;
                 }
 
                 .consultation-alerts {
@@ -4103,6 +4106,7 @@
 
                 .cases-wrapper {
                     padding: 15px 10px;
+                    overflow: hidden;
                 }
 
                 .casesSwiper {
