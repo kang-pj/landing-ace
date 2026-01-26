@@ -4237,6 +4237,8 @@
                     height: 200px !important;
                     overflow: hidden !important;
                     display: block !important;
+                    -webkit-mask: linear-gradient(to bottom, black 0%, black 70%, transparent 100%);
+                    mask: linear-gradient(to bottom, black 0%, black 70%, transparent 100%);
                 }
 
                 .mobile-consultation-swiper .swiper-slide {
@@ -4275,34 +4277,7 @@
                     flex-shrink: 0 !important;
                 }
 
-                /* 스와이프 컨트롤 버튼 */
-                .swiper-control-btn {
-                    position: absolute !important;
-                    top: -10px !important;
-                    right: 10px !important;
-                    width: 30px !important;
-                    height: 30px !important;
-                    background: rgba(255, 255, 255, 0.9) !important;
-                    border-radius: 50% !important;
-                    display: flex !important;
-                    align-items: center !important;
-                    justify-content: center !important;
-                    cursor: pointer !important;
-                    z-index: 20 !important;
-                    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2) !important;
-                    transition: all 0.3s ease !important;
-                }
-
-                .swiper-control-btn:hover {
-                    background: white !important;
-                    transform: scale(1.1) !important;
-                }
-
-                .control-icon {
-                    font-size: 12px !important;
-                    color: #4865FF !important;
-                    font-weight: bold !important;
-                }
+                /* 스와이프 컨트롤 버튼 - 제거됨 */
 
                 .detail-row {
                     font-size: 13px;
@@ -5253,10 +5228,7 @@
                 </div>
 
                 <!-- 스와이프 컨트롤 버튼 -->
-                <div class="swiper-control-btn" id="swiperControlBtn" onclick="toggleSwiper()">
-                    <span class="control-icon pause-icon">⏸</span>
-                    <span class="control-icon play-icon" style="display: none;">▶</span>
-                </div>
+                <!-- 버튼 제거됨 -->
             </div>
         </div>
 
@@ -7066,7 +7038,7 @@
                                 delay: 1000,
                                 disableOnInteraction: false,
                                 pauseOnMouseEnter: false,
-                                reverseDirection: false,
+                                reverseDirection: true,
                             },
                             speed: 300,
                             allowTouchMove: false,
@@ -7077,28 +7049,6 @@
                         });
                         isAutoplayRunning = true;
                     }, 100);
-                }
-            }
-
-            // 스와이프 토글 함수
-            function toggleSwiper() {
-                if (!mobileConsultationSwiper) return;
-
-                const pauseIcon = document.querySelector('.pause-icon');
-                const playIcon = document.querySelector('.play-icon');
-
-                if (isAutoplayRunning) {
-                    // 자동재생 멈춤
-                    mobileConsultationSwiper.autoplay.stop();
-                    pauseIcon.style.display = 'none';
-                    playIcon.style.display = 'block';
-                    isAutoplayRunning = false;
-                } else {
-                    // 자동재생 시작
-                    mobileConsultationSwiper.autoplay.start();
-                    pauseIcon.style.display = 'block';
-                    playIcon.style.display = 'none';
-                    isAutoplayRunning = true;
                 }
             }
 
