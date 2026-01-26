@@ -1703,6 +1703,11 @@
                 text-align: center;
             }
 
+            /* PC에서는 모바일용 Swiper 숨김 */
+            .mobile-consultation-swiper {
+                display: none;
+            }
+
             @keyframes scrollLeft {
                 0% {
                     transform: translateX(0%);
@@ -4215,50 +4220,114 @@
                     padding: 12px;
                 }
 
-                /* 상담 신청 알림 - 모바일에서 세로 스와이프 + 1초 딜레이 */
+                /* 상담 신청 알림 - 모바일에서 Swiper 세로 스와이프 */
                 .consultation-alerts {
                     background: #4865FF !important;
-                    height: 3uto !important;
-                    min-height: 200px !important;
+                    height: 300px !important;
+                    min-height: 300px !important;
                     padding: 20px !important;
+                    overflow: hidden !important;
+                    position: relative !important;
                 }
 
+                .consultation-alerts::before {
+                    content: "실시간으로\A고객님이 신청하고 있어요";
+                    white-space: pre-line;
+                    color: white;
+                    font-size: 18px;
+                    font-weight: 700;
+                    text-align: center;
+                    line-height: 1.3;
+                    display: block;
+                    position: absolute;
+                    top: 20px;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    width: auto;
+                    margin: 0;
+                    z-index: 10;
+                }
+
+                /* PC용 alert-row 숨김 */
                 .alert-row {
-                    animation: none !important;
-                    height: auto !important;
-                    flex-direction: column !important;
+                    display: none !important;
+                }
+
+                /* 모바일용 Swiper 컨테이너 */
+                .mobile-consultation-swiper {
+                    position: absolute !important;
+                    top: 80px !important;
+                    left: 50% !important;
+                    transform: translateX(-50%) !important;
+                    width: 90% !important;
+                    height: 200px !important;
+                    overflow: hidden !important;
+                    display: block !important;
+                }
+
+                .mobile-consultation-swiper .swiper-slide {
+                    height: 40px !important;
+                    display: flex !important;
                     align-items: center !important;
                     justify-content: center !important;
                 }
 
-                .alert-item {
-                    background: #4865FF ;
+                .mobile-alert-item {
                     border-radius: 20px !important;
-                    padding: 8px 16px !important;
-                    margin: 0 !important;
+                    padding: 10px 16px !important;
                     white-space: nowrap !important;
                     color: white !important;
+                    width: 100% !important;
+                    max-width: 350px !important;
+                    height: 32px !important;
+                    display: flex !important;
+                    align-items: center !important;
+                    justify-content: center !important;
+                    gap: 10px !important;
+                    font-size: 14px !important;
+                    font-weight: 500 !important;
                 }
 
-                .time-badge {
+                .mobile-alert-item .time-badge {
                     background: white !important;
                     color: #4865FF !important;
-                    padding: 4px 8px !important;
-                    border-radius: 12px !important;
-                    font-size: 12px !important;
+                    padding: 4px 10px !important;
+                    border-radius: 15px !important;
+                    font-size: 11px !important;
                     font-weight: 600 !important;
                     white-space: nowrap !important;
                     min-width: 60px !important;
                     text-align: center !important;
+                    flex-shrink: 0 !important;
                 }
 
-                /* 5개 아이템만 표시하고 5번째는 희미하게 */
-                .alert-item:nth-child(n+6) {
-                    display: none !important;
+                /* 스와이프 컨트롤 버튼 */
+                .swiper-control-btn {
+                    position: absolute !important;
+                    top: -10px !important;
+                    right: 10px !important;
+                    width: 30px !important;
+                    height: 30px !important;
+                    background: rgba(255, 255, 255, 0.9) !important;
+                    border-radius: 50% !important;
+                    display: flex !important;
+                    align-items: center !important;
+                    justify-content: center !important;
+                    cursor: pointer !important;
+                    z-index: 20 !important;
+                    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2) !important;
+                    transition: all 0.3s ease !important;
                 }
 
-                .alert-item:nth-child(5) {
-                    opacity: 0.4 !important;
+                .swiper-control-btn:hover {
+                    background: white !important;
+                    transform: scale(1.1) !important;
+                }
+
+                .control-icon {
+                    font-size: 12px !important;
+                    color: #4865FF !important;
+                    font-weight: bold !important;
                 }
 
                 .detail-row {
@@ -5142,6 +5211,78 @@
                 <div class="alert-item"><span class="time-badge">9시간 전</span>31세 오***님이 상담 신청했습니다.</div>
                 <div class="alert-item"><span class="time-badge">10시간 전</span>48세 임***님이 상담 신청했습니다.</div>
                 <div class="alert-item"><span class="time-badge">12시간 전</span>39세 신***님이 상담 신청했습니다.</div>
+            </div>
+            
+            <!-- 모바일용 Swiper -->
+            <div class="swiper mobile-consultation-swiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <div class="mobile-alert-item"><span class="time-badge">5분 전</span>40세 김***님이 상담 신청했습니다.</div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="mobile-alert-item"><span class="time-badge">10분 전</span>50세 김***님이 상담 신청했습니다.</div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="mobile-alert-item"><span class="time-badge">20분 전</span>45세 박***님이 상담 신청했습니다.</div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="mobile-alert-item"><span class="time-badge">30분 전</span>30세 이***님이 상담 신청했습니다.</div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="mobile-alert-item"><span class="time-badge">1시간 전</span>35세 최***님이 상담 신청했습니다.</div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="mobile-alert-item"><span class="time-badge">2분 전</span>42세 정***님이 상담 신청했습니다.</div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="mobile-alert-item"><span class="time-badge">15분 전</span>38세 한***님이 상담 신청했습니다.</div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="mobile-alert-item"><span class="time-badge">25분 전</span>55세 조***님이 상담 신청했습니다.</div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="mobile-alert-item"><span class="time-badge">40분 전</span>33세 윤***님이 상담 신청했습니다.</div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="mobile-alert-item"><span class="time-badge">1시간 전</span>47세 강***님이 상담 신청했습니다.</div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="mobile-alert-item"><span class="time-badge">3시간 전</span>30세 최***님이 상담 신청했습니다.</div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="mobile-alert-item"><span class="time-badge">4시간 전</span>35세 송***님이 상담 신청했습니다.</div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="mobile-alert-item"><span class="time-badge">5시간 전</span>52세 김***님이 상담 신청했습니다.</div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="mobile-alert-item"><span class="time-badge">6시간 전</span>29세 김***님이 상담 신청했습니다.</div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="mobile-alert-item"><span class="time-badge">8시간 전</span>41세 이***님이 상담 신청했습니다.</div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="mobile-alert-item"><span class="time-badge">2시간 전</span>36세 박***님이 상담 신청했습니다.</div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="mobile-alert-item"><span class="time-badge">7시간 전</span>44세 장***님이 상담 신청했습니다.</div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="mobile-alert-item"><span class="time-badge">9시간 전</span>31세 오***님이 상담 신청했습니다.</div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="mobile-alert-item"><span class="time-badge">10시간 전</span>48세 임***님이 상담 신청했습니다.</div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="mobile-alert-item"><span class="time-badge">12시간 전</span>39세 신***님이 상담 신청했습니다.</div>
+                    </div>
+                </div>
+                
+                <!-- 스와이프 컨트롤 버튼 -->
+                <div class="swiper-control-btn" id="swiperControlBtn" onclick="toggleSwiper()">
+                    <span class="control-icon pause-icon">⏸</span>
+                    <span class="control-icon play-icon" style="display: none;">▶</span>
+                </div>
             </div>
         </div>
 
@@ -6924,6 +7065,80 @@
                     }
                 }
             }
+
+            // 모바일용 상담 알림 Swiper 초기화 (768px 이하에서만)
+            let mobileConsultationSwiper = null;
+            let isAutoplayRunning = true;
+
+            function initMobileConsultationSwiper() {
+                if (window.innerWidth <= 768) {
+                    // 기존 Swiper 인스턴스가 있으면 제거
+                    if (mobileConsultationSwiper) {
+                        mobileConsultationSwiper.destroy(true, true);
+                        mobileConsultationSwiper = null;
+                    }
+                    
+                    // 새 Swiper 초기화
+                    setTimeout(() => {
+                        mobileConsultationSwiper = new Swiper('.mobile-consultation-swiper', {
+                            direction: 'vertical',
+                            slidesPerView: 3,
+                            slidesPerGroup: 1,
+                            spaceBetween: 0,
+                            loop: true,
+                            loopedSlides: 20,
+                            loopAdditionalSlides: 10,
+                            autoplay: {
+                                delay: 1000,
+                                disableOnInteraction: false,
+                                pauseOnMouseEnter: false,
+                                reverseDirection: false,
+                            },
+                            speed: 300,
+                            allowTouchMove: false,
+                            freeMode: false,
+                            watchSlidesProgress: true,
+                            centeredSlides: false,
+                            normalizeSlideIndex: true,
+                        });
+                        isAutoplayRunning = true;
+                    }, 100);
+                }
+            }
+
+            // 스와이프 토글 함수
+            function toggleSwiper() {
+                if (!mobileConsultationSwiper) return;
+
+                const pauseIcon = document.querySelector('.pause-icon');
+                const playIcon = document.querySelector('.play-icon');
+
+                if (isAutoplayRunning) {
+                    // 자동재생 멈춤
+                    mobileConsultationSwiper.autoplay.stop();
+                    pauseIcon.style.display = 'none';
+                    playIcon.style.display = 'block';
+                    isAutoplayRunning = false;
+                } else {
+                    // 자동재생 시작
+                    mobileConsultationSwiper.autoplay.start();
+                    pauseIcon.style.display = 'block';
+                    playIcon.style.display = 'none';
+                    isAutoplayRunning = true;
+                }
+            }
+
+            // 페이지 로드 시 모바일 Swiper 초기화
+            document.addEventListener('DOMContentLoaded', function() {
+                initMobileConsultationSwiper();
+            });
+
+            // 윈도우 리사이즈 시 Swiper 재초기화
+            window.addEventListener('resize', function() {
+                setTimeout(() => {
+                    initMobileConsultationSwiper();
+                }, 100);
+            });
 
             // 모바일 상담 신청 제출
             function submitMobileConsultation() {
