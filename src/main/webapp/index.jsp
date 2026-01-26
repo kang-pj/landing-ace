@@ -2979,7 +2979,8 @@
                     overflow: hidden;
                     gap: 0;
                     margin-top: 80px;
-                    height: 240px; /* 5개 아이템 + 여유 공간 */
+                    height: 240px;
+                    /* 5개 아이템 + 여유 공간 */
                 }
 
                 .alert-row:nth-child(1) {
@@ -2988,42 +2989,6 @@
 
                 .alert-row:nth-child(2) {
                     display: none;
-                }
-
-                @keyframes verticalScroll {
-                    0% {
-                        transform: translateY(0);
-                    }
-                    10% {
-                        transform: translateY(-48px);
-                    }
-                    20% {
-                        transform: translateY(-96px);
-                    }
-                    30% {
-                        transform: translateY(-144px);
-                    }
-                    40% {
-                        transform: translateY(-192px);
-                    }
-                    50% {
-                        transform: translateY(-240px);
-                    }
-                    60% {
-                        transform: translateY(-288px);
-                    }
-                    70% {
-                        transform: translateY(-336px);
-                    }
-                    80% {
-                        transform: translateY(-384px);
-                    }
-                    90% {
-                        transform: translateY(-432px);
-                    }
-                    100% {
-                        transform: translateY(-480px);
-                    }
                 }
 
                 .alert-item {
@@ -3038,6 +3003,7 @@
                     gap: 10px;
                     background: white;
                     border-radius: 25px;
+                    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
                     color: #333;
                     margin: 0 auto 8px auto;
                     width: 100%;
@@ -3046,13 +3012,50 @@
                     flex-shrink: 0;
                 }
 
-                /* 각 아이템별 애니메이션 제거 */
-                .alert-item:nth-child(1),
-                .alert-item:nth-child(2),
-                .alert-item:nth-child(3),
-                .alert-item:nth-child(4),
-                .alert-item:nth-child(5) {
-                    animation: none;
+                @keyframes verticalScroll {
+                    0% {
+                        transform: translateY(0);
+                    }
+
+                    10% {
+                        transform: translateY(-20px);
+                    }
+
+                    20% {
+                        transform: translateY(-40px);
+                    }
+
+                    30% {
+                        transform: translateY(-60px);
+                    }
+
+                    40% {
+                        transform: translateY(-80px);
+                    }
+
+                    50% {
+                        transform: translateY(-100px);
+                    }
+
+                    60% {
+                        transform: translateY(-120px);
+                    }
+
+                    70% {
+                        transform: translateY(-140px);
+                    }
+
+                    80% {
+                        transform: translateY(-160px);
+                    }
+
+                    90% {
+                        transform: translateY(-180px);
+                    }
+
+                    100% {
+                        transform: translateY(-200px);
+                    }
                 }
 
                 .alert-item .time-badge {
@@ -3075,35 +3078,6 @@
                     display: none;
                 }
 
-                .floating-buttons {
-                    right: 15px;
-                }
-
-                .floating-btn-container {
-                    padding: 12px 10px;
-                    gap: 15px;
-                }
-
-                .floating-btn {
-                    width: 45px;
-                    height: 45px;
-                }
-
-                .floating-btn-icon {
-                    font-size: 18px;
-                }
-
-                .floating-btn-text {
-                    font-size: 11px;
-                }
-
-                .top-icon {
-                    font-size: 14px;
-                }
-
-                .top-text {
-                    font-size: 9px;
-                }
             }
 
             /* 모바일에서 모달 크기 조정 */
@@ -5212,7 +5186,7 @@
                 <div class="alert-item"><span class="time-badge">10시간 전</span>48세 임***님이 상담 신청했습니다.</div>
                 <div class="alert-item"><span class="time-badge">12시간 전</span>39세 신***님이 상담 신청했습니다.</div>
             </div>
-            
+
             <!-- 모바일용 Swiper -->
             <div class="swiper mobile-consultation-swiper">
                 <div class="swiper-wrapper">
@@ -5277,7 +5251,7 @@
                         <div class="mobile-alert-item"><span class="time-badge">12시간 전</span>39세 신***님이 상담 신청했습니다.</div>
                     </div>
                 </div>
-                
+
                 <!-- 스와이프 컨트롤 버튼 -->
                 <div class="swiper-control-btn" id="swiperControlBtn" onclick="toggleSwiper()">
                     <span class="control-icon pause-icon">⏸</span>
@@ -7077,12 +7051,12 @@
                         mobileConsultationSwiper.destroy(true, true);
                         mobileConsultationSwiper = null;
                     }
-                    
+
                     // 새 Swiper 초기화
                     setTimeout(() => {
                         mobileConsultationSwiper = new Swiper('.mobile-consultation-swiper', {
                             direction: 'vertical',
-                            slidesPerView: 3,
+                            slidesPerView: 5,
                             slidesPerGroup: 1,
                             spaceBetween: 0,
                             loop: true,
@@ -7129,12 +7103,12 @@
             }
 
             // 페이지 로드 시 모바일 Swiper 초기화
-            document.addEventListener('DOMContentLoaded', function() {
+            document.addEventListener('DOMContentLoaded', function () {
                 initMobileConsultationSwiper();
             });
 
             // 윈도우 리사이즈 시 Swiper 재초기화
-            window.addEventListener('resize', function() {
+            window.addEventListener('resize', function () {
                 setTimeout(() => {
                     initMobileConsultationSwiper();
                 }, 100);
