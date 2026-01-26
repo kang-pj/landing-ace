@@ -696,7 +696,9 @@
                 padding: 12px 15px;
                 border: 1px solid #ddd;
                 border-radius: 6px;
+                font-family: Pretendard;
                 font-size: 14px;
+                font-weight: 500;
                 background: white;
             }
 
@@ -850,10 +852,11 @@
 
             .input-group label {
                 display: block;
-                font-size: 12px;
+                font-size: 15px;
                 color: #666;
                 margin-bottom: 0;
-                font-weight: 500;
+                font-weight: 800;
+                width: 60px;
             }
 
             .inline-input {
@@ -861,7 +864,9 @@
                 padding: 15px 18px;
                 border: 1px solid #e5e5e5;
                 border-radius: 12px;
-                font-size: 15px;
+                font-family: Pretendard;
+                font-size: 14px;
+                font-weight: 500;
                 background: white;
                 color: #333;
                 transition: border-color 0.3s;
@@ -901,7 +906,7 @@
                 color: #333;
                 margin-bottom: 0;
                 white-space: nowrap;
-                min-width: 70px;
+                min-width: 50px;
                 flex-shrink: 0;
                 text-align: left;
             }
@@ -4455,8 +4460,11 @@
                     width: 100%;
                     min-width: 80px;
                     padding: 8px 10px;
-                    font-size: 12px;
-                    border-radius: 12px;
+                    font-size: 15px;
+                    border-radius: 7px;
+                    height: 45px;
+                    border: none;
+                    font-weight: 800;
                 }
 
                 .inline-input::placeholder {
@@ -5694,12 +5702,18 @@
                     <!-- 기본 입력 필드들 -->
                     <div class="form-row-mobile">
                         <div class="input-group">
-                            <input type="text" placeholder="이름 *" class="inline-input name-input" id="mobileNameInput"
-                                required onclick="openToastPopup()">
+                            <div class="input-with-label">
+                                <label class="input-label">이름 <span class="required">*</span></label>
+                                <input type="text" class="inline-input name-input" id="mobileNameInput" required
+                                    onclick="openToastPopup()">
+                            </div>
                         </div>
                         <div class="input-group">
-                            <input type="tel" placeholder="연락처 *" class="inline-input phone-input" id="mobilePhoneInput"
-                                required oninput="formatPhoneNumber(this)" onclick="openToastPopup()">
+                            <div class="input-with-label">
+                                <label class="input-label">연락처 <span class="required">*</span></label>
+                                <input type="tel" class="inline-input phone-input" id="mobilePhoneInput" required
+                                    oninput="formatPhoneNumber(this)" onclick="openToastPopup()">
+                            </div>
                         </div>
                     </div>
 
@@ -5707,7 +5721,7 @@
                     <div class="expanded-form" id="expandedForm">
                         <div class="form-row-mobile">
                             <div class="input-group">
-                                <select class="inline-input" id="mobileDebtAmount">
+                                <select class="inline-input" id="mobileDebtAmount" style="border: 1px solid #ddd;">
                                     <option value="">채무금액 선택</option>
                                     <option value="1000만원 미만">1000만원 미만</option>
                                     <option value="1000만원~3000만원">1000만원~3000만원</option>
@@ -5717,7 +5731,7 @@
                                 </select>
                             </div>
                             <div class="input-group">
-                                <select class="inline-input" id="mobileIncome">
+                                <select class="inline-input" id="mobileIncome" style="border: 1px solid #ddd;">
                                     <option value="">월소득 선택</option>
                                     <option value="100만원 미만">100만원 미만</option>
                                     <option value="100만원~200만원">100만원~200만원</option>
