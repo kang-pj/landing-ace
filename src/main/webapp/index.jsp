@@ -814,6 +814,7 @@
                 color: white;
                 font-family: Pretendard;
                 font-weight: bold;
+                font-size: 23px;
             }
 
             .consultation-form-inline {
@@ -843,7 +844,6 @@
                 gap: 15px;
                 background: white;
                 border: none;
-                padding: 10px 0;
                 margin-bottom: 10px;
                 width: 100%;
             }
@@ -4296,16 +4296,19 @@
                 .bottom-consultation-bar {
                     display: flex;
                     /* 모바일에서만 표시 */
-                    padding: 0;
+                    padding: 15px;
                 }
 
                 .consultation-bar-container {
                     max-width: 100%;
-                    border-radius: 0;
-                    padding: 12px 8px;
+                    border-radius: 20px;
+                    padding: 20px 15px;
                     flex-direction: column;
                     gap: 12px;
                     background: white;
+                    box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.15);
+                    margin: 0 auto;
+                    width: calc(100% - 30px);
                 }
 
                 .consultation-message {
@@ -4361,7 +4364,7 @@
 
                 .consultation-form-inline {
                     flex-direction: column;
-                    gap: 15px;
+                    gap: 0px;
                     width: 100%;
                     align-items: center;
                     padding: 0 5px;
@@ -4480,7 +4483,8 @@
                     font-size: 12px;
                     flex-shrink: 0;
                     min-width: 70px;
-                    border-radius: 12px;
+                    border-radius: 7px;
+                    height: 45px;
                 }
 
                 .consultation-btn img {
