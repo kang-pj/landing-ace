@@ -4436,13 +4436,12 @@ tr
                     color: white;
                     border: none;
                     padding: 12px 20px;
-                    border-radius: 12px;
+                    border-radius: 7px;
                     font-size: 14px;
                     font-weight: bold;
                     cursor: pointer;
                     transition: background 0.3s;
                     width: 100%;
-                    max-width: 250px;
                     margin: 0 auto;
                 }
 
