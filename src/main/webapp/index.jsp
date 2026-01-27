@@ -6105,11 +6105,23 @@ tr
                 document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
                 element.classList.add('active');
 
+                // 모바일과 PC 구분
+                const isMobile = window.innerWidth <= 1000;
+                
                 // 해당 그룹으로 이동
                 let slideIndex = 0;
-                if (type === 'all') slideIndex = 0;
-                else if (type === 'personal') slideIndex = 2;
-                else if (type === 'bankruptcy') slideIndex = 1;
+                
+                if (isMobile) {
+                    // 모바일: 인덱스 2, 1로 매핑
+                    if (type === 'all') slideIndex = 0;
+                    else if (type === 'personal') slideIndex = 2;
+                    else if (type === 'bankruptcy') slideIndex = 1;
+                } else {
+                    // PC: 정상 인덱스 0, 1, 2로 매핑
+                    if (type === 'all') slideIndex = 0;
+                    else if (type === 'personal') slideIndex = 1;
+                    else if (type === 'bankruptcy') slideIndex = 2;
+                }
 
                 if (casesSwiper) {
                     casesSwiper.slideTo(slideIndex);
