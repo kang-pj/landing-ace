@@ -2692,7 +2692,8 @@
                 flex-direction: column;
                 cursor: pointer;
                 padding: 5px;
-                z-index: 1001;
+                z-index: 1003;
+                position: relative;
             }
 
             .hamburger-line {
@@ -2725,7 +2726,7 @@
                 width: 100%;
                 height: 100vh;
                 background: rgba(0, 0, 0, 0.8);
-                z-index: 1000;
+                z-index: 1003;
                 opacity: 0;
                 visibility: hidden;
                 transition: all 0.3s ease;
@@ -2734,6 +2735,12 @@
             .mobile-nav.active {
                 opacity: 1;
                 visibility: visible;
+            }
+
+            /* 모바일 네비게이션이 열렸을 때 아일랜드 숨기기 */
+            .mobile-nav.active ~ .floating-btn-container,
+            body:has(.mobile-nav.active) .floating-btn-container {
+                display: none !important;
             }
 
             .mobile-nav-content {
@@ -6814,6 +6821,7 @@ tr
             function toggleMobileNav() {
                 const mobileNav = document.getElementById('mobileNav');
                 const hamburgerMenu = document.querySelector('.hamburger-menu');
+                const floatingBtnContainer = document.getElementById('floatingBtnContainer');
 
                 if (mobileNav.classList.contains('active')) {
                     closeMobileNav();
@@ -6821,6 +6829,11 @@ tr
                     mobileNav.classList.add('active');
                     hamburgerMenu.classList.add('active');
                     document.body.style.overflow = 'hidden'; // 스크롤 방지
+                    
+                    // 아일랜드(상단 고정 버튼) 숨기기
+                    if (floatingBtnContainer) {
+                        floatingBtnContainer.style.display = 'none';
+                    }
                 }
             }
 
@@ -6832,10 +6845,26 @@ tr
 
                 const mobileNav = document.getElementById('mobileNav');
                 const hamburgerMenu = document.querySelector('.hamburger-menu');
+                const floatingBtnContainer = document.getElementById('floatingBtnContainer');
 
                 mobileNav.classList.remove('active');
                 hamburgerMenu.classList.remove('active');
                 document.body.style.overflow = ''; // 스크롤 복원
+                
+                // 아일랜드(상단 고정 버튼) 다시 보이기 (조건부)
+                if (floatingBtnContainer && window.innerWidth <= 768) {
+                    // 스크롤 위치에 따라 표시 여부 결정
+                    const scrollY = window.scrollY;
+                    const mainBackground = document.querySelector('.main-background');
+                    if (mainBackground) {
+                        const rect = mainBackground.getBoundingClientRect();
+                        const consultationSectionBottom = rect.bottom + window.scrollY;
+                        
+                        if (scrollY > consultationSectionBottom - 100) {
+                            floatingBtnContainer.style.display = 'block';
+                        }
+                    }
+                }
             }
 
             function scrollToSection(sectionId) {
