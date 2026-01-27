@@ -3124,7 +3124,7 @@
 
             .modal-content {
                 background: white;
-                border-radius: 20px;
+                border-radius: 20px 10px;
                 padding: 40px;
                 width: 500px;
                 height: 530px;
@@ -3250,7 +3250,7 @@
                 font-weight: bold;
                 cursor: pointer;
                 transition: all 0.3s ease;
-                width: 100%;
+                width: calc(100% - 40px);
                 box-shadow: 0 4px 15px rgba(68, 114, 196, 0.3);
             }
 
@@ -4647,12 +4647,12 @@ tr
             <div class="mobile-nav-content" onclick="event.stopPropagation()">
 
                 <nav class="mobile-nav-menu">
-                    <a href="#intro" onclick="scrollToSection('intro')">AI 자가진단</a>
-                    <a href="#service" onclick="scrollToSection('service')">성공사례</a>
-                    <a href="#about" onclick="scrollToSection('about')">대표변호사</a>
-                    <a href="#calculator" onclick="scrollToSection('calculator')">자주묻는질문</a>
-                    <a href="#special" onclick="scrollToSection('special')">특별한 서비스</a>
-                    <a href="#contact" onclick="scrollToSection('contact')">오시는길</a>
+                    <a href="#intro" onclick="event.preventDefault(); scrollToSection('intro')">AI 자가진단</a>
+                    <a href="#service" onclick="event.preventDefault(); scrollToSection('service')">성공사례</a>
+                    <a href="#about" onclick="event.preventDefault(); scrollToSection('about')">대표변호사</a>
+                    <a href="#calculator" onclick="event.preventDefault(); scrollToSection('calculator')">자주묻는질문</a>
+                    <a href="#special" onclick="event.preventDefault(); scrollToSection('special')">특별한 서비스</a>
+                    <a href="#contact" onclick="event.preventDefault(); scrollToSection('contact')">오시는길</a>
                 </nav>
 
                 <div class="mobile-contact">
@@ -6798,11 +6798,32 @@ tr
                     if (targetSection) {
                         const headerHeight = document.querySelector('.header').offsetHeight;
                         const targetPosition = targetSection.offsetTop - headerHeight - 20;
+                        const startPosition = window.pageYOffset;
+                        const distance = targetPosition - startPosition;
+                        const duration = 800; // 800ms 동안 스크롤
+                        let start = null;
 
-                        window.scrollTo({
-                            top: targetPosition,
-                            behavior: 'smooth'
-                        });
+                        // easeInOutCubic 애니메이션 함수
+                        function easeInOutCubic(t) {
+                            return t < 0.5
+                                ? 4 * t * t * t
+                                : 1 - Math.pow(-2 * t + 2, 3) / 2;
+                        }
+
+                        function animation(currentTime) {
+                            if (start === null) start = currentTime;
+                            const timeElapsed = currentTime - start;
+                            const progress = Math.min(timeElapsed / duration, 1);
+                            const ease = easeInOutCubic(progress);
+                            
+                            window.scrollTo(0, startPosition + distance * ease);
+                            
+                            if (timeElapsed < duration) {
+                                requestAnimationFrame(animation);
+                            }
+                        }
+
+                        requestAnimationFrame(animation);
                     }
                 }, 300);
             }
