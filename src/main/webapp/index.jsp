@@ -874,8 +874,8 @@
 
             .inline-input:focus {
                 outline: none;
-                border-color: #4865FF;
                 background: white;
+                border: none;
             }
 
             .inline-input::placeholder {
@@ -3608,11 +3608,6 @@
                 border: 1px solid #ddd;
                 border-radius: 8px;
                 background: white;
-                transition: border-color 0.3s;
-            }
-
-            .input-with-label:focus-within {
-                border-bottom-color: #4865FF;
             }
 
             .input-label {
