@@ -6792,7 +6792,7 @@ tr
                 // 먼저 모바일 네비게이션 닫기
                 closeMobileNav();
 
-                // 약간의 지연 후 스크롤 (네비게이션 닫기 애니메이션 완료 후)
+                // 네비게이션 닫기 애니메이션 완료 후 스크롤 (더 긴 지연)
                 setTimeout(() => {
                     const targetSection = document.getElementById(sectionId);
                     if (targetSection) {
@@ -6800,7 +6800,7 @@ tr
                         const targetPosition = targetSection.offsetTop - headerHeight - 20;
                         const startPosition = window.pageYOffset;
                         const distance = targetPosition - startPosition;
-                        const duration = 800; // 800ms 동안 스크롤
+                        const duration = 600; // 600ms 동안 스크롤
                         let start = null;
 
                         // easeInOutCubic 애니메이션 함수
@@ -6825,7 +6825,7 @@ tr
 
                         requestAnimationFrame(animation);
                     }
-                }, 300);
+                }, 500);
             }
 
             function openKakaoTalk() {
