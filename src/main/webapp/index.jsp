@@ -3940,7 +3940,7 @@
                 .lawyer-content {
                     flex-direction: column;
                     gap: 30px;
-                    padding: 0 120px;
+                    padding: 0 60px;
                 }
 
                 .lawyer-image-area {
@@ -4525,7 +4525,7 @@ tr
 
                 /* body 패딩 조정 - 모바일에서 하단 상담바용 패딩 복원 */
                 body {
-                    padding-bottom: 180px;
+                    padding-bottom: 150px;
                 }
             }
 
@@ -6442,7 +6442,7 @@ tr
 
                 // 누적 탕감액 휠 피커 애니메이션
                 function startAmountAnimation() {
-                    const targetNumber = "750000000000"; // 750,000,000,000 (12자리)
+                    const targetNumber = "745280126000"; // 745,280,126,000 (12자리)
                     const digitContainers = document.querySelectorAll('.digit-container');
                     const isMobile = window.innerWidth <= 768;
                     const digitHeight = isMobile ? 35 : 45;
