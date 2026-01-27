@@ -2123,14 +2123,13 @@
             .certificate-image {
                 width: 100%;
                 height: 100%;
-                background: #f8f9fa;
+                background: transparent;
                 border-radius: 15px;
                 display: flex;
                 align-items: center;
                 justify-content: center;
                 overflow: hidden;
                 padding: 15px;
-                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
             }
 
             .certificate-image img {
