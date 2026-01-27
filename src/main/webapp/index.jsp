@@ -853,7 +853,7 @@
             .input-group label {
                 display: block;
                 font-size: 15px;
-                color: #666;
+                color: #000000;
                 margin-bottom: 0;
                 font-weight: 800;
                 width: 60px;
@@ -924,6 +924,7 @@
                 font-size: 12px;
                 cursor: pointer;
                 white-space: nowrap;
+                padding-left: 3%;
             }
 
             .privacy-checkbox {
@@ -4423,10 +4424,10 @@
                     opacity: 1;
                     margin-top: 15px;
                 }
-
+tr
                 .privacy-check-mobile {
                     display: flex;
-                    justify-content: center;
+                    justify-content: left;
                     width: 100%;
                 }
 
@@ -4474,7 +4475,7 @@
                 }
 
                 .privacy-check {
-                    font-size: 10px;
+                    font-size: 13px;
                     gap: 3px;
                     color: #333;
                 }
