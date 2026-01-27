@@ -5768,14 +5768,14 @@ tr
                             <div class="input-with-label">
                                 <label class="input-label">이름 <span class="required">*</span></label>
                                 <input type="text" class="inline-input name-input" id="mobileNameInput" required
-                                    onclick="openToastPopup()" oninput="validateMobileForm()">
+                                    oninput="validateMobileForm()" placeholder="이름을 입력하세요">
                             </div>
                         </div>
                         <div class="input-group">
                             <div class="input-with-label">
                                 <label class="input-label">연락처 <span class="required">*</span></label>
                                 <input type="tel" class="inline-input phone-input" id="mobilePhoneInput" required
-                                    oninput="formatPhoneNumber(this); validateMobileForm();" onclick="openToastPopup()">
+                                    oninput="formatPhoneNumber(this); validateMobileForm();" placeholder="연락처를 입력하세요">
                             </div>
                         </div>
                     </div>
@@ -7080,36 +7080,71 @@ tr
                     return;
                 }
 
-                // 폼 데이터 수집
-                const consultationData = {
-                    name: name,
-                    phone: phone,
-                    debtAmount: formData.get('debtAmount') || null,
-                    income: formData.get('income') || null,
-                    device: formData.get('device'),
-                    type: '무료상담신청(상)',
-                    timestamp: new Date().toISOString()
-                };
+                // 제출 버튼 비활성화
+                const submitBtn = form.querySelector('.consultation-submit-popup-btn');
+                const originalText = submitBtn.textContent;
+                submitBtn.disabled = true;
+                submitBtn.textContent = '처리중...';
 
-                console.log('상담 신청 데이터:', consultationData);
+                // 폼 데이터 재구성 (서버 API에 맞게) - URLSearchParams 사용
+                const apiFormData = new URLSearchParams();
+                apiFormData.append('name', name);
+                apiFormData.append('phone', phone);
+                apiFormData.append('debtAmount', formData.get('debtAmount') || '');
+                apiFormData.append('income', formData.get('income') || '');
+                apiFormData.append('device', formData.get('device'));
+                apiFormData.append('type', '무료상담신청(팝업)');
+                
+                // UTM 파라미터 추가 (URL에서 추출)
+                const urlParams = new URLSearchParams(window.location.search);
+                apiFormData.append('utm_source', urlParams.get('utm_source') || '');
+                apiFormData.append('utm_medium', urlParams.get('utm_medium') || '');
+                apiFormData.append('utm_campaign', urlParams.get('utm_campaign') || '');
+                apiFormData.append('utm_term', urlParams.get('utm_term') || '');
+                apiFormData.append('utm_content', urlParams.get('utm_content') || '');
 
-                // TODO: 실제 DB 저장 로직 구현
-                // 현재는 콘솔 로그와 성공 팝업만 표시
+                // 서버에 데이터 전송
+                fetch('/consultation', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: apiFormData
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        console.log('상담 신청 성공:', data);
+                        
+                        // 상담 신청 팝업 닫기
+                        closeConsultationPopup();
 
-                // 상담 신청 팝업 닫기
-                closeConsultationPopup();
-
-                // 성공 팝업 표시
-                setTimeout(() => {
-                    const successPopup = document.getElementById('consultationSuccessPopup');
-                    if (successPopup) {
-                        successPopup.style.display = 'flex';
+                        // 성공 팝업 표시
                         setTimeout(() => {
-                            successPopup.classList.add('show');
-                        }, 10);
-                        document.body.style.overflow = 'hidden';
+                            const successPopup = document.getElementById('consultationSuccessPopup');
+                            if (successPopup) {
+                                successPopup.style.display = 'flex';
+                                setTimeout(() => {
+                                    successPopup.classList.add('show');
+                                }, 10);
+                                document.body.style.overflow = 'hidden';
+                            }
+                        }, 400);
+                        
+                    } else {
+                        console.error('상담 신청 실패:', data.message);
+                        alert(data.message || '상담 신청 중 오류가 발생했습니다.');
                     }
-                }, 400);
+                })
+                .catch(error => {
+                    console.error('네트워크 오류:', error);
+                    alert('네트워크 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.');
+                })
+                .finally(() => {
+                    // 제출 버튼 복원
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = originalText;
+                });
             }
 
             // 팝업 외부 클릭 시 닫기
@@ -7372,24 +7407,64 @@ tr
 
             // 모바일 상담 신청 제출
             function submitMobileConsultation() {
-                const name = document.getElementById('mobileNameInput').value.trim();
-                const phone = document.getElementById('mobilePhoneInput').value.trim();
-                const debtAmount = document.getElementById('mobileDebtAmount').value;
-                const income = document.getElementById('mobileIncome').value;
-                const privacyAgree = document.getElementById('mobilePrivacyAgree').checked;
+                console.log('=== 모바일 상담 신청 시작 ===');
+                
+                // 요소 존재 확인
+                const nameElement = document.getElementById('mobileNameInput');
+                const phoneElement = document.getElementById('mobilePhoneInput');
+                const debtAmountElement = document.getElementById('mobileDebtAmount');
+                const incomeElement = document.getElementById('mobileIncome');
+                const privacyElement = document.getElementById('mobilePrivacyAgree');
+                
+                console.log('요소 존재 확인:');
+                console.log('nameElement:', nameElement);
+                console.log('phoneElement:', phoneElement);
+                console.log('debtAmountElement:', debtAmountElement);
+                console.log('incomeElement:', incomeElement);
+                console.log('privacyElement:', privacyElement);
+                
+                if (!nameElement) {
+                    console.error('mobileNameInput 요소를 찾을 수 없습니다!');
+                    alert('폼 요소를 찾을 수 없습니다. 페이지를 새로고침해 주세요.');
+                    return;
+                }
+                
+                if (!phoneElement) {
+                    console.error('mobilePhoneInput 요소를 찾을 수 없습니다!');
+                    alert('폼 요소를 찾을 수 없습니다. 페이지를 새로고침해 주세요.');
+                    return;
+                }
+                
+                const name = nameElement.value.trim();
+                const phone = phoneElement.value.trim();
+                const debtAmount = debtAmountElement ? debtAmountElement.value : '';
+                const income = incomeElement ? incomeElement.value : '';
+                const privacyAgree = privacyElement ? privacyElement.checked : false;
+
+                console.log('입력값 확인:');
+                console.log('name:', "'" + name + "'");
+                console.log('phone:', "'" + phone + "'");
+                console.log('debtAmount:', "'" + debtAmount + "'");
+                console.log('income:', "'" + income + "'");
+                console.log('privacyAgree:', privacyAgree);
 
                 // 필수 항목 검증
                 if (!name) {
+                    console.log('이름 검증 실패 - 값:', "'" + name + "'");
                     alert('이름을 입력해 주세요');
+                    nameElement.focus();
                     return;
                 }
 
                 if (!phone) {
+                    console.log('연락처 검증 실패 - 값:', "'" + phone + "'");
                     alert('연락처를 입력해 주세요');
+                    phoneElement.focus();
                     return;
                 }
 
                 if (!privacyAgree) {
+                    console.log('개인정보 동의 검증 실패');
                     alert('개인정보 수집 및 이용에 동의해 주세요');
                     return;
                 }
@@ -7397,52 +7472,118 @@ tr
                 // 연락처 형식 검증 (숫자만, 10-11자리)
                 const phoneRegex = /^[0-9]{10,11}$/;
                 if (!phoneRegex.test(phone)) {
+                    console.log('연락처 형식 검증 실패:', phone);
                     alert('올바른 연락처를 입력해 주세요 (10-11자리 숫자)');
+                    phoneElement.focus();
                     return;
                 }
+
+                console.log('모든 검증 통과!');
 
                 // 디바이스 정보 설정
                 const isMobile = window.innerWidth <= 768;
 
-                // 폼 데이터 수집
-                const consultationData = {
-                    name: name,
-                    phone: phone,
-                    debtAmount: debtAmount || null,
-                    income: income || null,
-                    device: isMobile ? 'Mobile' : 'PC',
-                    type: '무료상담신청(상)',
-                    timestamp: new Date().toISOString()
-                };
+                // URLSearchParams로 폼 데이터 수집 (FormData 대신)
+                const formData = new URLSearchParams();
+                formData.append('name', name);
+                formData.append('phone', phone);
+                formData.append('debtAmount', debtAmount || '');
+                formData.append('income', income || '');
+                formData.append('device', isMobile ? 'Mobile' : 'PC');
+                formData.append('type', '무료상담신청(모바일)');
+                
+                // UTM 파라미터 추가 (URL에서 추출)
+                const urlParams = new URLSearchParams(window.location.search);
+                formData.append('utm_source', urlParams.get('utm_source') || '');
+                formData.append('utm_medium', urlParams.get('utm_medium') || '');
+                formData.append('utm_campaign', urlParams.get('utm_campaign') || '');
+                formData.append('utm_term', urlParams.get('utm_term') || '');
+                formData.append('utm_content', urlParams.get('utm_content') || '');
 
-                console.log('상담 신청 데이터:', consultationData);
-
-                // TODO: 실제 DB 저장 로직 구현
-
-                // 성공 팝업 표시
-                const successPopup = document.getElementById('consultationSuccessPopup');
-                if (successPopup) {
-                    successPopup.style.display = 'flex';
-                    setTimeout(() => {
-                        successPopup.classList.add('show');
-                    }, 10);
-                    document.body.style.overflow = 'hidden';
+                // FormData 내용 확인
+                console.log('전송할 데이터:');
+                for (let [key, value] of formData.entries()) {
+                    console.log(key + ':', "'" + value + "'");
                 }
 
-                // 폼 초기화
-                document.getElementById('mobileNameInput').value = '';
-                document.getElementById('mobilePhoneInput').value = '';
-                document.getElementById('mobileDebtAmount').value = '';
-                document.getElementById('mobileIncome').value = '';
-                document.getElementById('mobilePrivacyAgree').checked = false;
-
-                // 폼 닫기
-                const expandedForm = document.getElementById('expandedForm');
-                const toggleBtn = document.getElementById('toggleBtn');
-                if (expandedForm && toggleBtn) {
-                    expandedForm.classList.remove('show');
-                    toggleBtn.classList.remove('collapsed');
+                // 제출 버튼 비활성화
+                const submitBtn = document.getElementById('mobileSubmitBtn');
+                if (submitBtn) {
+                    const originalText = submitBtn.textContent;
+                    submitBtn.disabled = true;
+                    submitBtn.textContent = '처리중...';
+                    
+                    // 복원 함수
+                    window.restoreSubmitBtn = function() {
+                        submitBtn.disabled = false;
+                        submitBtn.textContent = originalText;
+                    };
+                } else {
+                    console.error('mobileSubmitBtn 요소를 찾을 수 없습니다!');
                 }
+
+                console.log('서버로 데이터 전송 시작...');
+
+                // 서버에 데이터 전송 (URLSearchParams 사용)
+                fetch('/consultation', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: formData
+                })
+                .then(response => {
+                    console.log('서버 응답 상태:', response.status);
+                    if (!response.ok) {
+                        throw new Error('HTTP ' + response.status);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log('서버 응답 데이터:', data);
+                    
+                    if (data.success) {
+                        console.log('상담 신청 성공:', data);
+                        
+                        // 성공 팝업 표시
+                        const successPopup = document.getElementById('consultationSuccessPopup');
+                        if (successPopup) {
+                            successPopup.style.display = 'flex';
+                            setTimeout(() => {
+                                successPopup.classList.add('show');
+                            }, 10);
+                            document.body.style.overflow = 'hidden';
+                        }
+
+                        // 폼 초기화
+                        nameElement.value = '';
+                        phoneElement.value = '';
+                        if (debtAmountElement) debtAmountElement.value = '';
+                        if (incomeElement) incomeElement.value = '';
+                        if (privacyElement) privacyElement.checked = false;
+
+                        // 폼 닫기
+                        const expandedForm = document.getElementById('expandedForm');
+                        const toggleBtn = document.getElementById('toggleBtn');
+                        if (expandedForm && toggleBtn) {
+                            expandedForm.classList.remove('show');
+                            toggleBtn.classList.remove('collapsed');
+                        }
+                        
+                    } else {
+                        console.error('상담 신청 실패:', data.message);
+                        alert(data.message || '상담 신청 중 오류가 발생했습니다.');
+                    }
+                })
+                .catch(error => {
+                    console.error('네트워크 오류:', error);
+                    alert('네트워크 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.');
+                })
+                .finally(() => {
+                    // 제출 버튼 복원
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = originalText;
+                });
             }
         </script>
 

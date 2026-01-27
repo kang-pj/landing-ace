@@ -1,7 +1,10 @@
 com\ace\util\DatabaseUtil.class
 com\example\servlet\HelloServlet.class
+com\ace\dao\InquiryDAO.class
 com\ace\servlet\DatabaseTestServlet.class
 com\example\util\DatabaseUtil.class
 com\ace\model\ConsultationRequest.class
+com\ace\servlet\ConsultationServlet.class
 com\ace\dao\ConsultationDAO.class
+com\ace\model\Inquiry.class
 com\example\filter\EncodingFilter.class
