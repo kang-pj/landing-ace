@@ -852,11 +852,11 @@
 
             .input-group label {
                 display: block;
-                font-size: 15px;
+                font-size: 13px;
                 color: #000000;
                 margin-bottom: 0;
                 font-weight: 800;
-                width: 60px;
+                width: 50px;
             }
 
             .inline-input {
@@ -896,7 +896,7 @@
                 display: flex;
                 flex-direction: row;
                 align-items: center;
-                gap: 10px;
+                gap: 3px;
                 width: 100%;
             }
 
@@ -3619,7 +3619,7 @@
                 font-size: 15px;
                 font-weight: 500;
                 color: #000;
-                padding: 12px 15px;
+                padding: 12px 10px;
                 width: 100px;
                 flex-shrink: 0;
                 background: transparent;
@@ -4300,20 +4300,19 @@
                 /* 하단 상담 바 - 모바일에서 복원 */
                 .bottom-consultation-bar {
                     display: flex;
-                    /* 모바일에서만 표시 */
-                    padding: 15px;
+                    padding: 0;
                 }
 
                 .consultation-bar-container {
                     max-width: 100%;
-                    border-radius: 20px;
+                    border-radius: 10px 10px 0 0;
                     padding: 20px 15px;
                     flex-direction: column;
                     gap: 12px;
                     background: white;
                     box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.15);
-                    margin: 0 auto;
-                    width: calc(100% - 30px);
+                    margin: 0;
+                    width: 100%;
                 }
 
                 .consultation-message {
@@ -4379,7 +4378,6 @@
                     display: flex;
                     gap: 10px;
                     width: 95%;
-                    max-width: 450px;
                     margin: 0 auto;
                     justify-content: center;
                 }
@@ -4458,8 +4456,8 @@ tr
                 .inline-input {
                     width: 100%;
                     min-width: 80px;
-                    padding: 8px 10px;
-                    font-size: 15px;
+                    padding: 8px 5px;
+                    font-size: 13px;
                     border-radius: 7px;
                     height: 45px;
                     border: none;
@@ -7037,6 +7035,43 @@ tr
                     }
                 }
             }
+
+            // 하단 상담바 폼 열기 함수
+            function openConsultationForm() {
+                const expandedForm = document.getElementById('expandedForm');
+                const toggleBtn = document.getElementById('toggleBtn');
+                const expandIcon = toggleBtn ? toggleBtn.querySelector('.expand-icon') : null;
+                const closeIcon = toggleBtn ? toggleBtn.querySelector('.close-icon') : null;
+
+                if (expandedForm && !expandedForm.classList.contains('show')) {
+                    expandedForm.classList.add('show');
+                    if (toggleBtn) {
+                        toggleBtn.classList.add('collapsed');
+                    }
+                    if (expandIcon && closeIcon) {
+                        expandIcon.style.display = 'none';
+                        closeIcon.style.display = 'block';
+                    }
+                }
+            }
+
+            // 이름/연락처 입력창 포커스 이벤트 리스너 추가
+            document.addEventListener('DOMContentLoaded', function() {
+                const nameInput = document.getElementById('mobileNameInput');
+                const phoneInput = document.getElementById('mobilePhoneInput');
+
+                if (nameInput) {
+                    nameInput.addEventListener('focus', function() {
+                        openConsultationForm();
+                    });
+                }
+
+                if (phoneInput) {
+                    phoneInput.addEventListener('focus', function() {
+                        openConsultationForm();
+                    });
+                }
+            });
 
             // 모바일용 상담 알림 Swiper 초기화 (768px 이하에서만)
             let mobileConsultationSwiper = null;
