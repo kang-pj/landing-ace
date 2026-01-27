@@ -6108,8 +6108,8 @@ tr
                 // 해당 그룹으로 이동
                 let slideIndex = 0;
                 if (type === 'all') slideIndex = 0;
-                else if (type === 'personal') slideIndex = 1;
-                else if (type === 'bankruptcy') slideIndex = 2;
+                else if (type === 'personal') slideIndex = 2;
+                else if (type === 'bankruptcy') slideIndex = 1;
 
                 if (casesSwiper) {
                     casesSwiper.slideTo(slideIndex);
