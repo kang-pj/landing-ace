@@ -657,9 +657,16 @@
                 background: #4a4a4a;
                 border-radius: 15px;
                 padding: 20px 30px;
-                display: flex;
+                display: none;
                 align-items: center;
                 gap: 30px;
+                opacity: 0;
+                transition: opacity 0.3s ease;
+            }
+
+            .pc-consultation-container.show {
+                display: flex;
+                opacity: 1;
             }
 
             .pc-consultation-message {
@@ -6880,6 +6887,21 @@ tr
                 // 스크롤에 따른 상단 고정 요소들 제어
                 window.addEventListener('scroll', function () {
                     const scrollY = window.scrollY;
+                    const consultationForm = document.querySelector('.consultation-form');
+                    const pcConsultationContainer = document.querySelector('.pc-consultation-container');
+                    
+                    // consultation-form의 위치 확인
+                    if (consultationForm && pcConsultationContainer) {
+                        const formRect = consultationForm.getBoundingClientRect();
+                        const isFormVisible = formRect.top < window.innerHeight && formRect.bottom > 0;
+                        
+                        // consultation-form이 화면에서 사라지면 pc-consultation-container 표시
+                        if (!isFormVisible && formRect.bottom < 0) {
+                            pcConsultationContainer.classList.add('show');
+                        } else {
+                            pcConsultationContainer.classList.remove('show');
+                        }
+                    }
 
                     // 상담 섹션을 벗어나면 상단 고정 요소들 표시
                     if (scrollY > consultationSectionBottom - 100) {
