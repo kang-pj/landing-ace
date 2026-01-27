@@ -787,6 +787,7 @@
                 display: none;
                 /* PC에서는 기본적으로 숨김 */
                 justify-content: center;
+                transition: bottom 0.3s ease;
             }
 
             .consultation-bar-container {
@@ -1736,6 +1737,7 @@
             .services-container {
                 max-width: 1000px;
                 margin: 0 auto;
+                padding: 0 10px;
             }
 
             .services-header {
@@ -1860,6 +1862,7 @@
             .faq-container {
                 max-width: 1000px;
                 margin: 0 auto;
+                padding: 0 10px
             }
 
             .faq-header {
@@ -1974,6 +1977,7 @@
             .location-container {
                 max-width: 1000px;
                 margin: 0 auto;
+                padding: 0 10px;
             }
 
             .location-header {
@@ -4375,11 +4379,13 @@
                     width: 95%;
                     margin: 0 auto;
                     justify-content: center;
+                    position: relative;
                 }
 
                 .form-row-mobile .input-group {
                     flex: 1;
                     min-width: 120px;
+                    position: relative;
                 }
 
                 /* 작은 화면을 위한 추가 조정 */
@@ -4432,13 +4438,19 @@ tr
                     font-size: 14px;
                     font-weight: bold;
                     cursor: pointer;
-                    transition: background 0.3s;
+                    transition: all 0.3s;
                     width: 100%;
                     margin: 0 auto;
                 }
 
-                .mobile-submit-btn:hover {
+                .mobile-submit-btn:hover:not(:disabled) {
                     background: #365a9b;
+                }
+
+                .mobile-submit-btn:disabled {
+                    background: #cccccc;
+                    opacity: 0.5;
+                    cursor: not-allowed;
                 }
 
                 .input-group {
@@ -4457,6 +4469,20 @@ tr
                     height: 45px;
                     border: none;
                     font-weight: 800;
+                    position: relative;
+                }
+
+                select.inline-input {
+                    appearance: none;
+                    -webkit-appearance: none;
+                    -moz-appearance: none;
+                    background: white;
+                    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+                    background-repeat: no-repeat;
+                    background-position: right 8px center;
+                    background-size: 16px;
+                    padding-right: 30px;
+                    border: 1px solid #ddd !important;
                 }
 
                 .inline-input::placeholder {
@@ -5697,14 +5723,14 @@ tr
                             <div class="input-with-label">
                                 <label class="input-label">이름 <span class="required">*</span></label>
                                 <input type="text" class="inline-input name-input" id="mobileNameInput" required
-                                    onclick="openToastPopup()">
+                                    onclick="openToastPopup()" oninput="validateMobileForm()">
                             </div>
                         </div>
                         <div class="input-group">
                             <div class="input-with-label">
                                 <label class="input-label">연락처 <span class="required">*</span></label>
                                 <input type="tel" class="inline-input phone-input" id="mobilePhoneInput" required
-                                    oninput="formatPhoneNumber(this)" onclick="openToastPopup()">
+                                    oninput="formatPhoneNumber(this); validateMobileForm();" onclick="openToastPopup()">
                             </div>
                         </div>
                     </div>
@@ -5713,7 +5739,7 @@ tr
                     <div class="expanded-form" id="expandedForm">
                         <div class="form-row-mobile">
                             <div class="input-group">
-                                <select class="inline-input" id="mobileDebtAmount" style="border: 1px solid #ddd;">
+                                <select class="inline-input" id="mobileDebtAmount" style="border: 1px solid #ddd;" onchange="validateMobileForm()">
                                     <option value="">채무금액 선택</option>
                                     <option value="1000만원 미만">1000만원 미만</option>
                                     <option value="1000만원~3000만원">1000만원~3000만원</option>
@@ -5723,7 +5749,7 @@ tr
                                 </select>
                             </div>
                             <div class="input-group">
-                                <select class="inline-input" id="mobileIncome" style="border: 1px solid #ddd;">
+                                <select class="inline-input" id="mobileIncome" style="border: 1px solid #ddd;" onchange="validateMobileForm()">
                                     <option value="">월소득 선택</option>
                                     <option value="100만원 미만">100만원 미만</option>
                                     <option value="100만원~200만원">100만원~200만원</option>
@@ -5736,12 +5762,12 @@ tr
 
                         <div class="privacy-check-mobile">
                             <label class="privacy-check">
-                                <input type="checkbox" class="privacy-checkbox" id="mobilePrivacyAgree" required>
+                                <input type="checkbox" class="privacy-checkbox" id="mobilePrivacyAgree" required onchange="validateMobileForm()">
                                 개인정보 수집 및 이용에 대한 동의 <span class="required">*</span>
                             </label>
                         </div>
 
-                        <button type="button" class="mobile-submit-btn" onclick="submitMobileConsultation()">무료
+                        <button type="button" class="mobile-submit-btn" id="mobileSubmitBtn" onclick="submitMobileConsultation()" disabled>무료
                             상담신청</button>
                     </div>
                 </div>
@@ -7054,16 +7080,92 @@ tr
             document.addEventListener('DOMContentLoaded', function() {
                 const nameInput = document.getElementById('mobileNameInput');
                 const phoneInput = document.getElementById('mobilePhoneInput');
+                const consultationBar = document.querySelector('.bottom-consultation-bar');
 
                 if (nameInput) {
                     nameInput.addEventListener('focus', function() {
                         openConsultationForm();
+                        adjustBarForKeyboard();
+                    });
+                    
+                    nameInput.addEventListener('blur', function() {
+                        resetBarPosition();
                     });
                 }
 
                 if (phoneInput) {
                     phoneInput.addEventListener('focus', function() {
                         openConsultationForm();
+                        adjustBarForKeyboard();
+                    });
+                    
+                    phoneInput.addEventListener('blur', function() {
+                        resetBarPosition();
+                    });
+                }
+
+                // 키보드가 올라올 때 상담바를 키보드 위로 이동
+                function adjustBarForKeyboard() {
+                    if (window.innerWidth <= 768 && consultationBar) {
+                        // Visual Viewport API를 사용하여 키보드 높이 감지
+                        if (window.visualViewport) {
+                            const viewportHeight = window.visualViewport.height;
+                            const windowHeight = window.innerHeight;
+                            const keyboardHeight = windowHeight - viewportHeight;
+                            
+                            if (keyboardHeight > 0) {
+                                consultationBar.style.bottom = keyboardHeight + 'px';
+                            }
+                        }
+                    }
+                }
+
+                // 키보드가 내려갈 때 상담바를 원래 위치로 복원
+                function resetBarPosition() {
+                    if (consultationBar) {
+                        setTimeout(() => {
+                            consultationBar.style.bottom = '0px';
+                        }, 100);
+                    }
+                }
+
+                // Visual Viewport 변경 감지 (키보드 올라오고 내려갈 때)
+                if (window.visualViewport) {
+                    window.visualViewport.addEventListener('resize', function() {
+                        const activeElement = document.activeElement;
+                        const isInputFocused = activeElement && 
+                            (activeElement.id === 'mobileNameInput' || 
+                             activeElement.id === 'mobilePhoneInput' ||
+                             activeElement.id === 'mobileDebtAmount' ||
+                             activeElement.id === 'mobileIncome');
+                        
+                        if (isInputFocused) {
+                            adjustBarForKeyboard();
+                        } else {
+                            resetBarPosition();
+                        }
+                    });
+                }
+
+                // 확장 폼의 다른 입력 필드들에도 동일한 이벤트 추가
+                const debtAmountSelect = document.getElementById('mobileDebtAmount');
+                const incomeSelect = document.getElementById('mobileIncome');
+
+                if (debtAmountSelect) {
+                    debtAmountSelect.addEventListener('focus', function() {
+                        adjustBarForKeyboard();
+                    });
+                    debtAmountSelect.addEventListener('blur', function() {
+                        resetBarPosition();
+                    });
+                }
+
+                if (incomeSelect) {
+                    incomeSelect.addEventListener('focus', function() {
+                        adjustBarForKeyboard();
+                    });
+                    incomeSelect.addEventListener('blur', function() {
+                        resetBarPosition();
                     });
                 }
             });
@@ -7119,6 +7221,27 @@ tr
                     initMobileConsultationSwiper();
                 }, 100);
             });
+
+            // 모바일 폼 유효성 검증 함수
+            function validateMobileForm() {
+                const name = document.getElementById('mobileNameInput').value.trim();
+                const phone = document.getElementById('mobilePhoneInput').value.trim();
+                const debtAmount = document.getElementById('mobileDebtAmount').value;
+                const income = document.getElementById('mobileIncome').value;
+                const privacyAgree = document.getElementById('mobilePrivacyAgree').checked;
+                const submitBtn = document.getElementById('mobileSubmitBtn');
+
+                // 모든 필수 항목이 입력되었는지 확인
+                if (name && phone && debtAmount && income && privacyAgree) {
+                    submitBtn.disabled = false;
+                    submitBtn.style.opacity = '1';
+                    submitBtn.style.cursor = 'pointer';
+                } else {
+                    submitBtn.disabled = true;
+                    submitBtn.style.opacity = '0.5';
+                    submitBtn.style.cursor = 'not-allowed';
+                }
+            }
 
             // 모바일 상담 신청 제출
             function submitMobileConsultation() {
