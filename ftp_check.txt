@@ -1,0 +1,6 @@
+open shesy11.cafe24.com
+shesy11
+Rkdwnl24((
+pwd
+ls -la
+quit

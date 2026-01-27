@@ -4,7 +4,7 @@
 
     <head>
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, interactive-widget=resizes-content">
         <title>ACE 법무법인</title>
         <!-- Pretendard Font -->
         <link rel="preconnect" href="https://cdn.jsdelivr.net">
@@ -797,6 +797,21 @@
                 transition: bottom 0.3s ease;
             }
 
+            /* 모바일 키패드 대응 - 하단 바가 키패드에 가려지지 않도록 */
+            @supports (-webkit-touch-callout: none) {
+                .bottom-consultation-bar {
+                    bottom: env(safe-area-inset-bottom, 0);
+                    padding-bottom: env(safe-area-inset-bottom, 0);
+                }
+            }
+
+            /* 키패드가 나올 때 하단 바 숨기기 */
+            @media screen and (max-height: 500px) and (orientation: landscape) {
+                .bottom-consultation-bar {
+                    display: none !important;
+                }
+            }
+
             .consultation-bar-container {
                 max-width: 1000px;
                 width: 100%;
@@ -1006,6 +1021,22 @@
                 box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
                 display: none;
                 /* PC에서는 기본적으로 숨김 */
+            }
+
+            /* 모바일 키패드 대응 - iOS Safari 키패드가 나올 때 고정 요소가 올라가지 않도록 */
+            @supports (-webkit-touch-callout: none) {
+                .floating-btn-container {
+                    position: -webkit-sticky;
+                    position: sticky;
+                    top: env(safe-area-inset-top, 0);
+                }
+            }
+
+            /* 키패드가 나올 때 고정 요소 위치 조정 */
+            @media screen and (max-height: 500px) and (orientation: landscape) {
+                .floating-btn-container {
+                    display: none !important;
+                }
             }
 
             .floating-btn-container.show {
@@ -7168,8 +7199,10 @@ tr
                             const windowHeight = window.innerHeight;
                             const keyboardHeight = windowHeight - viewportHeight;
                             
-                            if (keyboardHeight > 0) {
+                            // 키보드가 충분히 올라왔을 때만 조정 (100px 이상)
+                            if (keyboardHeight > 100) {
                                 consultationBar.style.bottom = keyboardHeight + 'px';
+                                consultationBar.style.transition = 'bottom 0.3s ease';
                             }
                         }
                     }
@@ -7180,25 +7213,35 @@ tr
                     if (consultationBar) {
                         setTimeout(() => {
                             consultationBar.style.bottom = '0px';
-                        }, 100);
+                            consultationBar.style.transition = 'bottom 0.3s ease';
+                        }, 200);
                     }
                 }
 
                 // Visual Viewport 변경 감지 (키보드 올라오고 내려갈 때)
+                let keyboardTimeout;
                 if (window.visualViewport) {
                     window.visualViewport.addEventListener('resize', function() {
-                        const activeElement = document.activeElement;
-                        const isInputFocused = activeElement && 
-                            (activeElement.id === 'mobileNameInput' || 
-                             activeElement.id === 'mobilePhoneInput' ||
-                             activeElement.id === 'mobileDebtAmount' ||
-                             activeElement.id === 'mobileIncome');
-                        
-                        if (isInputFocused) {
-                            adjustBarForKeyboard();
-                        } else {
-                            resetBarPosition();
+                        // 기존 타이머 클리어
+                        if (keyboardTimeout) {
+                            clearTimeout(keyboardTimeout);
                         }
+                        
+                        // 300ms 후에 실행하여 불필요한 호출 방지
+                        keyboardTimeout = setTimeout(() => {
+                            const activeElement = document.activeElement;
+                            const isInputFocused = activeElement && 
+                                (activeElement.id === 'mobileNameInput' || 
+                                 activeElement.id === 'mobilePhoneInput' ||
+                                 activeElement.id === 'mobileDebtAmount' ||
+                                 activeElement.id === 'mobileIncome');
+                            
+                            if (isInputFocused) {
+                                adjustBarForKeyboard();
+                            } else {
+                                resetBarPosition();
+                            }
+                        }, 300);
                     });
                 }
 
@@ -7373,6 +7416,23 @@ tr
                 }
             }
         </script>
+
+        <!-- 키패드 대응 CSS -->
+        <style>
+            /* 키패드가 열렸을 때 추가 스타일 */
+            body.keyboard-open {
+                position: fixed;
+                width: 100%;
+            }
+
+            /* iOS Safari 키패드 대응 */
+            @supports (-webkit-touch-callout: none) {
+                body.keyboard-open .floating-btn-container,
+                body.keyboard-open .bottom-consultation-bar {
+                    display: none !important;
+                }
+            }
+        </style>
     </body>
 
     </html>

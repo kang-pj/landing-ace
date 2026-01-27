@@ -1,0 +1,7 @@
+open shesy11.cafe24.com
+shesy11
+Rkdwnl24((
+cd tomcat/webapps
+binary
+put C:\workspace\landing-ace\target\ROOT.war
+quit
