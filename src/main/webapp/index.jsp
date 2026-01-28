@@ -3611,7 +3611,7 @@
             }
 
             .consultation-result {
-                margin-bottom: 30px;
+                margin-bottom: 20px;
             }
 
             .consultation-result h3 {
