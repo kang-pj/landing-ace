@@ -157,6 +157,11 @@ public class ConsultationServlet extends HttpServlet {
         System.out.println("Client IP: " + ipAddress);
         System.out.println("User-Agent: " + userAgent);
         System.out.println("Referrer: " + referrer);
+        System.out.println("UTM Source: " + inquiry.getUtm_source());
+        System.out.println("UTM Medium: " + inquiry.getUtm_medium());
+        System.out.println("UTM Campaign: " + inquiry.getUtm_campaign());
+        System.out.println("UTM Term: " + inquiry.getUtm_term());
+        System.out.println("UTM Content: " + inquiry.getUtm_content());
     }
     
     /**

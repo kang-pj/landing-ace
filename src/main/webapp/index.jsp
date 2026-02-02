@@ -7508,8 +7508,9 @@ tr
 
                 // 제출 버튼 비활성화
                 const submitBtn = document.getElementById('mobileSubmitBtn');
+                let originalText = '무료 상담 신청'; // 기본값 설정
                 if (submitBtn) {
-                    const originalText = submitBtn.textContent;
+                    originalText = submitBtn.textContent;
                     submitBtn.disabled = true;
                     submitBtn.textContent = '처리중...';
                     
@@ -7581,8 +7582,10 @@ tr
                 })
                 .finally(() => {
                     // 제출 버튼 복원
-                    submitBtn.disabled = false;
-                    submitBtn.textContent = originalText;
+                    if (submitBtn) {
+                        submitBtn.disabled = false;
+                        submitBtn.textContent = originalText;
+                    }
                 });
             }
         </script>

@@ -10,11 +10,11 @@ import java.util.List;
 
 public class InquiryDAO {
     
-    // 데이터 삽입 SQL - 최소 필드만 사용
+    // 데이터 삽입 SQL - 기존 테이블 구조에 맞게 (기본 필드만)
     private static final String INSERT_SQL = """
         INSERT INTO inquiries 
-        (company_id, name, phone) 
-        VALUES (?, ?, ?)
+        (company_id, name, phone, debt_amount, monthly_income) 
+        VALUES (?, ?, ?, ?, ?)
         """;
     
     // 데이터 조회 SQL
@@ -50,6 +50,8 @@ public class InquiryDAO {
             pstmt.setString(1, inquiry.getCompanyId());
             pstmt.setString(2, inquiry.getName());
             pstmt.setString(3, inquiry.getPhone());
+            pstmt.setString(4, inquiry.getDebtAmount());
+            pstmt.setString(5, inquiry.getMonthlyIncome());
             
             int affectedRows = pstmt.executeUpdate();
             
