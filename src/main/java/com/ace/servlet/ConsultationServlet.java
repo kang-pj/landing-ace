@@ -94,7 +94,7 @@ public class ConsultationServlet extends HttpServlet {
             }
             
             // 팝업에서 온 요청인 경우 채무금액과 월소득 필수 검증
-            if (type != null && (type.contains("팝업") || type.equals("popup_consultation"))) {
+            if (type != null && (type.contains("팝업") || type.equals("popup_consultation") || type.equals("AI진단상담신청"))) {
                 if (debtAmount == null || debtAmount.trim().isEmpty()) {
                     System.out.println("채무금액 검증 실패: debtAmount = '" + debtAmount + "'");
                     sendErrorResponse(out, "채무금액을 선택해 주세요.");
@@ -146,7 +146,7 @@ public class ConsultationServlet extends HttpServlet {
     }
     
     /**
-     * 추가 정보 수집 (IP, User-Agent, Referrer, UTM 파라미터 등)
+     * 추가 정보 수집 (IP, User-Agent, Referrer, UTM 파라미터, AI 진단 데이터 등)
      */
     private void collectAdditionalInfo(HttpServletRequest request, Inquiry inquiry) {
         // IP 주소 수집
@@ -167,6 +167,43 @@ public class ConsultationServlet extends HttpServlet {
         inquiry.setUtm_campaign(request.getParameter("utm_campaign"));
         inquiry.setUtm_term(request.getParameter("utm_term"));
         inquiry.setUtm_content(request.getParameter("utm_content"));
+        
+        // AI 진단 관련 추가 데이터 수집
+        String diagnosisType = request.getParameter("diagnosisType");
+        String assets = request.getParameter("assets");
+        String dependents = request.getParameter("dependents");
+        
+        System.out.println("=== AI 진단 데이터 수집 ===");
+        System.out.println("diagnosisType: '" + diagnosisType + "'");
+        System.out.println("assets: '" + assets + "'");
+        System.out.println("dependents: '" + dependents + "'");
+        
+        if (diagnosisType != null && !diagnosisType.trim().isEmpty()) {
+            System.out.println("AI 진단 타입: " + diagnosisType);
+            // 진단 타입을 type 필드에 추가 정보로 저장
+            String currentType = inquiry.getType();
+            inquiry.setType(currentType + " (" + diagnosisType + ")");
+        }
+        
+        // 보유자산 Y/N 변환 (1: 있음 -> Y, 0: 없음 -> N)
+        if (assets != null && !assets.trim().isEmpty()) {
+            String hasRealEstate = "1".equals(assets) ? "Y" : "N";
+            inquiry.setHasRealEstate(hasRealEstate);
+            System.out.println("보유자산: " + assets + " -> " + hasRealEstate + " (설정됨)");
+        } else {
+            System.out.println("보유자산 데이터 없음 - NULL로 설정");
+            inquiry.setHasRealEstate(null);
+        }
+        
+        // 부양가족 Y/N 변환 (1: 있음 -> Y, 0: 없음 -> N)
+        if (dependents != null && !dependents.trim().isEmpty()) {
+            String hasDependents = "1".equals(dependents) ? "Y" : "N";
+            inquiry.setHasDependents(hasDependents);
+            System.out.println("부양가족: " + dependents + " -> " + hasDependents + " (설정됨)");
+        } else {
+            System.out.println("부양가족 데이터 없음 - NULL로 설정");
+            inquiry.setHasDependents(null);
+        }
         
         // 디버그 정보 출력
         System.out.println("Client IP: " + ipAddress);

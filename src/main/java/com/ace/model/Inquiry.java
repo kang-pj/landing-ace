@@ -19,6 +19,8 @@ public class Inquiry {
     private String utm_campaign;
     private String utm_term;
     private String utm_content;
+    private String hasRealEstate;  // Y/N
+    private String hasDependents;  // Y/N
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
     
@@ -170,6 +172,22 @@ public class Inquiry {
         this.utm_content = utm_content;
     }
     
+    public String getHasRealEstate() {
+        return hasRealEstate;
+    }
+    
+    public void setHasRealEstate(String hasRealEstate) {
+        this.hasRealEstate = hasRealEstate;
+    }
+    
+    public String getHasDependents() {
+        return hasDependents;
+    }
+    
+    public void setHasDependents(String hasDependents) {
+        this.hasDependents = hasDependents;
+    }
+    
     public LocalDateTime getCreatedAt() {
         return createdAt;
     }
@@ -197,6 +215,8 @@ public class Inquiry {
                 ", monthlyIncome='" + monthlyIncome + '\'' +
                 ", device='" + device + '\'' +
                 ", type='" + type + '\'' +
+                ", hasRealEstate='" + hasRealEstate + '\'' +
+                ", hasDependents='" + hasDependents + '\'' +
                 ", ipAddress='" + ipAddress + '\'' +
                 ", createdAt=" + createdAt +
                 '}';

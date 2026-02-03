@@ -6318,6 +6318,157 @@
                 diagnosisData.debtAmount = parseInt(debtAmount.replace(/,/g, ''));
                 console.log('저장된 채무액:', diagnosisData.debtAmount, '만원');
 
+                // 월소득 화면으로 전환
+                showScreen('incomeScreen');
+            }
+
+            function nextIncomeQuestion() {
+                const incomeAmount = document.getElementById('incomeAmount').value;
+                if (!incomeAmount) {
+                    alert('월소득을 입력해주세요.');
+                    return;
+                }
+
+                // 월소득 저장 (콤마 제거 후 숫자로 변환)
+                diagnosisData.monthlyIncome = parseInt(incomeAmount.replace(/,/g, ''));
+                console.log('저장된 월소득:', diagnosisData.monthlyIncome, '만원');
+
+                // 보유자산 화면으로 전환
+                showScreen('assetsScreen');
+            }
+
+            function selectAssets(hasAssets) {
+                // 선택 상태 업데이트
+                document.querySelectorAll('#assetsScreen .choice-option').forEach(option => {
+                    option.classList.remove('selected');
+                });
+
+                // 선택된 옵션 표시
+                const selectedOption = hasAssets ?
+                    document.querySelector('#assetsScreen .choice-option:first-child') :
+                    document.querySelector('#assetsScreen .choice-option:last-child');
+                if (selectedOption) {
+                    selectedOption.classList.add('selected');
+                }
+
+                // 데이터 저장
+                diagnosisData.assets = hasAssets ? 1 : 0; // 1: 있음, 0: 없음
+                console.log('저장된 보유자산:', hasAssets ? '있음' : '없음');
+
+                // 다음 버튼 활성화
+                const nextBtn = document.getElementById('assetsNextBtn');
+                if (nextBtn) {
+                    nextBtn.classList.remove('disabled');
+                    nextBtn.disabled = false;
+                }
+            }
+
+            function nextAssetsQuestion() {
+                console.log('현재 진단 데이터:', diagnosisData);
+                // 부양가족 화면으로 전환
+                showScreen('dependentsScreen');
+            }
+
+            function selectDependents(hasDependents) {
+                // 선택 상태 업데이트
+                document.querySelectorAll('#dependentsScreen .choice-option').forEach(option => {
+                    option.classList.remove('selected');
+                });
+
+                // 선택된 옵션 표시
+                const selectedOption = hasDependents ?
+                    document.querySelector('#dependentsScreen .choice-option:first-child') :
+                    document.querySelector('#dependentsScreen .choice-option:last-child');
+                if (selectedOption) {
+                    selectedOption.classList.add('selected');
+                }
+
+                // 데이터 저장
+                diagnosisData.dependents = hasDependents ? 1 : 0; // 1: 있음, 0: 없음
+                console.log('저장된 부양가족:', hasDependents ? '있음' : '없음');
+
+                // 다음 버튼 활성화
+                const nextBtn = document.getElementById('dependentsNextBtn');
+                if (nextBtn) {
+                    nextBtn.classList.remove('disabled');
+                    nextBtn.disabled = false;
+                }
+            }
+
+            function nextDependentsQuestion() {
+                console.log('최종 진단 데이터:', diagnosisData);
+                // 로딩 화면으로 전환
+                showScreen('loadingScreen');
+
+                // 2초 후 상담 신청 화면으로 이동
+                setTimeout(() => {
+                    showScreen('consultationScreen');
+                }, 2000);
+            }
+
+            function validateInput() {
+                const input = document.getElementById('debtAmount');
+                const nextBtn = document.getElementById('nextBtn');
+
+                if (!input || !nextBtn) return;
+
+                // 숫자만 입력 허용 (콤마 제거 후 검증)
+                let value = input.value.replace(/[^0-9]/g, '');
+
+                // 콤마 추가 (천단위 구분)
+                if (value) {
+                    value = parseInt(value).toLocaleString();
+                }
+
+                input.value = value;
+
+                // 버튼 활성화/비활성화
+                if (value && value !== '0') {
+                    nextBtn.classList.remove('disabled');
+                    nextBtn.disabled = false;
+                } else {
+                    nextBtn.classList.add('disabled');
+                    nextBtn.disabled = true;
+                }
+            }
+
+            function validateIncomeInput() {
+                const input = document.getElementById('incomeAmount');
+                const nextBtn = document.getElementById('incomeNextBtn');
+
+                if (!input || !nextBtn) return;
+
+                // 숫자만 입력 허용 (콤마 제거 후 검증)
+                let value = input.value.replace(/[^0-9]/g, '');
+
+                // 콤마 추가 (천단위 구분)
+                if (value) {
+                    value = parseInt(value).toLocaleString();
+                }
+
+                input.value = value;
+
+                // 버튼 활성화/비활성화
+                if (value && value !== '0') {
+                    nextBtn.classList.remove('disabled');
+                    nextBtn.disabled = false;
+                } else {
+                    nextBtn.classList.add('disabled');
+                    nextBtn.disabled = true;
+                }
+            }
+
+            function nextQuestion() {
+                const debtAmount = document.getElementById('debtAmount').value;
+                if (!debtAmount) {
+                    alert('채무 금액을 입력해주세요.');
+                    return;
+                }
+
+                // 채무액 저장 (콤마 제거 후 숫자로 변환)
+                diagnosisData.debtAmount = parseInt(debtAmount.replace(/,/g, ''));
+                console.log('저장된 채무액:', diagnosisData.debtAmount, '만원');
+
                 // 월 소득 화면으로 전환
                 showScreen('incomeScreen');
             }
@@ -6448,22 +6599,104 @@
                 const name = document.getElementById('consultName').value.trim();
                 const phone = document.getElementById('consultPhone').value.trim();
 
-                console.log('상담 신청 데이터:', {
+                console.log('AI 진단 상담 신청 데이터:', {
                     name: name,
                     phone: phone,
                     diagnosisData: diagnosisData
                 });
 
-                alert('상담 신청이 완료되었습니다. 빠른 시일 내에 연락드리겠습니다.');
+                console.log('전송할 데이터 상세:', {
+                    debtAmount: diagnosisData.debtAmount,
+                    monthlyIncome: diagnosisData.monthlyIncome,
+                    assets: diagnosisData.assets,
+                    dependents: diagnosisData.dependents,
+                    type: diagnosisData.type
+                });
 
-                // 모달 닫기
-                const modal = document.getElementById('aiDiagnosisModal');
-                if (modal) {
-                    modal.classList.remove('show');
-                    setTimeout(() => {
-                        modal.style.display = 'none';
-                    }, 400);
+                // 필수 항목 검증
+                if (!name) {
+                    alert('이름을 입력해 주세요');
+                    return;
                 }
+
+                if (!phone) {
+                    alert('연락처를 입력해 주세요');
+                    return;
+                }
+
+                // 연락처 형식 검증 (숫자만, 10-11자리)
+                const phoneRegex = /^[0-9]{10,11}$/;
+                if (!phoneRegex.test(phone)) {
+                    alert('올바른 연락처를 입력해 주세요 (10-11자리 숫자)');
+                    return;
+                }
+
+                // 제출 버튼 비활성화
+                const submitBtn = document.getElementById('consultationSubmitBtn');
+                const originalText = submitBtn.textContent;
+                submitBtn.disabled = true;
+                submitBtn.textContent = '처리중...';
+
+                // 폼 데이터 구성 (AI 진단 데이터 포함)
+                const apiFormData = new URLSearchParams();
+                apiFormData.append('name', name);
+                apiFormData.append('phone', phone);
+                apiFormData.append('debtAmount', diagnosisData.debtAmount || '');
+                apiFormData.append('income', diagnosisData.monthlyIncome || '');
+                apiFormData.append('device', window.innerWidth <= 768 ? 'Mobile' : 'PC');
+                apiFormData.append('type', 'AI진단상담신청');
+
+                // AI 진단 추가 데이터
+                apiFormData.append('diagnosisType', diagnosisData.type || '');
+                apiFormData.append('assets', diagnosisData.assets || '');
+                apiFormData.append('dependents', diagnosisData.dependents || '');
+
+                // UTM 파라미터 추가 (URL에서 추출)
+                const urlParams = new URLSearchParams(window.location.search);
+                apiFormData.append('utm_source', urlParams.get('utm_source') || '');
+                apiFormData.append('utm_medium', urlParams.get('utm_medium') || '');
+                apiFormData.append('utm_campaign', urlParams.get('utm_campaign') || '');
+                apiFormData.append('utm_term', urlParams.get('utm_term') || '');
+                apiFormData.append('utm_content', urlParams.get('utm_content') || '');
+
+                // 서버에 데이터 전송
+                fetch('/consultation', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: apiFormData
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            console.log('AI 진단 상담 신청 성공:', data);
+                            alert('상담 신청이 완료되었습니다! 빠른 시일 내에 연락드리겠습니다.');
+
+                            // 모달 닫기
+                            const modal = document.getElementById('aiDiagnosisModal');
+                            if (modal) {
+                                modal.classList.remove('show');
+                                setTimeout(() => {
+                                    modal.style.display = 'none';
+                                }, 400);
+                            }
+                        } else {
+                            console.error('AI 진단 상담 신청 실패:', data.message);
+                            alert(data.message || '상담 신청 중 오류가 발생했습니다.');
+                        }
+                    })
+                    .catch(error => {
+                        console.error('네트워크 오류:', error);
+                        alert('네트워크 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.');
+                    })
+                    .finally(() => {
+                        // 제출 버튼 복원
+                        if (submitBtn) {
+                            submitBtn.disabled = false;
+                            submitBtn.textContent = originalText;
+                        }
+                    });
             }
 
             function validateInput() {

@@ -10,23 +10,23 @@ import java.util.List;
 
 public class InquiryDAO {
     
-    // 데이터 삽입 SQL - 기존 테이블 구조에 맞게 (기본 필드만)
+    // 데이터 삽입 SQL - has_real_estate, has_dependents 필드 추가
     private static final String INSERT_SQL = """
         INSERT INTO inquiries 
-        (company_id, name, phone, debt_amount, monthly_income) 
-        VALUES (?, ?, ?, ?, ?)
+        (company_id, name, phone, debt_amount, monthly_income, has_real_estate, has_dependents) 
+        VALUES (?, ?, ?, ?, ?, ?, ?)
         """;
     
     // 데이터 조회 SQL
     private static final String SELECT_ALL_SQL = """
-        SELECT id, company_id, name, phone, debt_amount, monthly_income, created_at, updated_at 
+        SELECT id, company_id, name, phone, debt_amount, monthly_income, has_real_estate, has_dependents, created_at, updated_at 
         FROM inquiries 
         ORDER BY created_at DESC
         """;
     
     // 최근 데이터 조회 SQL
     private static final String SELECT_RECENT_SQL = """
-        SELECT id, company_id, name, phone, debt_amount, monthly_income, created_at, updated_at 
+        SELECT id, company_id, name, phone, debt_amount, monthly_income, has_real_estate, has_dependents, created_at, updated_at 
         FROM inquiries 
         ORDER BY created_at DESC 
         LIMIT ?
@@ -34,7 +34,7 @@ public class InquiryDAO {
     
     // 회사별 조회 SQL
     private static final String SELECT_BY_COMPANY_SQL = """
-        SELECT id, company_id, name, phone, debt_amount, monthly_income, created_at, updated_at 
+        SELECT id, company_id, name, phone, debt_amount, monthly_income, has_real_estate, has_dependents, created_at, updated_at 
         FROM inquiries 
         WHERE company_id = ?
         ORDER BY created_at DESC
@@ -52,6 +52,8 @@ public class InquiryDAO {
             pstmt.setString(3, inquiry.getPhone());
             pstmt.setString(4, inquiry.getDebtAmount());
             pstmt.setString(5, inquiry.getMonthlyIncome());
+            pstmt.setString(6, inquiry.getHasRealEstate());
+            pstmt.setString(7, inquiry.getHasDependents());
             
             int affectedRows = pstmt.executeUpdate();
             
@@ -180,6 +182,8 @@ public class InquiryDAO {
         inquiry.setPhone(rs.getString("phone"));
         inquiry.setDebtAmount(rs.getString("debt_amount"));
         inquiry.setMonthlyIncome(rs.getString("monthly_income"));
+        inquiry.setHasRealEstate(rs.getString("has_real_estate"));
+        inquiry.setHasDependents(rs.getString("has_dependents"));
         
         Timestamp createdAt = rs.getTimestamp("created_at");
         if (createdAt != null) {
