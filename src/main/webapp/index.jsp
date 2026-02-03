@@ -4,7 +4,8 @@
 
     <head>
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, interactive-widget=resizes-content">
+        <meta name="viewport"
+            content="width=device-width, initial-scale=1.0, viewport-fit=cover, interactive-widget=resizes-content">
         <title>ACE 법무법인</title>
         <!-- Pretendard Font -->
         <link rel="preconnect" href="https://cdn.jsdelivr.net">
@@ -97,6 +98,23 @@
                 color: #4865FF;
                 font-weight: bold;
                 font-size: 16px;
+            }
+
+            .test-consultation-btn {
+                background: #4865FF;
+                color: white;
+                border: none;
+                padding: 10px 20px;
+                border-radius: 8px;
+                font-size: 14px;
+                font-weight: bold;
+                cursor: pointer;
+                margin-left: 15px;
+                transition: background 0.3s;
+            }
+
+            .test-consultation-btn:hover {
+                background: #365a9b;
             }
 
             .phone-icon {
@@ -2585,21 +2603,39 @@
                 color: white;
                 border: none;
                 padding: 18px;
-                border-radius: 20px;
+                border-radius: 10px;
                 font-size: 18px;
                 font-weight: bold;
                 cursor: pointer;
-                transition: background 0.3s;
+                transition: all 0.3s ease;
                 margin-top: 10px;
             }
 
-            .consultation-submit-popup-btn:hover {
+            .consultation-submit-popup-btn:hover:not(:disabled) {
                 background: #365a9b;
+                transform: translateY(-1px);
+                box-shadow: 0 4px 12px rgba(72, 101, 255, 0.3);
             }
 
             .consultation-submit-popup-btn:disabled {
-                background: #ccc;
-                cursor: not-allowed;
+                background: #ccc !important;
+                cursor: not-allowed !important;
+                opacity: 0.6 !important;
+                color: #999 !important;
+                transform: none !important;
+                box-shadow: none !important;
+            }
+
+            .consultation-submit-popup-btn:enabled {
+                background: #4865FF !important;
+                cursor: pointer !important;
+                opacity: 1 !important;
+                color: white !important;
+            }
+
+            .required {
+                color: #ff4444;
+                font-weight: bold;
             }
 
             /* 성공 팝업 스타일 */
@@ -2738,7 +2774,7 @@
             }
 
             /* 모바일 네비게이션이 열렸을 때 아일랜드 숨기기 */
-            .mobile-nav.active ~ .floating-btn-container,
+            .mobile-nav.active~.floating-btn-container,
             body:has(.mobile-nav.active) .floating-btn-container {
                 display: none !important;
             }
@@ -4467,8 +4503,8 @@
                     opacity: 1;
                     margin-top: 15px;
                 }
-tr
-                .privacy-check-mobile {
+
+                tr .privacy-check-mobile {
                     display: flex;
                     justify-content: left;
                     width: 100%;
@@ -4798,7 +4834,7 @@ tr
                                 <option value="over">500만원 이상</option>
                             </select>
                         </div>
-                        <button type="submit" class="submit-btn">무료 상담신청</button>
+                        <button type="button" class="submit-btn" onclick="openConsultationPopup()">무료 상담신청</button>
                     </div>
                 </form>
                 <div class="privacy-notice">
@@ -4818,7 +4854,7 @@ tr
             </div>
 
             <div class="diagnosis-cards">
-                <div class="diagnosis-card" onclick="selectDiagnosis('personal')"
+                <div class="diagnosis-card" onclick="openConsultationPopup()"
                     style="cursor: pointer; padding: 20px 40px; margin: 10px; border-radius: 10px; background: #fff;">
                     <div class="card-content">
                         <p class="card-subtitle">일정한 소득이 있으나 여유가 없는분</p>
@@ -4827,7 +4863,7 @@ tr
                     <img src="/images/icon_ai_01.png" alt="개인회생" class="card-icon" />
                 </div>
 
-                <div class="diagnosis-card" onclick="selectDiagnosis('bankruptcy')"
+                <div class="diagnosis-card" onclick="openConsultationPopup()"
                     style="cursor: pointer; padding: 20px 40px; margin: 10px; border-radius: 10px; background: #fff;">
                     <div class="card-content">
                         <p class="card-subtitle">과도한 빚으로 빚 변제가 어려우신분</p>
@@ -5784,7 +5820,8 @@ tr
                     <div class="expanded-form" id="expandedForm">
                         <div class="form-row-mobile">
                             <div class="input-group">
-                                <select class="inline-input" id="mobileDebtAmount" style="border: 1px solid #ddd;" onchange="validateMobileForm()">
+                                <select class="inline-input" id="mobileDebtAmount" style="border: 1px solid #ddd;"
+                                    onchange="validateMobileForm()">
                                     <option value="">채무금액 선택</option>
                                     <option value="1000만원 미만">1000만원 미만</option>
                                     <option value="1000만원~3000만원">1000만원~3000만원</option>
@@ -5794,7 +5831,8 @@ tr
                                 </select>
                             </div>
                             <div class="input-group">
-                                <select class="inline-input" id="mobileIncome" style="border: 1px solid #ddd;" onchange="validateMobileForm()">
+                                <select class="inline-input" id="mobileIncome" style="border: 1px solid #ddd;"
+                                    onchange="validateMobileForm()">
                                     <option value="">월소득 선택</option>
                                     <option value="100만원 미만">100만원 미만</option>
                                     <option value="100만원~200만원">100만원~200만원</option>
@@ -5807,12 +5845,14 @@ tr
 
                         <div class="privacy-check-mobile">
                             <label class="privacy-check">
-                                <input type="checkbox" class="privacy-checkbox" id="mobilePrivacyAgree" required onchange="validateMobileForm()">
+                                <input type="checkbox" class="privacy-checkbox" id="mobilePrivacyAgree" required
+                                    onchange="validateMobileForm()">
                                 개인정보 수집 및 이용에 대한 동의 <span class="required">*</span>
                             </label>
                         </div>
 
-                        <button type="button" class="mobile-submit-btn" id="mobileSubmitBtn" onclick="submitMobileConsultation()" disabled>무료
+                        <button type="button" class="mobile-submit-btn" id="mobileSubmitBtn"
+                            onclick="submitMobileConsultation()" disabled>무료
                             상담신청</button>
                     </div>
                 </div>
@@ -5854,18 +5894,20 @@ tr
                     <form id="consultationPopupForm" onsubmit="submitConsultationForm(event)">
                         <div class="popup-form-group">
                             <label for="popupName">이름 <span class="required">*</span></label>
-                            <input type="text" id="popupName" name="name" placeholder="이름을 입력해 주세요" required>
+                            <input type="text" id="popupName" name="name" placeholder="이름을 입력해 주세요" required
+                                oninput="validateSecondPopupForm()">
                         </div>
 
                         <div class="popup-form-group">
                             <label for="popupPhone">연락처 <span class="required">*</span></label>
                             <input type="tel" id="popupPhone" name="phone" placeholder="연락처를 입력해 주세요 (- 없이)" required
-                                oninput="formatPhoneNumber(this)">
+                                oninput="formatPhoneNumber(this); validateSecondPopupForm()">
                         </div>
 
                         <div class="popup-form-group">
-                            <label for="popupDebtAmount">채무금액 (선택)</label>
-                            <select id="popupDebtAmount" name="debtAmount">
+                            <label for="popupDebtAmount">채무금액 <span class="required">*</span></label>
+                            <select id="popupDebtAmount" name="debtAmount" required
+                                onchange="validateSecondPopupForm()">
                                 <option value="">선택해 주세요</option>
                                 <option value="1000만원 미만">1000만원 미만</option>
                                 <option value="1000만원~3000만원">1000만원~3000만원</option>
@@ -5876,8 +5918,8 @@ tr
                         </div>
 
                         <div class="popup-form-group">
-                            <label for="popupIncome">월소득 (선택)</label>
-                            <select id="popupIncome" name="income">
+                            <label for="popupIncome">월소득 <span class="required">*</span></label>
+                            <select id="popupIncome" name="income" required onchange="validateSecondPopupForm()">
                                 <option value="">선택해 주세요</option>
                                 <option value="100만원 미만">100만원 미만</option>
                                 <option value="100만원~200만원">100만원~200만원</option>
@@ -5892,12 +5934,15 @@ tr
 
                         <div class="popup-form-group">
                             <label class="privacy-check-popup">
-                                <input type="checkbox" id="popupPrivacyAgree" name="privacyAgree" required>
+                                <input type="checkbox" id="popupPrivacyAgree" name="privacyAgree" required
+                                    onchange="validateSecondPopupForm()">
                                 개인정보 수집 및 이용에 대한 동의 <span class="required">*</span>
                             </label>
                         </div>
 
-                        <button type="submit" class="consultation-submit-popup-btn">무료 상담신청</button>
+                        <button type="submit" class="consultation-submit-popup-btn" id="secondPopupSubmitBtn" disabled
+                            style="background: #ccc !important; opacity: 0.6 !important; cursor: not-allowed !important; color: #999 !important;">무료
+                            상담신청</button>
                     </form>
                 </div>
             </div>
@@ -6152,10 +6197,10 @@ tr
 
                 // 모바일과 PC 구분
                 const isMobile = window.innerWidth <= 1000;
-                
+
                 // 해당 그룹으로 이동
                 let slideIndex = 0;
-                
+
                 if (isMobile) {
                     // 모바일: 인덱스 2, 1로 매핑
                     if (type === 'all') slideIndex = 0;
@@ -6829,7 +6874,7 @@ tr
                     mobileNav.classList.add('active');
                     hamburgerMenu.classList.add('active');
                     document.body.style.overflow = 'hidden'; // 스크롤 방지
-                    
+
                     // 아일랜드(상단 고정 버튼) 숨기기
                     if (floatingBtnContainer) {
                         floatingBtnContainer.style.display = 'none';
@@ -6850,7 +6895,7 @@ tr
                 mobileNav.classList.remove('active');
                 hamburgerMenu.classList.remove('active');
                 document.body.style.overflow = ''; // 스크롤 복원
-                
+
                 // 아일랜드(상단 고정 버튼) 다시 보이기 (조건부)
                 if (floatingBtnContainer && window.innerWidth <= 768) {
                     // 스크롤 위치에 따라 표시 여부 결정
@@ -6859,7 +6904,7 @@ tr
                     if (mainBackground) {
                         const rect = mainBackground.getBoundingClientRect();
                         const consultationSectionBottom = rect.bottom + window.scrollY;
-                        
+
                         if (scrollY > consultationSectionBottom - 100) {
                             floatingBtnContainer.style.display = 'block';
                         }
@@ -6894,9 +6939,9 @@ tr
                             const timeElapsed = currentTime - start;
                             const progress = Math.min(timeElapsed / duration, 1);
                             const ease = easeInOutCubic(progress);
-                            
+
                             window.scrollTo(0, startPosition + distance * ease);
-                            
+
                             if (timeElapsed < duration) {
                                 requestAnimationFrame(animation);
                             }
@@ -6949,12 +6994,12 @@ tr
                     const scrollY = window.scrollY;
                     const consultationForm = document.querySelector('.consultation-form');
                     const pcConsultationContainer = document.querySelector('.pc-consultation-container');
-                    
+
                     // consultation-form의 위치 확인
                     if (consultationForm && pcConsultationContainer) {
                         const formRect = consultationForm.getBoundingClientRect();
                         const isFormVisible = formRect.top < window.innerHeight && formRect.bottom > 0;
-                        
+
                         // consultation-form이 화면에서 사라지면 pc-consultation-container 표시
                         if (!isFormVisible && formRect.bottom < 0) {
                             pcConsultationContainer.classList.add('show');
@@ -7094,7 +7139,7 @@ tr
                 apiFormData.append('income', formData.get('income') || '');
                 apiFormData.append('device', formData.get('device'));
                 apiFormData.append('type', '무료상담신청(팝업)');
-                
+
                 // UTM 파라미터 추가 (URL에서 추출)
                 const urlParams = new URLSearchParams(window.location.search);
                 apiFormData.append('utm_source', urlParams.get('utm_source') || '');
@@ -7111,40 +7156,40 @@ tr
                     },
                     body: apiFormData
                 })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        console.log('상담 신청 성공:', data);
-                        
-                        // 상담 신청 팝업 닫기
-                        closeConsultationPopup();
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            console.log('상담 신청 성공:', data);
 
-                        // 성공 팝업 표시
-                        setTimeout(() => {
-                            const successPopup = document.getElementById('consultationSuccessPopup');
-                            if (successPopup) {
-                                successPopup.style.display = 'flex';
-                                setTimeout(() => {
-                                    successPopup.classList.add('show');
-                                }, 10);
-                                document.body.style.overflow = 'hidden';
-                            }
-                        }, 400);
-                        
-                    } else {
-                        console.error('상담 신청 실패:', data.message);
-                        alert(data.message || '상담 신청 중 오류가 발생했습니다.');
-                    }
-                })
-                .catch(error => {
-                    console.error('네트워크 오류:', error);
-                    alert('네트워크 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.');
-                })
-                .finally(() => {
-                    // 제출 버튼 복원
-                    submitBtn.disabled = false;
-                    submitBtn.textContent = originalText;
-                });
+                            // 상담 신청 팝업 닫기
+                            closeConsultationPopup();
+
+                            // 성공 팝업 표시
+                            setTimeout(() => {
+                                const successPopup = document.getElementById('consultationSuccessPopup');
+                                if (successPopup) {
+                                    successPopup.style.display = 'flex';
+                                    setTimeout(() => {
+                                        successPopup.classList.add('show');
+                                    }, 10);
+                                    document.body.style.overflow = 'hidden';
+                                }
+                            }, 400);
+
+                        } else {
+                            console.error('상담 신청 실패:', data.message);
+                            alert(data.message || '상담 신청 중 오류가 발생했습니다.');
+                        }
+                    })
+                    .catch(error => {
+                        console.error('네트워크 오류:', error);
+                        alert('네트워크 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.');
+                    })
+                    .finally(() => {
+                        // 제출 버튼 복원
+                        submitBtn.disabled = false;
+                        submitBtn.textContent = originalText;
+                    });
             }
 
             // 팝업 외부 클릭 시 닫기
@@ -7227,29 +7272,29 @@ tr
             }
 
             // 이름/연락처 입력창 포커스 이벤트 리스너 추가
-            document.addEventListener('DOMContentLoaded', function() {
+            document.addEventListener('DOMContentLoaded', function () {
                 const nameInput = document.getElementById('mobileNameInput');
                 const phoneInput = document.getElementById('mobilePhoneInput');
                 const consultationBar = document.querySelector('.bottom-consultation-bar');
 
                 if (nameInput) {
-                    nameInput.addEventListener('focus', function() {
+                    nameInput.addEventListener('focus', function () {
                         openConsultationForm();
                         adjustBarForKeyboard();
                     });
-                    
-                    nameInput.addEventListener('blur', function() {
+
+                    nameInput.addEventListener('blur', function () {
                         resetBarPosition();
                     });
                 }
 
                 if (phoneInput) {
-                    phoneInput.addEventListener('focus', function() {
+                    phoneInput.addEventListener('focus', function () {
                         openConsultationForm();
                         adjustBarForKeyboard();
                     });
-                    
-                    phoneInput.addEventListener('blur', function() {
+
+                    phoneInput.addEventListener('blur', function () {
                         resetBarPosition();
                     });
                 }
@@ -7262,7 +7307,7 @@ tr
                             const viewportHeight = window.visualViewport.height;
                             const windowHeight = window.innerHeight;
                             const keyboardHeight = windowHeight - viewportHeight;
-                            
+
                             // 키보드가 충분히 올라왔을 때만 조정 (100px 이상)
                             if (keyboardHeight > 100) {
                                 consultationBar.style.bottom = keyboardHeight + 'px';
@@ -7285,21 +7330,21 @@ tr
                 // Visual Viewport 변경 감지 (키보드 올라오고 내려갈 때)
                 let keyboardTimeout;
                 if (window.visualViewport) {
-                    window.visualViewport.addEventListener('resize', function() {
+                    window.visualViewport.addEventListener('resize', function () {
                         // 기존 타이머 클리어
                         if (keyboardTimeout) {
                             clearTimeout(keyboardTimeout);
                         }
-                        
+
                         // 300ms 후에 실행하여 불필요한 호출 방지
                         keyboardTimeout = setTimeout(() => {
                             const activeElement = document.activeElement;
-                            const isInputFocused = activeElement && 
-                                (activeElement.id === 'mobileNameInput' || 
-                                 activeElement.id === 'mobilePhoneInput' ||
-                                 activeElement.id === 'mobileDebtAmount' ||
-                                 activeElement.id === 'mobileIncome');
-                            
+                            const isInputFocused = activeElement &&
+                                (activeElement.id === 'mobileNameInput' ||
+                                    activeElement.id === 'mobilePhoneInput' ||
+                                    activeElement.id === 'mobileDebtAmount' ||
+                                    activeElement.id === 'mobileIncome');
+
                             if (isInputFocused) {
                                 adjustBarForKeyboard();
                             } else {
@@ -7314,19 +7359,19 @@ tr
                 const incomeSelect = document.getElementById('mobileIncome');
 
                 if (debtAmountSelect) {
-                    debtAmountSelect.addEventListener('focus', function() {
+                    debtAmountSelect.addEventListener('focus', function () {
                         adjustBarForKeyboard();
                     });
-                    debtAmountSelect.addEventListener('blur', function() {
+                    debtAmountSelect.addEventListener('blur', function () {
                         resetBarPosition();
                     });
                 }
 
                 if (incomeSelect) {
-                    incomeSelect.addEventListener('focus', function() {
+                    incomeSelect.addEventListener('focus', function () {
                         adjustBarForKeyboard();
                     });
-                    incomeSelect.addEventListener('blur', function() {
+                    incomeSelect.addEventListener('blur', function () {
                         resetBarPosition();
                     });
                 }
@@ -7408,33 +7453,33 @@ tr
             // 모바일 상담 신청 제출
             function submitMobileConsultation() {
                 console.log('=== 모바일 상담 신청 시작 ===');
-                
+
                 // 요소 존재 확인
                 const nameElement = document.getElementById('mobileNameInput');
                 const phoneElement = document.getElementById('mobilePhoneInput');
                 const debtAmountElement = document.getElementById('mobileDebtAmount');
                 const incomeElement = document.getElementById('mobileIncome');
                 const privacyElement = document.getElementById('mobilePrivacyAgree');
-                
+
                 console.log('요소 존재 확인:');
                 console.log('nameElement:', nameElement);
                 console.log('phoneElement:', phoneElement);
                 console.log('debtAmountElement:', debtAmountElement);
                 console.log('incomeElement:', incomeElement);
                 console.log('privacyElement:', privacyElement);
-                
+
                 if (!nameElement) {
                     console.error('mobileNameInput 요소를 찾을 수 없습니다!');
                     alert('폼 요소를 찾을 수 없습니다. 페이지를 새로고침해 주세요.');
                     return;
                 }
-                
+
                 if (!phoneElement) {
                     console.error('mobilePhoneInput 요소를 찾을 수 없습니다!');
                     alert('폼 요소를 찾을 수 없습니다. 페이지를 새로고침해 주세요.');
                     return;
                 }
-                
+
                 const name = nameElement.value.trim();
                 const phone = phoneElement.value.trim();
                 const debtAmount = debtAmountElement ? debtAmountElement.value : '';
@@ -7491,7 +7536,7 @@ tr
                 formData.append('income', income || '');
                 formData.append('device', isMobile ? 'Mobile' : 'PC');
                 formData.append('type', '무료상담신청(모바일)');
-                
+
                 // UTM 파라미터 추가 (URL에서 추출)
                 const urlParams = new URLSearchParams(window.location.search);
                 formData.append('utm_source', urlParams.get('utm_source') || '');
@@ -7513,9 +7558,9 @@ tr
                     originalText = submitBtn.textContent;
                     submitBtn.disabled = true;
                     submitBtn.textContent = '처리중...';
-                    
+
                     // 복원 함수
-                    window.restoreSubmitBtn = function() {
+                    window.restoreSubmitBtn = function () {
                         submitBtn.disabled = false;
                         submitBtn.textContent = originalText;
                     };
@@ -7533,62 +7578,444 @@ tr
                     },
                     body: formData
                 })
-                .then(response => {
-                    console.log('서버 응답 상태:', response.status);
-                    if (!response.ok) {
-                        throw new Error('HTTP ' + response.status);
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    console.log('서버 응답 데이터:', data);
-                    
-                    if (data.success) {
-                        console.log('상담 신청 성공:', data);
-                        
-                        // 성공 팝업 표시
-                        const successPopup = document.getElementById('consultationSuccessPopup');
-                        if (successPopup) {
-                            successPopup.style.display = 'flex';
-                            setTimeout(() => {
-                                successPopup.classList.add('show');
-                            }, 10);
-                            document.body.style.overflow = 'hidden';
+                    .then(response => {
+                        console.log('서버 응답 상태:', response.status);
+                        if (!response.ok) {
+                            throw new Error('HTTP ' + response.status);
                         }
+                        return response.json();
+                    })
+                    .then(data => {
+                        console.log('서버 응답 데이터:', data);
 
+                        if (data.success) {
+                            console.log('상담 신청 성공:', data);
+
+                            // 성공 팝업 표시
+                            const successPopup = document.getElementById('consultationSuccessPopup');
+                            if (successPopup) {
+                                successPopup.style.display = 'flex';
+                                setTimeout(() => {
+                                    successPopup.classList.add('show');
+                                }, 10);
+                                document.body.style.overflow = 'hidden';
+                            }
+
+                            // 폼 초기화
+                            nameElement.value = '';
+                            phoneElement.value = '';
+                            if (debtAmountElement) debtAmountElement.value = '';
+                            if (incomeElement) incomeElement.value = '';
+                            if (privacyElement) privacyElement.checked = false;
+
+                            // 폼 닫기
+                            const expandedForm = document.getElementById('expandedForm');
+                            const toggleBtn = document.getElementById('toggleBtn');
+                            if (expandedForm && toggleBtn) {
+                                expandedForm.classList.remove('show');
+                                toggleBtn.classList.remove('collapsed');
+                            }
+
+                        } else {
+                            console.error('상담 신청 실패:', data.message);
+                            alert(data.message || '상담 신청 중 오류가 발생했습니다.');
+                        }
+                    })
+                    .catch(error => {
+                        console.error('네트워크 오류:', error);
+                        alert('네트워크 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.');
+                    })
+                    .finally(() => {
+                        // 제출 버튼 복원
+                        if (submitBtn) {
+                            submitBtn.disabled = false;
+                            submitBtn.textContent = originalText;
+                        }
+                    });
+            }
+
+            // 팝업 폼 유효성 검증 함수
+            function validatePopupForm() {
+                console.log('validatePopupForm 호출됨');
+
+                const name = document.getElementById('popupName')?.value?.trim() || '';
+                const phone = document.getElementById('popupPhone')?.value?.trim() || '';
+                const debtAmount = document.getElementById('popupDebt')?.value || '';
+                const income = document.getElementById('popupIncome')?.value || '';
+                const privacyAgree = document.getElementById('popupPrivacyAgree')?.checked || false;
+                const submitBtn = document.getElementById('popupSubmitBtn');
+
+                console.log('검증 데이터:', {
+                    name: name,
+                    phone: phone,
+                    debtAmount: debtAmount,
+                    income: income,
+                    privacyAgree: privacyAgree
+                });
+
+                if (!submitBtn) {
+                    console.error('submitBtn을 찾을 수 없습니다');
+                    return;
+                }
+
+                // 모든 필수 항목이 입력되었는지 확인
+                const isValid = name.length > 0 &&
+                    phone.length >= 10 &&
+                    debtAmount !== '' &&
+                    income !== '' &&
+                    privacyAgree === true;
+
+                console.log('유효성 검사 결과:', isValid);
+
+                if (isValid) {
+                    submitBtn.disabled = false;
+                    submitBtn.removeAttribute('disabled');
+                    submitBtn.classList.remove('disabled');
+                    submitBtn.style.setProperty('background-color', '#4865FF', 'important');
+                    submitBtn.style.setProperty('opacity', '1', 'important');
+                    submitBtn.style.setProperty('cursor', 'pointer', 'important');
+                    submitBtn.style.setProperty('color', 'white', 'important');
+                    submitBtn.style.setProperty('pointer-events', 'auto', 'important');
+                } else {
+                    submitBtn.disabled = true;
+                    submitBtn.setAttribute('disabled', 'disabled');
+                    submitBtn.classList.add('disabled');
+                    submitBtn.style.setProperty('background-color', '#cccccc', 'important');
+                    submitBtn.style.setProperty('opacity', '0.6', 'important');
+                    submitBtn.style.setProperty('cursor', 'not-allowed', 'important');
+                    submitBtn.style.setProperty('color', '#999999', 'important');
+                    submitBtn.style.setProperty('pointer-events', 'none', 'important');
+                }
+            }
+
+            // 두 번째 팝업 폼 유효성 검증 함수
+            function validateSecondPopupForm() {
+                console.log('validateSecondPopupForm 호출됨');
+
+                const name = document.getElementById('popupName')?.value?.trim() || '';
+                const phone = document.getElementById('popupPhone')?.value?.trim() || '';
+                const debtAmount = document.getElementById('popupDebtAmount')?.value || '';
+                const income = document.getElementById('popupIncome')?.value || '';
+                const privacyAgree = document.getElementById('popupPrivacyAgree')?.checked || false;
+                const submitBtn = document.getElementById('secondPopupSubmitBtn');
+
+                console.log('두 번째 팝업 검증 데이터:', {
+                    name: name,
+                    phone: phone,
+                    debtAmount: debtAmount,
+                    income: income,
+                    privacyAgree: privacyAgree
+                });
+
+                if (!submitBtn) {
+                    console.error('secondPopupSubmitBtn을 찾을 수 없습니다');
+                    return;
+                }
+
+                // 모든 필수 항목이 입력되었는지 확인
+                const isValid = name.length > 0 &&
+                    phone.length >= 10 &&
+                    debtAmount !== '' &&
+                    income !== '' &&
+                    privacyAgree === true;
+
+                console.log('두 번째 팝업 유효성 검사 결과:', isValid);
+
+                if (isValid) {
+                    submitBtn.disabled = false;
+                    submitBtn.classList.remove('disabled');
+                    submitBtn.style.setProperty('background', '#4865FF', 'important');
+                    submitBtn.style.setProperty('opacity', '1', 'important');
+                    submitBtn.style.setProperty('cursor', 'pointer', 'important');
+                    submitBtn.style.setProperty('color', 'white', 'important');
+                } else {
+                    submitBtn.disabled = true;
+                    submitBtn.classList.add('disabled');
+                    submitBtn.style.setProperty('background', '#ccc', 'important');
+                    submitBtn.style.setProperty('opacity', '0.6', 'important');
+                    submitBtn.style.setProperty('cursor', 'not-allowed', 'important');
+                    submitBtn.style.setProperty('color', '#999', 'important');
+                }
+            }
+
+            // 상담 팝업 열기 함수
+            function openConsultationPopup() {
+                const popup = document.getElementById('consultationPopup');
+                const deviceField = document.getElementById('popupDevice');
+
+                // 디바이스 정보 설정 (PC/Mobile)
+                const isMobile = window.innerWidth <= 768;
+                if (deviceField) {
+                    deviceField.value = isMobile ? 'Mobile' : 'PC';
+                }
+
+                if (popup) {
+                    popup.style.display = 'flex';
+                    setTimeout(() => {
+                        popup.classList.add('show');
+                        // 팝업이 열린 후 초기 검증 실행
+                        setTimeout(() => {
+                            validatePopupForm();
+                            validateSecondPopupForm(); // 두 번째 팝업도 검증
+                        }, 100);
+                    }, 10);
+                    document.body.style.overflow = 'hidden';
+                }
+            }
+
+            // 상담 팝업 닫기 함수
+            function closeConsultationPopup() {
+                const popup = document.getElementById('consultationPopup');
+                if (popup) {
+                    popup.classList.remove('show');
+                    setTimeout(() => {
+                        popup.style.display = 'none';
+                        document.body.style.overflow = '';
                         // 폼 초기화
-                        nameElement.value = '';
-                        phoneElement.value = '';
-                        if (debtAmountElement) debtAmountElement.value = '';
-                        if (incomeElement) incomeElement.value = '';
-                        if (privacyElement) privacyElement.checked = false;
-
-                        // 폼 닫기
-                        const expandedForm = document.getElementById('expandedForm');
-                        const toggleBtn = document.getElementById('toggleBtn');
-                        if (expandedForm && toggleBtn) {
-                            expandedForm.classList.remove('show');
-                            toggleBtn.classList.remove('collapsed');
+                        const form = document.getElementById('consultationPopupForm');
+                        if (form) {
+                            form.reset();
                         }
-                        
-                    } else {
-                        console.error('상담 신청 실패:', data.message);
-                        alert(data.message || '상담 신청 중 오류가 발생했습니다.');
-                    }
+                        // 버튼 상태 초기화 (비활성화)
+                        setTimeout(() => {
+                            validatePopupForm();
+                            validateSecondPopupForm(); // 두 번째 팝업도 초기화
+                        }, 50);
+                    }, 300);
+                }
+            }
+
+            // 성공 팝업 닫기 함수
+            function closeSuccessPopup() {
+                const popup = document.getElementById('consultationSuccessPopup');
+                if (popup) {
+                    popup.classList.remove('show');
+                    setTimeout(() => {
+                        popup.style.display = 'none';
+                        document.body.style.overflow = '';
+                    }, 300);
+                }
+            }
+
+            // 팝업 상담 신청 제출 함수
+            function submitConsultationForm(event) {
+                event.preventDefault();
+
+                const form = document.getElementById('consultationPopupForm');
+                const formData = new FormData(form);
+
+                // 필수 항목 검증
+                const name = formData.get('name').trim();
+                const phone = formData.get('phone').trim();
+                const debtAmount = formData.get('debtAmount');
+                const income = formData.get('income');
+                const privacyAgree = formData.get('privacyAgree');
+
+                if (!name) {
+                    alert('이름을 입력해 주세요');
+                    return;
+                }
+
+                if (!phone) {
+                    alert('연락처를 입력해 주세요');
+                    return;
+                }
+
+                if (!debtAmount) {
+                    alert('채무금액을 선택해 주세요');
+                    return;
+                }
+
+                if (!income) {
+                    alert('월소득을 선택해 주세요');
+                    return;
+                }
+
+                if (!privacyAgree) {
+                    alert('개인정보 수집 및 이용에 동의해 주세요');
+                    return;
+                }
+
+                // 연락처 형식 검증 (숫자만, 10-11자리)
+                const phoneRegex = /^[0-9]{10,11}$/;
+                if (!phoneRegex.test(phone)) {
+                    alert('올바른 연락처를 입력해 주세요 (10-11자리 숫자)');
+                    return;
+                }
+
+                // 제출 버튼 비활성화
+                const submitBtn = form.querySelector('.consultation-submit-popup-btn');
+                const originalText = submitBtn.textContent;
+                submitBtn.disabled = true;
+                submitBtn.textContent = '처리중...';
+
+                // 폼 데이터 재구성 (서버 API에 맞게) - URLSearchParams 사용
+                const apiFormData = new URLSearchParams();
+                apiFormData.append('name', name);
+                apiFormData.append('phone', phone);
+                apiFormData.append('debtAmount', debtAmount);
+                apiFormData.append('income', income);
+                apiFormData.append('device', formData.get('device'));
+                apiFormData.append('type', '무료상담신청(팝업)');
+
+                // UTM 파라미터 추가 (URL에서 추출)
+                const urlParams = new URLSearchParams(window.location.search);
+                apiFormData.append('utm_source', urlParams.get('utm_source') || '');
+                apiFormData.append('utm_medium', urlParams.get('utm_medium') || '');
+                apiFormData.append('utm_campaign', urlParams.get('utm_campaign') || '');
+                apiFormData.append('utm_term', urlParams.get('utm_term') || '');
+                apiFormData.append('utm_content', urlParams.get('utm_content') || '');
+
+                // 서버에 데이터 전송
+                fetch('/consultation', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: apiFormData
                 })
-                .catch(error => {
-                    console.error('네트워크 오류:', error);
-                    alert('네트워크 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.');
-                })
-                .finally(() => {
-                    // 제출 버튼 복원
-                    if (submitBtn) {
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            console.log('상담 신청 성공:', data);
+
+                            // 상담 신청 팝업 닫기
+                            closeConsultationPopup();
+
+                            // 성공 팝업 표시
+                            setTimeout(() => {
+                                const successPopup = document.getElementById('consultationSuccessPopup');
+                                if (successPopup) {
+                                    successPopup.style.display = 'flex';
+                                    setTimeout(() => {
+                                        successPopup.classList.add('show');
+                                    }, 10);
+                                    document.body.style.overflow = 'hidden';
+                                }
+                            }, 400);
+
+                        } else {
+                            console.error('상담 신청 실패:', data.message);
+                            alert(data.message || '상담 신청 중 오류가 발생했습니다.');
+                        }
+                    })
+                    .catch(error => {
+                        console.error('네트워크 오류:', error);
+                        alert('네트워크 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.');
+                    })
+                    .finally(() => {
+                        // 제출 버튼 복원
                         submitBtn.disabled = false;
                         submitBtn.textContent = originalText;
-                    }
-                });
+                    });
             }
+
+            // 팝업 외부 클릭 시 닫기
+            document.addEventListener('click', function (event) {
+                const consultationPopup = document.getElementById('consultationPopup');
+                const successPopup = document.getElementById('consultationSuccessPopup');
+
+                if (event.target === consultationPopup) {
+                    closeConsultationPopup();
+                }
+
+                if (event.target === successPopup) {
+                    closeSuccessPopup();
+                }
+            });
+
+            // ESC 키로 팝업 닫기
+            document.addEventListener('keydown', function (event) {
+                if (event.key === 'Escape') {
+                    closeConsultationPopup();
+                    closeSuccessPopup();
+                }
+            });
         </script>
+
+        <!-- 상담 신청 팝업 -->
+        <div class="consultation-popup-overlay" id="consultationPopup">
+            <div class="consultation-popup-content">
+                <div class="consultation-popup-header">
+                    <h2>무료 상담 신청</h2>
+                    <button class="consultation-popup-close" onclick="closeConsultationPopup()">&times;</button>
+                </div>
+                <div class="consultation-popup-body">
+                    <form id="consultationPopupForm" onsubmit="submitConsultationForm(event)">
+                        <div class="popup-form-group">
+                            <label for="popupName">이름 *</label>
+                            <input type="text" id="popupName" name="name" placeholder="예) 홍길동" required
+                                oninput="validatePopupForm()">
+                        </div>
+
+                        <div class="popup-form-group">
+                            <label for="popupPhone">연락처 *</label>
+                            <input type="tel" id="popupPhone" name="phone" placeholder="- 는 제외하고 입력"
+                                oninput="formatPhoneNumber(this); validatePopupForm()" required>
+                        </div>
+
+                        <div class="popup-form-group">
+                            <label for="popupDebt">채무금액 *</label>
+                            <select id="popupDebt" name="debtAmount" required onchange="validatePopupForm()">
+                                <option value="">채무금액을 선택해주세요</option>
+                                <option value="1000만원 미만">1000만원 미만</option>
+                                <option value="1000만원~3000만원">1000만원~3000만원</option>
+                                <option value="3000만원~5000만원">3000만원~5000만원</option>
+                                <option value="5000만원~1억원">5000만원~1억원</option>
+                                <option value="1억원 이상">1억원 이상</option>
+                            </select>
+                        </div>
+
+                        <div class="popup-form-group">
+                            <label for="popupIncome">월소득 *</label>
+                            <select id="popupIncome" name="income" required onchange="validatePopupForm()">
+                                <option value="">월소득을 선택해주세요</option>
+                                <option value="100만원 미만">100만원 미만</option>
+                                <option value="100만원~200만원">100만원~200만원</option>
+                                <option value="200만원~300만원">200만원~300만원</option>
+                                <option value="300만원~500만원">300만원~500만원</option>
+                                <option value="500만원 이상">500만원 이상</option>
+                            </select>
+                        </div>
+
+                        <input type="hidden" id="popupDevice" name="device" value="PC">
+
+                        <div class="privacy-check-popup">
+                            <input type="checkbox" id="popupPrivacyAgree" name="privacyAgree" required
+                                onchange="validatePopupForm()">
+                            <label for="popupPrivacyAgree">개인정보 수집 및 이용에 대한 동의 <span class="required">*</span></label>
+                        </div>
+
+                        <button type="submit" class="consultation-submit-popup-btn" id="popupSubmitBtn"
+                            disabled="disabled" style="background-color: #cccccc !important; 
+                                       opacity: 0.6 !important; 
+                                       cursor: not-allowed !important; 
+                                       color: #999999 !important;
+                                       pointer-events: none !important;">
+                            무료 상담 신청
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- 상담 신청 성공 팝업 -->
+        <div class="consultation-popup-overlay" id="consultationSuccessPopup">
+            <div class="consultation-popup-content success-popup">
+                <div class="consultation-popup-header">
+                    <h2>상담 신청 완료</h2>
+                    <button class="consultation-popup-close" onclick="closeSuccessPopup()">&times;</button>
+                </div>
+                <div class="consultation-popup-body">
+                    <div class="success-message">
+                        <div class="success-icon">✓</div>
+                        <p><strong>상담 신청이 완료되었습니다!</strong></p>
+                        <p>빠른 시일 내에 전문 상담사가<br>연락드리겠습니다.</p>
+                        <button class="success-confirm-btn" onclick="closeSuccessPopup()">확인</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <!-- 키패드 대응 CSS -->
         <style>
@@ -7600,9 +8027,232 @@ tr
 
             /* iOS Safari 키패드 대응 */
             @supports (-webkit-touch-callout: none) {
+
                 body.keyboard-open .floating-btn-container,
                 body.keyboard-open .bottom-consultation-bar {
                     display: none !important;
+                }
+            }
+
+            /* 상담 신청 팝업 스타일 */
+            .consultation-popup-overlay {
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: rgba(0, 0, 0, 0.5);
+                z-index: 2000;
+                display: none;
+                align-items: center;
+                justify-content: center;
+                opacity: 0;
+                transition: opacity 0.3s ease;
+            }
+
+            .consultation-popup-overlay.show {
+                display: flex;
+                opacity: 1;
+            }
+
+            .consultation-popup-content {
+                background: white;
+                border-radius: 15px;
+                width: 90%;
+                max-width: 500px;
+                max-height: 90vh;
+                overflow-y: auto;
+                box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+                transform: scale(0.9);
+                transition: transform 0.3s ease;
+            }
+
+            .consultation-popup-overlay.show .consultation-popup-content {
+                transform: scale(1);
+            }
+
+            .consultation-popup-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 25px 30px 20px;
+                border-bottom: 1px solid #e9ecef;
+            }
+
+            .consultation-popup-header h2 {
+                font-size: 24px;
+                font-weight: bold;
+                color: #333;
+                margin: 0;
+            }
+
+            .consultation-popup-close {
+                background: none;
+                border: none;
+                font-size: 28px;
+                color: #999;
+                cursor: pointer;
+                padding: 0;
+                width: 30px;
+                height: 30px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 50%;
+                transition: all 0.3s;
+            }
+
+            .consultation-popup-close:hover {
+                background: #f5f5f5;
+                color: #333;
+            }
+
+            .consultation-popup-body {
+                padding: 30px;
+            }
+
+            .popup-form-group {
+                margin-bottom: 25px;
+            }
+
+            .popup-form-group label {
+                display: block;
+                font-size: 16px;
+                font-weight: 600;
+                color: #333;
+                margin-bottom: 8px;
+            }
+
+            .popup-form-group input,
+            .popup-form-group select {
+                width: 100%;
+                padding: 15px 18px;
+                border: 2px solid #e5e5e5;
+                border-radius: 8px;
+                font-size: 16px;
+                background: white;
+                color: #333;
+                transition: border-color 0.3s;
+                box-sizing: border-box;
+            }
+
+            .popup-form-group input:focus,
+            .popup-form-group select:focus {
+                outline: none;
+                border-color: #4865FF;
+                background: white;
+            }
+
+            .popup-form-group input::placeholder {
+                color: #aaa;
+            }
+
+            .popup-form-group select {
+                color: #666;
+            }
+
+            .popup-form-group select:focus,
+            .popup-form-group select:valid {
+                color: #333;
+            }
+
+            .privacy-check-popup {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                font-size: 14px;
+                color: #666;
+                cursor: pointer;
+                margin-bottom: 20px;
+            }
+
+            .privacy-check-popup input[type="checkbox"] {
+                width: auto;
+                margin: 0;
+            }
+
+            /* 성공 팝업 스타일 */
+            .success-popup {
+                text-align: center;
+            }
+
+            .success-message {
+                padding: 20px 0;
+            }
+
+            .success-icon {
+                width: 80px;
+                height: 80px;
+                background: #4865FF;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 40px;
+                color: white;
+                margin: 0 auto 20px;
+            }
+
+            .success-message p {
+                font-size: 18px;
+                color: #333;
+                margin: 10px 0;
+                line-height: 1.5;
+            }
+
+            .success-confirm-btn {
+                background: #4865FF;
+                color: white;
+                border: none;
+                padding: 15px 40px;
+                border-radius: 10px;
+                font-size: 16px;
+                font-weight: bold;
+                cursor: pointer;
+                transition: background 0.3s;
+                margin-top: 20px;
+            }
+
+            .success-confirm-btn:hover {
+                background: #365a9b;
+            }
+
+            /* 모바일 팝업 스타일 */
+            @media (max-width: 768px) {
+                .consultation-popup-content {
+                    width: 95%;
+                    margin: 20px;
+                }
+
+                .consultation-popup-header {
+                    padding: 20px 25px 15px;
+                }
+
+                .consultation-popup-header h2 {
+                    font-size: 20px;
+                }
+
+                .consultation-popup-body {
+                    padding: 25px;
+                }
+
+                .popup-form-group {
+                    margin-bottom: 20px;
+                }
+
+                .popup-form-group label {
+                    font-size: 15px;
+                }
+
+                .popup-form-group input,
+                .popup-form-group select {
+                    padding: 12px 15px;
+                    font-size: 15px;
+                }
+
+                .consultation-submit-popup-btn {
+                    padding: 15px;
+                    font-size: 16px;
                 }
             }
         </style>

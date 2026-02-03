@@ -93,6 +93,21 @@ public class ConsultationServlet extends HttpServlet {
                 return;
             }
             
+            // 팝업에서 온 요청인 경우 채무금액과 월소득 필수 검증
+            if (type != null && (type.contains("팝업") || type.equals("popup_consultation"))) {
+                if (debtAmount == null || debtAmount.trim().isEmpty()) {
+                    System.out.println("채무금액 검증 실패: debtAmount = '" + debtAmount + "'");
+                    sendErrorResponse(out, "채무금액을 선택해 주세요.");
+                    return;
+                }
+                
+                if (monthlyIncome == null || monthlyIncome.trim().isEmpty()) {
+                    System.out.println("월소득 검증 실패: monthlyIncome = '" + monthlyIncome + "'");
+                    sendErrorResponse(out, "월소득을 선택해 주세요.");
+                    return;
+                }
+            }
+            
             System.out.println("검증 통과! 데이터베이스 저장 시작...");
             
             // Inquiry 객체 생성
