@@ -118,7 +118,7 @@ public class ConsultationServlet extends HttpServlet {
             inquiry.setDebtAmount(debtAmount);
             inquiry.setMonthlyIncome(monthlyIncome);
             inquiry.setDevice(device != null ? device : detectDevice(request));
-            inquiry.setType(type != null ? type : "무료상담신청");
+            inquiry.setType("inquiry");  // 타입은 항상 "inquiry"로 고정
             
             // 추가 정보 수집
             collectAdditionalInfo(request, inquiry);
@@ -162,11 +162,11 @@ public class ConsultationServlet extends HttpServlet {
         inquiry.setReferrer(referrer);
         
         // UTM 파라미터 수집
-        inquiry.setUtm_source(request.getParameter("utm_source"));
-        inquiry.setUtm_medium(request.getParameter("utm_medium"));
-        inquiry.setUtm_campaign(request.getParameter("utm_campaign"));
-        inquiry.setUtm_term(request.getParameter("utm_term"));
-        inquiry.setUtm_content(request.getParameter("utm_content"));
+        inquiry.setUtmSource(request.getParameter("utm_source"));
+        inquiry.setUtmMedium(request.getParameter("utm_medium"));
+        inquiry.setUtmCampaign(request.getParameter("utm_campaign"));
+        inquiry.setUtmTerm(request.getParameter("utm_term"));
+        inquiry.setUtmContent(request.getParameter("utm_content"));
         
         // AI 진단 관련 추가 데이터 수집
         String diagnosisType = request.getParameter("diagnosisType");
@@ -180,9 +180,7 @@ public class ConsultationServlet extends HttpServlet {
         
         if (diagnosisType != null && !diagnosisType.trim().isEmpty()) {
             System.out.println("AI 진단 타입: " + diagnosisType);
-            // 진단 타입을 type 필드에 추가 정보로 저장
-            String currentType = inquiry.getType();
-            inquiry.setType(currentType + " (" + diagnosisType + ")");
+            // 진단 타입을 영문으로 변환하여 저장 (별도 필드에 저장하지 않고 로그만)
         }
         
         // 보유자산 Y/N 변환 (1: 있음 -> Y, 0: 없음 -> N)
@@ -209,11 +207,11 @@ public class ConsultationServlet extends HttpServlet {
         System.out.println("Client IP: " + ipAddress);
         System.out.println("User-Agent: " + userAgent);
         System.out.println("Referrer: " + referrer);
-        System.out.println("UTM Source: " + inquiry.getUtm_source());
-        System.out.println("UTM Medium: " + inquiry.getUtm_medium());
-        System.out.println("UTM Campaign: " + inquiry.getUtm_campaign());
-        System.out.println("UTM Term: " + inquiry.getUtm_term());
-        System.out.println("UTM Content: " + inquiry.getUtm_content());
+        System.out.println("UTM Source: " + inquiry.getUtmSource());
+        System.out.println("UTM Medium: " + inquiry.getUtmMedium());
+        System.out.println("UTM Campaign: " + inquiry.getUtmCampaign());
+        System.out.println("UTM Term: " + inquiry.getUtmTerm());
+        System.out.println("UTM Content: " + inquiry.getUtmContent());
     }
     
     /**
@@ -247,6 +245,26 @@ public class ConsultationServlet extends HttpServlet {
         }
         
         return request.getRemoteAddr();
+    }
+    
+    /**
+     * 한글을 영문으로 변환
+     */
+    private String convertToEnglish(String korean) {
+        if (korean == null) return null;
+        
+        switch (korean.trim()) {
+            case "개인회생":
+                return "personal";
+            case "파산면책":
+                return "bankruptcy";
+            case "무료상담신청":
+                return "free_consultation";
+            case "AI진단상담신청":
+                return "ai_diagnosis";
+            default:
+                return korean; // 변환할 수 없으면 원본 반환
+        }
     }
     
     /**

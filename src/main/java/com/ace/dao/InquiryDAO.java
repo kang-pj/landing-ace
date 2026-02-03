@@ -10,31 +10,39 @@ import java.util.List;
 
 public class InquiryDAO {
     
-    // 데이터 삽입 SQL - has_real_estate, has_dependents 필드 추가
+    // 데이터 삽입 SQL - 모든 필드 포함 (device 컬럼 추가됨)
     private static final String INSERT_SQL = """
         INSERT INTO inquiries 
-        (company_id, name, phone, debt_amount, monthly_income, has_real_estate, has_dependents) 
-        VALUES (?, ?, ?, ?, ?, ?, ?)
+        (company_id, name, phone, debt_amount, monthly_income, device, type, 
+         ip_address, user_agent, referrer, utm_source, utm_medium, utm_campaign, 
+         utm_term, utm_content, has_real_estate, has_dependents) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         """;
     
-    // 데이터 조회 SQL
+    // 데이터 조회 SQL - 모든 필드 포함
     private static final String SELECT_ALL_SQL = """
-        SELECT id, company_id, name, phone, debt_amount, monthly_income, has_real_estate, has_dependents, created_at, updated_at 
+        SELECT id, company_id, name, phone, debt_amount, monthly_income, device, type,
+               ip_address, user_agent, referrer, utm_source, utm_medium, utm_campaign,
+               utm_term, utm_content, has_real_estate, has_dependents, created_at, updated_at 
         FROM inquiries 
         ORDER BY created_at DESC
         """;
     
-    // 최근 데이터 조회 SQL
+    // 최근 데이터 조회 SQL - 모든 필드 포함
     private static final String SELECT_RECENT_SQL = """
-        SELECT id, company_id, name, phone, debt_amount, monthly_income, has_real_estate, has_dependents, created_at, updated_at 
+        SELECT id, company_id, name, phone, debt_amount, monthly_income, device, type,
+               ip_address, user_agent, referrer, utm_source, utm_medium, utm_campaign,
+               utm_term, utm_content, has_real_estate, has_dependents, created_at, updated_at 
         FROM inquiries 
         ORDER BY created_at DESC 
         LIMIT ?
         """;
     
-    // 회사별 조회 SQL
+    // 회사별 조회 SQL - 모든 필드 포함
     private static final String SELECT_BY_COMPANY_SQL = """
-        SELECT id, company_id, name, phone, debt_amount, monthly_income, has_real_estate, has_dependents, created_at, updated_at 
+        SELECT id, company_id, name, phone, debt_amount, monthly_income, device, type,
+               ip_address, user_agent, referrer, utm_source, utm_medium, utm_campaign,
+               utm_term, utm_content, has_real_estate, has_dependents, created_at, updated_at 
         FROM inquiries 
         WHERE company_id = ?
         ORDER BY created_at DESC
@@ -52,8 +60,18 @@ public class InquiryDAO {
             pstmt.setString(3, inquiry.getPhone());
             pstmt.setString(4, inquiry.getDebtAmount());
             pstmt.setString(5, inquiry.getMonthlyIncome());
-            pstmt.setString(6, inquiry.getHasRealEstate());
-            pstmt.setString(7, inquiry.getHasDependents());
+            pstmt.setString(6, inquiry.getDevice());
+            pstmt.setString(7, inquiry.getType());
+            pstmt.setString(8, inquiry.getIpAddress());
+            pstmt.setString(9, inquiry.getUserAgent());
+            pstmt.setString(10, inquiry.getReferrer());
+            pstmt.setString(11, inquiry.getUtmSource());
+            pstmt.setString(12, inquiry.getUtmMedium());
+            pstmt.setString(13, inquiry.getUtmCampaign());
+            pstmt.setString(14, inquiry.getUtmTerm());
+            pstmt.setString(15, inquiry.getUtmContent());
+            pstmt.setString(16, inquiry.getHasRealEstate());
+            pstmt.setString(17, inquiry.getHasDependents());
             
             int affectedRows = pstmt.executeUpdate();
             

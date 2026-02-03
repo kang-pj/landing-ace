@@ -132,43 +132,43 @@ public class Inquiry {
         this.referrer = referrer;
     }
     
-    public String getUtm_source() {
+    public String getUtmSource() {
         return utm_source;
     }
     
-    public void setUtm_source(String utm_source) {
+    public void setUtmSource(String utm_source) {
         this.utm_source = utm_source;
     }
     
-    public String getUtm_medium() {
+    public String getUtmMedium() {
         return utm_medium;
     }
     
-    public void setUtm_medium(String utm_medium) {
+    public void setUtmMedium(String utm_medium) {
         this.utm_medium = utm_medium;
     }
     
-    public String getUtm_campaign() {
+    public String getUtmCampaign() {
         return utm_campaign;
     }
     
-    public void setUtm_campaign(String utm_campaign) {
+    public void setUtmCampaign(String utm_campaign) {
         this.utm_campaign = utm_campaign;
     }
     
-    public String getUtm_term() {
+    public String getUtmTerm() {
         return utm_term;
     }
     
-    public void setUtm_term(String utm_term) {
+    public void setUtmTerm(String utm_term) {
         this.utm_term = utm_term;
     }
     
-    public String getUtm_content() {
+    public String getUtmContent() {
         return utm_content;
     }
     
-    public void setUtm_content(String utm_content) {
+    public void setUtmContent(String utm_content) {
         this.utm_content = utm_content;
     }
     
