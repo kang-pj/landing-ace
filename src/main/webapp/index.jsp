@@ -4854,7 +4854,7 @@
             </div>
 
             <div class="diagnosis-cards">
-                <div class="diagnosis-card" onclick="openConsultationPopup()"
+                <div class="diagnosis-card" onclick="selectDiagnosis('personal')"
                     style="cursor: pointer; padding: 20px 40px; margin: 10px; border-radius: 10px; background: #fff;">
                     <div class="card-content">
                         <p class="card-subtitle">일정한 소득이 있으나 여유가 없는분</p>
@@ -4863,7 +4863,7 @@
                     <img src="/images/icon_ai_01.png" alt="개인회생" class="card-icon" />
                 </div>
 
-                <div class="diagnosis-card" onclick="openConsultationPopup()"
+                <div class="diagnosis-card" onclick="selectDiagnosis('bankruptcy')"
                     style="cursor: pointer; padding: 20px 40px; margin: 10px; border-radius: 10px; background: #fff;">
                     <div class="card-content">
                         <p class="card-subtitle">과도한 빚으로 빚 변제가 어려우신분</p>
