@@ -15,6 +15,8 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
         <!-- Common CSS -->
         <link rel="stylesheet" href="/css/common.css" />
+        <!-- Naver Map API -->
+        <script type="text/javascript" src="https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=clz9bh7a24"></script>
 
     </head>
 
@@ -190,7 +192,7 @@
                     </div>
                 </form>
                 <div class="privacy-notice">
-                    <input type="checkbox" id="privacy-agree" class="privacy-checkbox" required="">
+                    <input type="checkbox" id="privacy-agree" class="privacy-checkbox" required="" checked>
                     <label for="privacy-agree">개인정보 수집 및 이용에 대한 <a href="#" class="privacy-link">자세히</a></label>
                 </div>
             </div>
@@ -955,11 +957,11 @@
                     </div>
 
                     <div class="location-buttons">
-                        <a href="#" class="location-btn">
+                        <a href="#" class="location-btn" onclick="shareLocation(event)">
                             <img src="/images/icon_share.png" alt="위치공유" />
                             위치공유
                         </a>
-                        <a href="#" class="location-btn">
+                        <a href="https://map.naver.com/p/directions/-/14135817.8893127,4516088.8840108,%EC%97%90%EC%9D%B4%EC%8A%A4%EB%B2%95%EB%AC%B4%EB%B2%95%EC%9D%B8,1862068169,PLACE_POI/-/transit?c=15.00,0,0,0,dh" target="_blank" class="location-btn">
                             <img src="/images/icon_search.png" alt="길찾기" />
                             길찾기
                         </a>
@@ -967,9 +969,8 @@
                 </div>
             </div>
 
-            <div class="location-map">
-                <!-- 지도 API 영역 (추후 구글맵 또는 카카오맵 연동) -->
-                <div>지도 API 연동 예정</div>
+            <div class="location-map" id="map" style="width:100%;height:400px;">
+                <!-- 네이버 지도가 여기에 표시됩니다 -->
             </div>
         </div>
         </section>
@@ -1106,7 +1107,7 @@
                     <div class="pc-input-group">
                         <input type="text" placeholder="이름" class="pc-input name-input" required>
                         <div class="pc-privacy-check">
-                            <input type="checkbox" id="pcPrivacyCheck" class="privacy-checkbox">
+                            <input type="checkbox" id="pcPrivacyCheck" class="privacy-checkbox" checked>
                             <label for="pcPrivacyCheck">개인정보 수집 및 이용에 대한 동의</label>
                         </div>
                     </div>
@@ -1287,7 +1288,7 @@
                         <div class="popup-form-group">
                             <label class="privacy-check-popup">
                                 <input type="checkbox" id="popupPrivacyAgree" name="privacyAgree" required
-                                    onchange="validateSecondPopupForm()">
+                                    onchange="validateSecondPopupForm()" checked>
                                 개인정보 수집 및 이용에 대한 동의 <span class="required">*</span>
                             </label>
                         </div>
@@ -1503,14 +1504,14 @@
                             <div class="form-group">
                                 <div class="input-with-label">
                                     <span class="input-label">휴대폰번호</span>
-                                    <input type="tel" id="consultPhone" placeholder="- 는 제외하고 입력"
-                                        oninput="validateConsultationForm()" />
+                                    <input type="tel" id="consultPhone" placeholder="- 는 제외하고 입력" maxlength="11"
+                                        oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 11); validateConsultationForm()" />
                                 </div>
                             </div>
 
                             <div class="privacy-agreement">
                                 <label class="checkbox-label">
-                                    <input type="checkbox" id="privacyAgree" onchange="validateConsultationForm()" />
+                                    <input type="checkbox" id="privacyAgree" onchange="validateConsultationForm()" checked />
                                     <span class="checkmark"></span>
                                     개인정보 수집 및 이용에 대한 동의 <span class="privacy-link"> 자세히</span>
                                 </label>
@@ -3584,7 +3585,7 @@
 
                         <div class="privacy-check-popup">
                             <input type="checkbox" id="popupPrivacyAgree" name="privacyAgree" required
-                                onchange="validatePopupForm()">
+                                onchange="validatePopupForm()" checked>
                             <label for="popupPrivacyAgree">개인정보 수집 및 이용에 대한 동의 <span class="required">*</span></label>
                         </div>
 
@@ -3858,13 +3859,9 @@
                 }
             }
         </style>
-    </body>
 
-    </html>
-
-    </html>
-        
-    // 성공 모달 관련 함수들
+        <script>
+            // 성공 모달 관련 함수들
             function showSuccessModal() {
                 const successModal = document.getElementById('successModal');
                 if (successModal) {
@@ -3886,6 +3883,90 @@
                     }, 300);
                 }
             }
+
+            // 네이버 지도 초기화
+            function initNaverMap() {
+                // 에이스법무법인 위치 좌표 (서울특별시 서초구 사임당로17길 9, 2층)
+                var mapOptions = {
+                    center: new naver.maps.LatLng(37.4838, 127.0084),
+                    zoom: 17,
+                    zoomControl: true,
+                    zoomControlOptions: {
+                        position: naver.maps.Position.TOP_RIGHT
+                    }
+                };
+
+                var map = new naver.maps.Map('map', mapOptions);
+
+                // 마커 추가
+                var marker = new naver.maps.Marker({
+                    position: new naver.maps.LatLng(37.4838, 127.0084),
+                    map: map,
+                    title: '에이스법무법인'
+                });
+
+                // 정보창 추가
+                var infoWindow = new naver.maps.InfoWindow({
+                    content: '<div style="padding:10px;min-width:200px;line-height:1.5;">' +
+                             '<h4 style="margin:0 0 5px 0;font-size:14px;font-weight:bold;">에이스법무법인</h4>' +
+                             '<p style="margin:0;font-size:12px;">서울특별시 서초구 사임당로17길 9, 2층</p>' +
+                             '<p style="margin:5px 0 0 0;font-size:12px;color:#4865FF;font-weight:bold;">☎ 1555-1684</p>' +
+                             '</div>'
+                });
+
+                // 마커 클릭 시 정보창 표시
+                naver.maps.Event.addListener(marker, 'click', function() {
+                    if (infoWindow.getMap()) {
+                        infoWindow.close();
+                    } else {
+                        infoWindow.open(map, marker);
+                    }
+                });
+
+                // 페이지 로드 시 정보창 자동 표시
+                infoWindow.open(map, marker);
+            }
+
+            // 페이지 로드 시 지도 초기화
+            document.addEventListener('DOMContentLoaded', function() {
+                if (typeof naver !== 'undefined' && naver.maps) {
+                    initNaverMap();
+                } else {
+                    console.error('네이버 지도 API가 로드되지 않았습니다.');
+                }
+            });
+
+            // 위치공유 함수
+            function shareLocation(event) {
+                event.preventDefault();
+                
+                const locationUrl = 'https://map.naver.com/p/entry/place/1862068169';
+                const locationText = '에이스법무법인 - 서울특별시 서초구 사임당로17길 9, 2층';
+                
+                // Web Share API 지원 여부 확인
+                if (navigator.share) {
+                    navigator.share({
+                        title: '에이스법무법인',
+                        text: locationText,
+                        url: locationUrl
+                    }).then(() => {
+                        console.log('위치 공유 성공');
+                    }).catch((error) => {
+                        console.log('위치 공유 취소:', error);
+                    });
+                } else {
+                    // Web Share API를 지원하지 않는 경우 클립보드에 복사
+                    if (navigator.clipboard) {
+                        navigator.clipboard.writeText(locationUrl).then(() => {
+                            alert('위치 링크가 클립보드에 복사되었습니다.');
+                        }).catch(() => {
+                            alert('위치 링크: ' + locationUrl);
+                        });
+                    } else {
+                        alert('위치 링크: ' + locationUrl);
+                    }
+                }
+            }
         </script>
     </body>
-</html>
+    </html>
