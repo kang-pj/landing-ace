@@ -157,7 +157,7 @@
         <!-- 상담 신청 폼 -->
         <div class="bottom-spacer">
             <div class="consultation-form">
-                <form>
+                <form id="mainConsultationForm" onsubmit="submitMainConsultationForm(event)">
                     <div class="form-row">
                         <div class="form-group">
                             <label for="name">이름 <span class="required">*</span></label>
@@ -190,7 +190,7 @@
                                 <option value="over">500만원 이상</option>
                             </select>
                         </div>
-                        <button type="button" class="submit-btn" onclick="openConsultationPopup()">무료 상담신청</button>
+                        <button type="submit" class="submit-btn">무료 상담신청</button>
                     </div>
                 </form>
                 <div class="privacy-notice">
@@ -2663,6 +2663,107 @@
                 input.value = value;
             }
 
+            // 메인 상담 신청 폼 제출 함수
+            function submitMainConsultationForm(event) {
+                event.preventDefault();
+
+                // 필수 항목 검증
+                const name = document.getElementById('name').value.trim();
+                const phone = document.getElementById('phone').value.trim();
+                const debt = document.getElementById('debt').value;
+                const income = document.getElementById('income').value;
+                const privacyAgree = document.getElementById('privacy-agree').checked;
+
+                if (!name) {
+                    alert('이름을 입력해 주세요');
+                    return;
+                }
+
+                if (!phone) {
+                    alert('연락처를 입력해 주세요');
+                    return;
+                }
+
+                if (!debt) {
+                    alert('채무금액을 선택해 주세요');
+                    return;
+                }
+
+                if (!income) {
+                    alert('월소득을 선택해 주세요');
+                    return;
+                }
+
+                if (!privacyAgree) {
+                    alert('개인정보 수집 및 이용에 동의해 주세요');
+                    return;
+                }
+
+                // 연락처 형식 검증 (숫자만, 10-11자리)
+                const phoneRegex = /^[0-9]{10,11}$/;
+                if (!phoneRegex.test(phone)) {
+                    alert('올바른 연락처를 입력해 주세요 (10-11자리 숫자)');
+                    return;
+                }
+
+                // 제출 버튼 비활성화
+                const submitBtn = document.querySelector('.submit-btn');
+                const originalText = submitBtn.textContent;
+                submitBtn.disabled = true;
+                submitBtn.textContent = '처리중...';
+
+                // 폼 데이터 구성
+                const apiFormData = new URLSearchParams();
+                apiFormData.append('name', name);
+                apiFormData.append('phone', phone);
+                apiFormData.append('debtAmount', debt);
+                apiFormData.append('income', income);
+                apiFormData.append('device', window.innerWidth <= 768 ? 'Mobile' : 'PC');
+                apiFormData.append('type', '무료상담신청(메인폼)');
+
+                // UTM 파라미터 추가
+                const urlParams = new URLSearchParams(window.location.search);
+                apiFormData.append('utm_source', urlParams.get('utm_source') || '');
+                apiFormData.append('utm_medium', urlParams.get('utm_medium') || '');
+                apiFormData.append('utm_campaign', urlParams.get('utm_campaign') || '');
+                apiFormData.append('utm_term', urlParams.get('utm_term') || '');
+                apiFormData.append('utm_content', urlParams.get('utm_content') || '');
+
+                // 서버에 데이터 전송
+                fetch('/consultation', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: apiFormData
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        console.log('상담 신청 성공:', data);
+                        
+                        // 성공 모달 표시
+                        showSuccessModal('상담 신청이 완료되었습니다!', '빠른 시일 내에 연락드리겠습니다.');
+                        
+                        // 폼 초기화
+                        document.getElementById('mainConsultationForm').reset();
+                        
+                    } else {
+                        console.error('상담 신청 실패:', data);
+                        alert('상담 신청 중 오류가 발생했습니다. 다시 시도해 주세요.');
+                    }
+                })
+                .catch(error => {
+                    console.error('상담 신청 오류:', error);
+                    alert('상담 신청 중 오류가 발생했습니다. 다시 시도해 주세요.');
+                })
+                .finally(() => {
+                    // 제출 버튼 복원
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = originalText;
+                });
+            }
+
             // 상담 팝업 관련 함수들
             function openConsultationPopup() {
                 const popup = document.getElementById('consultationPopup');
@@ -2671,6 +2772,26 @@
                 // 디바이스 정보 설정 (PC/Mobile)
                 const isMobile = window.innerWidth <= 768;
                 deviceField.value = isMobile ? 'Mobile' : 'PC';
+
+                // 기존 폼에서 입력된 정보를 팝업으로 전달
+                const mainFormName = document.getElementById('name').value.trim();
+                const mainFormPhone = document.getElementById('phone').value.trim();
+                const mainFormDebt = document.getElementById('debt').value;
+                const mainFormIncome = document.getElementById('income').value;
+
+                // 팝업 폼의 필드들에 값 설정
+                if (mainFormName) {
+                    document.getElementById('popupName').value = mainFormName;
+                }
+                if (mainFormPhone) {
+                    document.getElementById('popupPhone').value = mainFormPhone;
+                }
+                if (mainFormDebt) {
+                    document.getElementById('popupDebt').value = mainFormDebt;
+                }
+                if (mainFormIncome) {
+                    document.getElementById('popupIncome').value = mainFormIncome;
+                }
 
                 if (popup) {
                     popup.style.display = 'flex';
@@ -3357,6 +3478,26 @@
                 const isMobile = window.innerWidth <= 768;
                 if (deviceField) {
                     deviceField.value = isMobile ? 'Mobile' : 'PC';
+                }
+
+                // 기존 폼에서 입력된 정보를 팝업으로 전달
+                const mainFormName = document.getElementById('name').value.trim();
+                const mainFormPhone = document.getElementById('phone').value.trim();
+                const mainFormDebt = document.getElementById('debt').value;
+                const mainFormIncome = document.getElementById('income').value;
+
+                // 팝업 폼의 필드들에 값 설정
+                if (mainFormName && document.getElementById('popupName')) {
+                    document.getElementById('popupName').value = mainFormName;
+                }
+                if (mainFormPhone && document.getElementById('popupPhone')) {
+                    document.getElementById('popupPhone').value = mainFormPhone;
+                }
+                if (mainFormDebt && document.getElementById('popupDebt')) {
+                    document.getElementById('popupDebt').value = mainFormDebt;
+                }
+                if (mainFormIncome && document.getElementById('popupIncome')) {
+                    document.getElementById('popupIncome').value = mainFormIncome;
                 }
 
                 if (popup) {
