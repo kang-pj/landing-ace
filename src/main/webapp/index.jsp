@@ -727,7 +727,7 @@
                             </div>
                             <div class="swiper-slide">
                                 <div class="certificate-image">
-                                    <img src="/images/certificate2.jpg" alt="전문분야 등록증서" />
+                                    <img src="/images/ceo.png" alt="대표변호사" />
                                 </div>
                             </div>
                         </div>

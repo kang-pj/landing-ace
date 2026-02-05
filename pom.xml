@@ -98,6 +98,9 @@
                     </httpConnector>
                     <webApp>
                         <contextPath>/</contextPath>
+                        <resourceBases>
+                            <resourceBase>${project.basedir}/src/main/webapp</resourceBase>
+                        </resourceBases>
                     </webApp>
                     <reload>manual</reload>
                     <useFileMappedBuffer>false</useFileMappedBuffer>
@@ -105,6 +108,10 @@
                         <systemProperty>
                             <name>org.eclipse.jetty.server.Request.maxFormContentSize</name>
                             <value>200000</value>
+                        </systemProperty>
+                        <systemProperty>
+                            <name>org.eclipse.jetty.util.resource.Resource.defaultUseCaches</name>
+                            <value>false</value>
                         </systemProperty>
                     </systemProperties>
                 </configuration>
