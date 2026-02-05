@@ -1537,15 +1537,21 @@
 
         <!-- 상담 신청 성공 모달 -->
         <div id="successModal" class="modal-overlay">
-            <div class="modal-content">
+            <div class="modal-content success-modal-content">
                 <button class="modal-close" onclick="closeSuccessModal()">×</button>
 
                 <div class="success-popup">
-                    <div class="success-message">
-                        <div class="success-icon">✓</div>
-                        <p><strong>상담 신청이 완료되었습니다!</strong></p>
-                        <p>빠른 시일 내에 연락드리겠습니다.</p>
+                    <div class="success-icon-wrapper">
+                        <div class="success-icon-circle">
+                            <img src="/images/icon_ok.png" alt="완료" class="success-icon-img">
+                        </div>
                     </div>
+
+                    <div class="success-message">
+                        <h3>상담 신청 완료</h3>
+                        <p>빠르게 안내드리겠습니다.</p>
+                    </div>
+
                     <button class="success-confirm-btn" onclick="closeSuccessModal()">확인</button>
                 </div>
             </div>
@@ -2440,7 +2446,8 @@
                             alert('개인정보 수집 및 이용에 동의해주세요.');
                             return;
                         }
-                        alert('상담 신청이 접수되었습니다. 빠른 시일 내에 연락드리겠습니다.');
+                        // 상담 신청 완료 - alert 제거
+                        console.log('상담 신청이 접수되었습니다. 빠른 시일 내에 연락드리겠습니다.');
                     });
                 }
 
@@ -2737,31 +2744,31 @@
                     },
                     body: apiFormData
                 })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        console.log('상담 신청 성공:', data);
-                        
-                        // 성공 모달 표시
-                        showSuccessModal('상담 신청이 완료되었습니다!', '빠른 시일 내에 연락드리겠습니다.');
-                        
-                        // 폼 초기화
-                        document.getElementById('mainConsultationForm').reset();
-                        
-                    } else {
-                        console.error('상담 신청 실패:', data);
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            console.log('상담 신청 성공:', data);
+
+                            // 성공 모달 표시
+                            showSuccessModal('상담 신청이 완료되었습니다!', '빠른 시일 내에 연락드리겠습니다.');
+
+                            // 폼 초기화
+                            document.getElementById('mainConsultationForm').reset();
+
+                        } else {
+                            console.error('상담 신청 실패:', data);
+                            alert('상담 신청 중 오류가 발생했습니다. 다시 시도해 주세요.');
+                        }
+                    })
+                    .catch(error => {
+                        console.error('상담 신청 오류:', error);
                         alert('상담 신청 중 오류가 발생했습니다. 다시 시도해 주세요.');
-                    }
-                })
-                .catch(error => {
-                    console.error('상담 신청 오류:', error);
-                    alert('상담 신청 중 오류가 발생했습니다. 다시 시도해 주세요.');
-                })
-                .finally(() => {
-                    // 제출 버튼 복원
-                    submitBtn.disabled = false;
-                    submitBtn.textContent = originalText;
-                });
+                    })
+                    .finally(() => {
+                        // 제출 버튼 복원
+                        submitBtn.disabled = false;
+                        submitBtn.textContent = originalText;
+                    });
             }
 
             // 상담 팝업 관련 함수들
