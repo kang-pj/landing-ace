@@ -6,7 +6,7 @@
         <meta charset="UTF-8">
         <meta name="viewport"
             content="width=device-width, initial-scale=1.0, viewport-fit=cover, interactive-widget=resizes-content">
-        <title>ACE 법무법인</title>
+        <title>ACE 법률사무소</title>
         <!-- Pretendard Font -->
         <link rel="preconnect" href="https://cdn.jsdelivr.net">
         <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"
@@ -25,7 +25,7 @@
         <div class="floating-header" id="floatingHeader">
             <div class="floating-header-container">
                 <div class="floating-logo">
-                    <img src="/images/logo.png" alt="ACE 법무법인" />
+                    <img src="/images/logo.png" alt="ACE 법률사무소" />
                 </div>
 
                 <nav class="floating-nav">
@@ -51,7 +51,7 @@
         <header class="header">
             <div class="header-container">
                 <div class="logo">
-                    <img src="/images/logo.png" alt="ACE 법무법인" class="logo-box" />
+                    <img src="/images/logo.png" alt="ACE 법률사무소" class="logo-box" />
                 </div>
 
                 <nav class="nav-menu">
@@ -193,7 +193,7 @@
                 </form>
                 <div class="privacy-notice">
                     <input type="checkbox" id="privacy-agree" class="privacy-checkbox" required="" checked>
-                    <label for="privacy-agree">개인정보 수집 및 이용에 대한 <a href="#" class="privacy-link">자세히</a></label>
+                    <label for="privacy-agree">개인정보 수집 및 이용에 대한 동의<a href="#" class="privacy-link">자세히</a></label>
                 </div>
             </div>
         </div>
@@ -1071,13 +1071,14 @@
                 <div class="footer-content">
                     <div class="footer-left">
                         <div class="company-info">
-                            <h3>에이스법무법인</h3>
+                            <h3>에이스법률사무소</h3>
                             <p>주소: 서울특별시 서초구 사평대로28길 2층 (방배동)</p>
                             <p>대표변호사: 황선택</p>
+                            <p>사업자번호: 159-08-00292</p>
                             <p>대표전화: 1555-1684</p>
                         </div>
                         <div class="copyright">
-                            <p>Copyright (c) 에이스법무법인 All rights reserved</p>
+                            <p>Copyright (c) 에이스법률사무소 All rights reserved</p>
                         </div>
                     </div>
 
@@ -1087,7 +1088,7 @@
                             <p>(전화 24시간 가능)</p>
                             <div class="phone-number">1555-1684</div>
                             <div class="ace-logo">
-                                <img src="/images/logo_gray.png" alt="ACE 법무법인">
+                                <img src="/images/logo_gray.png" alt="ACE 법률사무소">
                             </div>
                         </div>
                     </div>
@@ -1108,7 +1109,7 @@
                         <input type="text" placeholder="이름" class="pc-input name-input" required>
                         <div class="pc-privacy-check">
                             <input type="checkbox" id="pcPrivacyCheck" class="privacy-checkbox" checked>
-                            <label for="pcPrivacyCheck">개인정보 수집 및 이용에 대한 동의</label>
+                            <label for="pcPrivacyCheck">개인정보 수집 및 이용에 대한 동의 <a href="#" class="privacy-link">자세히</a></label>
                         </div>
                     </div>
                     <div class="pc-input-group">
@@ -1199,8 +1200,8 @@
                         <div class="privacy-check-mobile">
                             <label class="privacy-check">
                                 <input type="checkbox" class="privacy-checkbox" id="mobilePrivacyAgree" required
-                                    onchange="validateMobileForm()">
-                                개인정보 수집 및 이용에 대한 동의 <span class="required">*</span>
+                                    onchange="validateMobileForm()" checked>
+                                개인정보 수집 및 이용에 대한 동의 <a href="#" class="privacy-link">자세히</a> <span class="required">*</span>
                             </label>
                         </div>
 
@@ -1289,7 +1290,7 @@
                             <label class="privacy-check-popup">
                                 <input type="checkbox" id="popupPrivacyAgree" name="privacyAgree" required
                                     onchange="validateSecondPopupForm()" checked>
-                                개인정보 수집 및 이용에 대한 동의 <span class="required">*</span>
+                                개인정보 수집 및 이용에 대한 동의 <a href="#" class="privacy-link">자세히</a><span class="required">*</span>
                             </label>
                         </div>
 
@@ -3586,7 +3587,7 @@
                         <div class="privacy-check-popup">
                             <input type="checkbox" id="popupPrivacyAgree" name="privacyAgree" required
                                 onchange="validatePopupForm()" checked>
-                            <label for="popupPrivacyAgree">개인정보 수집 및 이용에 대한 동의 <span class="required">*</span></label>
+                            <label for="popupPrivacyAgree">개인정보 수집 및 이용에 대한 동의 <a href="#" class="privacy-link">자세히</a><span class="required">*</span></label>
                         </div>
 
                         <button type="submit" class="consultation-submit-popup-btn" id="popupSubmitBtn"
@@ -3886,7 +3887,7 @@
 
             // 네이버 지도 초기화
             function initNaverMap() {
-                // 에이스법무법인 위치 좌표 (서울특별시 서초구 사임당로17길 9, 2층)
+                // 에이스법률사무소 위치 좌표 (서울특별시 서초구 사임당로17길 9, 2층)
                 var mapOptions = {
                     center: new naver.maps.LatLng(37.4838, 127.0084),
                     zoom: 17,
@@ -3902,13 +3903,13 @@
                 var marker = new naver.maps.Marker({
                     position: new naver.maps.LatLng(37.4838, 127.0084),
                     map: map,
-                    title: '에이스법무법인'
+                    title: '에이스법률사무소'
                 });
 
                 // 정보창 추가
                 var infoWindow = new naver.maps.InfoWindow({
                     content: '<div style="padding:10px;min-width:200px;line-height:1.5;">' +
-                             '<h4 style="margin:0 0 5px 0;font-size:14px;font-weight:bold;">에이스법무법인</h4>' +
+                             '<h4 style="margin:0 0 5px 0;font-size:14px;font-weight:bold;">에이스법률사무소</h4>' +
                              '<p style="margin:0;font-size:12px;">서울특별시 서초구 사임당로17길 9, 2층</p>' +
                              '<p style="margin:5px 0 0 0;font-size:12px;color:#4865FF;font-weight:bold;">☎ 1555-1684</p>' +
                              '</div>'
@@ -3941,12 +3942,12 @@
                 event.preventDefault();
                 
                 const locationUrl = 'https://map.naver.com/p/entry/place/1862068169';
-                const locationText = '에이스법무법인 - 서울특별시 서초구 사임당로17길 9, 2층';
+                const locationText = '에이스법률사무소 - 서울특별시 서초구 사임당로17길 9, 2층';
                 
                 // Web Share API 지원 여부 확인
                 if (navigator.share) {
                     navigator.share({
-                        title: '에이스법무법인',
+                        title: '에이스법률사무소',
                         text: locationText,
                         url: locationUrl
                     }).then(() => {
@@ -3967,6 +3968,87 @@
                     }
                 }
             }
+
+            // 개인정보 약관 모달 열기
+            function openPrivacyModal(event) {
+                if (event) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                }
+                const modal = document.getElementById('privacyModal');
+                if (modal) {
+                    modal.style.display = 'flex';
+                    setTimeout(() => {
+                        modal.classList.add('show');
+                    }, 10);
+                    document.body.style.overflow = 'hidden';
+                }
+            }
+
+            // 개인정보 약관 모달 닫기
+            function closePrivacyModal() {
+                const modal = document.getElementById('privacyModal');
+                if (modal) {
+                    modal.classList.remove('show');
+                    setTimeout(() => {
+                        modal.style.display = 'none';
+                        document.body.style.overflow = '';
+                    }, 300);
+                }
+            }
+
+            // 페이지 로드 시 모든 "자세히" 링크에 이벤트 연결
+            document.addEventListener('DOMContentLoaded', function() {
+                const privacyLinks = document.querySelectorAll('.privacy-link');
+                privacyLinks.forEach(link => {
+                    link.addEventListener('click', openPrivacyModal);
+                });
+
+                // 모달 외부 클릭 시 닫기
+                const privacyModal = document.getElementById('privacyModal');
+                if (privacyModal) {
+                    privacyModal.addEventListener('click', function(event) {
+                        if (event.target === privacyModal) {
+                            closePrivacyModal();
+                        }
+                    });
+                }
+            });
         </script>
+
+        <!-- 개인정보 약관 모달 -->
+        <div id="privacyModal" class="consultation-popup-overlay" style="z-index: 100000;">
+            <div class="consultation-popup-content" style="max-width: 600px;">
+                <div class="consultation-popup-header">
+                    <h2>개인정보 수집 및 이용 동의</h2>
+                    <button class="consultation-popup-close" onclick="closePrivacyModal()">&times;</button>
+                </div>
+                <div class="consultation-popup-body" style="padding: 30px;">
+                    <div style="line-height: 1.8; color: #333;">
+                        <p style="margin-bottom: 20px;">
+                            <strong style="font-size: 16px;">○ 개인정보 수집/이용 목적</strong><br>
+                            문의에 대한 다양한 정보 제공
+                        </p>
+                        
+                        <p style="margin-bottom: 20px;">
+                            <strong style="font-size: 16px;">○ 수집하는 개인정보의 항목</strong><br>
+                            성명, 연락처
+                        </p>
+                        
+                        <p style="margin-bottom: 20px; padding-left: 20px; color: #666; font-size: 14px;">
+                            ※ 상담예약서비스 이용과정에서 아래와 같은 정보들이 생성되어 수집될 수 있습니다.<br>
+                            - 서비스이용기록, 접속로그, 쿠키, 접속IP정보
+                        </p>
+                        
+                        <p style="margin-bottom: 20px;">
+                            <strong style="font-size: 16px;">○ 개인정보의 보유 및 이용기간</strong><br>
+                            - 보존기간은 5년이며, 정보 제공자가 삭제를 요청할 경우 즉시 파기합니다.<br>
+                            - 고객님의 정보는 개인정보 보호법에 따라 보호되며 위의 이용목적 외에 별도로 사용하지 않을 것을 약속드립니다.
+                        </p>
+                    </div>
+                    <button class="success-confirm-btn" onclick="closePrivacyModal()" style="margin-top: 20px; width: 100%;">확인</button>
+                </div>
+            </div>
+        </div>
     </body>
     </html>
