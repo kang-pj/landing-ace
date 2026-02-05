@@ -1172,6 +1172,7 @@
 
                     <!-- 확장 폼 (토글 시 보임) -->
                     <div class="expanded-form" id="expandedForm">
+                        <!-- 채무액, 월소득 필드 주석처리
                         <div class="form-row-mobile">
                             <div class="input-group">
                                 <select class="inline-input" id="mobileDebtAmount" style="border: 1px solid #ddd;"
@@ -1196,6 +1197,7 @@
                                 </select>
                             </div>
                         </div>
+                        -->
 
                         <div class="privacy-check-mobile">
                             <label class="privacy-check">
@@ -3037,13 +3039,14 @@
             function validateMobileForm() {
                 const name = document.getElementById('mobileNameInput').value.trim();
                 const phone = document.getElementById('mobilePhoneInput').value.trim();
-                const debtAmount = document.getElementById('mobileDebtAmount').value;
-                const income = document.getElementById('mobileIncome').value;
+                // 채무액, 월소득 필드 제외
+                // const debtAmount = document.getElementById('mobileDebtAmount').value;
+                // const income = document.getElementById('mobileIncome').value;
                 const privacyAgree = document.getElementById('mobilePrivacyAgree').checked;
                 const submitBtn = document.getElementById('mobileSubmitBtn');
 
-                // 모든 필수 항목이 입력되었는지 확인
-                if (name && phone && debtAmount && income && privacyAgree) {
+                // 이름, 연락처, 개인정보 동의만 확인
+                if (name && phone && privacyAgree) {
                     submitBtn.disabled = false;
                     submitBtn.style.opacity = '1';
                     submitBtn.style.cursor = 'pointer';
@@ -3058,18 +3061,16 @@
             function submitMobileConsultation() {
                 console.log('=== 모바일 상담 신청 시작 ===');
 
-                // 요소 존재 확인
+                // 요소 존재 확인 (채무액, 월소득 제외)
                 const nameElement = document.getElementById('mobileNameInput');
                 const phoneElement = document.getElementById('mobilePhoneInput');
-                const debtAmountElement = document.getElementById('mobileDebtAmount');
-                const incomeElement = document.getElementById('mobileIncome');
+                // const debtAmountElement = document.getElementById('mobileDebtAmount');
+                // const incomeElement = document.getElementById('mobileIncome');
                 const privacyElement = document.getElementById('mobilePrivacyAgree');
 
                 console.log('요소 존재 확인:');
                 console.log('nameElement:', nameElement);
                 console.log('phoneElement:', phoneElement);
-                console.log('debtAmountElement:', debtAmountElement);
-                console.log('incomeElement:', incomeElement);
                 console.log('privacyElement:', privacyElement);
 
                 if (!nameElement) {
@@ -3086,15 +3087,13 @@
 
                 const name = nameElement.value.trim();
                 const phone = phoneElement.value.trim();
-                const debtAmount = debtAmountElement ? debtAmountElement.value : '';
-                const income = incomeElement ? incomeElement.value : '';
+                // const debtAmount = debtAmountElement ? debtAmountElement.value : '';
+                // const income = incomeElement ? incomeElement.value : '';
                 const privacyAgree = privacyElement ? privacyElement.checked : false;
 
                 console.log('입력값 확인:');
                 console.log('name:', "'" + name + "'");
                 console.log('phone:', "'" + phone + "'");
-                console.log('debtAmount:', "'" + debtAmount + "'");
-                console.log('income:', "'" + income + "'");
                 console.log('privacyAgree:', privacyAgree);
 
                 // 필수 항목 검증
@@ -3132,12 +3131,12 @@
                 // 디바이스 정보 설정
                 const isMobile = window.innerWidth <= 768;
 
-                // URLSearchParams로 폼 데이터 수집 (FormData 대신)
+                // URLSearchParams로 폼 데이터 수집 (채무액, 월소득 제외)
                 const formData = new URLSearchParams();
                 formData.append('name', name);
                 formData.append('phone', phone);
-                formData.append('debtAmount', debtAmount || '');
-                formData.append('income', income || '');
+                formData.append('debtAmount', ''); // 빈 값으로 전송
+                formData.append('income', ''); // 빈 값으로 전송
                 formData.append('device', isMobile ? 'Mobile' : 'PC');
                 formData.append('type', '무료상담신청(모바일)');
 

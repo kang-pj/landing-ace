@@ -1351,6 +1351,7 @@
         box-shadow: 0 3px 20px rgb(113 113 113 / 20%);
         flex: 1;
         background: #f8f9fa;
+        border: none;
         border-radius: 20px;
         padding: 30px;
         cursor: pointer;
@@ -1363,7 +1364,6 @@
 
     .diagnosis-card:hover {
         background: #e8f2ff;
-        border-color: #4865FF;
         transform: translateY(-5px);
         box-shadow: 0 10px 30px rgba(68, 114, 196, 0.2);
     }
