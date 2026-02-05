@@ -5028,6 +5028,7 @@ body:has(.mobile-nav.active) .floating-btn-container {
 @media (max-width: 768px) {
     .success-modal-content {
         max-width: 320px;
+        height: 370px;
         margin: 20px;
     }
 
@@ -5052,4 +5053,24 @@ body:has(.mobile-nav.active) .floating-btn-container {
     .success-message p {
         font-size: 14px;
     }
+}
+
+/ * PC 상담 폼 에러 스타일 */ .pc-input.error {
+    border: 2px solid #ff4444 !important;
+    background-color: #fff5f5;
+}
+
+.error-message {
+    color: #ff4444;
+    font-size: 12px;
+    margin-top: 4px;
+    margin-bottom: 8px;
+    min-height: 16px;
+    display: block;
+}
+
+.error-message:empty {
+    margin-top: 0;
+    margin-bottom: 0;
+    min-height: 0;
 }

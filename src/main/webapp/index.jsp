@@ -1110,6 +1110,7 @@
                 <div class="pc-consultation-form">
                     <div class="pc-input-group">
                         <input type="text" placeholder="이름" class="pc-input name-input" required>
+                        <div class="error-message" id="pcNameError"></div>
                         <div class="pc-privacy-check">
                             <input type="checkbox" id="pcPrivacyCheck" class="privacy-checkbox" checked>
                             <label for="pcPrivacyCheck">개인정보 수집 및 이용에 대한 동의 <a href="#"
@@ -1117,7 +1118,8 @@
                         </div>
                     </div>
                     <div class="pc-input-group">
-                        <input type="tel" placeholder="연락처 (- 없이 입력)" class="pc-input phone-input" required>
+                        <input type="tel" placeholder="연락처 (10~11자리 입력)" class="pc-input phone-input" maxlength="11" oninput="formatPcPhoneNumber(this)" required>
+                        <div class="error-message" id="pcPhoneError"></div>
                     </div>
                     <button class="pc-consultation-btn primary" onclick="submitPcConsultation()">무료 상담신청</button>
                     <button class="pc-consultation-btn secondary">
@@ -2771,6 +2773,58 @@
                     });
             }
 
+            // PC 연락처 입력 포맷팅 함수 (숫자만 허용)
+            function formatPcPhoneNumber(input) {
+                // 숫자만 남기기
+                let value = input.value.replace(/[^0-9]/g, '');
+                
+                // 11자리 제한
+                if (value.length > 11) {
+                    value = value.slice(0, 11);
+                }
+                
+                input.value = value;
+            }
+
+            // PC 폼 입력 검증 함수들 (버튼 클릭 시에만 실행)
+            function validatePcNameInput(input) {
+                const errorElement = document.getElementById('pcNameError');
+                const name = input.value.trim();
+                
+                if (!name) {
+                    input.classList.add('error');
+                    errorElement.textContent = '필수 항목입니다.';
+                    return false;
+                } else {
+                    input.classList.remove('error');
+                    errorElement.textContent = '';
+                    return true;
+                }
+            }
+
+            function validatePcPhoneInput(input) {
+                const errorElement = document.getElementById('pcPhoneError');
+                const phone = input.value.trim();
+                
+                if (!phone) {
+                    input.classList.add('error');
+                    errorElement.textContent = '필수 항목입니다.';
+                    return false;
+                } else if (phone.length < 10 || phone.length > 11) {
+                    input.classList.add('error');
+                    errorElement.textContent = '연락처는 10~11자리로 입력해주세요.';
+                    return false;
+                } else if (!/^[0-9]{10,11}$/.test(phone)) {
+                    input.classList.add('error');
+                    errorElement.textContent = '숫자만 입력해주세요.';
+                    return false;
+                } else {
+                    input.classList.remove('error');
+                    errorElement.textContent = '';
+                    return true;
+                }
+            }
+
             // PC 상담 신청 함수
             function submitPcConsultation() {
                 // 입력 필드 가져오기
@@ -2783,33 +2837,22 @@
                     return;
                 }
 
+                // 입력 검증
+                const isNameValid = validatePcNameInput(nameInput);
+                const isPhoneValid = validatePcPhoneInput(phoneInput);
+
                 const name = nameInput.value.trim();
                 const phone = phoneInput.value.trim();
                 const privacyAgree = privacyCheck.checked;
 
-                // 필수 항목 검증
-                if (!name) {
-                    showErrorModal('이름을 입력해 주세요');
-                    nameInput.focus();
-                    return;
-                }
-
-                if (!phone) {
-                    showErrorModal('연락처를 입력해 주세요');
-                    phoneInput.focus();
-                    return;
-                }
-
+                // 개인정보 동의 검증
                 if (!privacyAgree) {
                     showErrorModal('개인정보 수집 및 이용에 동의해 주세요');
                     return;
                 }
 
-                // 연락처 형식 검증 (숫자만, 10-11자리)
-                const phoneRegex = /^[0-9]{10,11}$/;
-                if (!phoneRegex.test(phone)) {
-                    showErrorModal('올바른 연락처를 입력해 주세요 (10-11자리 숫자)');
-                    phoneInput.focus();
+                // 모든 검증이 통과되지 않으면 제출하지 않음
+                if (!isNameValid || !isPhoneValid) {
                     return;
                 }
 
@@ -2855,6 +2898,10 @@
                         // 폼 초기화
                         nameInput.value = '';
                         phoneInput.value = '';
+                        nameInput.classList.remove('error');
+                        phoneInput.classList.remove('error');
+                        document.getElementById('pcNameError').textContent = '';
+                        document.getElementById('pcPhoneError').textContent = '';
                         
                     } else {
                         console.error('PC 상담 신청 실패:', data);

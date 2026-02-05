@@ -101,6 +101,8 @@
                         <resourceBases>
                             <resourceBase>${project.basedir}/src/main/webapp</resourceBase>
                         </resourceBases>
+                        <copyWebDir>true</copyWebDir>
+                        <copyWebInf>true</copyWebInf>
                     </webApp>
                     <reload>manual</reload>
                     <useFileMappedBuffer>false</useFileMappedBuffer>
@@ -113,7 +115,14 @@
                             <name>org.eclipse.jetty.util.resource.Resource.defaultUseCaches</name>
                             <value>false</value>
                         </systemProperty>
+                        <systemProperty>
+                            <name>org.eclipse.jetty.server.nio.SelectChannelConnector.useDirectBuffers</name>
+                            <value>false</value>
+                        </systemProperty>
                     </systemProperties>
+                    <webAppConfig>
+                        <defaultsDescriptor>src/main/resources/webdefault.xml</defaultsDescriptor>
+                    </webAppConfig>
                 </configuration>
             </plugin>
         </plugins>
