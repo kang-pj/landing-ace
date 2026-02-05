@@ -57,12 +57,12 @@
                 </div>
 
                 <nav class="nav-menu">
-                    <a href="#intro">AI 진단</a>
-                    <a href="#service">성공사례</a>
-                    <a href="#about">대표변호사</a>
-                    <a href="#calculator">자주묻는질문</a>
-                    <a href="#special">특별한 서비스</a>
-                    <a href="#contact">오시는길</a>
+                    <a href="#intro" onclick="event.preventDefault(); smoothScrollToSection('intro')">AI 진단</a>
+                    <a href="#service" onclick="event.preventDefault(); smoothScrollToSection('service')">성공사례</a>
+                    <a href="#about" onclick="event.preventDefault(); smoothScrollToSection('about')">대표변호사</a>
+                    <a href="#calculator" onclick="event.preventDefault(); smoothScrollToSection('calculator')">자주묻는질문</a>
+                    <a href="#special" onclick="event.preventDefault(); smoothScrollToSection('special')">특별한 서비스</a>
+                    <a href="#contact" onclick="event.preventDefault(); smoothScrollToSection('contact')">오시는길</a>
                 </nav>
 
                 <div class="contact-phone">
@@ -171,23 +171,23 @@
                             <label for="debt">채무금액</label>
                             <select id="debt" name="debt" required="">
                                 <option value="">채무금액 선택</option>
-                                <option value="1000">1천만원 미만</option>
-                                <option value="3000">1천만원 ~ 3천만원</option>
-                                <option value="5000">3천만원 ~ 5천만원</option>
-                                <option value="10000">5천만원 ~ 1억원</option>
-                                <option value="over">1억원 이상</option>
+                                <option value="1천만원 미만">1천만원 미만</option>
+                                <option value="1천만원 ~ 3천만원">1천만원 ~ 3천만원</option>
+                                <option value="3천만원 ~ 5천만원">3천만원 ~ 5천만원</option>
+                                <option value="5천만원 ~ 1억원">5천만원 ~ 1억원</option>
+                                <option value="1억원 이상">1억원 이상</option>
                             </select>
                         </div>
                         <div class="form-group">
                             <label for="income">월소득</label>
                             <select id="income" name="income" required="">
                                 <option value="">월소득 선택</option>
-                                <option value="0">소득 없음</option>
-                                <option value="150">150만원 미만</option>
-                                <option value="250">150만원 ~ 250만원</option>
-                                <option value="350">250만원 ~ 350만원</option>
-                                <option value="500">350만원 ~ 500만원</option>
-                                <option value="over">500만원 이상</option>
+                                <option value="소득 없음">소득 없음</option>
+                                <option value="150만원 미만">150만원 미만</option>
+                                <option value="150만원 ~ 250만원">150만원 ~ 250만원</option>
+                                <option value="250만원 ~ 350만원">250만원 ~ 350만원</option>
+                                <option value="350만원 ~ 500만원">350만원 ~ 500만원</option>
+                                <option value="500만원 이상">500만원 이상</option>
                             </select>
                         </div>
                         <button type="submit" class="submit-btn">무료 상담신청</button>
@@ -2572,6 +2572,42 @@
                         requestAnimationFrame(animation);
                     }
                 }, 500);
+            }
+
+            // PC용 스무스 스크롤 함수 (모바일 네비게이션 닫기 없음)
+            function smoothScrollToSection(sectionId) {
+                const targetSection = document.getElementById(sectionId);
+                if (targetSection) {
+                    const headerHeight = document.querySelector('.header').offsetHeight;
+                    const floatingHeaderHeight = document.querySelector('.floating-header').offsetHeight;
+                    const targetPosition = targetSection.offsetTop - headerHeight - floatingHeaderHeight - 20;
+                    const startPosition = window.pageYOffset;
+                    const distance = targetPosition - startPosition;
+                    const duration = 800; // 800ms 동안 스크롤 (PC는 조금 더 부드럽게)
+                    let start = null;
+
+                    // easeInOutCubic 애니메이션 함수
+                    function easeInOutCubic(t) {
+                        return t < 0.5
+                            ? 4 * t * t * t
+                            : 1 - Math.pow(-2 * t + 2, 3) / 2;
+                    }
+
+                    function animation(currentTime) {
+                        if (start === null) start = currentTime;
+                        const timeElapsed = currentTime - start;
+                        const progress = Math.min(timeElapsed / duration, 1);
+                        const ease = easeInOutCubic(progress);
+
+                        window.scrollTo(0, startPosition + distance * ease);
+
+                        if (timeElapsed < duration) {
+                            requestAnimationFrame(animation);
+                        }
+                    }
+
+                    requestAnimationFrame(animation);
+                }
             }
 
             function openKakaoTalk() {
