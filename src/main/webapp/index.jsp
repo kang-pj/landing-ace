@@ -15,8 +15,10 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
         <!-- Common CSS -->
         <link rel="stylesheet" href="/css/common.css" />
-        <!-- Naver Map API -->
-        <script type="text/javascript" src="https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=clz9bh7a24"></script>
+        <!-- Naver Map API v3 -->
+        <script type="text/javascript" src="https://oapi.map.naver.com/openapi/v3/maps.js?ncpKeyId=sw4vg0j8dd"></script>
+
+
 
     </head>
 
@@ -961,7 +963,8 @@
                             <img src="/images/icon_share.png" alt="위치공유" />
                             위치공유
                         </a>
-                        <a href="https://map.naver.com/p/directions/-/14135817.8893127,4516088.8840108,%EC%97%90%EC%9D%B4%EC%8A%A4%EB%B2%95%EB%AC%B4%EB%B2%95%EC%9D%B8,1862068169,PLACE_POI/-/transit?c=15.00,0,0,0,dh" target="_blank" class="location-btn">
+                        <a href="https://map.naver.com/p/directions/-/14135817.8893127,4516088.8840108,%EC%97%90%EC%9D%B4%EC%8A%A4%EB%B2%95%EB%AC%B4%EB%B2%95%EC%9D%B8,1862068169,PLACE_POI/-/transit?c=15.00,0,0,0,dh"
+                            target="_blank" class="location-btn">
                             <img src="/images/icon_search.png" alt="길찾기" />
                             길찾기
                         </a>
@@ -1109,7 +1112,8 @@
                         <input type="text" placeholder="이름" class="pc-input name-input" required>
                         <div class="pc-privacy-check">
                             <input type="checkbox" id="pcPrivacyCheck" class="privacy-checkbox" checked>
-                            <label for="pcPrivacyCheck">개인정보 수집 및 이용에 대한 동의 <a href="#" class="privacy-link">자세히</a></label>
+                            <label for="pcPrivacyCheck">개인정보 수집 및 이용에 대한 동의 <a href="#"
+                                    class="privacy-link">자세히</a></label>
                         </div>
                     </div>
                     <div class="pc-input-group">
@@ -1203,7 +1207,8 @@
                             <label class="privacy-check">
                                 <input type="checkbox" class="privacy-checkbox" id="mobilePrivacyAgree" required
                                     onchange="validateMobileForm()" checked>
-                                개인정보 수집 및 이용에 대한 동의 <a href="#" class="privacy-link">자세히</a> <span class="required">*</span>
+                                개인정보 수집 및 이용에 대한 동의 <a href="#" class="privacy-link">자세히</a> <span
+                                    class="required">*</span>
                             </label>
                         </div>
 
@@ -1292,7 +1297,8 @@
                             <label class="privacy-check-popup">
                                 <input type="checkbox" id="popupPrivacyAgree" name="privacyAgree" required
                                     onchange="validateSecondPopupForm()" checked>
-                                개인정보 수집 및 이용에 대한 동의 <a href="#" class="privacy-link">자세히</a><span class="required">*</span>
+                                개인정보 수집 및 이용에 대한 동의 <a href="#" class="privacy-link">자세히</a><span
+                                    class="required">*</span>
                             </label>
                         </div>
 
@@ -1514,7 +1520,8 @@
 
                             <div class="privacy-agreement">
                                 <label class="checkbox-label">
-                                    <input type="checkbox" id="privacyAgree" onchange="validateConsultationForm()" checked />
+                                    <input type="checkbox" id="privacyAgree" onchange="validateConsultationForm()"
+                                        checked />
                                     <span class="checkmark"></span>
                                     개인정보 수집 및 이용에 대한 동의 <span class="privacy-link"> 자세히</span>
                                 </label>
@@ -1532,7 +1539,7 @@
         <div id="successModal" class="modal-overlay">
             <div class="modal-content">
                 <button class="modal-close" onclick="closeSuccessModal()">×</button>
-                
+
                 <div class="success-popup">
                     <div class="success-message">
                         <div class="success-icon">✓</div>
@@ -2043,7 +2050,7 @@
                     .then(data => {
                         if (data.success) {
                             console.log('AI 진단 상담 신청 성공:', data);
-                            
+
                             // 기존 모달 닫기
                             const modal = document.getElementById('aiDiagnosisModal');
                             if (modal) {
@@ -3586,7 +3593,8 @@
                         <div class="privacy-check-popup">
                             <input type="checkbox" id="popupPrivacyAgree" name="privacyAgree" required
                                 onchange="validatePopupForm()" checked>
-                            <label for="popupPrivacyAgree">개인정보 수집 및 이용에 대한 동의 <a href="#" class="privacy-link">자세히</a><span class="required">*</span></label>
+                            <label for="popupPrivacyAgree">개인정보 수집 및 이용에 대한 동의 <a href="#"
+                                    class="privacy-link">자세히</a><span class="required">*</span></label>
                         </div>
 
                         <button type="submit" class="consultation-submit-popup-btn" id="popupSubmitBtn"
@@ -3886,49 +3894,127 @@
 
             // 네이버 지도 초기화
             function initNaverMap() {
-                // 에이스법률사무소 위치 좌표 (서울특별시 서초구 사임당로17길 9, 2층)
-                var mapOptions = {
-                    center: new naver.maps.LatLng(37.4838, 127.0084),
-                    zoom: 17,
-                    zoomControl: true,
-                    zoomControlOptions: {
-                        position: naver.maps.Position.TOP_RIGHT
-                    }
-                };
+                try {
+                    // 에이스법률사무소 위치 좌표 (서울특별시 서초구 사임당로17길 9, 2층)
+                    var aceLocation = new naver.maps.LatLng(37.4838, 127.0084);
 
-                var map = new naver.maps.Map('map', mapOptions);
+                    // 지도 옵션 설정
+                    var mapOptions = {
+                        center: aceLocation,
+                        zoom: 17,
+                        mapTypeId: naver.maps.MapTypeId.NORMAL,
+                        zoomControl: true,
+                        zoomControlOptions: {
+                            position: naver.maps.Position.TOP_RIGHT,
+                            style: naver.maps.ZoomControlStyle.SMALL
+                        },
+                        mapDataControl: false,
+                        scaleControl: true,
+                        logoControl: true,
+                        mapTypeControl: false,
+                        minZoom: 10,
+                        maxZoom: 21
+                    };
 
-                // 마커 추가
-                var marker = new naver.maps.Marker({
-                    position: new naver.maps.LatLng(37.4838, 127.0084),
-                    map: map,
-                    title: '에이스법률사무소'
-                });
+                    // 지도 생성
+                    var map = new naver.maps.Map(document.getElementById('map'), mapOptions);
 
-                // 정보창 추가
-                var infoWindow = new naver.maps.InfoWindow({
-                    content: '<div style="padding:10px;min-width:200px;line-height:1.5;">' +
-                             '<h4 style="margin:0 0 5px 0;font-size:14px;font-weight:bold;">에이스법률사무소</h4>' +
-                             '<p style="margin:0;font-size:12px;">서울특별시 서초구 사임당로17길 9, 2층</p>' +
-                             '<p style="margin:5px 0 0 0;font-size:12px;color:#4865FF;font-weight:bold;">☎ 1555-1684</p>' +
-                             '</div>'
-                });
+                    // 커스텀 마커 아이콘 생성 (더 큰 크기로 명칭 강조)
+                    var marker = new naver.maps.Marker({
+                        position: aceLocation,
+                        map: map,
+                        title: '에이스법률사무소',
+                        icon: {
+                            content: [
+                                '<div style="position: relative;">',
+                                '   <div style="',
+                                '       background: linear-gradient(135deg, #4865FF 0%, #667EEA 100%);',
+                                '       color: white;',
+                                '       padding: 10px 16px;',
+                                '       border-radius: 25px;',
+                                '       font-size: 14px;',
+                                '       font-weight: bold;',
+                                '       box-shadow: 0 4px 12px rgba(72, 101, 255, 0.4);',
+                                '       border: 2px solid white;',
+                                '       white-space: nowrap;',
+                                '       text-align: center;',
+                                '       font-family: Pretendard, sans-serif;',
+                                '   ">',
+                                '       🏢 에이스법률사무소',
+                                '   </div>',
+                                '   <div style="',
+                                '       position: absolute;',
+                                '       bottom: -8px;',
+                                '       left: 50%;',
+                                '       transform: translateX(-50%);',
+                                '       width: 0;',
+                                '       height: 0;',
+                                '       border-left: 8px solid transparent;',
+                                '       border-right: 8px solid transparent;',
+                                '       border-top: 8px solid #4865FF;',
+                                '   "></div>',
+                                '</div>'
+                            ].join(''),
+                            anchor: new naver.maps.Point(85, 45)
+                        }
+                    });
 
-                // 마커 클릭 시 정보창 표시
-                naver.maps.Event.addListener(marker, 'click', function() {
-                    if (infoWindow.getMap()) {
+                    // 정보창 생성
+                    var infoWindow = new naver.maps.InfoWindow({
+                        content: [
+                            '<div style="padding: 20px; min-width: 280px; line-height: 1.6; font-family: Pretendard, sans-serif;">',
+                            '   <div style="font-size: 18px; font-weight: bold; color: #333; margin-bottom: 12px; text-align: center;">',
+                            '       🏢 에이스법률사무소',
+                            '   </div>',
+                            '   <div style="font-size: 14px; color: #666; margin-bottom: 10px; text-align: center;">',
+                            '       📍 서울특별시 서초구 사임당로17길 9, 2층<br>',
+                            '       &nbsp;&nbsp;&nbsp;&nbsp;(서초동, 서초타워)',
+                            '   </div>',
+                            '   <div style="font-size: 16px; color: #4865FF; font-weight: bold; margin-bottom: 15px; text-align: center;">',
+                            '       📞 1555-1684',
+                            '   </div>',
+                            '   <div style="display: flex; gap: 10px; justify-content: center;">',
+                            '       <a href="tel:1555-1684" style="background: #4865FF; color: white; padding: 8px 16px; border-radius: 6px; text-decoration: none; font-size: 13px; font-weight: 500;">📞 전화걸기</a>',
+                            '       <a href="https://map.naver.com/p/directions/-/14135817.8893127,4516088.8840108" target="_blank" style="background: #03C75A; color: white; padding: 8px 16px; border-radius: 6px; text-decoration: none; font-size: 13px; font-weight: 500;">🗺️ 길찾기</a>',
+                            '   </div>',
+                            '</div>'
+                        ].join('')
+                    });
+
+                    // 마커 클릭 이벤트
+                    naver.maps.Event.addListener(marker, 'click', function () {
+                        if (infoWindow.getMap()) {
+                            infoWindow.close();
+                        } else {
+                            infoWindow.open(map, marker);
+                        }
+                    });
+
+                    // 지도 클릭 시 정보창 닫기
+                    naver.maps.Event.addListener(map, 'click', function () {
                         infoWindow.close();
-                    } else {
-                        infoWindow.open(map, marker);
-                    }
-                });
+                    });
 
-                // 페이지 로드 시 정보창 자동 표시
-                infoWindow.open(map, marker);
+                    // 지도 로드 완료 후 잠시 정보창 표시
+                    naver.maps.Event.addListener(map, 'idle', function () {
+                        setTimeout(function () {
+                            infoWindow.open(map, marker);
+                            setTimeout(function () {
+                                infoWindow.close();
+                            }, 4000); // 4초 후 자동 닫기
+                        }, 1000);
+                    });
+
+                    console.log('네이버 지도가 성공적으로 초기화되었습니다.');
+
+                } catch (error) {
+                    console.error('네이버 지도 초기화 중 오류 발생:', error);
+                    showAlternativeMap();
+                }
             }
 
             // 페이지 로드 시 지도 초기화
-            document.addEventListener('DOMContentLoaded', function() {
+            document.addEventListener('DOMContentLoaded', function () {
                 if (typeof naver !== 'undefined' && naver.maps) {
                     initNaverMap();
                 } else {
@@ -3936,13 +4022,69 @@
                 }
             });
 
+            // 대체 지도 표시 함수
+            function showAlternativeMap() {
+                const mapContainer = document.getElementById('map');
+                if (mapContainer) {
+                    mapContainer.innerHTML = `
+                        <div style="
+                            width: 100%;
+                            height: 100%;
+                            background: #f0f0f0;
+                            display: flex;
+                            flex-direction: column;
+                            align-items: center;
+                            justify-content: center;
+                            border-radius: 10px;
+                            border: 2px dashed #ddd;
+                            text-align: center;
+                            padding: 20px;
+                        ">
+                            <div style="font-size: 18px; font-weight: bold; color: #333; margin-bottom: 10px;">
+                                📍 에이스법률사무소
+                            </div>
+                            <div style="font-size: 14px; color: #666; margin-bottom: 15px; line-height: 1.4;">
+                                서울특별시 서초구 사임당로17길 9, 2층<br>
+                                (서초동, 서초타워)
+                            </div>
+                            <div style="display: flex; gap: 10px; flex-wrap: wrap; justify-content: center;">
+                                <a href="https://map.naver.com/p/entry/place/1862068169" target="_blank" 
+                                   style="
+                                       background: #03C75A;
+                                       color: white;
+                                       padding: 8px 16px;
+                                       border-radius: 6px;
+                                       text-decoration: none;
+                                       font-size: 14px;
+                                       font-weight: 500;
+                                   ">
+                                    네이버 지도
+                                </a>
+                                <a href="https://map.kakao.com/link/map/에이스법률사무소,37.4838,127.0084" target="_blank"
+                                   style="
+                                       background: #FEE500;
+                                       color: #000;
+                                       padding: 8px 16px;
+                                       border-radius: 6px;
+                                       text-decoration: none;
+                                       font-size: 14px;
+                                       font-weight: 500;
+                                   ">
+                                    카카오맵
+                                </a>
+                            </div>
+                        </div>
+                    `;
+                }
+            }
+
             // 위치공유 함수
             function shareLocation(event) {
                 event.preventDefault();
-                
+
                 const locationUrl = 'https://map.naver.com/p/entry/place/1862068169';
                 const locationText = '에이스법률사무소 - 서울특별시 서초구 사임당로17길 9, 2층';
-                
+
                 // Web Share API 지원 여부 확인
                 if (navigator.share) {
                     navigator.share({
@@ -3997,7 +4139,7 @@
             }
 
             // 페이지 로드 시 모든 "자세히" 링크에 이벤트 연결
-            document.addEventListener('DOMContentLoaded', function() {
+            document.addEventListener('DOMContentLoaded', function () {
                 const privacyLinks = document.querySelectorAll('.privacy-link');
                 privacyLinks.forEach(link => {
                     link.addEventListener('click', openPrivacyModal);
@@ -4006,7 +4148,7 @@
                 // 모달 외부 클릭 시 닫기
                 const privacyModal = document.getElementById('privacyModal');
                 if (privacyModal) {
-                    privacyModal.addEventListener('click', function(event) {
+                    privacyModal.addEventListener('click', function (event) {
                         if (event.target === privacyModal) {
                             closePrivacyModal();
                         }
@@ -4028,26 +4170,28 @@
                             <strong style="font-size: 16px;">○ 개인정보 수집/이용 목적</strong><br>
                             문의에 대한 다양한 정보 제공
                         </p>
-                        
+
                         <p style="margin-bottom: 20px;">
                             <strong style="font-size: 16px;">○ 수집하는 개인정보의 항목</strong><br>
                             성명, 연락처
                         </p>
-                        
+
                         <p style="margin-bottom: 20px; padding-left: 20px; color: #666; font-size: 14px;">
                             ※ 상담예약서비스 이용과정에서 아래와 같은 정보들이 생성되어 수집될 수 있습니다.<br>
                             - 서비스이용기록, 접속로그, 쿠키, 접속IP정보
                         </p>
-                        
+
                         <p style="margin-bottom: 20px;">
                             <strong style="font-size: 16px;">○ 개인정보의 보유 및 이용기간</strong><br>
                             - 보존기간은 5년이며, 정보 제공자가 삭제를 요청할 경우 즉시 파기합니다.<br>
                             - 고객님의 정보는 개인정보 보호법에 따라 보호되며 위의 이용목적 외에 별도로 사용하지 않을 것을 약속드립니다.
                         </p>
                     </div>
-                    <button class="success-confirm-btn" onclick="closePrivacyModal()" style="margin-top: 20px; width: 100%;">확인</button>
+                    <button class="success-confirm-btn" onclick="closePrivacyModal()"
+                        style="margin-top: 20px; width: 100%;">확인</button>
                 </div>
             </div>
         </div>
     </body>
+
     </html>

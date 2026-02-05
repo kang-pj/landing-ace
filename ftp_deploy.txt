@@ -1,5 +1,6 @@
 open shesy11.cafe24.com
-user shesy11 Rkdwnl24!!
+shesy11
+Rkdwnl24!!
 cd tomcat/webapps
 binary
 put C:\workspace\landing-ace\target\ROOT.war
