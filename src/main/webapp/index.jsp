@@ -1119,7 +1119,7 @@
                     <div class="pc-input-group">
                         <input type="tel" placeholder="연락처 (- 없이 입력)" class="pc-input phone-input" required>
                     </div>
-                    <button class="pc-consultation-btn primary">무료 상담신청</button>
+                    <button class="pc-consultation-btn primary" onclick="submitPcConsultation()">무료 상담신청</button>
                     <button class="pc-consultation-btn secondary">
                         <img src="/images/icon_talk.png" alt="카카오톡">
                         카톡상담
@@ -2769,6 +2769,107 @@
                         submitBtn.disabled = false;
                         submitBtn.textContent = originalText;
                     });
+            }
+
+            // PC 상담 신청 함수
+            function submitPcConsultation() {
+                // 입력 필드 가져오기
+                const nameInput = document.querySelector('.pc-consultation-form .name-input');
+                const phoneInput = document.querySelector('.pc-consultation-form .phone-input');
+                const privacyCheck = document.getElementById('pcPrivacyCheck');
+
+                if (!nameInput || !phoneInput || !privacyCheck) {
+                    console.error('PC 상담 폼 요소를 찾을 수 없습니다.');
+                    return;
+                }
+
+                const name = nameInput.value.trim();
+                const phone = phoneInput.value.trim();
+                const privacyAgree = privacyCheck.checked;
+
+                // 필수 항목 검증
+                if (!name) {
+                    showErrorModal('이름을 입력해 주세요');
+                    nameInput.focus();
+                    return;
+                }
+
+                if (!phone) {
+                    showErrorModal('연락처를 입력해 주세요');
+                    phoneInput.focus();
+                    return;
+                }
+
+                if (!privacyAgree) {
+                    showErrorModal('개인정보 수집 및 이용에 동의해 주세요');
+                    return;
+                }
+
+                // 연락처 형식 검증 (숫자만, 10-11자리)
+                const phoneRegex = /^[0-9]{10,11}$/;
+                if (!phoneRegex.test(phone)) {
+                    showErrorModal('올바른 연락처를 입력해 주세요 (10-11자리 숫자)');
+                    phoneInput.focus();
+                    return;
+                }
+
+                // 제출 버튼 비활성화
+                const submitBtn = document.querySelector('.pc-consultation-btn.primary');
+                const originalText = submitBtn.textContent;
+                submitBtn.disabled = true;
+                submitBtn.textContent = '처리중...';
+
+                // 폼 데이터 구성
+                const apiFormData = new URLSearchParams();
+                apiFormData.append('name', name);
+                apiFormData.append('phone', phone);
+                apiFormData.append('debtAmount', ''); // PC 폼에는 채무금액 필드가 없음
+                apiFormData.append('income', ''); // PC 폼에는 월소득 필드가 없음
+                apiFormData.append('device', 'PC');
+                apiFormData.append('type', '무료상담신청(PC폼)');
+
+                // UTM 파라미터 추가
+                const urlParams = new URLSearchParams(window.location.search);
+                apiFormData.append('utm_source', urlParams.get('utm_source') || '');
+                apiFormData.append('utm_medium', urlParams.get('utm_medium') || '');
+                apiFormData.append('utm_campaign', urlParams.get('utm_campaign') || '');
+                apiFormData.append('utm_term', urlParams.get('utm_term') || '');
+                apiFormData.append('utm_content', urlParams.get('utm_content') || '');
+
+                // 서버에 데이터 전송
+                fetch('/consultation', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: apiFormData
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        console.log('PC 상담 신청 성공:', data);
+                        
+                        // 성공 모달 표시
+                        showSuccessModal();
+                        
+                        // 폼 초기화
+                        nameInput.value = '';
+                        phoneInput.value = '';
+                        
+                    } else {
+                        console.error('PC 상담 신청 실패:', data);
+                        showErrorModal('상담 신청 중 오류가 발생했습니다. 다시 시도해 주세요.');
+                    }
+                })
+                .catch(error => {
+                    console.error('PC 상담 신청 오류:', error);
+                    showErrorModal('상담 신청 중 오류가 발생했습니다. 다시 시도해 주세요.');
+                })
+                .finally(() => {
+                    // 제출 버튼 복원
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = originalText;
+                });
             }
 
             // 상담 팝업 관련 함수들
