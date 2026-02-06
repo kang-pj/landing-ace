@@ -7,6 +7,9 @@
         <meta name="viewport"
             content="width=device-width, initial-scale=1.0, viewport-fit=cover, interactive-widget=resizes-content">
         <title>ACE 법률사무소</title>
+        <!-- Favicon -->
+        <link rel="icon" type="image/x-icon" href="/images/logo.ico">
+        <link rel="shortcut icon" type="image/x-icon" href="/images/logo.ico">
         <!-- Pretendard Font -->
         <link rel="preconnect" href="https://cdn.jsdelivr.net">
         <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"
