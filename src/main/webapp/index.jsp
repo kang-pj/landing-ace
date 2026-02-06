@@ -738,7 +738,7 @@
 
                 <div class="lawyer-info-area">
                     <div class="lawyer-description">
-                        <p>채무에 관련해 힘 다양한 문제에 대하여</p>
+                        <p>채무 관련 모든 문제에 대하여</p>
                         <p><strong>최선의 해결책을 제시</strong>하고</p>
                         <p>채무 탕감 <strong>소송의 경험이 풍부</strong>합니다.</p>
                     </div>
