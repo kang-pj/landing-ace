@@ -60,7 +60,8 @@
                     <a href="#intro" onclick="event.preventDefault(); smoothScrollToSection('intro')">AI 진단</a>
                     <a href="#service" onclick="event.preventDefault(); smoothScrollToSection('service')">성공사례</a>
                     <a href="#about" onclick="event.preventDefault(); smoothScrollToSection('about')">대표변호사</a>
-                    <a href="#calculator" onclick="event.preventDefault(); smoothScrollToSection('calculator')">자주묻는질문</a>
+                    <a href="#calculator"
+                        onclick="event.preventDefault(); smoothScrollToSection('calculator')">자주묻는질문</a>
                     <a href="#special" onclick="event.preventDefault(); smoothScrollToSection('special')">특별한 서비스</a>
                     <a href="#contact" onclick="event.preventDefault(); smoothScrollToSection('contact')">오시는길</a>
                 </nav>
@@ -737,7 +738,7 @@
 
                 <div class="lawyer-info-area">
                     <div class="lawyer-description">
-                        <p>채무에 관련해 힘 다양한 문제에 대하여</p>
+                        <p>채무 관련 모든 문제에 대하여</p>
                         <p><strong>최선의 해결책을 제시</strong>하고</p>
                         <p>채무 탕감 <strong>소송의 경험이 풍부</strong>합니다.</p>
                     </div>
@@ -963,8 +964,8 @@
                             <img src="/images/icon_share.png" alt="위치공유" />
                             위치공유
                         </a>
-                        <a href="https://map.naver.com/p/directions/-/14135817.8893127,4516088.8840108,%EC%97%90%EC%9D%B4%EC%8A%A4%EB%B2%95%EB%AC%B4%EB%B2%95%EC%9D%B8,1862068169,PLACE_POI/-/transit?c=15.00,0,0,0,dh"
-                            target="_blank" class="location-btn">
+                        <a href="https://naver.me/xnh7wZvo" target="_blank"
+                            class="location-btn">
                             <img src="/images/icon_search.png" alt="길찾기" />
                             길찾기
                         </a>
@@ -1118,7 +1119,8 @@
                         </div>
                     </div>
                     <div class="pc-input-group">
-                        <input type="tel" placeholder="연락처 (10~11자리 입력)" class="pc-input phone-input" maxlength="11" oninput="formatPcPhoneNumber(this)" required>
+                        <input type="tel" placeholder="연락처 (10~11자리 입력)" class="pc-input phone-input" maxlength="11"
+                            oninput="formatPcPhoneNumber(this)" required>
                         <div class="error-message" id="pcPhoneError"></div>
                     </div>
                     <button class="pc-consultation-btn primary" onclick="submitPcConsultation()">무료 상담신청</button>
@@ -2813,12 +2815,12 @@
             function formatPcPhoneNumber(input) {
                 // 숫자만 남기기
                 let value = input.value.replace(/[^0-9]/g, '');
-                
+
                 // 11자리 제한
                 if (value.length > 11) {
                     value = value.slice(0, 11);
                 }
-                
+
                 input.value = value;
             }
 
@@ -2826,7 +2828,7 @@
             function validatePcNameInput(input) {
                 const errorElement = document.getElementById('pcNameError');
                 const name = input.value.trim();
-                
+
                 if (!name) {
                     input.classList.add('error');
                     errorElement.textContent = '필수 항목입니다.';
@@ -2841,7 +2843,7 @@
             function validatePcPhoneInput(input) {
                 const errorElement = document.getElementById('pcPhoneError');
                 const phone = input.value.trim();
-                
+
                 if (!phone) {
                     input.classList.add('error');
                     errorElement.textContent = '필수 항목입니다.';
@@ -2923,36 +2925,36 @@
                     },
                     body: apiFormData
                 })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        console.log('PC 상담 신청 성공:', data);
-                        
-                        // 성공 모달 표시
-                        showSuccessModal();
-                        
-                        // 폼 초기화
-                        nameInput.value = '';
-                        phoneInput.value = '';
-                        nameInput.classList.remove('error');
-                        phoneInput.classList.remove('error');
-                        document.getElementById('pcNameError').textContent = '';
-                        document.getElementById('pcPhoneError').textContent = '';
-                        
-                    } else {
-                        console.error('PC 상담 신청 실패:', data);
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            console.log('PC 상담 신청 성공:', data);
+
+                            // 성공 모달 표시
+                            showSuccessModal();
+
+                            // 폼 초기화
+                            nameInput.value = '';
+                            phoneInput.value = '';
+                            nameInput.classList.remove('error');
+                            phoneInput.classList.remove('error');
+                            document.getElementById('pcNameError').textContent = '';
+                            document.getElementById('pcPhoneError').textContent = '';
+
+                        } else {
+                            console.error('PC 상담 신청 실패:', data);
+                            showErrorModal('상담 신청 중 오류가 발생했습니다. 다시 시도해 주세요.');
+                        }
+                    })
+                    .catch(error => {
+                        console.error('PC 상담 신청 오류:', error);
                         showErrorModal('상담 신청 중 오류가 발생했습니다. 다시 시도해 주세요.');
-                    }
-                })
-                .catch(error => {
-                    console.error('PC 상담 신청 오류:', error);
-                    showErrorModal('상담 신청 중 오류가 발생했습니다. 다시 시도해 주세요.');
-                })
-                .finally(() => {
-                    // 제출 버튼 복원
-                    submitBtn.disabled = false;
-                    submitBtn.textContent = originalText;
-                });
+                    })
+                    .finally(() => {
+                        // 제출 버튼 복원
+                        submitBtn.disabled = false;
+                        submitBtn.textContent = originalText;
+                    });
             }
 
             // 상담 팝업 관련 함수들
@@ -4307,7 +4309,7 @@
                             '   </div>',
                             '   <div style="display: flex; gap: 10px; justify-content: center;">',
                             '       <a href="tel:1555-1684" style="background: #4865FF; color: white; padding: 8px 16px; border-radius: 6px; text-decoration: none; font-size: 13px; font-weight: 500;">📞 전화걸기</a>',
-                            '       <a href="https://map.naver.com/p/directions/-/14135817.8893127,4516088.8840108" target="_blank" style="background: #03C75A; color: white; padding: 8px 16px; border-radius: 6px; text-decoration: none; font-size: 13px; font-weight: 500;">🗺️ 길찾기</a>',
+                            '       <a href="https://naver.me/xnh7wZvo" target="_blank" style="background: #03C75A; color: white; padding: 8px 16px; border-radius: 6px; text-decoration: none; font-size: 13px; font-weight: 500;">🗺️ 길찾기</a>',
                             '   </div>',
                             '</div>'
                         ].join('')
