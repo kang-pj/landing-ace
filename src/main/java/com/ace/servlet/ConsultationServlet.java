@@ -120,9 +120,8 @@ public class ConsultationServlet extends HttpServlet {
             inquiry.setDevice(device != null ? device : detectDevice(request));
             inquiry.setType("inquiry");  // 타입은 항상 "inquiry"로 고정
             
-            // 타이틀 생성: 전화번호 뒷자리 4개 + "님이 상담 신청하셨습니다."
-            String phoneLast4 = phone.length() >= 4 ? phone.substring(phone.length() - 4) : phone;
-            String title = phoneLast4 + "님이 상담 신청하셨습니다.";
+            // 타이틀 생성: 이름 + "님이 상담 신청하셨습니다."
+            String title = name.trim() + "님이 상담 신청하셨습니다.";
             inquiry.setTitle(title);
             
             // 추가 정보 수집
