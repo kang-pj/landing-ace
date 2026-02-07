@@ -4747,7 +4747,7 @@ body:has(.mobile-nav.active) .floating-btn-container {
 .success-icon-circle {
     width: 80px;
     height: 80px;
-    background: linear-gradient(135deg, #a8c8ff 0%, #c8d9ff 100%);
+    background: linear-gradient(135deg, #c0dbff 0%, #c8d9ff 100%);
     border-radius: 50%;
     display: flex;
     align-items: center;
