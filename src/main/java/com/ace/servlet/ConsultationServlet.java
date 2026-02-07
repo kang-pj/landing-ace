@@ -118,7 +118,7 @@ public class ConsultationServlet extends HttpServlet {
             inquiry.setDebtAmount(debtAmount);
             inquiry.setMonthlyIncome(monthlyIncome);
             inquiry.setDevice(device != null ? device : detectDevice(request));
-            inquiry.setType("inquiry");  // 타입은 항상 "inquiry"로 고정
+            inquiry.setType("INQ");  // 타입은 항상 "INQ"로 고정
             
             // 타이틀 생성: 이름 + "님이 상담 신청하셨습니다."
             String title = name.trim() + "님이 상담 신청하셨습니다.";
