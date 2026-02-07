@@ -1930,17 +1930,24 @@
                         center: aceLocation,
                         zoom: 17,
                         mapTypeId: naver.maps.MapTypeId.NORMAL,
-                        zoomControl: true,
+                        zoomControl: false,  // 줌 컨트롤 비활성화
                         zoomControlOptions: {
                             position: naver.maps.Position.TOP_RIGHT,
                             style: naver.maps.ZoomControlStyle.SMALL
                         },
                         mapDataControl: false,
-                        scaleControl: true,
+                        scaleControl: false,  // 스케일 컨트롤 비활성화
                         logoControl: true,
                         mapTypeControl: false,
-                        minZoom: 10,
-                        maxZoom: 21
+                        minZoom: 17,  // 최소 줌 레벨을 현재 줌과 동일하게
+                        maxZoom: 17,  // 최대 줌 레벨을 현재 줌과 동일하게
+                        draggable: false,  // 드래그 비활성화
+                        pinchZoom: false,  // 핀치 줌 비활성화
+                        scrollWheel: false,  // 스크롤 휠 줌 비활성화
+                        keyboardShortcuts: false,  // 키보드 단축키 비활성화
+                        disableDoubleClickZoom: true,  // 더블클릭 줌 비활성화
+                        disableDoubleTapZoom: true,  // 더블탭 줌 비활성화
+                        disableTwoFingerTapZoom: true  // 두 손가락 탭 줌 비활성화
                     };
 
                     // 지도 생성
