@@ -21,6 +21,7 @@ public class Inquiry {
     private String utm_content;
     private String hasRealEstate;  // Y/N
     private String hasDependents;  // Y/N
+    private String title;  // 상담 신청 타이틀
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
     
@@ -186,6 +187,14 @@ public class Inquiry {
     
     public void setHasDependents(String hasDependents) {
         this.hasDependents = hasDependents;
+    }
+    
+    public String getTitle() {
+        return title;
+    }
+    
+    public void setTitle(String title) {
+        this.title = title;
     }
     
     public LocalDateTime getCreatedAt() {
