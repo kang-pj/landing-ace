@@ -3209,7 +3209,7 @@ body:has(.mobile-nav.active) .floating-btn-container {
     position: relative;
     transform: translateY(50px) scale(0.9);
     opacity: 0;
-    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
     text-align: center;
     overflow: hidden;
@@ -3218,11 +3218,13 @@ body:has(.mobile-nav.active) .floating-btn-container {
 /* 첫 페이지 패딩 */
 .modal-content.first-page {
     padding: 40px 10px;
+    transition: none !important;
 }
 
 /* 다음 단계 패딩 */
 .modal-content.next-page {
     padding: 40px;
+    transition: none !important;
 }
 
 .modal-overlay.show .modal-content {
