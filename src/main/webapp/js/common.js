@@ -104,6 +104,13 @@ function openAiDiagnosisModal() {
         setTimeout(() => {
             modal.classList.add('show');
         }, 10);
+        
+        // 모달 열릴 때 첫 페이지 클래스 설정
+        const modalContent = modal.querySelector('.modal-content');
+        if (modalContent) {
+            modalContent.classList.add('first-page');
+            modalContent.classList.remove('next-page');
+        }
     }
 }
 
@@ -121,6 +128,20 @@ function showScreen(screenId) {
         console.log('Screen activated:', screenId);
     } else {
         console.log('Screen not found:', screenId);
+    }
+    
+    // modal-content 패딩 클래스 변경
+    const modalContent = document.querySelector('.modal-content');
+    if (modalContent) {
+        if (screenId === 'startScreen') {
+            // 첫 페이지: 40px 10px
+            modalContent.classList.add('first-page');
+            modalContent.classList.remove('next-page');
+        } else {
+            // 다음 단계: 40px
+            modalContent.classList.remove('first-page');
+            modalContent.classList.add('next-page');
+        }
     }
 }
 
