@@ -967,8 +967,8 @@
                             <img src="/images/icon_share.png" alt="위치공유" />
                             위치공유
                         </a>
-                        <a href="https://map.naver.com/p/search/서울특별시 서초구 사임당로8길 9"
-                            target="_blank" class="location-btn">
+                        <a href="https://map.naver.com/p/search/서울특별시 서초구 사임당로8길 9" target="_blank"
+                            class="location-btn">
                             <img src="/images/icon_search.png" alt="길찾기" />
                             길찾기
                         </a>
