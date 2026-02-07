@@ -3215,6 +3215,16 @@ body:has(.mobile-nav.active) .floating-btn-container {
     overflow: hidden;
 }
 
+/* 첫 페이지 패딩 */
+.modal-content.first-page {
+    padding: 40px 10px;
+}
+
+/* 다음 단계 패딩 */
+.modal-content.next-page {
+    padding: 40px;
+}
+
 .modal-overlay.show .modal-content {
     transform: translateY(0) scale(1);
     opacity: 1;
@@ -4863,7 +4873,8 @@ body:has(.mobile-nav.active) .floating-btn-container {
     }
 }
 
-/ * 성공 모달 스타일 */ .modal-overlay {
+/* 성공 모달 스타일 */
+.modal-overlay {
     position: fixed;
     top: 0;
     left: 0;
@@ -4982,7 +4993,8 @@ body:has(.mobile-nav.active) .floating-btn-container {
     }
 }
 
-/ * PC 상담 폼 에러 스타일 */ .pc-input.error {
+/* PC 상담 폼 에러 스타일 */
+.pc-input.error {
     border: 2px solid #ff4444 !important;
     background-color: #fff5f5;
 }
