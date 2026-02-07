@@ -13,10 +13,10 @@ public class InquiryDAO {
     // 데이터 삽입 SQL - 모든 필드 포함 (device 컬럼 추가됨)
     private static final String INSERT_SQL = """
         INSERT INTO inquiries 
-        (company_id, name, phone, debt_amount, monthly_income, device, type, title,
+        (company_id, name, phone, debt_amount, monthly_income, device, type, title, content,
          ip_address, user_agent, referrer, utm_source, utm_medium, utm_campaign, 
          utm_term, utm_content, has_real_estate, has_dependents) 
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         """;
     
     // 데이터 조회 SQL - 모든 필드 포함
@@ -63,16 +63,17 @@ public class InquiryDAO {
             pstmt.setString(6, inquiry.getDevice());
             pstmt.setString(7, inquiry.getType());
             pstmt.setString(8, inquiry.getTitle());
-            pstmt.setString(9, inquiry.getIpAddress());
-            pstmt.setString(10, inquiry.getUserAgent());
-            pstmt.setString(11, inquiry.getReferrer());
-            pstmt.setString(12, inquiry.getUtmSource());
-            pstmt.setString(13, inquiry.getUtmMedium());
-            pstmt.setString(14, inquiry.getUtmCampaign());
-            pstmt.setString(15, inquiry.getUtmTerm());
-            pstmt.setString(16, inquiry.getUtmContent());
-            pstmt.setString(17, inquiry.getHasRealEstate());
-            pstmt.setString(18, inquiry.getHasDependents());
+            pstmt.setString(9, inquiry.getContent());
+            pstmt.setString(10, inquiry.getIpAddress());
+            pstmt.setString(11, inquiry.getUserAgent());
+            pstmt.setString(12, inquiry.getReferrer());
+            pstmt.setString(13, inquiry.getUtmSource());
+            pstmt.setString(14, inquiry.getUtmMedium());
+            pstmt.setString(15, inquiry.getUtmCampaign());
+            pstmt.setString(16, inquiry.getUtmTerm());
+            pstmt.setString(17, inquiry.getUtmContent());
+            pstmt.setString(18, inquiry.getHasRealEstate());
+            pstmt.setString(19, inquiry.getHasDependents());
             
             int affectedRows = pstmt.executeUpdate();
             

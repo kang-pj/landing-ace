@@ -124,6 +124,50 @@ public class ConsultationServlet extends HttpServlet {
             String title = name.trim() + "님이 상담 신청하셨습니다.";
             inquiry.setTitle(title);
             
+            // Content 생성: 입력값들을 가독성 좋게 정리
+            StringBuilder content = new StringBuilder();
+            
+            // AI 진단 타입 추가
+            String diagnosisType = request.getParameter("diagnosisType");
+            if (diagnosisType != null && !diagnosisType.trim().isEmpty()) {
+                if ("personal".equals(diagnosisType)) {
+                    content.append("【AI 진단 타입】 개인회생\n");
+                } else if ("bankruptcy".equals(diagnosisType)) {
+                    content.append("【AI 진단 타입】 파산면책\n");
+                }
+            }
+            
+            // 채무액
+            if (debtAmount != null && !debtAmount.trim().isEmpty()) {
+                content.append("【채무액】 ").append(debtAmount).append("\n");
+            }
+            
+            // 월소득
+            if (monthlyIncome != null && !monthlyIncome.trim().isEmpty()) {
+                content.append("【월소득】 ").append(monthlyIncome).append("\n");
+            }
+            
+            // 부동산 보유 여부
+            String assets = request.getParameter("assets");
+            if (assets != null && !assets.trim().isEmpty()) {
+                String realEstateText = "1".equals(assets) ? "있음" : "없음";
+                content.append("【부동산 보유】 ").append(realEstateText).append("\n");
+            }
+            
+            // 부양가족 여부
+            String dependents = request.getParameter("dependents");
+            if (dependents != null && !dependents.trim().isEmpty()) {
+                String dependentsText = "1".equals(dependents) ? "있음" : "없음";
+                content.append("【부양가족】 ").append(dependentsText).append("\n");
+            }
+            
+            // 디바이스 정보
+            if (device != null && !device.trim().isEmpty()) {
+                content.append("【접속 기기】 ").append(device);
+            }
+            
+            inquiry.setContent(content.toString().trim());
+            
             // 추가 정보 수집
             collectAdditionalInfo(request, inquiry);
             

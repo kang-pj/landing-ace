@@ -22,6 +22,7 @@ public class Inquiry {
     private String hasRealEstate;  // Y/N
     private String hasDependents;  // Y/N
     private String title;  // 상담 신청 타이틀
+    private String content;  // 상담 신청 내용
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
     
@@ -195,6 +196,14 @@ public class Inquiry {
     
     public void setTitle(String title) {
         this.title = title;
+    }
+    
+    public String getContent() {
+        return content;
+    }
+    
+    public void setContent(String content) {
+        this.content = content;
     }
     
     public LocalDateTime getCreatedAt() {
