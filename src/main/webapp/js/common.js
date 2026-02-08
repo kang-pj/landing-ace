@@ -1,6 +1,38 @@
 let casesSwiper;
 let certificateSwiper;
 
+// 페이지 로드 시 접근 로그 전송
+document.addEventListener('DOMContentLoaded', function() {
+    sendAccessLog();
+});
+
+// 접근 로그 전송 함수
+function sendAccessLog() {
+    const urlParams = new URLSearchParams(window.location.search);
+    
+    const formData = new URLSearchParams();
+    formData.append('utm_source', urlParams.get('utm_source') || '');
+    formData.append('utm_medium', urlParams.get('utm_medium') || '');
+    formData.append('utm_campaign', urlParams.get('utm_campaign') || '');
+    formData.append('utm_term', urlParams.get('utm_term') || '');
+    formData.append('utm_content', urlParams.get('utm_content') || '');
+    
+    fetch('/access-log', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('접근 로그:', data.message);
+    })
+    .catch(error => {
+        console.error('접근 로그 전송 실패:', error);
+    });
+}
+
 // 안전한 슬라이드 네비게이션 함수
 function navigateSlide(direction) {
     if (casesSwiper) {
