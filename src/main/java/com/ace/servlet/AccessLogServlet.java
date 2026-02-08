@@ -34,6 +34,13 @@ public class AccessLogServlet extends HttpServlet {
         PrintWriter out = response.getWriter();
         
         try {
+            // localhost 접속은 로그 저장하지 않음
+            String pageUrl = request.getRequestURL().toString();
+            if (pageUrl.contains("localhost") || pageUrl.contains("127.0.0.1")) {
+                out.print("{\"success\": true, \"message\": \"로컬 접속 - 로그 저장 안함\"}");
+                return;
+            }
+            
             String cookieName = "ace_visit_log";
             boolean hasVisitCookie = false;
             
@@ -51,30 +58,15 @@ public class AccessLogServlet extends HttpServlet {
                 String ipAddress = getClientIpAddress(request);
                 String userAgent = request.getHeader("User-Agent");
                 String referrer = request.getHeader("Referer");
-                String requestUrl = request.getRequestURL().toString();
                 String sessionId = request.getSession().getId();
                 
-                String utmSource = request.getParameter("utm_source");
-                String utmMedium = request.getParameter("utm_medium");
-                String utmCampaign = request.getParameter("utm_campaign");
-                String utmTerm = request.getParameter("utm_term");
-                String utmContent = request.getParameter("utm_content");
-                
-                String device = detectDevice(request);
-                
                 AccessLog accessLog = new AccessLog();
-                accessLog.setCompanyId("COMP0001");
                 accessLog.setIpAddress(ipAddress);
                 accessLog.setUserAgent(userAgent);
+                accessLog.setPageUrl(pageUrl);
                 accessLog.setReferrer(referrer);
-                accessLog.setRequestUrl(requestUrl);
+                accessLog.setCountry("한국");
                 accessLog.setSessionId(sessionId);
-                accessLog.setUtmSource(utmSource);
-                accessLog.setUtmMedium(utmMedium);
-                accessLog.setUtmCampaign(utmCampaign);
-                accessLog.setUtmTerm(utmTerm);
-                accessLog.setUtmContent(utmContent);
-                accessLog.setDevice(device);
                 
                 boolean saved = accessLogDAO.saveAccessLog(accessLog);
                 
@@ -113,21 +105,4 @@ public class AccessLogServlet extends HttpServlet {
         return request.getRemoteAddr();
     }
     
-    private String detectDevice(HttpServletRequest request) {
-        String userAgent = request.getHeader("User-Agent");
-        if (userAgent == null) {
-            return "Unknown";
-        }
-        
-        userAgent = userAgent.toLowerCase();
-        
-        if (userAgent.contains("mobile") || userAgent.contains("android") || 
-            userAgent.contains("iphone") || userAgent.contains("ipod")) {
-            return "Mobile";
-        } else if (userAgent.contains("tablet") || userAgent.contains("ipad")) {
-            return "Tablet";
-        } else {
-            return "PC";
-        }
-    }
 }

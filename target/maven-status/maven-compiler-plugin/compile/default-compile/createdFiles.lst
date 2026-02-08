@@ -1,11 +1,14 @@
 com\example\servlet\HelloServlet.class
 com\ace\dao\InquiryDAO.class
 com\example\util\DatabaseUtil.class
+com\ace\servlet\AccessLogServlet.class
 com\ace\servlet\ConsultationServlet.class
 com\example\filter\EncodingFilter.class
 com\ace\util\DatabaseUtil.class
 com\ace\servlet\DatabaseTestServlet.class
 com\ace\model\ConsultationRequest.class
+com\ace\dao\AccessLogDAO.class
 com\ace\dao\ConsultationDAO.class
 com\ace\servlet\TableCheckServlet.class
+com\ace\model\AccessLog.class
 com\ace\model\Inquiry.class

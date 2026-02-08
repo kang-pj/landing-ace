@@ -11,9 +11,8 @@ public class AccessLogDAO {
     
     private static final String INSERT_SQL = """
         INSERT INTO access_logs 
-        (company_id, ip_address, user_agent, referrer, request_url, session_id,
-         utm_source, utm_medium, utm_campaign, utm_term, utm_content, device) 
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        (ip_address, user_agent, page_url, referrer, country, session_id) 
+        VALUES (?, ?, ?, ?, ?, ?)
         """;
 
     public boolean saveAccessLog(AccessLog accessLog) {
@@ -22,18 +21,12 @@ public class AccessLogDAO {
             
             System.out.println("접근 로그 저장 시작...");
             
-            pstmt.setString(1, accessLog.getCompanyId());
-            pstmt.setString(2, accessLog.getIpAddress());
-            pstmt.setString(3, accessLog.getUserAgent());
+            pstmt.setString(1, accessLog.getIpAddress());
+            pstmt.setString(2, accessLog.getUserAgent());
+            pstmt.setString(3, accessLog.getPageUrl());
             pstmt.setString(4, accessLog.getReferrer());
-            pstmt.setString(5, accessLog.getRequestUrl());
+            pstmt.setString(5, accessLog.getCountry());
             pstmt.setString(6, accessLog.getSessionId());
-            pstmt.setString(7, accessLog.getUtmSource());
-            pstmt.setString(8, accessLog.getUtmMedium());
-            pstmt.setString(9, accessLog.getUtmCampaign());
-            pstmt.setString(10, accessLog.getUtmTerm());
-            pstmt.setString(11, accessLog.getUtmContent());
-            pstmt.setString(12, accessLog.getDevice());
             
             int result = pstmt.executeUpdate();
             
