@@ -127,8 +127,9 @@ function openAiDiagnosisModal() {
         descriptionElement.appendChild(document.createTextNode('으로 AI진단을 시작합니다.'));
     }
 
-    // 첫 번째 화면 표시
-    showScreen('startScreen');
+    // 첫 번째 화면 건너뛰고 바로 질문 화면으로 이동
+    // showScreen('startScreen');
+    showScreen('questionScreen');
 
     const modal = document.getElementById('aiDiagnosisModal');
     if (modal) {

@@ -3225,7 +3225,7 @@ body:has(.mobile-nav.active) .floating-btn-container {
 
 /* 첫 페이지 패딩 */
 .modal-content.first-page {
-    padding: 40px 10px;
+    padding: 40px;
     transition: none !important;
 }
 
