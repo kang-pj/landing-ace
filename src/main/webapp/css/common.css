@@ -1391,7 +1391,20 @@ body.floating-btn-visible {
     font-size: 28px;
     font-weight: bold;
     color: #333;
-    margin: 0;
+    margin: 0 0 20px 0;
+}
+
+.diagnosis-start-btn {
+    background: #4865FF;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: auto;
 }
 
 .card-icon {
@@ -3329,20 +3342,18 @@ body:has(.mobile-nav.active) .floating-btn-container {
     background: linear-gradient(135deg, #4865FF 0%, #5a7fd8 100%);
     color: white;
     border: none;
-    border-radius: 15px;
-    padding: 18px 40px;
+    border-radius: 9px;
+    padding: 0 20px;
     font-size: 18px;
     font-weight: bold;
     cursor: pointer;
     transition: all 0.3s ease;
-    width: calc(100% - 40px);
+    width: 180px;
+    height: 45px;
     box-shadow: 0 4px 15px rgba(68, 114, 196, 0.3);
-}
-
-.diagnosis-start-btn:hover {
-    background: linear-gradient(135deg, #3a5fa0 0%, #4a6bc4 100%);
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(68, 114, 196, 0.4);
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
 }
 
 /* 모달 다음 버튼 - diagnosis-start-btn과 동일한 스타일 */

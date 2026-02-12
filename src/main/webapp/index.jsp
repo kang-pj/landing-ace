@@ -238,6 +238,7 @@
                     <div class="card-content">
                         <p class="card-subtitle">일정한 소득이 있으나 여유가 없는분</p>
                         <h3 class="card-title">개인회생</h3>
+                        <button class="diagnosis-start-btn">진단 시작하기</button>
                     </div>
                     <img src="/images/icon_ai_01.png" alt="개인회생" class="card-icon" />
                 </div>
@@ -246,6 +247,7 @@
                     <div class="card-content">
                         <p class="card-subtitle">과도한 빚으로 빚 변제가 어려우신분</p>
                         <h3 class="card-title">파산면책</h3>
+                        <button class="diagnosis-start-btn">진단 시작하기</button>
                     </div>
                     <img src="/images/icon_service_02.png" alt="파산면책" class="card-icon" />
                 </div>
