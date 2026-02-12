@@ -6,7 +6,26 @@
         <meta charset="UTF-8">
         <meta name="viewport"
             content="width=device-width, initial-scale=1.0, viewport-fit=cover, interactive-widget=resizes-content">
-        <title>ACE 법률사무소</title>
+        <title>에이스 법률사무소</title>
+        
+        <!-- SEO Meta Tags -->
+        <meta name="description" content="개인회생&middot;파산 전문! 확실한 탕감률로 보답합니다.">
+        <meta name="keywords" content="개인회생, 파산, 법률사무소, 채무탕감, 에이스법률사무소">
+        
+        <!-- Open Graph Meta Tags -->
+        <meta property="og:type" content="website">
+        <meta property="og:title" content="에이스 법률사무소">
+        <meta property="og:description" content="개인회생&middot;파산 전문! 확실한 탕감률로 보답합니다.">
+        <meta property="og:image" content="">
+        <meta property="og:url" content="https://newstart-law.com">
+        <meta property="og:site_name" content="에이스 법률사무소">
+        
+        <!-- Twitter Card Meta Tags -->
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:title" content="에이스 법률사무소">
+        <meta name="twitter:description" content="개인회생&middot;파산 전문! 확실한 탕감률로 보답합니다.">
+        <meta name="twitter:image" content="">
+        
         <!-- Favicon -->
         <link rel="icon" type="image/x-icon" href="/images/logo.ico">
         <link rel="shortcut icon" type="image/x-icon" href="/images/logo.ico">
@@ -20,7 +39,8 @@
         <link rel="stylesheet" href="/css/common.css" />
         <!-- Naver Map API v3 -->
         <script type="text/javascript" src="https://oapi.map.naver.com/openapi/v3/maps.js?ncpKeyId=sw4vg0j8dd"></script>
-
+        <!-- 네이버 태그-->
+        <meta name="naver-site-verification" content="182ca703050e33ab301c1404b6128675ee1f2704" />
 
 
     </head>
