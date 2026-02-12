@@ -193,7 +193,7 @@
                         </div>
                         <div class="form-group">
                             <label for="debt">채무금액</label>
-                            <select id="debt" name="debt" required="">
+                            <select id="debt" name="debt">
                                 <option value="">채무금액 선택</option>
                                 <option value="1천만원 미만">1천만원 미만</option>
                                 <option value="1천만원 ~ 3천만원">1천만원 ~ 3천만원</option>
@@ -204,7 +204,7 @@
                         </div>
                         <div class="form-group">
                             <label for="income">월소득</label>
-                            <select id="income" name="income" required="">
+                            <select id="income" name="income">
                                 <option value="">월소득 선택</option>
                                 <option value="소득 없음">소득 없음</option>
                                 <option value="150만원 미만">150만원 미만</option>
@@ -1293,8 +1293,8 @@
                         </div>
 
                         <div class="popup-form-group">
-                            <label for="popupDebtAmount">채무금액 <span class="required">*</span></label>
-                            <select id="popupDebtAmount" name="debtAmount" required
+                            <label for="popupDebtAmount">채무금액</label>
+                            <select id="popupDebtAmount" name="debtAmount"
                                 onchange="validateSecondPopupForm()">
                                 <option value="">선택해 주세요</option>
                                 <option value="1000만원 미만">1000만원 미만</option>
@@ -1306,8 +1306,8 @@
                         </div>
 
                         <div class="popup-form-group">
-                            <label for="popupIncome">월소득 <span class="required">*</span></label>
-                            <select id="popupIncome" name="income" required onchange="validateSecondPopupForm()">
+                            <label for="popupIncome">월소득</label>
+                            <select id="popupIncome" name="income" onchange="validateSecondPopupForm()">
                                 <option value="">선택해 주세요</option>
                                 <option value="100만원 미만">100만원 미만</option>
                                 <option value="100만원~200만원">100만원~200만원</option>
@@ -1555,7 +1555,7 @@
                             </div>
 
                             <button class="consultation-submit-btn disabled" id="consultationSubmitBtn"
-                                onclick="submitConsultation()" disabled>결과 받아보기</button>
+                                onclick="submitConsultation()" disabled>무료 상담 신청</button>
                         </div>
                     </div>
                 </div>
@@ -1612,8 +1612,8 @@
                         </div>
 
                         <div class="popup-form-group">
-                            <label for="popupDebt">채무금액 *</label>
-                            <select id="popupDebt" name="debtAmount" required onchange="validatePopupForm()">
+                            <label for="popupDebt">채무금액</label>
+                            <select id="popupDebt" name="debtAmount" onchange="validatePopupForm()">
                                 <option value="">채무금액을 선택해주세요</option>
                                 <option value="1000만원 미만">1000만원 미만</option>
                                 <option value="1000만원~3000만원">1000만원~3000만원</option>
@@ -1624,8 +1624,8 @@
                         </div>
 
                         <div class="popup-form-group">
-                            <label for="popupIncome">월소득 *</label>
-                            <select id="popupIncome" name="income" required onchange="validatePopupForm()">
+                            <label for="popupIncome">월소득</label>
+                            <select id="popupIncome" name="income" onchange="validatePopupForm()">
                                 <option value="">월소득을 선택해주세요</option>
                                 <option value="100만원 미만">100만원 미만</option>
                                 <option value="100만원~200만원">100만원~200만원</option>

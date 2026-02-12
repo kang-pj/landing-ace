@@ -1230,15 +1230,16 @@ function submitMainConsultationForm(event) {
         return;
     }
 
-    if (!debt) {
-        alert('채무금액을 선택해 주세요');
-        return;
-    }
+    // 채무금액, 월소득은 선택사항으로 변경 (필수 검증 제거)
+    // if (!debt) {
+    //     alert('채무금액을 선택해 주세요');
+    //     return;
+    // }
 
-    if (!income) {
-        alert('월소득을 선택해 주세요');
-        return;
-    }
+    // if (!income) {
+    //     alert('월소득을 선택해 주세요');
+    //     return;
+    // }
 
     if (!privacyAgree) {
         alert('개인정보 수집 및 이용에 동의해 주세요');
@@ -2103,11 +2104,9 @@ function validatePopupForm() {
         return;
     }
 
-    // 모든 필수 항목이 입력되었는지 확인
+    // 필수 항목: 이름, 연락처, 개인정보 동의만 확인 (채무금액, 월소득 제외)
     const isValid = name.length > 0 &&
         phone.length >= 10 &&
-        debtAmount !== '' &&
-        income !== '' &&
         privacyAgree === true;
 
     console.log('유효성 검사 결과:', isValid);
@@ -2157,11 +2156,9 @@ function validateSecondPopupForm() {
         return;
     }
 
-    // 모든 필수 항목이 입력되었는지 확인
+    // 필수 항목: 이름, 연락처, 개인정보 동의만 확인 (채무금액, 월소득 제외)
     const isValid = name.length > 0 &&
         phone.length >= 10 &&
-        debtAmount !== '' &&
-        income !== '' &&
         privacyAgree === true;
 
     console.log('두 번째 팝업 유효성 검사 결과:', isValid);
@@ -2286,15 +2283,16 @@ function submitConsultationForm(event) {
         return;
     }
 
-    if (!debtAmount) {
-        alert('채무금액을 선택해 주세요');
-        return;
-    }
+    // 채무금액, 월소득은 선택사항으로 변경 (필수 검증 제거)
+    // if (!debtAmount) {
+    //     alert('채무금액을 선택해 주세요');
+    //     return;
+    // }
 
-    if (!income) {
-        alert('월소득을 선택해 주세요');
-        return;
-    }
+    // if (!income) {
+    //     alert('월소득을 선택해 주세요');
+    //     return;
+    // }
 
     if (!privacyAgree) {
         alert('개인정보 수집 및 이용에 동의해 주세요');
