@@ -3202,7 +3202,7 @@ body:has(.mobile-nav.active) .floating-btn-container {
 
 .modal-content {
     background: white;
-    border-radius: 20px 10px;
+    border-radius: 20px;
     padding: 40px 10px;
     width: 500px;
     height: 530px;
