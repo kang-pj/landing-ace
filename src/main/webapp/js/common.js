@@ -163,6 +163,18 @@ function showScreen(screenId) {
         console.log('Screen not found:', screenId);
     }
     
+    // consultationScreen일 때 타입에 따라 텍스트 업데이트
+    if (screenId === 'consultationScreen') {
+        const resultTypeElement = document.getElementById('diagnosisResultType');
+        if (resultTypeElement) {
+            if (selectedDiagnosisType === 'personal') {
+                resultTypeElement.textContent = '개인회생';
+            } else if (selectedDiagnosisType === 'bankruptcy') {
+                resultTypeElement.textContent = '파산면책';
+            }
+        }
+    }
+    
     // modal-content 패딩 클래스 변경
     const modalContent = document.querySelector('.modal-content');
     if (modalContent) {

@@ -1525,7 +1525,7 @@
                 <div id="consultationScreen" class="screen">
                     <div class="consultation-area">
                         <div class="consultation-result">
-                            <h3>개인회생 <span class="highlight">신청이 가능</span>합니다.</h3>
+                            <h3><span id="diagnosisResultType">개인회생</span> <span class="highlight">신청이 가능</span>합니다.</h3>
                         </div>
 
                         <div class="consultation-form-area">
@@ -1555,7 +1555,7 @@
                             </div>
 
                             <button class="consultation-submit-btn disabled" id="consultationSubmitBtn"
-                                onclick="submitConsultation()" disabled>무료 상담 신청</button>
+                                onclick="submitConsultation()" disabled>결과 받아보기</button>
                         </div>
                     </div>
                 </div>
