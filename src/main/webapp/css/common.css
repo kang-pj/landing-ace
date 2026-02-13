@@ -2867,6 +2867,7 @@ body:has(.mobile-nav.active) .floating-btn-container {
     margin-top: 40px;
     padding-top: 30px;
     border-top: 2px solid #f0f0f0;
+    width: calc(100% - 100px);
 }
 
 .mobile-contact-title {
@@ -2898,12 +2899,25 @@ body:has(.mobile-nav.active) .floating-btn-container {
     align-items: center;
     justify-content: center;
     gap: 10px;
-    padding: 12px 20px;
-    border-radius: 8px;
+    padding: 12px 30px;
+    border-radius: 10px;
     text-decoration: none;
-    font-weight: 500;
-    font-size: 14px;
+    font-weight: 600;
+    font-size: 16px;
     transition: all 0.3s ease;
+    width: 100%;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.mobile-contact-btn.consultation {
+    background: #E8F0FE;
+    color: #4865FF;
+}
+
+.mobile-contact-btn.consultation:hover {
+    background: #d0e3fc;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(72, 101, 255, 0.2);
 }
 
 .mobile-contact-btn.primary {
@@ -2913,20 +2927,24 @@ body:has(.mobile-nav.active) .floating-btn-container {
 
 .mobile-contact-btn.primary:hover {
     background: #365a9b;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(72, 101, 255, 0.3);
 }
 
 .mobile-contact-btn.secondary {
-    background: #ffd700;
+    background: #FEE500;
     color: #333;
 }
 
 .mobile-contact-btn.secondary:hover {
     background: #ffed4e;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(254, 229, 0, 0.3);
 }
 
 .mobile-contact-btn img {
-    width: 20px;
-    height: 20px;
+    width: 24px;
+    height: 24px;
 }
 
 /* 반응형 디자인 */

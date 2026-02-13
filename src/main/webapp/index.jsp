@@ -121,20 +121,20 @@
                 </nav>
 
                 <div class="mobile-contact">
-                    <div class="mobile-contact-title">상담 문의</div>
-                    <a href="tel:1555-1684" class="mobile-contact-phone">
-                        <img src="/images/top_call_icon.png" alt="전화" />
-                        1555-1684
-                    </a>
-
+                    <!-- <div class="mobile-contact-title">상담 문의</div> -->
+                    
                     <div class="mobile-contact-buttons">
-                        <a href="tel:1555-1684" class="mobile-contact-btn primary">
-                            <img src="/images/call_icon.png" alt="전화" />
-                            전화 상담
+                        <a href="#" class="mobile-contact-btn consultation" onclick="openConsultationModal(); return false;">
+                            <img src="/images/icon_ok.png" alt="상담" />
+                            상담 예약 신청
                         </a>
                         <a href="#" class="mobile-contact-btn secondary" onclick="openKakaoTalk()">
                             <img src="/images/kakao_icon.png" alt="카카오톡" />
-                            카카오톡 상담
+                            카톡 상담
+                        </a>
+                        <a href="tel:1555-1684" class="mobile-contact-btn primary">
+                            <img src="/images/call_icon.png" alt="전화" />
+                            1555-1684
                         </a>
                     </div>
                 </div>
