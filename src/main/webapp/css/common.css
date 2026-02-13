@@ -2733,7 +2733,7 @@ body.floating-header-visible {
     flex-direction: column;
     cursor: pointer;
     padding: 5px;
-    z-index: 1003;
+    z-index: 9999;
     position: relative;
 }
 
@@ -2788,17 +2788,32 @@ body:has(.mobile-nav.active) .floating-btn-container {
     position: absolute;
     top: 0;
     right: 0;
-    width: 280px;
+    width: 100%;
     height: 100vh;
     background: white;
-    padding: 80px 30px 30px;
+    padding: 30px;
     transform: translateX(100%);
     transition: transform 0.3s ease;
     box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .mobile-nav.active .mobile-nav-content {
     transform: translateX(0);
+}
+
+.mobile-nav-logo {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 50px;
+    padding-top: 20px;
+}
+
+.mobile-nav-logo img {
+    height: 40px;
+    width: auto;
 }
 
 .mobile-nav-close {
@@ -2820,6 +2835,8 @@ body:has(.mobile-nav.active) .floating-btn-container {
     display: flex;
     flex-direction: column;
     gap: 0;
+    width: 100%;
+    max-width: 400px;
 }
 
 .mobile-nav-menu a {
@@ -2828,6 +2845,11 @@ body:has(.mobile-nav.active) .floating-btn-container {
     text-decoration: none;
     color: #333;
     font-size: 18px;
+    font-weight: 600;
+    border-bottom: 1px solid #f0f0f0;
+    transition: color 0.3s ease;
+    text-align: center;
+}
     font-weight: 600;
     border-bottom: 1px solid #f0f0f0;
     transition: color 0.3s ease;
@@ -3211,7 +3233,7 @@ body:has(.mobile-nav.active) .floating-btn-container {
 .modal-content {
     background: white;
     border-radius: 20px;
-    padding: 40px 10px;
+    padding: 40px;
     width: 500px;
     height: 530px;
     position: relative;
@@ -3221,6 +3243,7 @@ body:has(.mobile-nav.active) .floating-btn-container {
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
     text-align: center;
     overflow: hidden;
+    margin: 0 15px;
 }
 
 /* 첫 페이지 패딩 */
@@ -3280,6 +3303,8 @@ body:has(.mobile-nav.active) .floating-btn-container {
     line-height: 1.6;
     margin-bottom: 0;
     text-align: center;
+    margin-left: -40px; 
+    margin-right: -40px;
 }
 
 .modal-body {

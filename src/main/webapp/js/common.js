@@ -1006,8 +1006,8 @@ function toggleMobileNav() {
 }
 
 function closeMobileNav(event) {
-    // 배경 클릭 시에만 닫기 (event가 있고 target이 mobile-nav인 경우)
-    if (event && event.target !== document.getElementById('mobileNav')) {
+    // X 버튼 클릭이거나 배경 클릭 시 닫기
+    if (event && event.target !== document.getElementById('mobileNav') && !event.currentTarget.classList.contains('mobile-nav-close')) {
         return;
     }
 

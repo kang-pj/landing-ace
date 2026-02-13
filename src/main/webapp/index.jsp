@@ -106,6 +106,10 @@
         <!-- 모바일 네비게이션 -->
         <div class="mobile-nav" id="mobileNav" onclick="closeMobileNav(event)">
             <div class="mobile-nav-content" onclick="event.stopPropagation()">
+                <!-- 로고 추가 -->
+                <div class="mobile-nav-logo">
+                    <img src="/images/logo.png" alt="ACE 법률사무소" />
+                </div>
 
                 <nav class="mobile-nav-menu">
                     <a href="#intro" onclick="event.preventDefault(); scrollToSection('intro')">AI 자가진단</a>
