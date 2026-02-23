@@ -2850,10 +2850,6 @@ body:has(.mobile-nav.active) .floating-btn-container {
     transition: color 0.3s ease;
     text-align: center;
 }
-    font-weight: 600;
-    border-bottom: 1px solid #f0f0f0;
-    transition: color 0.3s ease;
-}
 
 .mobile-nav-menu a:hover {
     color: #4865FF;
