@@ -5137,3 +5137,50 @@ body:has(.mobile-nav.active) .floating-btn-container {
         height: 60px;
     }
 }
+
+/* 정부 기관 로고 섹션 */
+.government-logos {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    margin-top: 40px;
+    padding: 20px 0;
+}
+
+.government-logos .logo-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.government-logos .logo-item img {
+    height: 50px;
+    width: auto;
+    object-fit: contain;
+    opacity: 0.9;
+}
+
+/* 모바일 반응형 */
+@media (max-width: 768px) {
+    .government-logos {
+        gap: 20px;
+        margin-top: 30px;
+        padding: 15px 0;
+    }
+
+    .government-logos .logo-item img {
+        height: 40px;
+    }
+}
+
+@media (max-width: 480px) {
+    .government-logos {
+        gap: 15px;
+        margin-top: 20px;
+    }
+
+    .government-logos .logo-item img {
+        height: 30px;
+    }
+}

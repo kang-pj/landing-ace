@@ -179,6 +179,19 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- 정부 기관 로고 섹션 -->
+                <div class="government-logos">
+                    <div class="logo-item">
+                        <img src="/images/logo_center_01.png" alt="대한민국정부" />
+                    </div>
+                    <div class="logo-item">
+                        <img src="/images/logo_center_02.png" alt="대법원" />
+                    </div>
+                    <div class="logo-item">
+                        <img src="/images/logo_center_03.png" alt="신용회복위원회" />
+                    </div>
+                </div>
             </div>
         </div>
 
