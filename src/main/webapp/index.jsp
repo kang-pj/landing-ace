@@ -1151,7 +1151,7 @@
                         <div class="error-message" id="pcPhoneError"></div>
                     </div>
                     <button class="pc-consultation-btn primary" onclick="submitPcConsultation()">무료 상담신청</button>
-                    <button class="pc-consultation-btn secondary">
+                    <button class="pc-consultation-btn secondary" onclick="openKakaoTalk()">
                         <img src="/images/icon_talk.png" alt="카카오톡">
                         카톡상담
                     </button>
