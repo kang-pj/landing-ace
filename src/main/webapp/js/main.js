@@ -198,5 +198,5 @@ function openConsultationModal() {
 
 // 카카오톡 상담 열기 함수
 function openKakaoTalk() {
-    window.open('https://pf.kakao.com/_your_kakao_link', '_blank');
+    window.open('http://pf.kakao.com/_zJEYG/chat', '_blank');
 }

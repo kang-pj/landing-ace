@@ -1112,8 +1112,7 @@ function smoothScrollToSection(sectionId) {
 }
 
 function openKakaoTalk() {
-    // 카카오톡 상담 링크 (실제 링크로 교체 필요)
-    window.open('https://pf.kakao.com/_your_kakao_link', '_blank');
+    window.open('http://pf.kakao.com/_zJEYG/chat', '_blank');
 }
 
 // ESC 키로 모바일 메뉴 닫기
@@ -1662,8 +1661,7 @@ function openConsultationModal() {
 
 // 카카오톡 상담 열기 함수
 function openKakaoTalk() {
-    // 카카오톡 상담 링크 (실제 링크로 교체 필요)
-    window.open('https://pf.kakao.com/_your_kakao_link', '_blank');
+    window.open('http://pf.kakao.com/_zJEYG/chat', '_blank');
 }
 
 // 하단 상담바 토글 함수

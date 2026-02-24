@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>쿠키 초기화</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            text-align: center;
+        }
+        button {
+            padding: 15px 30px;
+            font-size: 16px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 5px;
+        }
+        .success {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        .info {
+            background-color: #d1ecf1;
+            color: #0c5460;
+        }
+    </style>
+</head>
+<body>
+    <h1>접근 로그 쿠키 초기화</h1>
+    <p>ace_visit_log 쿠키를 삭제하여 접근 로그를 다시 테스트할 수 있습니다.</p>
+    
+    <button onclick="clearCookie()">쿠키 삭제</button>
+    <button onclick="checkCookie()">쿠키 확인</button>
+    
+    <div id="result"></div>
+
+    <script>
+        function clearCookie() {
+            // ace_visit_log 쿠키 삭제
+            document.cookie = "ace_visit_log=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+            
+            const resultDiv = document.getElementById('result');
+            resultDiv.className = 'result success';
+            resultDiv.innerHTML = '✓ ace_visit_log 쿠키가 삭제되었습니다!<br>이제 페이지를 새로고침하면 접근 로그가 다시 저장됩니다.';
+        }
+
+        function checkCookie() {
+            const cookies = document.cookie.split(';');
+            let hasCookie = false;
+            
+            for (let cookie of cookies) {
+                const [name, value] = cookie.trim().split('=');
+                if (name === 'ace_visit_log') {
+                    hasCookie = true;
+                    break;
+                }
+            }
+            
+            const resultDiv = document.getElementById('result');
+            resultDiv.className = 'result info';
+            
+            if (hasCookie) {
+                resultDiv.innerHTML = 'ace_visit_log 쿠키가 존재합니다.<br>30분 동안 접근 로그가 저장되지 않습니다.';
+            } else {
+                resultDiv.innerHTML = 'ace_visit_log 쿠키가 없습니다.<br>접근 로그가 저장됩니다.';
+            }
+        }
+
+        // 페이지 로드 시 쿠키 상태 확인
+        window.onload = checkCookie;
+    </script>
+</body>
+</html>
