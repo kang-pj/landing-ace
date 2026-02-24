@@ -3317,7 +3317,7 @@ body:has(.mobile-nav.active) .floating-btn-container {
     line-height: 1.6;
     margin-bottom: 0;
     text-align: center;
-    margin-left: -40px; 
+    margin-left: -40px;
     margin-right: -40px;
 }
 
@@ -4963,12 +4963,12 @@ body:has(.mobile-nav.active) .floating-btn-container {
     right: 20px;
     background: none;
     border: none;
-    font-size: 24px;
+    font-size: 45px;
     color: #666;
     cursor: pointer;
     z-index: 1;
-    width: 30px;
-    height: 30px;
+    width: 40px;
+    height: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -5060,6 +5060,7 @@ body:has(.mobile-nav.active) .floating-btn-container {
     margin-bottom: 0;
     min-height: 0;
 }
+
 /* AI 자
 가진단 섹션 - 개인회생/파산면책 카드 */
 .diagnosis-cards {
@@ -5120,17 +5121,17 @@ body:has(.mobile-nav.active) .floating-btn-container {
         gap: 15px;
         padding: 0 20px;
     }
-    
+
     .diagnosis-card {
         min-width: auto;
         width: 100%;
         padding: 20px;
     }
-    
+
     .diagnosis-card .card-title {
         font-size: 24px;
     }
-    
+
     .diagnosis-card .card-icon {
         width: 60px;
         height: 60px;
