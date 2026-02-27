@@ -1132,7 +1132,7 @@
                             <p>(전화 24시간 가능)</p>
                             <div class="phone-number">1555-1684</div>
                             <div class="ace-logo">
-                                <img src="/images/logo_gray.png" alt="ACE 법률사무소">
+                                <img src="/images/logo.png" alt="ACE 법률사무소">
                             </div>
                         </div>
                     </div>
