@@ -2392,3 +2392,86 @@ document.addEventListener('keydown', function (event) {
         closeSuccessPopup();
     }
 });
+
+// 메인 
+상담 신청 폼 제출
+function submitMainConsultationForm(event) {
+    event.preventDefault();
+    
+    const form = event.target;
+    const privacyCheckbox = document.getElementById('privacy-agree');
+    
+    if (!privacyCheckbox.checked) {
+        alert('개인정보 수집 및 이용에 동의해주세요.');
+        return false;
+    }
+    
+    const formData = new URLSearchParams();
+    formData.append('name', form.name.value);
+    formData.append('phone', form.phone.value);
+    formData.append('email', form.email?.value || '');
+    formData.append('debt', form.debt.value);
+    formData.append('income', form.income.value);
+    formData.append('message', '메인 페이지 상담 신청');
+    
+    fetch('/api/consultation', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            alert('상담 신청이 완료되었습니다.\n빠른 시일 내에 연락드리겠습니다.');
+            form.reset();
+        } else {
+            alert('상담 신청 중 오류가 발생했습니다.\n다시 시도해주세요.');
+        }
+    })
+    .catch(error => {
+        console.error('상담 신청 오류:', error);
+        alert('상담 신청 중 오류가 발생했습니다.\n다시 시도해주세요.');
+    });
+    
+    return false;
+}
+
+// 모달 상담 신청 폼 제출
+function submitConsultationForm(event) {
+    event.preventDefault();
+    
+    const form = event.target;
+    
+    const formData = new URLSearchParams();
+    formData.append('name', form.name.value);
+    formData.append('phone', form.phone.value);
+    formData.append('email', form.email?.value || '');
+    formData.append('debt', form.debt?.value || '');
+    formData.append('income', form.income?.value || '');
+    formData.append('message', form.message?.value || '모달 상담 신청');
+    
+    fetch('/api/consultation', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            closeConsultationModal();
+            showSuccessModal();
+        } else {
+            alert('상담 신청 중 오류가 발생했습니다.\n다시 시도해주세요.');
+        }
+    })
+    .catch(error => {
+        console.error('상담 신청 오류:', error);
+        alert('상담 신청 중 오류가 발생했습니다.\n다시 시도해주세요.');
+    });
+    
+    return false;
+}

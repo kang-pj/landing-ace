@@ -42,7 +42,8 @@
         <script type="text/javascript" src="https://oapi.map.naver.com/openapi/v3/maps.js?ncpKeyId=sw4vg0j8dd"></script>
         <!-- 네이버 태그-->
         <meta name="naver-site-verification" content="182ca703050e33ab301c1404b6128675ee1f2704" />
-
+        <!-- Tracking Script -->
+        <script src="/js/tracking.js"></script>
 
     </head>
 
