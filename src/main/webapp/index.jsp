@@ -1153,7 +1153,7 @@
 
                 <div class="pc-consultation-form">
                     <div class="pc-input-group">
-                        <input type="text" placeholder="이름" class="pc-input name-input" required>
+                        <input type="text" id="pcNameInput" placeholder="이름" class="pc-input name-input" required>
                         <div class="error-message" id="pcNameError"></div>
                         <div class="pc-privacy-check">
                             <input type="checkbox" id="pcPrivacyCheck" class="privacy-checkbox" checked>
@@ -1162,7 +1162,7 @@
                         </div>
                     </div>
                     <div class="pc-input-group">
-                        <input type="tel" placeholder="연락처 (10~11자리 입력)" class="pc-input phone-input" maxlength="11"
+                        <input type="tel" id="pcPhoneInput" placeholder="연락처 (10~11자리 입력)" class="pc-input phone-input" maxlength="11"
                             oninput="formatPcPhoneNumber(this)" required>
                         <div class="error-message" id="pcPhoneError"></div>
                     </div>

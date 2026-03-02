@@ -1965,12 +1965,12 @@ function submitMobileConsultation() {
 
     // URLSearchParams로 폼 데이터 수집 (채무액, 월소득 제외)
     const formData = new URLSearchParams();
+    formData.append('consultation_source', 'mobile_fixed_bottom');
     formData.append('name', name);
     formData.append('phone', phone);
-    formData.append('debtAmount', ''); // 빈 값으로 전송
+    formData.append('debt', ''); // 빈 값으로 전송
     formData.append('income', ''); // 빈 값으로 전송
-    formData.append('device', isMobile ? 'Mobile' : 'PC');
-    formData.append('type', '무료상담신청(모바일)');
+    formData.append('message', '모바일 하단 고정 폼');
 
     // UTM 파라미터 추가 (URL에서 추출)
     const urlParams = new URLSearchParams(window.location.search);
@@ -2006,7 +2006,7 @@ function submitMobileConsultation() {
     console.log('서버로 데이터 전송 시작...');
 
     // 서버에 데이터 전송 (URLSearchParams 사용)
-    fetch('/consultation', {
+    fetch('/api/consultation', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
@@ -2407,6 +2407,7 @@ function submitMainConsultationForm(event) {
     }
     
     const formData = new URLSearchParams();
+    formData.append('consultation_source', 'main_top_form');
     formData.append('name', form.name.value);
     formData.append('phone', form.phone.value);
     formData.append('email', form.email?.value || '');
@@ -2445,6 +2446,7 @@ function submitConsultationForm(event) {
     const form = event.target;
     
     const formData = new URLSearchParams();
+    formData.append('consultation_source', 'popup_modal');
     formData.append('name', form.name.value);
     formData.append('phone', form.phone.value);
     formData.append('email', form.email?.value || '');
@@ -2474,4 +2476,80 @@ function submitConsultationForm(event) {
     });
     
     return false;
+}
+
+
+// PC 우측 고정 상담 신청
+function submitPcConsultation() {
+    console.log('=== PC 상담 신청 시작 ===');
+    
+    const nameElement = document.getElementById('pcNameInput');
+    const phoneElement = document.getElementById('pcPhoneInput');
+    const privacyElement = document.getElementById('pcPrivacyCheck');
+    
+    if (!nameElement || !phoneElement) {
+        alert('폼 요소를 찾을 수 없습니다. 페이지를 새로고침해 주세요.');
+        return;
+    }
+    
+    const name = nameElement.value.trim();
+    const phone = phoneElement.value.trim();
+    const privacyAgree = privacyElement ? privacyElement.checked : false;
+    
+    // 필수 항목 검증
+    if (!name) {
+        alert('이름을 입력해 주세요');
+        nameElement.focus();
+        return;
+    }
+    
+    if (!phone) {
+        alert('연락처를 입력해 주세요');
+        phoneElement.focus();
+        return;
+    }
+    
+    if (!privacyAgree) {
+        alert('개인정보 수집 및 이용에 동의해 주세요');
+        return;
+    }
+    
+    // 연락처 형식 검증
+    const phoneRegex = /^[0-9]{10,11}$/;
+    if (!phoneRegex.test(phone)) {
+        alert('올바른 연락처를 입력해 주세요 (10-11자리 숫자)');
+        phoneElement.focus();
+        return;
+    }
+    
+    const formData = new URLSearchParams();
+    formData.append('consultation_source', 'pc_fixed_right');
+    formData.append('name', name);
+    formData.append('phone', phone);
+    formData.append('email', '');
+    formData.append('debt', '');
+    formData.append('income', '');
+    formData.append('message', 'PC 우측 고정 폼');
+    
+    fetch('/api/consultation', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            alert('상담 신청이 완료되었습니다.\n빠른 시일 내에 연락드리겠습니다.');
+            nameElement.value = '';
+            phoneElement.value = '';
+        } else {
+            alert('상담 신청 중 오류가 발생했습니다.\n다시 시도해주세요.');
+        }
+    })
+    .catch(error => {
+        console.error('상담 신청 오류:', error);
+        alert('상담 신청 중 오류가 발생했습니다.\n다시 시도해주세요.');
+    });
 }

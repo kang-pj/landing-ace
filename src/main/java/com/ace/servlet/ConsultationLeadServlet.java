@@ -33,6 +33,7 @@ public class ConsultationLeadServlet extends HttpServlet {
             
             ConsultationLead lead = new ConsultationLead();
             lead.setSessionId(sessionId);
+            lead.setConsultationSource(request.getParameter("consultation_source"));
             lead.setName(request.getParameter("name"));
             lead.setPhone(request.getParameter("phone"));
             lead.setEmail(request.getParameter("email"));

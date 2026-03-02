@@ -3,6 +3,7 @@ com\ace\dao\ConsultationLeadDAO.class
 com\ace\model\ConsultationLead.class
 com\ace\servlet\TrafficLogServlet.class
 com\ace\dao\AccessLogDAO.class
+com\ace\util\CheckTables.class
 com\ace\servlet\TableCheckServlet.class
 com\ace\model\AccessLog.class
 com\example\servlet\HelloServlet.class
@@ -13,6 +14,7 @@ com\ace\servlet\AccessLogServlet.class
 com\ace\servlet\ConsultationServlet.class
 com\ace\util\AlterTableComments.class
 com\ace\model\TrafficLog.class
+com\ace\util\AddConsultationSource.class
 com\example\filter\EncodingFilter.class
 com\ace\util\DatabaseUtil.class
 com\ace\servlet\DatabaseTestServlet.class

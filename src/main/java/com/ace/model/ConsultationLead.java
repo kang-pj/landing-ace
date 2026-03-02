@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 public class ConsultationLead {
     private Long id;
     private String sessionId;
+    private String consultationSource;
     
     // 고객 정보
     private String name;
@@ -37,6 +38,14 @@ public class ConsultationLead {
 
     public void setSessionId(String sessionId) {
         this.sessionId = sessionId;
+    }
+
+    public String getConsultationSource() {
+        return consultationSource;
+    }
+
+    public void setConsultationSource(String consultationSource) {
+        this.consultationSource = consultationSource;
     }
 
     public String getName() {

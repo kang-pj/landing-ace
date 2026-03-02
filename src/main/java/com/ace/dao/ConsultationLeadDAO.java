@@ -10,23 +10,24 @@ import java.util.List;
 public class ConsultationLeadDAO {
     
     public void insert(ConsultationLead lead) throws SQLException {
-        String sql = "INSERT INTO consultation_leads (session_id, name, phone, email, " +
+        String sql = "INSERT INTO consultation_leads (session_id, consultation_source, name, phone, email, " +
                     "debt_amount, monthly_income, message, status, user_agent, ip_address) " +
-                    "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                    "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         
         try (Connection conn = DatabaseUtil.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             
             pstmt.setString(1, lead.getSessionId());
-            pstmt.setString(2, lead.getName());
-            pstmt.setString(3, lead.getPhone());
-            pstmt.setString(4, lead.getEmail());
-            pstmt.setString(5, lead.getDebtAmount());
-            pstmt.setString(6, lead.getMonthlyIncome());
-            pstmt.setString(7, lead.getMessage());
-            pstmt.setString(8, lead.getStatus() != null ? lead.getStatus() : "pending");
-            pstmt.setString(9, lead.getUserAgent());
-            pstmt.setString(10, lead.getIpAddress());
+            pstmt.setString(2, lead.getConsultationSource());
+            pstmt.setString(3, lead.getName());
+            pstmt.setString(4, lead.getPhone());
+            pstmt.setString(5, lead.getEmail());
+            pstmt.setString(6, lead.getDebtAmount());
+            pstmt.setString(7, lead.getMonthlyIncome());
+            pstmt.setString(8, lead.getMessage());
+            pstmt.setString(9, lead.getStatus() != null ? lead.getStatus() : "pending");
+            pstmt.setString(10, lead.getUserAgent());
+            pstmt.setString(11, lead.getIpAddress());
             
             pstmt.executeUpdate();
         }
@@ -66,6 +67,7 @@ public class ConsultationLeadDAO {
         ConsultationLead lead = new ConsultationLead();
         lead.setId(rs.getLong("id"));
         lead.setSessionId(rs.getString("session_id"));
+        lead.setConsultationSource(rs.getString("consultation_source"));
         lead.setName(rs.getString("name"));
         lead.setPhone(rs.getString("phone"));
         lead.setEmail(rs.getString("email"));
