@@ -1162,8 +1162,8 @@
                         </div>
                     </div>
                     <div class="pc-input-group">
-                        <input type="tel" id="pcPhoneInput" placeholder="연락처 (10~11자리 입력)" class="pc-input phone-input" maxlength="11"
-                            oninput="formatPcPhoneNumber(this)" required>
+                        <input type="tel" id="pcPhoneInput" placeholder="연락처 (10~11자리 입력)" class="pc-input phone-input"
+                            maxlength="11" oninput="formatPcPhoneNumber(this)" required>
                         <div class="error-message" id="pcPhoneError"></div>
                     </div>
                     <button class="pc-consultation-btn primary" onclick="submitPcConsultation()">무료 상담신청</button>
@@ -1737,7 +1737,7 @@
                 background: white;
                 border-radius: 15px;
                 width: 90%;
-                max-width: 500px;
+                max-width: 420px;
                 max-height: 90vh;
                 overflow-y: auto;
                 box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);

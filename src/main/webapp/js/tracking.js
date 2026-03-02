@@ -94,6 +94,13 @@
 
     // 트래픽 로그 전송
     function sendTrafficLog() {
+        // 이미 이번 세션에서 기록했는지 확인
+        const alreadyTracked = sessionStorage.getItem('traffic_logged');
+        if (alreadyTracked === 'true') {
+            console.log('Traffic already logged in this session');
+            return;
+        }
+        
         const urlParams = getUrlParams();
         const browserInfo = getBrowserInfo();
         const referrer = document.referrer;
@@ -130,6 +137,8 @@
             if (data.sessionId) {
                 sessionStorage.setItem('tracking_session_id', data.sessionId);
             }
+            // 이번 세션에서 기록했다고 표시
+            sessionStorage.setItem('traffic_logged', 'true');
         })
         .catch(error => console.error('Traffic log error:', error));
     }

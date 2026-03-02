@@ -2393,8 +2393,7 @@ document.addEventListener('keydown', function (event) {
     }
 });
 
-// 메인 
-상담 신청 폼 제출
+// 메인 상담 신청 폼 제출
 function submitMainConsultationForm(event) {
     event.preventDefault();
     
@@ -2425,8 +2424,16 @@ function submitMainConsultationForm(event) {
     .then(response => response.json())
     .then(data => {
         if (data.success) {
-            alert('상담 신청이 완료되었습니다.\n빠른 시일 내에 연락드리겠습니다.');
             form.reset();
+            // 성공 팝업 표시
+            const successPopup = document.getElementById('consultationSuccessPopup');
+            if (successPopup) {
+                successPopup.style.display = 'flex';
+                setTimeout(() => {
+                    successPopup.classList.add('show');
+                }, 10);
+                document.body.style.overflow = 'hidden';
+            }
         } else {
             alert('상담 신청 중 오류가 발생했습니다.\n다시 시도해주세요.');
         }
@@ -2523,13 +2530,13 @@ function submitPcConsultation() {
     }
     
     const formData = new URLSearchParams();
-    formData.append('consultation_source', 'pc_fixed_right');
+    formData.append('consultation_source', 'pc_fixed_bottom');
     formData.append('name', name);
     formData.append('phone', phone);
     formData.append('email', '');
     formData.append('debt', '');
     formData.append('income', '');
-    formData.append('message', 'PC 우측 고정 폼');
+    formData.append('message', 'PC 하단 고정 폼');
     
     fetch('/api/consultation', {
         method: 'POST',
@@ -2541,9 +2548,17 @@ function submitPcConsultation() {
     .then(response => response.json())
     .then(data => {
         if (data.success) {
-            alert('상담 신청이 완료되었습니다.\n빠른 시일 내에 연락드리겠습니다.');
             nameElement.value = '';
             phoneElement.value = '';
+            // 성공 팝업 표시
+            const successPopup = document.getElementById('consultationSuccessPopup');
+            if (successPopup) {
+                successPopup.style.display = 'flex';
+                setTimeout(() => {
+                    successPopup.classList.add('show');
+                }, 10);
+                document.body.style.overflow = 'hidden';
+            }
         } else {
             alert('상담 신청 중 오류가 발생했습니다.\n다시 시도해주세요.');
         }
