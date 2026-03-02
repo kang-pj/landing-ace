@@ -114,7 +114,7 @@ body {
 
 /* 메인 배경 영역 */
 .main-background {
-    background-image: url('/images/main-background.png');
+    background-image: url('/images/bg.gif');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;

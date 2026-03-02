@@ -9,13 +9,14 @@
         <title>에이스 법률사무소</title>
 
         <!-- SEO Meta Tags -->
-        <meta name="description" content="개인회생&middot;파산 전문! 확실한 탕감률로 보답합니다.">
-        <meta name="keywords" content="개인회생, 파산, 법률사무소, 채무탕감, 에이스법률사무소">
+        <meta name="description" content="개인회생 · 개인파산 전문 변호사가 확실한 탕감률로 보답합니다!">
+        <meta name="keywords"
+            content="개인회생, 개인파산, 도산전문변호사, 파산면책, 비밀보호, 최대 탕감률, 빠른진행, 기각시 수임료 환불, 사업실패, 코인, 주식, 돌려막기, 성형비, 연대보증, 개인채무, 무료상담, 전국 접수 가능">
 
         <!-- Open Graph Meta Tags -->
         <meta property="og:type" content="website">
         <meta property="og:title" content="에이스 법률사무소">
-        <meta property="og:description" content="개인회생&middot;파산 전문! 확실한 탕감률로 보답합니다.">
+        <meta property="og:description" content="개인회생 · 파산 전문! 확실한 탕감률로 보답합니다.">
         <meta property="og:image" content="https://newstart-law.com/images/ace_og.png">
         <meta property="og:url" content="https://newstart-law.com">
         <meta property="og:site_name" content="에이스 법률사무소">
