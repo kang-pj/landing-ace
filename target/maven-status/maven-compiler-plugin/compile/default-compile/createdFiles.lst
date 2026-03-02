@@ -11,6 +11,7 @@ com\ace\dao\TrafficLogDAO.class
 com\ace\util\CreateTables.class
 com\ace\servlet\AccessLogServlet.class
 com\ace\servlet\ConsultationServlet.class
+com\ace\util\AlterTableComments.class
 com\ace\model\TrafficLog.class
 com\example\filter\EncodingFilter.class
 com\ace\util\DatabaseUtil.class
