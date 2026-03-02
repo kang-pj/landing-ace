@@ -7,25 +7,25 @@
         <meta name="viewport"
             content="width=device-width, initial-scale=1.0, viewport-fit=cover, interactive-widget=resizes-content">
         <title>에이스 법률사무소</title>
-        
+
         <!-- SEO Meta Tags -->
         <meta name="description" content="개인회생&middot;파산 전문! 확실한 탕감률로 보답합니다.">
         <meta name="keywords" content="개인회생, 파산, 법률사무소, 채무탕감, 에이스법률사무소">
-        
+
         <!-- Open Graph Meta Tags -->
         <meta property="og:type" content="website">
         <meta property="og:title" content="에이스 법률사무소">
         <meta property="og:description" content="개인회생&middot;파산 전문! 확실한 탕감률로 보답합니다.">
-        <meta property="og:image" content="">
+        <meta property="og:image" content="https://newstart-law.com/images/ace_og.png">
         <meta property="og:url" content="https://newstart-law.com">
         <meta property="og:site_name" content="에이스 법률사무소">
-        
+
         <!-- Twitter Card Meta Tags -->
         <meta name="twitter:card" content="summary_large_image">
         <meta name="twitter:title" content="에이스 법률사무소">
         <meta name="twitter:description" content="개인회생&middot;파산 전문! 확실한 탕감률로 보답합니다.">
-        <meta name="twitter:image" content="">
-        
+        <meta name="twitter:image" content="https://newstart-law.com/images/ace_og.png">
+
         <!-- Favicon -->
         <link rel="icon" type="image/x-icon" href="/images/logo.ico">
         <link rel="shortcut icon" type="image/x-icon" href="/images/logo.ico">
@@ -122,9 +122,10 @@
 
                 <div class="mobile-contact">
                     <!-- <div class="mobile-contact-title">상담 문의</div> -->
-                    
+
                     <div class="mobile-contact-buttons">
-                        <a href="#" class="mobile-contact-btn consultation" onclick="openConsultationModal(); return false;">
+                        <a href="#" class="mobile-contact-btn consultation"
+                            onclick="openConsultationModal(); return false;">
                             <img src="/images/icon_ok.png" alt="상담" />
                             상담 예약 신청
                         </a>
@@ -1311,8 +1312,7 @@
 
                         <div class="popup-form-group">
                             <label for="popupDebtAmount">채무금액</label>
-                            <select id="popupDebtAmount" name="debtAmount"
-                                onchange="validateSecondPopupForm()">
+                            <select id="popupDebtAmount" name="debtAmount" onchange="validateSecondPopupForm()">
                                 <option value="">선택해 주세요</option>
                                 <option value="1000만원 미만">1000만원 미만</option>
                                 <option value="1000만원~3000만원">1000만원~3000만원</option>
@@ -1542,7 +1542,8 @@
                 <div id="consultationScreen" class="screen">
                     <div class="consultation-area">
                         <div class="consultation-result">
-                            <h3><span id="diagnosisResultType">개인회생</span> <span class="highlight">신청이 가능</span>합니다.</h3>
+                            <h3><span id="diagnosisResultType">개인회생</span> <span class="highlight">신청이 가능</span>합니다.
+                            </h3>
                         </div>
 
                         <div class="consultation-form-area">
