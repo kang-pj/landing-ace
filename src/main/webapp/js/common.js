@@ -2,21 +2,21 @@ let casesSwiper;
 let certificateSwiper;
 
 // 페이지 로드 시 접근 로그 전송
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     sendAccessLog();
 });
 
 // 접근 로그 전송 함수
 function sendAccessLog() {
     const urlParams = new URLSearchParams(window.location.search);
-    
+
     const formData = new URLSearchParams();
     formData.append('utm_source', urlParams.get('utm_source') || '');
     formData.append('utm_medium', urlParams.get('utm_medium') || '');
     formData.append('utm_campaign', urlParams.get('utm_campaign') || '');
     formData.append('utm_term', urlParams.get('utm_term') || '');
     formData.append('utm_content', urlParams.get('utm_content') || '');
-    
+
     fetch('/access-log', {
         method: 'POST',
         headers: {
@@ -24,13 +24,13 @@ function sendAccessLog() {
         },
         body: formData
     })
-    .then(response => response.json())
-    .then(data => {
-        console.log('접근 로그:', data.message);
-    })
-    .catch(error => {
-        console.error('접근 로그 전송 실패:', error);
-    });
+        .then(response => response.json())
+        .then(data => {
+            console.log('접근 로그:', data.message);
+        })
+        .catch(error => {
+            console.error('접근 로그 전송 실패:', error);
+        });
 }
 
 // 안전한 슬라이드 네비게이션 함수
@@ -137,7 +137,7 @@ function openAiDiagnosisModal() {
         setTimeout(() => {
             modal.classList.add('show');
         }, 10);
-        
+
         // 모달 열릴 때 첫 페이지 클래스 설정
         const modalContent = modal.querySelector('.modal-content');
         if (modalContent) {
@@ -162,7 +162,7 @@ function showScreen(screenId) {
     } else {
         console.log('Screen not found:', screenId);
     }
-    
+
     // consultationScreen일 때 타입에 따라 텍스트 업데이트
     if (screenId === 'consultationScreen') {
         const resultTypeElement = document.getElementById('diagnosisResultType');
@@ -174,7 +174,7 @@ function showScreen(screenId) {
             }
         }
     }
-    
+
     // modal-content 패딩 클래스 변경
     const modalContent = document.querySelector('.modal-content');
     if (modalContent) {
@@ -1448,7 +1448,7 @@ function submitPcConsultation() {
             console.error('PC 상담 신청 오류:', error);
             // 에러가 발생해도 DB에 저장되었을 수 있으므로 성공 모달 표시
             showSuccessModal();
-            
+
             // 폼 초기화
             nameInput.value = '';
             phoneInput.value = '';
@@ -2391,15 +2391,15 @@ document.addEventListener('keydown', function (event) {
 // 메인 상담 신청 폼 제출
 function submitMainConsultationForm(event) {
     event.preventDefault();
-    
+
     const form = event.target;
     const privacyCheckbox = document.getElementById('privacy-agree');
-    
+
     if (!privacyCheckbox.checked) {
         alert('개인정보 수집 및 이용에 동의해주세요.');
         return false;
     }
-    
+
     const formData = new URLSearchParams();
     formData.append('consultation_source', 'main_top_form');
     formData.append('name', form.name.value);
@@ -2408,7 +2408,7 @@ function submitMainConsultationForm(event) {
     formData.append('debt', form.debt.value);
     formData.append('income', form.income.value);
     formData.append('message', '메인 페이지 상담 신청');
-    
+
     fetch('/api/consultation', {
         method: 'POST',
         headers: {
@@ -2416,37 +2416,37 @@ function submitMainConsultationForm(event) {
         },
         body: formData
     })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            form.reset();
-            // 성공 팝업 표시
-            const successPopup = document.getElementById('consultationSuccessPopup');
-            if (successPopup) {
-                successPopup.style.display = 'flex';
-                setTimeout(() => {
-                    successPopup.classList.add('show');
-                }, 10);
-                document.body.style.overflow = 'hidden';
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                form.reset();
+                // 성공 팝업 표시
+                const successPopup = document.getElementById('consultationSuccessPopup');
+                if (successPopup) {
+                    successPopup.style.display = 'flex';
+                    setTimeout(() => {
+                        successPopup.classList.add('show');
+                    }, 10);
+                    document.body.style.overflow = 'hidden';
+                }
+            } else {
+                alert('상담 신청 중 오류가 발생했습니다.\n다시 시도해주세요.');
             }
-        } else {
+        })
+        .catch(error => {
+            console.error('상담 신청 오류:', error);
             alert('상담 신청 중 오류가 발생했습니다.\n다시 시도해주세요.');
-        }
-    })
-    .catch(error => {
-        console.error('상담 신청 오류:', error);
-        alert('상담 신청 중 오류가 발생했습니다.\n다시 시도해주세요.');
-    });
-    
+        });
+
     return false;
 }
 
 // 모달 상담 신청 폼 제출
 function submitConsultationForm(event) {
     event.preventDefault();
-    
+
     const form = event.target;
-    
+
     const formData = new URLSearchParams();
     formData.append('consultation_source', 'popup_modal');
     formData.append('name', form.name.value);
@@ -2455,7 +2455,7 @@ function submitConsultationForm(event) {
     formData.append('debt', form.debt?.value || '');
     formData.append('income', form.income?.value || '');
     formData.append('message', form.message?.value || '모달 상담 신청');
-    
+
     fetch('/api/consultation', {
         method: 'POST',
         headers: {
@@ -2463,20 +2463,20 @@ function submitConsultationForm(event) {
         },
         body: formData
     })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            closeConsultationModal();
-            showSuccessModal();
-        } else {
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                closeConsultationModal();
+                showSuccessModal();
+            } else {
+                alert('상담 신청 중 오류가 발생했습니다.\n다시 시도해주세요.');
+            }
+        })
+        .catch(error => {
+            console.error('상담 신청 오류:', error);
             alert('상담 신청 중 오류가 발생했습니다.\n다시 시도해주세요.');
-        }
-    })
-    .catch(error => {
-        console.error('상담 신청 오류:', error);
-        alert('상담 신청 중 오류가 발생했습니다.\n다시 시도해주세요.');
-    });
-    
+        });
+
     return false;
 }
 
@@ -2484,38 +2484,38 @@ function submitConsultationForm(event) {
 // PC 우측 고정 상담 신청
 function submitPcConsultation() {
     console.log('=== PC 상담 신청 시작 ===');
-    
+
     const nameElement = document.getElementById('pcNameInput');
     const phoneElement = document.getElementById('pcPhoneInput');
     const privacyElement = document.getElementById('pcPrivacyCheck');
-    
+
     if (!nameElement || !phoneElement) {
         alert('폼 요소를 찾을 수 없습니다. 페이지를 새로고침해 주세요.');
         return;
     }
-    
+
     const name = nameElement.value.trim();
     const phone = phoneElement.value.trim();
     const privacyAgree = privacyElement ? privacyElement.checked : false;
-    
+
     // 필수 항목 검증
     if (!name) {
         alert('이름을 입력해 주세요');
         nameElement.focus();
         return;
     }
-    
+
     if (!phone) {
         alert('연락처를 입력해 주세요');
         phoneElement.focus();
         return;
     }
-    
+
     if (!privacyAgree) {
         alert('개인정보 수집 및 이용에 동의해 주세요');
         return;
     }
-    
+
     // 연락처 형식 검증
     const phoneRegex = /^[0-9]{10,11}$/;
     if (!phoneRegex.test(phone)) {
@@ -2523,7 +2523,7 @@ function submitPcConsultation() {
         phoneElement.focus();
         return;
     }
-    
+
     const formData = new URLSearchParams();
     formData.append('consultation_source', 'pc_fixed_bottom');
     formData.append('name', name);
@@ -2532,7 +2532,7 @@ function submitPcConsultation() {
     formData.append('debt', '');
     formData.append('income', '');
     formData.append('message', 'PC 하단 고정 폼');
-    
+
     fetch('/api/consultation', {
         method: 'POST',
         headers: {
@@ -2540,28 +2540,28 @@ function submitPcConsultation() {
         },
         body: formData
     })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            nameElement.value = '';
-            phoneElement.value = '';
-            // 성공 팝업 표시
-            const successPopup = document.getElementById('consultationSuccessPopup');
-            if (successPopup) {
-                successPopup.style.display = 'flex';
-                setTimeout(() => {
-                    successPopup.classList.add('show');
-                }, 10);
-                document.body.style.overflow = 'hidden';
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                nameElement.value = '';
+                phoneElement.value = '';
+                // 성공 팝업 표시
+                const successPopup = document.getElementById('consultationSuccessPopup');
+                if (successPopup) {
+                    successPopup.style.display = 'flex';
+                    setTimeout(() => {
+                        successPopup.classList.add('show');
+                    }, 10);
+                    document.body.style.overflow = 'hidden';
+                }
+            } else {
+                alert('상담 신청 중 오류가 발생했습니다.\n다시 시도해주세요.');
             }
-        } else {
+        })
+        .catch(error => {
+            console.error('상담 신청 오류:', error);
             alert('상담 신청 중 오류가 발생했습니다.\n다시 시도해주세요.');
-        }
-    })
-    .catch(error => {
-        console.error('상담 신청 오류:', error);
-        alert('상담 신청 중 오류가 발생했습니다.\n다시 시도해주세요.');
-    });
+        });
 }
 
 

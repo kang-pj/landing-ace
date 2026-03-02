@@ -1963,7 +1963,7 @@
             function initNaverMap() {
                 try {
                     // 에이스법률사무소 위치 좌표 (서울특별시 서초구 사임당로8길 9, 명화빌딩 2층)
-                    var aceLocation = new naver.maps.LatLng(37.4838, 127.0084);
+                    var aceLocation = new naver.maps.LatLng(37.488121, 127.015564);
 
                     // 지도 옵션 설정
                     var mapOptions = {
