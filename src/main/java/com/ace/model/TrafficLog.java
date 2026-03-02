@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 
 public class TrafficLog {
     private Long id;
+    private String companyId;
     private String sessionId;
     private String visitorId;
     
@@ -37,6 +38,14 @@ public class TrafficLog {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getCompanyId() {
+        return companyId;
+    }
+
+    public void setCompanyId(String companyId) {
+        this.companyId = companyId;
     }
 
     public String getSessionId() {

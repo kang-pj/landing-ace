@@ -34,6 +34,7 @@ public class TrafficLogServlet extends HttpServlet {
             String visitorId = getOrCreateVisitorId(request, response);
             
             TrafficLog log = new TrafficLog();
+            log.setCompanyId("COMP0001"); // 에이스 법무법인 고정값
             log.setSessionId(sessionId);
             log.setVisitorId(visitorId);
             

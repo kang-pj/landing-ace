@@ -2648,6 +2648,10 @@ body.floating-header-visible {
     text-align: center;
 }
 
+.success-popup .consultation-popup-body {
+    padding: 40px 30px;
+}
+
 .success-message {
     padding: 20px 0;
 }

@@ -15,6 +15,7 @@ com\ace\servlet\AccessLogServlet.class
 com\ace\servlet\ConsultationServlet.class
 com\ace\util\AlterTableComments.class
 com\ace\model\TrafficLog.class
+com\ace\util\AddCompanyIdColumn.class
 com\ace\util\AddConsultationSource.class
 com\example\filter\EncodingFilter.class
 com\ace\util\DatabaseUtil.class

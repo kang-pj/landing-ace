@@ -24,4 +24,5 @@ C:\workspace\landing-ace\src\main\java\com\ace\util\DatabaseUtil.java
 C:\workspace\landing-ace\src\main\java\com\ace\model\ConsultationLead.java
 C:\workspace\landing-ace\src\main\java\com\ace\servlet\ConsultationServlet.java
 C:\workspace\landing-ace\src\main\java\com\ace\servlet\InitDatabaseServlet.java
+C:\workspace\landing-ace\src\main\java\com\ace\util\AddCompanyIdColumn.java
 C:\workspace\landing-ace\src\main\java\com\ace\util\RemoveSessionIdUnique.java

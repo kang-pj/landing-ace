@@ -21,14 +21,14 @@ public class ConsultationLeadServlet extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
         
         try {
-            // 세션 ID 가져오기
+            // 세션 ID 가져오기 또는 생성
             HttpSession session = request.getSession();
             String sessionId = (String) session.getAttribute("tracking_session_id");
             
             if (sessionId == null) {
-                response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-                response.getWriter().write("{\"success\": false, \"error\": \"세션 정보가 없습니다.\"}");
-                return;
+                // 세션 ID가 없으면 새로 생성
+                sessionId = java.util.UUID.randomUUID().toString();
+                session.setAttribute("tracking_session_id", sessionId);
             }
             
             ConsultationLead lead = new ConsultationLead();

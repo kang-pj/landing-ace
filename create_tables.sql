@@ -1,6 +1,7 @@
 -- 방문자 유입 로그 테이블
 CREATE TABLE IF NOT EXISTS traffic_logs (
     id BIGINT AUTO_INCREMENT PRIMARY KEY COMMENT '고유 식별자 (자동 증가)',
+    company_id VARCHAR(20) NOT NULL DEFAULT 'COMP0001' COMMENT '회사 식별자 - 에이스 법무법인: COMP0001',
     session_id VARCHAR(36) NOT NULL UNIQUE COMMENT 'UUID 세션 식별자 - 방문 세션별 고유 ID',
     visitor_id VARCHAR(36) NOT NULL COMMENT 'UUID 방문자 식별자 - 쿠키 기반 재방문 추적용',
     
@@ -31,7 +32,8 @@ CREATE TABLE IF NOT EXISTS traffic_logs (
     INDEX idx_utm_source (utm_source),
     INDEX idx_created_at (created_at),
     INDEX idx_visitor_id (visitor_id),
-    INDEX idx_session_id (session_id)
+    INDEX idx_session_id (session_id),
+    INDEX idx_company_id (company_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='방문자 유입 로그 - 페이지 방문 시 자동 수집되는 마케팅 분석 데이터';
 
 -- 상담 신청 로그 테이블

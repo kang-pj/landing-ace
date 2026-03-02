@@ -527,28 +527,16 @@ function submitConsultation() {
 
     // 폼 데이터 구성 (AI 진단 데이터 포함)
     const apiFormData = new URLSearchParams();
+    apiFormData.append('consultation_source', 'ai_diagnosis');
     apiFormData.append('name', name);
     apiFormData.append('phone', phone);
-    apiFormData.append('debtAmount', diagnosisData.debtAmount || '');
+    apiFormData.append('email', '');
+    apiFormData.append('debt', diagnosisData.debtAmount || '');
     apiFormData.append('income', diagnosisData.monthlyIncome || '');
-    apiFormData.append('device', window.innerWidth <= 768 ? 'Mobile' : 'PC');
-    apiFormData.append('type', 'AI진단상담신청');
-
-    // AI 진단 추가 데이터
-    apiFormData.append('diagnosisType', diagnosisData.type || '');
-    apiFormData.append('assets', diagnosisData.assets || '');
-    apiFormData.append('dependents', diagnosisData.dependents || '');
-
-    // UTM 파라미터 추가 (URL에서 추출)
-    const urlParams = new URLSearchParams(window.location.search);
-    apiFormData.append('utm_source', urlParams.get('utm_source') || '');
-    apiFormData.append('utm_medium', urlParams.get('utm_medium') || '');
-    apiFormData.append('utm_campaign', urlParams.get('utm_campaign') || '');
-    apiFormData.append('utm_term', urlParams.get('utm_term') || '');
-    apiFormData.append('utm_content', urlParams.get('utm_content') || '');
+    apiFormData.append('message', 'AI 진단 상담 신청 - ' + (diagnosisData.type || ''));
 
     // 서버에 데이터 전송
-    fetch('/consultation', {
+    fetch('/api/consultation', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
@@ -566,8 +554,15 @@ function submitConsultation() {
                     modal.classList.remove('show');
                     setTimeout(() => {
                         modal.style.display = 'none';
-                        // 성공 모달 표시
-                        showSuccessModal();
+                        // 성공 팝업 표시
+                        const successPopup = document.getElementById('consultationSuccessPopup');
+                        if (successPopup) {
+                            successPopup.style.display = 'flex';
+                            setTimeout(() => {
+                                successPopup.classList.add('show');
+                            }, 10);
+                            document.body.style.overflow = 'hidden';
+                        }
                     }, 400);
                 }
             } else {
@@ -2567,4 +2562,17 @@ function submitPcConsultation() {
         console.error('상담 신청 오류:', error);
         alert('상담 신청 중 오류가 발생했습니다.\n다시 시도해주세요.');
     });
+}
+
+
+// 성공 모달 표시
+function showSuccessModal() {
+    const successPopup = document.getElementById('consultationSuccessPopup');
+    if (successPopup) {
+        successPopup.style.display = 'flex';
+        setTimeout(() => {
+            successPopup.classList.add('show');
+        }, 10);
+        document.body.style.overflow = 'hidden';
+    }
 }

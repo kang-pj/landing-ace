@@ -8,31 +8,32 @@ import java.sql.*;
 public class TrafficLogDAO {
     
     public void insert(TrafficLog log) throws SQLException {
-        String sql = "INSERT INTO traffic_logs (session_id, visitor_id, utm_source, utm_medium, " +
+        String sql = "INSERT INTO traffic_logs (company_id, session_id, visitor_id, utm_source, utm_medium, " +
                     "utm_campaign, utm_content, utm_term, referrer_url, search_keyword, landing_page, " +
                     "device_type, os, browser, browser_version, screen_resolution, ip_address, user_agent) " +
-                    "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                    "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         
         try (Connection conn = DatabaseUtil.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             
-            pstmt.setString(1, log.getSessionId());
-            pstmt.setString(2, log.getVisitorId());
-            pstmt.setString(3, log.getUtmSource());
-            pstmt.setString(4, log.getUtmMedium());
-            pstmt.setString(5, log.getUtmCampaign());
-            pstmt.setString(6, log.getUtmContent());
-            pstmt.setString(7, log.getUtmTerm());
-            pstmt.setString(8, log.getReferrerUrl());
-            pstmt.setString(9, log.getSearchKeyword());
-            pstmt.setString(10, log.getLandingPage());
-            pstmt.setString(11, log.getDeviceType());
-            pstmt.setString(12, log.getOs());
-            pstmt.setString(13, log.getBrowser());
-            pstmt.setString(14, log.getBrowserVersion());
-            pstmt.setString(15, log.getScreenResolution());
-            pstmt.setString(16, log.getIpAddress());
-            pstmt.setString(17, log.getUserAgent());
+            pstmt.setString(1, log.getCompanyId());
+            pstmt.setString(2, log.getSessionId());
+            pstmt.setString(3, log.getVisitorId());
+            pstmt.setString(4, log.getUtmSource());
+            pstmt.setString(5, log.getUtmMedium());
+            pstmt.setString(6, log.getUtmCampaign());
+            pstmt.setString(7, log.getUtmContent());
+            pstmt.setString(8, log.getUtmTerm());
+            pstmt.setString(9, log.getReferrerUrl());
+            pstmt.setString(10, log.getSearchKeyword());
+            pstmt.setString(11, log.getLandingPage());
+            pstmt.setString(12, log.getDeviceType());
+            pstmt.setString(13, log.getOs());
+            pstmt.setString(14, log.getBrowser());
+            pstmt.setString(15, log.getBrowserVersion());
+            pstmt.setString(16, log.getScreenResolution());
+            pstmt.setString(17, log.getIpAddress());
+            pstmt.setString(18, log.getUserAgent());
             
             pstmt.executeUpdate();
         }
@@ -58,6 +59,7 @@ public class TrafficLogDAO {
     private TrafficLog mapResultSetToTrafficLog(ResultSet rs) throws SQLException {
         TrafficLog log = new TrafficLog();
         log.setId(rs.getLong("id"));
+        log.setCompanyId(rs.getString("company_id"));
         log.setSessionId(rs.getString("session_id"));
         log.setVisitorId(rs.getString("visitor_id"));
         log.setUtmSource(rs.getString("utm_source"));
