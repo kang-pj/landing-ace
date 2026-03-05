@@ -42,6 +42,16 @@
         <script type="text/javascript" src="https://oapi.map.naver.com/openapi/v3/maps.js?ncpKeyId=sw4vg0j8dd"></script>
         <!-- 네이버 태그-->
         <meta name="naver-site-verification" content="182ca703050e33ab301c1404b6128675ee1f2704" />
+        <!-- NAVER 공통 스크립트 (wcs.js) -->
+        <script type="text/javascript" src="//wcs.naver.net/wcslog.js"></script>
+        <script type="text/javascript">
+            if (!wcs_add) var wcs_add = {};
+            wcs_add["wa"] = "s_151455092998";
+            if (window.wcs) {
+                wcs.inflow("newstart-law.com");
+                wcs_do();
+            }
+        </script>
         <!-- Tracking Script -->
         <script src="/js/tracking.js"></script>
 

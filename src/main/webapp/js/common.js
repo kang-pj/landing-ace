@@ -1,6 +1,27 @@
 let casesSwiper;
 let certificateSwiper;
 
+// 네이버 전환 추적 함수 (상담 신청 완료 시 호출)
+function trackNaverConversion() {
+    try {
+        if (window.wcs) {
+            // wcs_add 재설정
+            if (!wcs_add) var wcs_add = {};
+            wcs_add['wa'] = 's_151455092998';
+            
+            // 전환 추적
+            var _conv = {};
+            _conv.type = 'lead';
+            wcs.trans(_conv);
+            console.log('네이버 전환 추적 완료 (lead)');
+        } else {
+            console.warn('네이버 wcs 스크립트가 로드되지 않았습니다.');
+        }
+    } catch (error) {
+        console.error('네이버 전환 추적 오류:', error);
+    }
+}
+
 // 페이지 로드 시 접근 로그 전송
 document.addEventListener('DOMContentLoaded', function () {
     sendAccessLog();
@@ -562,6 +583,9 @@ function submitConsultation() {
                                 successPopup.classList.add('show');
                             }, 10);
                             document.body.style.overflow = 'hidden';
+
+                            // 네이버 전환 추적
+                            trackNaverConversion();
                         }
                     }, 400);
                 }
@@ -1286,6 +1310,9 @@ function submitMainConsultationForm(event) {
                 // 성공 모달 표시
                 showSuccessModal('상담 신청이 완료되었습니다!', '빠른 시일 내에 연락드리겠습니다.');
 
+                // 네이버 전환 추적
+                trackNaverConversion();
+
                 // 폼 초기화
                 document.getElementById('mainConsultationForm').reset();
 
@@ -1436,6 +1463,9 @@ function submitPcConsultation() {
             // 성공 모달 표시
             showSuccessModal();
 
+            // 네이버 전환 추적
+            trackNaverConversion();
+
             // 폼 초기화
             nameInput.value = '';
             phoneInput.value = '';
@@ -1448,6 +1478,9 @@ function submitPcConsultation() {
             console.error('PC 상담 신청 오류:', error);
             // 에러가 발생해도 DB에 저장되었을 수 있으므로 성공 모달 표시
             showSuccessModal();
+
+            // 네이버 전환 추적
+            trackNaverConversion();
 
             // 폼 초기화
             nameInput.value = '';
@@ -2030,6 +2063,9 @@ function submitMobileConsultation() {
                 document.body.style.overflow = 'hidden';
             }
 
+            // 네이버 전환 추적
+            trackNaverConversion();
+
             // 폼 초기화
             nameElement.value = '';
             phoneElement.value = '';
@@ -2056,6 +2092,9 @@ function submitMobileConsultation() {
                 }, 10);
                 document.body.style.overflow = 'hidden';
             }
+
+            // 네이버 전환 추적
+            trackNaverConversion();
 
             // 폼 초기화
             nameElement.value = '';
