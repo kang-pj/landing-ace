@@ -2,6 +2,7 @@ package com.ace.servlet;
 
 import com.ace.dao.InquiryDAO;
 import com.ace.model.Inquiry;
+import com.ace.util.EmailUtil;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -177,6 +178,29 @@ public class ConsultationServlet extends HttpServlet {
             Long inquiryId = inquiryDAO.saveInquiry(inquiry);
             
             System.out.println("데이터베이스 저장 성공! ID: " + inquiryId);
+            
+            // 이메일 발송 (비동기 처리)
+            final String finalName = name;
+            final String finalPhone = phone;
+            final String finalDebtAmount = debtAmount;
+            final String finalMonthlyIncome = monthlyIncome;
+            
+            new Thread(() -> {
+                try {
+                    EmailUtil.sendConsultationEmail(
+                        finalName,
+                        finalPhone,
+                        finalDebtAmount,
+                        finalMonthlyIncome,
+                        "일반 상담 폼",
+                        null
+                    );
+                    System.out.println("이메일 발송 완료!");
+                } catch (Exception emailError) {
+                    System.err.println("이메일 발송 실패: " + emailError.getMessage());
+                    emailError.printStackTrace();
+                }
+            }).start();
             
             // 성공 응답
             sendSuccessResponse(out, inquiryId, inquiry);

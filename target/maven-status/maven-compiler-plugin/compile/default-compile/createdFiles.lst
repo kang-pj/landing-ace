@@ -1,6 +1,7 @@
 com\example\util\DatabaseUtil.class
 com\ace\dao\ConsultationLeadDAO.class
 com\ace\util\RemoveSessionIdUnique.class
+com\ace\util\EmailUtil.class
 com\ace\model\ConsultationLead.class
 com\ace\servlet\TrafficLogServlet.class
 com\ace\dao\AccessLogDAO.class
@@ -16,6 +17,7 @@ com\ace\servlet\ConsultationServlet.class
 com\ace\util\AlterTableComments.class
 com\ace\model\TrafficLog.class
 com\ace\util\AddCompanyIdColumn.class
+com\ace\util\EmailUtil$1.class
 com\ace\util\AddConsultationSource.class
 com\example\filter\EncodingFilter.class
 com\ace\util\DatabaseUtil.class

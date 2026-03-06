@@ -4,6 +4,7 @@ import com.ace.dao.ConsultationLeadDAO;
 import com.ace.dao.InquiryDAO;
 import com.ace.model.ConsultationLead;
 import com.ace.model.Inquiry;
+import com.ace.util.EmailUtil;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
@@ -105,6 +106,31 @@ public class ConsultationLeadServlet extends HttpServlet {
             
             inquiryDAO.saveInquiry(inquiry);
             System.out.println("inquiries 저장 성공!");
+            
+            // 3. 이메일 발송 (비동기 처리)
+            final String finalName = request.getParameter("name");
+            final String finalPhone = request.getParameter("phone");
+            final String finalDebt = request.getParameter("debt");
+            final String finalIncome = request.getParameter("income");
+            final String finalSource = request.getParameter("consultation_source");
+            final String finalMessage = request.getParameter("message");
+            
+            new Thread(() -> {
+                try {
+                    EmailUtil.sendConsultationEmail(
+                        finalName,
+                        finalPhone,
+                        finalDebt,
+                        finalIncome,
+                        finalSource,
+                        finalMessage
+                    );
+                    System.out.println("이메일 발송 완료!");
+                } catch (Exception emailError) {
+                    System.err.println("이메일 발송 실패: " + emailError.getMessage());
+                    emailError.printStackTrace();
+                }
+            }).start();
             
             response.getWriter().write("{\"success\": true, \"message\": \"상담 신청이 완료되었습니다.\"}");
             
