@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>상담 신청 테스트</title>
+    <style>
+        body {
+            font-family: 'Malgun Gothic', sans-serif;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input, select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button {
+            width: 100%;
+            padding: 15px;
+            background: #4865FF;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #3654EE;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 4px;
+            display: none;
+        }
+        .success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+    </style>
+</head>
+<body>
+    <h1>상담 신청 테스트</h1>
+    
+    <form id="testForm">
+        <div class="form-group">
+            <label for="name">이름 *</label>
+            <input type="text" id="name" name="name" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="phone">연락처 * (숫자만)</label>
+            <input type="tel" id="phone" name="phone" required placeholder="01012345678">
+        </div>
+        
+        <div class="form-group">
+            <label for="debtAmount">채무액</label>
+            <select id="debtAmount" name="debtAmount">
+                <option value="">선택하세요</option>
+                <option value="1000만원 미만">1000만원 미만</option>
+                <option value="1000만원~3000만원">1000만원~3000만원</option>
+                <option value="3000만원~5000만원">3000만원~5000만원</option>
+                <option value="5000만원 이상">5000만원 이상</option>
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <label for="income">월소득</label>
+            <select id="income" name="income">
+                <option value="">선택하세요</option>
+                <option value="100만원 미만">100만원 미만</option>
+                <option value="100만원~200만원">100만원~200만원</option>
+                <option value="200만원~300만원">200만원~300만원</option>
+                <option value="300만원 이상">300만원 이상</option>
+            </select>
+        </div>
+        
+        <button type="submit">상담 신청</button>
+    </form>
+    
+    <div id="result" class="result"></div>
+    
+    <script>
+        document.getElementById('testForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new URLSearchParams();
+            formData.append('name', document.getElementById('name').value);
+            formData.append('phone', document.getElementById('phone').value);
+            formData.append('debtAmount', document.getElementById('debtAmount').value);
+            formData.append('income', document.getElementById('income').value);
+            formData.append('device', 'PC');
+            formData.append('type', '테스트');
+            
+            const resultDiv = document.getElementById('result');
+            resultDiv.style.display = 'none';
+            
+            fetch('/consultation', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+                },
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('응답:', data);
+                resultDiv.className = 'result ' + (data.success ? 'success' : 'error');
+                resultDiv.textContent = data.message;
+                resultDiv.style.display = 'block';
+                
+                if (data.success) {
+                    document.getElementById('testForm').reset();
+                }
+            })
+            .catch(error => {
+                console.error('에러:', error);
+                resultDiv.className = 'result error';
+                resultDiv.textContent = '네트워크 오류가 발생했습니다: ' + error.message;
+                resultDiv.style.display = 'block';
+            });
+        });
+    </script>
+</body>
+</html>
