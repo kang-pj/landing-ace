@@ -2615,3 +2615,106 @@ function showSuccessModal() {
         document.body.style.overflow = 'hidden';
     }
 }
+// URL 해시 기반 스크롤 기능
+function handleHashNavigation() {
+    const hash = window.location.hash;
+    if (hash) {
+        // 해시에서 # 제거
+        const sectionId = hash.substring(1);
+        const targetSection = document.getElementById(sectionId);
+
+        if (targetSection) {
+            // 페이지 로드 완료 후 스크롤 (약간의 지연)
+            setTimeout(() => {
+                const headerHeight = document.querySelector('.header')?.offsetHeight || 0;
+                const floatingHeaderHeight = document.querySelector('.floating-header')?.offsetHeight || 0;
+                const targetPosition = targetSection.offsetTop - headerHeight - floatingHeaderHeight - 20;
+
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
+            }, 100);
+        }
+    }
+}
+
+// 페이지 로드 시 해시 네비게이션 처리
+document.addEventListener('DOMContentLoaded', function() {
+    handleHashNavigation();
+});
+
+// 해시 변경 시 스크롤 처리 (브라우저 뒤로가기/앞으로가기 등)
+window.addEventListener('hashchange', function() {
+    handleHashNavigation();
+});
+
+// 기존 네비게이션 함수들에 해시 업데이트 추가
+function scrollToSectionWithHash(sectionId) {
+    // URL 해시 업데이트
+    if (history.pushState) {
+        history.pushState(null, null, '#' + sectionId);
+    } else {
+        window.location.hash = '#' + sectionId;
+    }
+
+    // 기존 스크롤 로직 실행
+    const targetSection = document.getElementById(sectionId);
+    if (targetSection) {
+        const headerHeight = document.querySelector('.header')?.offsetHeight || 0;
+        const floatingHeaderHeight = document.querySelector('.floating-header')?.offsetHeight || 0;
+        const targetPosition = targetSection.offsetTop - headerHeight - floatingHeaderHeight - 20;
+
+        window.scrollTo({
+            top: targetPosition,
+            behavior: 'smooth'
+        });
+    }
+}
+
+// 모바일 네비게이션에서 해시 지원 추가
+function scrollToSectionMobile(sectionId) {
+    // 먼저 모바일 네비게이션 닫기
+    closeMobileNav();
+
+    // URL 해시 업데이트
+    if (history.pushState) {
+        history.pushState(null, null, '#' + sectionId);
+    } else {
+        window.location.hash = '#' + sectionId;
+    }
+
+    // 네비게이션 닫기 애니메이션 완료 후 스크롤
+    setTimeout(() => {
+        const targetSection = document.getElementById(sectionId);
+        if (targetSection) {
+            const headerHeight = document.querySelector('.header')?.offsetHeight || 0;
+            const targetPosition = targetSection.offsetTop - headerHeight - 20;
+            const startPosition = window.pageYOffset;
+            const distance = targetPosition - startPosition;
+            const duration = 600;
+            let start = null;
+
+            function easeInOutCubic(t) {
+                return t < 0.5
+                    ? 4 * t * t * t
+                    : 1 - Math.pow(-2 * t + 2, 3) / 2;
+            }
+
+            function animation(currentTime) {
+                if (start === null) start = currentTime;
+                const timeElapsed = currentTime - start;
+                const progress = Math.min(timeElapsed / duration, 1);
+                const ease = easeInOutCubic(progress);
+
+                window.scrollTo(0, startPosition + distance * ease);
+
+                if (timeElapsed < duration) {
+                    requestAnimationFrame(animation);
+                }
+            }
+
+            requestAnimationFrame(animation);
+        }
+    }, 500);
+}

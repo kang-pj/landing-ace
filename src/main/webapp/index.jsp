@@ -92,13 +92,13 @@
                 </div>
 
                 <nav class="nav-menu">
-                    <a href="#intro" onclick="event.preventDefault(); smoothScrollToSection('intro')">AI 진단</a>
-                    <a href="#service" onclick="event.preventDefault(); smoothScrollToSection('service')">성공사례</a>
-                    <a href="#about" onclick="event.preventDefault(); smoothScrollToSection('about')">대표변호사</a>
-                    <a href="#calculator"
-                        onclick="event.preventDefault(); smoothScrollToSection('calculator')">자주묻는질문</a>
+                    <a href="#ai" onclick="event.preventDefault(); smoothScrollToSection('ai')">AI 진단</a>
+                    <a href="#success" onclick="event.preventDefault(); smoothScrollToSection('success')">성공사례</a>
+                    <a href="#lawyer" onclick="event.preventDefault(); smoothScrollToSection('lawyer')">대표변호사</a>
+                    <a href="#faq"
+                        onclick="event.preventDefault(); smoothScrollToSection('faq')">자주묻는질문</a>
                     <a href="#special" onclick="event.preventDefault(); smoothScrollToSection('special')">특별한 서비스</a>
-                    <a href="#contact" onclick="event.preventDefault(); smoothScrollToSection('contact')">오시는길</a>
+                    <a href="#location" onclick="event.preventDefault(); smoothScrollToSection('location')">오시는길</a>
                 </nav>
 
                 <div class="contact-phone">
@@ -124,12 +124,12 @@
                 </div>
 
                 <nav class="mobile-nav-menu">
-                    <a href="#intro" onclick="event.preventDefault(); scrollToSection('intro')">AI 자가진단</a>
-                    <a href="#service" onclick="event.preventDefault(); scrollToSection('service')">성공사례</a>
-                    <a href="#about" onclick="event.preventDefault(); scrollToSection('about')">대표변호사</a>
-                    <a href="#calculator" onclick="event.preventDefault(); scrollToSection('calculator')">자주묻는질문</a>
+                    <a href="#ai" onclick="event.preventDefault(); scrollToSection('ai')">AI 자가진단</a>
+                    <a href="#success" onclick="event.preventDefault(); scrollToSection('success')">성공사례</a>
+                    <a href="#lawyer" onclick="event.preventDefault(); scrollToSection('lawyer')">대표변호사</a>
+                    <a href="#faq" onclick="event.preventDefault(); scrollToSection('faq')">자주묻는질문</a>
                     <a href="#special" onclick="event.preventDefault(); scrollToSection('special')">특별한 서비스</a>
-                    <a href="#contact" onclick="event.preventDefault(); scrollToSection('contact')">오시는길</a>
+                    <a href="#location" onclick="event.preventDefault(); scrollToSection('location')">오시는길</a>
                 </nav>
 
                 <div class="mobile-contact">
@@ -255,7 +255,7 @@
         </div>
 
         <!-- AI 자가진단 섹션 -->
-        <section id="intro" class="ai-diagnosis-section"></section>
+        <section id="ai" class="ai-diagnosis-section"></section>
         <div class="ai-container">
             <div class="ai-title">
                 <h3>내 빚은 탕감받을 수 있을까?</h3>
@@ -286,7 +286,7 @@
         </section>
 
         <!-- 고객 사례 섹션 -->
-        <section id="service" class="customer-cases-section"></section>
+        <section id="success" class="customer-cases-section"></section>
         <div class="cases-container">
             <div class="cases-header">
                 <p class="cases-subtitle">10,386건의 노하우가 보여주는 결과</p>
@@ -763,7 +763,7 @@
         </div>
 
         <!-- 대표 변호사 소개 섹션 -->
-        <section id="about" class="lawyer-intro-section"></section>
+        <section id="lawyer" class="lawyer-intro-section"></section>
         <div class="lawyer-container">
             <div class="lawyer-header">
                 <p class="lawyer-subtitle">대표 변호사 소개</p>
@@ -832,7 +832,7 @@
         </section>
 
         <!-- 특별한 서비스 섹션 -->
-        <section id="special" class="special-services-section"></section>
+        <section id="special-services" class="special-services-section"></section>
         <div class="services-container">
             <div class="services-header">
                 <p class="services-subtitle">쉽다! 빠르다! 안전하다!</p>
@@ -900,7 +900,7 @@
         </section>
 
         <!-- FAQ 섹션 -->
-        <section id="calculator" class="faq-section"></section>
+        <section id="faq" class="faq-section"></section>
         <div class="faq-container">
             <div class="faq-header">
                 <h2 class="faq-title">자주하는 질문</h2>
@@ -1000,7 +1000,7 @@
         </section>
 
         <!-- 오시는 길 섹션 -->
-        <section id="contact" class="location-section"></section>
+        <section id="location" class="location-section"></section>
         <div class="location-container">
             <div class="location-header">
                 <h2 class="location-title">오시는 길</h2>
@@ -1619,6 +1619,9 @@
 
         <!-- Common JS -->
         <script src="/js/common.js"></script>
+        
+        <!-- Hash Navigation JS -->
+        <script src="/js/hash-navigation.js"></script>
 
         <!-- 상담 신청 팝업 -->
         <div class="consultation-popup-overlay" id="consultationPopup">
