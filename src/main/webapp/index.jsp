@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
     <!DOCTYPE html>
     <html lang="ko">
 
@@ -338,7 +338,7 @@
                                             </div>
                                         </div>
                                         <div class="case-result">
-                                            <div class="result-badge"><img src="/images/icon_money.png" alt="💰"
+                                            <div class="result-badge"><img src="/images/icon_money.png" alt="채무 탕감"
                                                     style="width: 20px; height: 20px; vertical-align: middle;"> 총 채무액
                                                 162,678,791원 탕감!</div>
                                         </div>
@@ -373,7 +373,7 @@
                                             </div>
                                         </div>
                                         <div class="case-result">
-                                            <div class="result-badge"><img src="/images/icon_money.png" alt="💰"
+                                            <div class="result-badge"><img src="/images/icon_money.png" alt="채무 탕감"
                                                     style="width: 20px; height: 20px; vertical-align: middle;"> 총 채무액
                                                 530,000,000원 면책!</div>
                                         </div>
@@ -408,7 +408,7 @@
                                             </div>
                                         </div>
                                         <div class="case-result">
-                                            <div class="result-badge"><img src="/images/icon_money.png" alt="💰"
+                                            <div class="result-badge"><img src="/images/icon_money.png" alt="채무 탕감"
                                                     style="width: 20px; height: 20px; vertical-align: middle;"> 총 채무액
                                                 167,437,271원 탕감!</div>
                                         </div>
@@ -452,7 +452,7 @@
                                             </div>
                                         </div>
                                         <div class="case-result">
-                                            <div class="result-badge"><img src="/images/icon_money.png" alt="💰"
+                                            <div class="result-badge"><img src="/images/icon_money.png" alt="채무 탕감"
                                                     style="width: 20px; height: 20px; vertical-align: middle;"> 총 채무액
                                                 89,500,000원 면책!</div>
                                         </div>
@@ -487,7 +487,7 @@
                                             </div>
                                         </div>
                                         <div class="case-result">
-                                            <div class="result-badge"><img src="/images/icon_money.png" alt="💰"
+                                            <div class="result-badge"><img src="/images/icon_money.png" alt="채무 탕감"
                                                     style="width: 20px; height: 20px; vertical-align: middle;"> 총 채무액
                                                 73,200,000원 탕감!</div>
                                         </div>
@@ -523,7 +523,7 @@
                                             </div>
                                         </div>
                                         <div class="case-result">
-                                            <div class="result-badge"><img src="/images/icon_money.png" alt="💰"
+                                            <div class="result-badge"><img src="/images/icon_money.png" alt="채무 탕감"
                                                     style="width: 20px; height: 20px; vertical-align: middle;"> 총 채무액
                                                 105,600,000원 면책!</div>
                                         </div>
@@ -567,7 +567,7 @@
                                             </div>
                                         </div>
                                         <div class="case-result">
-                                            <div class="result-badge"><img src="/images/icon_money.png" alt="💰"
+                                            <div class="result-badge"><img src="/images/icon_money.png" alt="채무 탕감"
                                                     style="width: 20px; height: 20px; vertical-align: middle;"> 총 채무액
                                                 95,000,000원 탕감!</div>
                                         </div>
@@ -602,7 +602,7 @@
                                             </div>
                                         </div>
                                         <div class="case-result">
-                                            <div class="result-badge"><img src="/images/icon_money.png" alt="💰"
+                                            <div class="result-badge"><img src="/images/icon_money.png" alt="채무 탕감"
                                                     style="width: 20px; height: 20px; vertical-align: middle;"> 총 채무액
                                                 320,000,000원 탕감!</div>
                                         </div>
@@ -637,7 +637,7 @@
                                             </div>
                                         </div>
                                         <div class="case-result">
-                                            <div class="result-badge"><img src="/images/icon_money.png" alt="💰"
+                                            <div class="result-badge"><img src="/images/icon_money.png" alt="채무 탕감"
                                                     style="width: 20px; height: 20px; vertical-align: middle;"> 총 채무액
                                                 180,000,000원 면책!</div>
                                         </div>
