@@ -1,4 +1,4 @@
-let casesSwiper;
+﻿let casesSwiper;
 let certificateSwiper;
 
 // 네이버 전환 추적 함수 (상담 신청 완료 시 호출)
@@ -1689,6 +1689,9 @@ function openConsultationModal() {
 
 // 카카오톡 상담 열기 함수
 function openKakaoTalk() {
+    if (window.trackingUtils && window.trackingUtils.sendClickLog) {
+        window.trackingUtils.sendClickLog('kakao');
+    }
     window.open('http://pf.kakao.com/_zJEYG/chat', '_blank');
 }
 

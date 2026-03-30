@@ -1,4 +1,4 @@
-// 트래킹 스크립트
+﻿// 트래킹 스크립트
 (function() {
     'use strict';
 
@@ -150,8 +150,12 @@
         sendTrafficLog();
     }
 
-    // 클릭 이벤트 로그 전송
+    // 클릭 이벤트 로그 전송 (중복 방지 - 1초 내 동일 타입 재호출 차단)
+    const clickLogCooldown = {};
     function sendClickLog(clickType) {
+        const now = Date.now();
+        if (clickLogCooldown[clickType] && now - clickLogCooldown[clickType] < 1000) return;
+        clickLogCooldown[clickType] = now;
         const urlParams = getUrlParams();
         const sessionId = sessionStorage.getItem('tracking_session_id') || '';
 
@@ -184,10 +188,7 @@
         document.querySelectorAll('a[href^="tel:"]').forEach(el => {
             el.addEventListener('click', () => sendClickLog('call'));
         });
-        // 카카오톡 버튼
-        document.querySelectorAll('[onclick*="openKakaoTalk"]').forEach(el => {
-            el.addEventListener('click', () => sendClickLog('kakao'));
-        });
+
     }
 
     if (document.readyState === 'loading') {
