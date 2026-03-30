@@ -1740,108 +1740,38 @@ function openConsultationForm() {
     }
 }
 
-// 이름/연락처 입력창 포커스 이벤트 리스너 추가
+// 하단 상담바 크롬 키보드 위로 올라가는 현상 방지
 document.addEventListener('DOMContentLoaded', function () {
-    const nameInput = document.getElementById('mobileNameInput');
-    const phoneInput = document.getElementById('mobilePhoneInput');
     const consultationBar = document.querySelector('.bottom-consultation-bar');
+    if (!consultationBar) return;
 
-    if (nameInput) {
-        nameInput.addEventListener('focus', function () {
-            openConsultationForm();
-            adjustBarForKeyboard();
-        });
+    const ua = navigator.userAgent;
+    const isIOS = /iPad|iPhone|iPod/.test(ua) && !window.MSStream;
 
-        nameInput.addEventListener('blur', function () {
-            resetBarPosition();
-        });
-    }
-
-    if (phoneInput) {
-        phoneInput.addEventListener('focus', function () {
-            openConsultationForm();
-            adjustBarForKeyboard();
-        });
-
-        phoneInput.addEventListener('blur', function () {
-            resetBarPosition();
-        });
-    }
-
-    // 키보드가 올라올 때 상담바를 키보드 위로 이동
-    function adjustBarForKeyboard() {
-        if (window.innerWidth <= 768 && consultationBar) {
-            // Visual Viewport API를 사용하여 키보드 높이 감지
-            if (window.visualViewport) {
-                const viewportHeight = window.visualViewport.height;
-                const windowHeight = window.innerHeight;
-                const keyboardHeight = windowHeight - viewportHeight;
-
-                // 키보드가 충분히 올라왔을 때만 조정 (100px 이상)
-                if (keyboardHeight > 100) {
-                    consultationBar.style.bottom = keyboardHeight + 'px';
-                    consultationBar.style.transition = 'bottom 0.3s ease';
-                }
-            }
-        }
-    }
-
-    // 키보드가 내려갈 때 상담바를 원래 위치로 복원
-    function resetBarPosition() {
-        if (consultationBar) {
-            setTimeout(() => {
-                consultationBar.style.bottom = '0px';
-                consultationBar.style.transition = 'bottom 0.3s ease';
-            }, 200);
-        }
-    }
-
-    // Visual Viewport 변경 감지 (키보드 올라오고 내려갈 때)
-    let keyboardTimeout;
-    if (window.visualViewport) {
+    if (isIOS && window.visualViewport) {
+        // iOS Safari: 키보드 위로 상담바 올리기
         window.visualViewport.addEventListener('resize', function () {
-            // 기존 타이머 클리어
-            if (keyboardTimeout) {
-                clearTimeout(keyboardTimeout);
-            }
-
-            // 300ms 후에 실행하여 불필요한 호출 방지
-            keyboardTimeout = setTimeout(() => {
-                const activeElement = document.activeElement;
-                const isInputFocused = activeElement &&
-                    (activeElement.id === 'mobileNameInput' ||
-                        activeElement.id === 'mobilePhoneInput' ||
-                        activeElement.id === 'mobileDebtAmount' ||
-                        activeElement.id === 'mobileIncome');
-
-                if (isInputFocused) {
-                    adjustBarForKeyboard();
-                } else {
-                    resetBarPosition();
-                }
-            }, 300);
+            const keyboardHeight = window.innerHeight - window.visualViewport.height;
+            consultationBar.style.transition = 'bottom 0.2s ease';
+            consultationBar.style.bottom = keyboardHeight > 100 ? keyboardHeight + 'px' : '0px';
         });
-    }
+    } else {
+        // 안드로이드 크롬: input 포커스 시 상담바 bottom 강제 고정
+        const inputs = document.querySelectorAll('#mobileNameInput, #mobilePhoneInput');
+        inputs.forEach(input => {
+            input.addEventListener('focus', function () {
+                // 키보드 올라오는 동안 반복적으로 bottom 0 강제 적용
+                let count = 0;
+                const fix = () => {
+                    consultationBar.style.bottom = '0px';
+                    if (count++ < 30) requestAnimationFrame(fix);
+                };
+                requestAnimationFrame(fix);
+            });
 
-    // 확장 폼의 다른 입력 필드들에도 동일한 이벤트 추가
-    const debtAmountSelect = document.getElementById('mobileDebtAmount');
-    const incomeSelect = document.getElementById('mobileIncome');
-
-    if (debtAmountSelect) {
-        debtAmountSelect.addEventListener('focus', function () {
-            adjustBarForKeyboard();
-        });
-        debtAmountSelect.addEventListener('blur', function () {
-            resetBarPosition();
-        });
-    }
-
-    if (incomeSelect) {
-        incomeSelect.addEventListener('focus', function () {
-            adjustBarForKeyboard();
-        });
-        incomeSelect.addEventListener('blur', function () {
-            resetBarPosition();
+            input.addEventListener('blur', function () {
+                consultationBar.style.bottom = '0px';
+            });
         });
     }
 });

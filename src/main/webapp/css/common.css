@@ -807,9 +807,9 @@ body {
     right: 0;
     z-index: 1000;
     display: none;
-    /* PC에서는 기본적으로 숨김 */
     justify-content: center;
-    transition: bottom 0.3s ease;
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
 }
 
 /* 모바일 키패드 대응 - 하단 바가 키패드에 가려지지 않도록 */
@@ -903,11 +903,16 @@ body {
     border: 1px solid #e5e5e5;
     border-radius: 12px;
     font-family: Pretendard;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 500;
     background: white;
     color: #333;
     transition: border-color 0.3s;
+    /* 크롬 모바일 키보드 포커스 버그 방지 */
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+    -webkit-user-select: text;
+    user-select: text;
 }
 
 .inline-input:focus {

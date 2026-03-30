@@ -5,7 +5,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport"
-            content="width=device-width, initial-scale=1.0, viewport-fit=cover, interactive-widget=resizes-content">
+            content="width=device-width, initial-scale=1.0, viewport-fit=cover, interactive-widget=resizes-visual">
         <title>에이스 법률사무소</title>
 
         <!-- SEO Meta Tags -->
@@ -1719,10 +1719,10 @@
             /* iOS Safari 키패드 대응 */
             @supports (-webkit-touch-callout: none) {
 
-                body.keyboard-open .floating-btn-container,
-                body.keyboard-open .bottom-consultation-bar {
+                body.keyboard-open .floating-btn-container {
                     display: none !important;
                 }
+                /* bottom-consultation-bar는 숨기지 않고 visualViewport로 위치만 조정 */
             }
 
             /* 상담 신청 팝업 스타일 */
