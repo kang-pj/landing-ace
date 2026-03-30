@@ -1699,25 +1699,22 @@ function openKakaoTalk() {
 function toggleConsultationForm() {
     const expandedForm = document.getElementById('expandedForm');
     const toggleBtn = document.getElementById('toggleBtn');
+
+    if (!expandedForm || !toggleBtn) return;
+
     const expandIcon = toggleBtn.querySelector('.expand-icon');
     const closeIcon = toggleBtn.querySelector('.close-icon');
 
-    if (expandedForm && toggleBtn) {
-        if (expandedForm.classList.contains('show')) {
-            // 폼 닫기
-            expandedForm.classList.remove('show');
-            toggleBtn.classList.remove('collapsed');
-            // 펼치기 아이콘 보이기, 닫기 아이콘 숨기기
-            expandIcon.style.display = 'block';
-            closeIcon.style.display = 'none';
-        } else {
-            // 폼 열기
-            expandedForm.classList.add('show');
-            toggleBtn.classList.add('collapsed');
-            // 닫기 아이콘 보이기, 펼치기 아이콘 숨기기
-            expandIcon.style.display = 'none';
-            closeIcon.style.display = 'block';
-        }
+    if (expandedForm.classList.contains('show')) {
+        expandedForm.classList.remove('show');
+        toggleBtn.classList.remove('collapsed');
+        if (expandIcon) expandIcon.style.display = 'block';
+        if (closeIcon) closeIcon.style.display = 'none';
+    } else {
+        expandedForm.classList.add('show');
+        toggleBtn.classList.add('collapsed');
+        if (expandIcon) expandIcon.style.display = 'none';
+        if (closeIcon) closeIcon.style.display = 'block';
     }
 }
 
@@ -1743,6 +1740,21 @@ function openConsultationForm() {
 // 하단 상담바 크롬 키보드 위로 올라가는 현상 방지
 document.addEventListener('DOMContentLoaded', function () {
     const consultationBar = document.querySelector('.bottom-consultation-bar');
+    const nameInput = document.getElementById('mobileNameInput');
+    const phoneInput = document.getElementById('mobilePhoneInput');
+
+    // 이름/연락처 클릭 시 폼 펼치기
+    if (nameInput) {
+        nameInput.addEventListener('focus', function () {
+            openConsultationForm();
+        });
+    }
+    if (phoneInput) {
+        phoneInput.addEventListener('focus', function () {
+            openConsultationForm();
+        });
+    }
+
     if (!consultationBar) return;
 
     const ua = navigator.userAgent;
@@ -1760,7 +1772,6 @@ document.addEventListener('DOMContentLoaded', function () {
         const inputs = document.querySelectorAll('#mobileNameInput, #mobilePhoneInput');
         inputs.forEach(input => {
             input.addEventListener('focus', function () {
-                // 키보드 올라오는 동안 반복적으로 bottom 0 강제 적용
                 let count = 0;
                 const fix = () => {
                     consultationBar.style.bottom = '0px';
