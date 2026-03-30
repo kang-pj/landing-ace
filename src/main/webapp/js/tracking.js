@@ -150,11 +150,58 @@
         sendTrafficLog();
     }
 
+    // 클릭 이벤트 로그 전송
+    function sendClickLog(clickType) {
+        const urlParams = getUrlParams();
+        const sessionId = sessionStorage.getItem('tracking_session_id') || '';
+
+        const data = new URLSearchParams({
+            click_type:   clickType,
+            session_id:   sessionId,
+            device_type:  getDeviceType(),
+            landing_page: window.location.href,
+            utm_source:   urlParams.utm_source   || '',
+            utm_medium:   urlParams.utm_medium   || '',
+            utm_campaign: urlParams.utm_campaign || '',
+            utm_term:     urlParams.utm_term     || '',
+            utm_content:  urlParams.utm_content  || '',
+            referrer:     document.referrer      || ''
+        });
+
+        fetch('/api/click-log', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: data
+        })
+        .then(res => res.json())
+        .then(result => console.log('클릭 로그 저장:', clickType, result))
+        .catch(err => console.error('클릭 로그 오류:', err));
+    }
+
+    // 카카오/전화 버튼 클릭 이벤트 바인딩
+    function bindClickEvents() {
+        // 전화 링크
+        document.querySelectorAll('a[href^="tel:"]').forEach(el => {
+            el.addEventListener('click', () => sendClickLog('call'));
+        });
+        // 카카오톡 버튼
+        document.querySelectorAll('[onclick*="openKakaoTalk"]').forEach(el => {
+            el.addEventListener('click', () => sendClickLog('kakao'));
+        });
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', bindClickEvents);
+    } else {
+        bindClickEvents();
+    }
+
     // 전역 함수로 노출 (상담 신청 시 사용)
     window.trackingUtils = {
         getDeviceType,
         getBrowserInfo,
         getOS,
-        getScreenResolution
+        getScreenResolution,
+        sendClickLog
     };
 })();
