@@ -1044,14 +1044,6 @@ body {
 }
 
 /* 모바일 키패드 대응 - iOS Safari 키패드가 나올 때 고정 요소가 올라가지 않도록 */
-@supports (-webkit-touch-callout: none) {
-    .floating-btn-container {
-        position: -webkit-sticky;
-        position: sticky;
-        top: env(safe-area-inset-top, 0);
-    }
-}
-
 /* 키패드가 나올 때 고정 요소 위치 조정 */
 @media screen and (max-height: 500px) and (orientation: landscape) {
     .floating-btn-container {
@@ -4608,7 +4600,7 @@ body:has(.mobile-nav.active) .floating-btn-container {
         width: 100%;
         min-width: 80px;
         padding: 8px 5px;
-        font-size: 13px;
+        font-size: 16px;
         border-radius: 7px;
         height: 45px;
         border: none;

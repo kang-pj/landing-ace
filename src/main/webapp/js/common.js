@@ -1757,34 +1757,22 @@ document.addEventListener('DOMContentLoaded', function () {
 
     if (!consultationBar) return;
 
-    const ua = navigator.userAgent;
-    const isIOS = /iPad|iPhone|iPod/.test(ua) && !window.MSStream;
-
-    if (isIOS && window.visualViewport) {
-        // iOS Safari: 키보드 위로 상담바 올리기
-        window.visualViewport.addEventListener('resize', function () {
-            const keyboardHeight = window.innerHeight - window.visualViewport.height;
-            consultationBar.style.transition = 'bottom 0.2s ease';
-            consultationBar.style.bottom = keyboardHeight > 100 ? keyboardHeight + 'px' : '0px';
-        });
-    } else {
-        // 안드로이드 크롬: input 포커스 시 상담바 bottom 강제 고정
-        const inputs = document.querySelectorAll('#mobileNameInput, #mobilePhoneInput');
-        inputs.forEach(input => {
-            input.addEventListener('focus', function () {
-                let count = 0;
-                const fix = () => {
-                    consultationBar.style.bottom = '0px';
-                    if (count++ < 30) requestAnimationFrame(fix);
-                };
-                requestAnimationFrame(fix);
-            });
-
-            input.addEventListener('blur', function () {
+    // 모든 브라우저: input 포커스 시 상담바 bottom 강제 고정
+    const inputs = document.querySelectorAll('#mobileNameInput, #mobilePhoneInput');
+    inputs.forEach(input => {
+        input.addEventListener('focus', function () {
+            let count = 0;
+            const fix = () => {
                 consultationBar.style.bottom = '0px';
-            });
+                if (count++ < 30) requestAnimationFrame(fix);
+            };
+            requestAnimationFrame(fix);
         });
-    }
+
+        input.addEventListener('blur', function () {
+            consultationBar.style.bottom = '0px';
+        });
+    });
 });
 
 // 모바일용 상담 알림 Swiper 초기화 (768px 이하에서만)
