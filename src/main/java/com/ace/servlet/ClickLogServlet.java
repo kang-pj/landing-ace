@@ -78,12 +78,37 @@ public class ClickLogServlet extends HttpServlet {
         }
 
         // 타입/제목/내용 결정
-        boolean isKakao = "kakao".equals(clickType);
-        String inquiryType  = isKakao ? "KAKAO" : "CALL";
-        String title        = isKakao ? "카카오톡 문의 입니다." : "전화 문의 입니다.";
-        String content      = isKakao ? "카카오톡 유입 로그입니다." : "전화 유입 로그입니다.";
-        String source       = isKakao ? "kakao_click" : "call_click";
-        String phoneValue   = isKakao ? "카카오" : "전화";
+        String inquiryType, title, content, source, phoneValue;
+        switch (clickType == null ? "" : clickType) {
+            case "kakao":
+                inquiryType = "KAKAO";
+                title       = "카카오톡 문의 입니다.";
+                content     = "카카오톡 유입 로그입니다.";
+                source      = "kakao_click";
+                phoneValue  = "카카오";
+                break;
+            case "naver_res":
+                inquiryType = "NAVER_RES";
+                title       = "네이버 예약 문의 입니다.";
+                content     = "네이버 예약 유입 로그입니다.";
+                source      = "naver_res_click";
+                phoneValue  = "네이버예약";
+                break;
+            case "naver_talk":
+                inquiryType = "NAVER_TALK";
+                title       = "네이버 톡톡 문의 입니다.";
+                content     = "네이버 톡톡 유입 로그입니다.";
+                source      = "naver_talk_click";
+                phoneValue  = "네이버톡톡";
+                break;
+            default: // call
+                inquiryType = "CALL";
+                title       = "전화 문의 입니다.";
+                content     = "전화 유입 로그입니다.";
+                source      = "call_click";
+                phoneValue  = "전화";
+                break;
+        }
 
         try {
             // 1. inquiries 저장

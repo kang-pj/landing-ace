@@ -1294,11 +1294,30 @@
             </div>
         </div>
 
-        <!-- TOP 버튼 -->
-        <button class="top-button" id="topButton" onclick="scrollToTop()">
-            <img src="/images/icon_top.png" alt="TOP" class="top-button-icon" />
-            <div class="top-button-text">TOP</div>
-        </button>
+        <!-- 우측 플로팅 버튼 그룹 -->
+        <div class="side-float-group" id="sideFloatGroup">
+            <!-- 네이버 예약 -->
+            <a href="https://m.booking.naver.com/booking/5/bizes/1639418/items/7609161?area=bmp&lang=ko&map-search=1&service-target=map-pc&startDateTime=2026-04-24T00%3A00%3A00%2B09%3A00&theme=place" target="_blank" class="side-float-btn naver-res" onclick="logNaverResClick()">
+                <img src="/images/naver_res.png" alt="네이버 예약" />
+            </a>
+            <!-- 네이버 톡톡 -->
+            <a href="https://talk.naver.com/profile/c/acelaw" target="_blank" class="side-float-btn naver-talk" onclick="logNaverTalkClick()">
+                <img src="/images/naver_talktalk.png" alt="네이버 톡톡" />
+            </a>
+            <!-- 카카오톡 -->
+            <a href="#" class="side-float-btn kakao" onclick="openKakaoTalk(); return false;">
+                <img src="/images/kakao_icon.png" alt="카카오톡" />
+            </a>
+            <!-- 전화 -->
+            <a href="tel:1555-1684" class="side-float-btn phone" onclick="logPhoneClick()">
+                <img src="/images/top_call_icon.png" alt="전화" />
+            </a>
+            <!-- TOP 버튼 -->
+            <button class="top-button" id="topButton" onclick="scrollToTop()">
+                <img src="/images/icon_top.png" alt="TOP" class="top-button-icon" />
+                <div class="top-button-text">TOP</div>
+            </button>
+        </div>
 
         <!-- 상담 신청 팝업 -->
         <div id="consultationPopup" class="consultation-popup-overlay">

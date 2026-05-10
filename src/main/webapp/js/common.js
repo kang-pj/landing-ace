@@ -1702,6 +1702,20 @@ function logPhoneClick() {
     }
 }
 
+// 네이버 예약 클릭 로그
+function logNaverResClick() {
+    if (window.trackingUtils && window.trackingUtils.sendClickLog) {
+        window.trackingUtils.sendClickLog('naver_res');
+    }
+}
+
+// 네이버 톡톡 클릭 로그
+function logNaverTalkClick() {
+    if (window.trackingUtils && window.trackingUtils.sendClickLog) {
+        window.trackingUtils.sendClickLog('naver_talk');
+    }
+}
+
 // 하단 상담바 토글 함수
 function toggleConsultationForm() {
     const expandedForm = document.getElementById('expandedForm');

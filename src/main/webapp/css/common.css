@@ -1225,9 +1225,7 @@ body {
 
 /* TOP 버튼 */
 .top-button {
-    position: fixed;
-    bottom: 100px;
-    right: 20px;
+    position: static;
     width: 50px;
     height: 50px;
     background: #4865FF;
@@ -1273,12 +1271,78 @@ body {
     line-height: 1;
 }
 
+/* 우측 플로팅 버튼 그룹 */
+.side-float-group {
+    position: fixed;
+    right: 20px;
+    bottom: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    z-index: 1000;
+}
+
+.side-float-btn {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.side-float-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+.side-float-btn img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.side-float-btn.naver-res {
+    background: #fff;
+    border: 1px solid #e8e8e8;
+}
+
+.side-float-btn.naver-talk {
+    background: #fff;
+    border: 1px solid #e8e8e8;
+}
+
+.side-float-btn.kakao {
+    background: #FEE500;
+}
+
+.side-float-btn.phone {
+    background: #4865FF;
+}
+
+.side-float-btn.phone img {
+    width: 55%;
+    height: 55%;
+    object-fit: contain;
+    filter: brightness(0) invert(1);
+}
+
 /* 모바일 TOP 버튼 */
 @media (max-width: 768px) {
-    .top-button {
+    .side-float-group {
         bottom: 250px;
-        /* 하단 상담바 위로 */
         right: 15px;
+        gap: 8px;
+    }
+
+    .side-float-btn,
+    .top-button {
         width: 45px;
         height: 45px;
     }
