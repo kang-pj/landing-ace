@@ -1695,6 +1695,13 @@ function openKakaoTalk() {
     window.open('http://pf.kakao.com/_zJEYG/chat', '_blank');
 }
 
+// 플로팅 전화 버튼 클릭 로그
+function logPhoneClick() {
+    if (window.trackingUtils && window.trackingUtils.sendClickLog) {
+        window.trackingUtils.sendClickLog('call');
+    }
+}
+
 // 하단 상담바 토글 함수
 function toggleConsultationForm() {
     const expandedForm = document.getElementById('expandedForm');

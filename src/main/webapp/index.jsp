@@ -1280,7 +1280,7 @@
         <!-- 상단 고정 버튼 컨테이너 -->
         <div class="floating-btn-container" id="floatingBtnContainer">
             <div class="floating-btn-content">
-                <a href="tel:1555-1684" class="floating-btn-phone">
+                <a href="tel:1555-1684" class="floating-btn-phone" onclick="logPhoneClick()">
                     <img src="/images/call_icon.png" alt="전화" />
                     1555-1684
                 </a>
