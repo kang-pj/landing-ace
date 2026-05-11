@@ -2421,6 +2421,9 @@ function submitMainConsultationForm(event) {
                     }, 10);
                     document.body.style.overflow = 'hidden';
                 }
+
+                // 네이버 전환 추적
+                trackNaverConversion();
             } else {
                 alert('상담 신청 중 오류가 발생했습니다.\n다시 시도해주세요.');
             }
@@ -2460,6 +2463,9 @@ function submitConsultationForm(event) {
             if (data.success) {
                 closeConsultationModal();
                 showSuccessModal();
+
+                // 네이버 전환 추적
+                trackNaverConversion();
             } else {
                 alert('상담 신청 중 오류가 발생했습니다.\n다시 시도해주세요.');
             }
