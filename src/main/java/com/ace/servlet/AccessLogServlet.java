@@ -2,6 +2,7 @@ package com.ace.servlet;
 
 import com.ace.dao.AccessLogDAO;
 import com.ace.model.AccessLog;
+import com.ace.util.DiscordWebhook;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -87,6 +88,7 @@ public class AccessLogServlet extends HttpServlet {
         } catch (Exception e) {
             System.err.println("접근 로그 처리 중 오류: " + e.getMessage());
             e.printStackTrace();
+            DiscordWebhook.sendError("[AccessLog] 접근 로그 처리 실패", e);
             out.print("{\"success\": false, \"message\": \"서버 오류\"}");
         }
     }

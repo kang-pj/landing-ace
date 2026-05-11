@@ -2,6 +2,7 @@ package com.ace.servlet;
 
 import com.ace.dao.InquiryDAO;
 import com.ace.model.Inquiry;
+import com.ace.util.DiscordWebhook;
 import com.ace.util.EmailUtil;
 
 import jakarta.servlet.ServletException;
@@ -199,6 +200,7 @@ public class ConsultationServlet extends HttpServlet {
                 } catch (Exception emailError) {
                     System.err.println("이메일 발송 실패: " + emailError.getMessage());
                     emailError.printStackTrace();
+                    DiscordWebhook.sendError("[Consultation] 이메일 발송 실패", emailError);
                 }
             }).start();
             
@@ -208,11 +210,13 @@ public class ConsultationServlet extends HttpServlet {
         } catch (SQLException e) {
             System.err.println("Database error: " + e.getMessage());
             e.printStackTrace();
+            DiscordWebhook.sendError("[Consultation] DB 저장 실패", e);
             sendErrorResponse(out, "데이터 저장 중 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.");
             
         } catch (Exception e) {
             System.err.println("Unexpected error: " + e.getMessage());
             e.printStackTrace();
+            DiscordWebhook.sendError("[Consultation] 예상치 못한 오류", e);
             sendErrorResponse(out, "시스템 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.");
         }
     }

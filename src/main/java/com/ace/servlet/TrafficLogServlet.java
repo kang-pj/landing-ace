@@ -2,6 +2,7 @@ package com.ace.servlet;
 
 import com.ace.dao.TrafficLogDAO;
 import com.ace.model.TrafficLog;
+import com.ace.util.DiscordWebhook;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
@@ -65,6 +66,7 @@ public class TrafficLogServlet extends HttpServlet {
             
         } catch (Exception e) {
             e.printStackTrace();
+            DiscordWebhook.sendError("[TrafficLog] 트래픽 로그 저장 실패", e);
             response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
             response.getWriter().write("{\"success\": false, \"error\": \"" + e.getMessage() + "\"}");
         }

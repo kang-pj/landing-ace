@@ -4,6 +4,7 @@ import com.ace.dao.ConsultationLeadDAO;
 import com.ace.dao.InquiryDAO;
 import com.ace.model.ConsultationLead;
 import com.ace.model.Inquiry;
+import com.ace.util.DiscordWebhook;
 import com.ace.util.EmailUtil;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -129,6 +130,7 @@ public class ConsultationLeadServlet extends HttpServlet {
                 } catch (Exception emailError) {
                     System.err.println("이메일 발송 실패: " + emailError.getMessage());
                     emailError.printStackTrace();
+                    DiscordWebhook.sendError("[ConsultationLead] 이메일 발송 실패", emailError);
                 }
             }).start();
             
@@ -137,6 +139,7 @@ public class ConsultationLeadServlet extends HttpServlet {
         } catch (Exception e) {
             System.err.println("에러 발생: " + e.getMessage());
             e.printStackTrace();
+            DiscordWebhook.sendError("[ConsultationLead] 상담 신청 처리 실패", e);
             response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
             response.getWriter().write("{\"success\": false, \"error\": \"" + e.getMessage() + "\"}");
         }

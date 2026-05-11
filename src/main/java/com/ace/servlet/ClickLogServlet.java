@@ -6,6 +6,7 @@ import com.ace.dao.TrafficLogDAO;
 import com.ace.model.ConsultationLead;
 import com.ace.model.Inquiry;
 import com.ace.model.TrafficLog;
+import com.ace.util.DiscordWebhook;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.Cookie;
@@ -172,6 +173,7 @@ public class ClickLogServlet extends HttpServlet {
         } catch (Exception e) {
             System.err.println("클릭 로그 저장 오류: " + e.getMessage());
             e.printStackTrace();
+            DiscordWebhook.sendError("[ClickLog] 클릭 로그 저장 실패", e);
             response.getWriter().write("{\"success\":false,\"error\":\"" + e.getMessage() + "\"}");
         }
     }
