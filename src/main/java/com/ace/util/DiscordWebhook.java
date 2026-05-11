@@ -121,17 +121,25 @@ public class DiscordWebhook {
 
     private static String buildEmbed(String title, String description, int color) {
         String timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+        String env = isServerEnvironment() ? "운영" : "로컬";
         
         // JSON 수동 생성 (외부 라이브러리 없이)
         StringBuilder json = new StringBuilder();
         json.append("{\"embeds\":[{");
-        json.append("\"title\":\"").append(escapeJson(title)).append("\",");
+        json.append("\"title\":\"").append(escapeJson(title)).append(" [").append(env).append("]\",");
         json.append("\"description\":\"").append(escapeJson(description)).append("\",");
         json.append("\"color\":").append(color).append(",");
-        json.append("\"footer\":{\"text\":\"").append(escapeJson(timestamp)).append("\"}");
+        json.append("\"footer\":{\"text\":\"").append(escapeJson(env + " | " + timestamp)).append("\"}");
         json.append("}]}");
         
         return json.toString();
+    }
+
+    /**
+     * 서버 환경인지 확인
+     */
+    private static boolean isServerEnvironment() {
+        return System.getProperty("os.name").toLowerCase().contains("linux");
     }
 
     private static void sendAsync(String channel, String payload) {
