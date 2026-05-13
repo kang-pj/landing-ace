@@ -108,14 +108,19 @@ public class ConsultationLeadServlet extends HttpServlet {
             inquiryDAO.saveInquiry(inquiry);
             System.out.println("inquiries 저장 성공!");
             
-            // 3. 이메일 발송 (비동기 처리)
+            // 3. 디스코드 상담 알림 (비동기)
             final String finalName = request.getParameter("name");
             final String finalPhone = request.getParameter("phone");
             final String finalDebt = request.getParameter("debt");
             final String finalIncome = request.getParameter("income");
             final String finalSource = request.getParameter("consultation_source");
             final String finalMessage = request.getParameter("message");
-            
+
+            new Thread(() -> {
+                DiscordWebhook.sendConsultation(finalName, finalPhone, finalDebt, finalIncome, finalSource);
+            }).start();
+
+            // 4. 이메일 발송 (비동기 처리)
             new Thread(() -> {
                 try {
                     EmailUtil.sendConsultationEmail(

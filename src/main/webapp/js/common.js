@@ -1187,13 +1187,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // 상담 섹션을 벗어나면 상단 고정 요소들 표시
         if (scrollY > consultationSectionBottom - 100) {
-            // 플로팅 헤더는 숨기고 버튼 컨테이너만 표시
             floatingHeader.classList.remove('show');
-            floatingBtnContainer.classList.add('show');
+            if (floatingBtnContainer) floatingBtnContainer.classList.add('show');
             document.body.classList.add('floating-btn-visible');
         } else {
             floatingHeader.classList.remove('show');
-            floatingBtnContainer.classList.remove('show');
+            if (floatingBtnContainer) floatingBtnContainer.classList.remove('show');
             document.body.classList.remove('floating-btn-visible');
         }
 
@@ -1720,6 +1719,7 @@ function logNaverTalkClick() {
 function toggleConsultationForm() {
     const expandedForm = document.getElementById('expandedForm');
     const toggleBtn = document.getElementById('toggleBtn');
+    const sideFloatGroup = document.getElementById('sideFloatGroup');
 
     if (!expandedForm || !toggleBtn) return;
 
@@ -1731,11 +1731,23 @@ function toggleConsultationForm() {
         toggleBtn.classList.remove('collapsed');
         if (expandIcon) expandIcon.style.display = 'block';
         if (closeIcon) closeIcon.style.display = 'none';
+        // 사이드 버튼 원래 위치로
+        if (sideFloatGroup) sideFloatGroup.style.bottom = '160px';
     } else {
         expandedForm.classList.add('show');
         toggleBtn.classList.add('collapsed');
         if (expandIcon) expandIcon.style.display = 'none';
         if (closeIcon) closeIcon.style.display = 'block';
+        // 사이드 버튼 올리기 (펼쳐진 폼 높이만큼)
+        if (sideFloatGroup) {
+            setTimeout(() => {
+                const bar = document.querySelector('.bottom-consultation-bar');
+                if (bar) {
+                    const barHeight = bar.offsetHeight;
+                    sideFloatGroup.style.bottom = (barHeight + 10) + 'px';
+                }
+            }, 50);
+        }
     }
 }
 
@@ -1743,17 +1755,24 @@ function toggleConsultationForm() {
 function openConsultationForm() {
     const expandedForm = document.getElementById('expandedForm');
     const toggleBtn = document.getElementById('toggleBtn');
+    const sideFloatGroup = document.getElementById('sideFloatGroup');
     const expandIcon = toggleBtn ? toggleBtn.querySelector('.expand-icon') : null;
     const closeIcon = toggleBtn ? toggleBtn.querySelector('.close-icon') : null;
 
     if (expandedForm && !expandedForm.classList.contains('show')) {
         expandedForm.classList.add('show');
-        if (toggleBtn) {
-            toggleBtn.classList.add('collapsed');
-        }
-        if (expandIcon && closeIcon) {
-            expandIcon.style.display = 'none';
-            closeIcon.style.display = 'block';
+        if (toggleBtn) toggleBtn.classList.add('collapsed');
+        if (expandIcon) expandIcon.style.display = 'none';
+        if (closeIcon) closeIcon.style.display = 'block';
+        // 사이드 버튼 올리기
+        if (sideFloatGroup) {
+            setTimeout(() => {
+                const bar = document.querySelector('.bottom-consultation-bar');
+                if (bar) {
+                    const barHeight = bar.offsetHeight;
+                    sideFloatGroup.style.bottom = (barHeight + 10) + 'px';
+                }
+            }, 50);
         }
     }
 }

@@ -15,6 +15,11 @@ body {
     background: #ffffff;
     padding: 15px 0;
     border-bottom: 1px solid #e0e0e0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 9998;
 }
 
 .header-container {
@@ -112,6 +117,11 @@ body {
     font-size: 12px;
 }
 
+/* 헤더 fixed로 인한 상단 여백 */
+body {
+    padding-top: 0;
+}
+
 /* 메인 배경 영역 */
 .main-background {
     background-image: url('/images/main-background.png');
@@ -121,7 +131,7 @@ body {
     width: 100%;
     min-height: 780px;
     position: relative;
-    padding: 40px 0 100px;
+    padding: 110px 0 100px;
     opacity: 1;
 }
 
@@ -1336,9 +1346,10 @@ body {
 /* 모바일 TOP 버튼 */
 @media (max-width: 768px) {
     .side-float-group {
-        bottom: 250px;
+        bottom: 160px;
         right: 15px;
         gap: 8px;
+        transition: bottom 0.3s ease;
     }
 
     .side-float-btn,
@@ -2843,7 +2854,11 @@ body.floating-header-visible {
     visibility: visible;
 }
 
-/* 모바일 네비게이션이 열렸을 때 아일랜드 숨기기 */
+/* 모바일 네비 열렸을 때 헤더 메뉴/전화번호만 숨기기 (로고, X 버튼은 유지) */
+body:has(.mobile-nav.active) .header .nav-menu,
+body:has(.mobile-nav.active) .header .contact-phone {
+    visibility: hidden;
+}
 .mobile-nav.active~.floating-btn-container,
 body:has(.mobile-nav.active) .floating-btn-container {
     display: none !important;
@@ -2856,7 +2871,7 @@ body:has(.mobile-nav.active) .floating-btn-container {
     width: 100%;
     height: 100vh;
     background: white;
-    padding: 30px;
+    padding: 80px 30px 30px;
     transform: translateX(100%);
     transition: transform 0.3s ease;
     box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
@@ -3946,7 +3961,7 @@ body:has(.mobile-nav.active) .floating-btn-container {
     /* 메인 배경 */
     .main-background {
         min-height: auto;
-        padding: 30px 0 60px;
+        padding: 100px 0 60px;
     }
 
     .main-container {

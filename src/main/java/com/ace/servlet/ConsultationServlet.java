@@ -180,12 +180,17 @@ public class ConsultationServlet extends HttpServlet {
             
             System.out.println("데이터베이스 저장 성공! ID: " + inquiryId);
             
-            // 이메일 발송 (비동기 처리)
+            // 디스코드 상담 알림 (비동기)
             final String finalName = name;
             final String finalPhone = phone;
             final String finalDebtAmount = debtAmount;
             final String finalMonthlyIncome = monthlyIncome;
-            
+
+            new Thread(() -> {
+                DiscordWebhook.sendConsultation(finalName, finalPhone, finalDebtAmount, finalMonthlyIncome, "일반 상담 폼");
+            }).start();
+
+            // 이메일 발송 (비동기 처리)
             new Thread(() -> {
                 try {
                     EmailUtil.sendConsultationEmail(

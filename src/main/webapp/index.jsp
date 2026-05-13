@@ -118,10 +118,14 @@
         <!-- 모바일 네비게이션 -->
         <div class="mobile-nav" id="mobileNav" onclick="closeMobileNav(event)">
             <div class="mobile-nav-content" onclick="event.stopPropagation()">
-                <!-- 로고 추가 -->
+                <!-- 닫기 버튼 -->
+                <button class="mobile-nav-close" onclick="closeMobileNav(event)">&times;</button>
+                <!-- 로고 제거 -->
+                <!--
                 <div class="mobile-nav-logo">
                     <img src="/images/logo.png" alt="ACE 법률사무소" />
                 </div>
+                -->
 
                 <nav class="mobile-nav-menu">
                     <a href="#ai" onclick="event.preventDefault(); scrollToSection('ai')">AI 자가진단</a>
@@ -1277,7 +1281,8 @@
             </div>
         </div>
 
-        <!-- 상단 고정 버튼 컨테이너 -->
+        <!-- 상단 고정 버튼 컨테이너 (사용 안함) -->
+        <!--
         <div class="floating-btn-container" id="floatingBtnContainer">
             <div class="floating-btn-content">
                 <a href="tel:1555-1684" class="floating-btn-phone" onclick="logPhoneClick()">
@@ -1293,6 +1298,7 @@
                 </button>
             </div>
         </div>
+        -->
 
         <!-- 우측 플로팅 버튼 그룹 -->
         <div class="side-float-group" id="sideFloatGroup">
@@ -1301,7 +1307,7 @@
                 <img src="/images/naver_res.png" alt="네이버 예약" />
             </a>
             <!-- 네이버 톡톡 -->
-            <a href="https://talk.naver.com/profile/c/acelaw" target="_blank" class="side-float-btn naver-talk" onclick="logNaverTalkClick()">
+            <a href="https://talk.naver.com/WYIWNNO" target="_blank" class="side-float-btn naver-talk" onclick="logNaverTalkClick()">
                 <img src="/images/naver_talktalk.png" alt="네이버 톡톡" />
             </a>
             <!-- 카카오톡 -->
