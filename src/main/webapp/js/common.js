@@ -1706,6 +1706,7 @@ function logNaverResClick() {
     if (window.trackingUtils && window.trackingUtils.sendClickLog) {
         window.trackingUtils.sendClickLog('naver_res');
     }
+    trackNaverConversion();
 }
 
 // 네이버 톡톡 클릭 로그
@@ -1713,6 +1714,7 @@ function logNaverTalkClick() {
     if (window.trackingUtils && window.trackingUtils.sendClickLog) {
         window.trackingUtils.sendClickLog('naver_talk');
     }
+    trackNaverConversion();
 }
 
 // 하단 상담바 토글 함수
@@ -2571,6 +2573,9 @@ function submitPcConsultation() {
                     }, 10);
                     document.body.style.overflow = 'hidden';
                 }
+
+                // 네이버 전환 추적
+                trackNaverConversion();
             } else {
                 alert('상담 신청 중 오류가 발생했습니다.\n다시 시도해주세요.');
             }
